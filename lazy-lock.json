@@ -17,7 +17,7 @@
   "fd": { "branch": "master", "commit": "ab7d5eff874073bc6f09800614889c3a2b7a891d" },
   "friendly-snippets": { "branch": "main", "commit": "484fb38b8f493ceeebf4e6fc499ebe41e10aae25" },
   "indent-blankline.nvim": { "branch": "master", "commit": "c4c203c3e8a595bc333abaf168fcb10c13ed5fb7" },
-  "lazy.nvim": { "branch": "main", "commit": "8798ccc95031225e3b2241bd8b2d26c2452b06c4" },
+  "lazy.nvim": { "branch": "main", "commit": "ef87c24e8ede2a94cbeaea1667eaeb7f8ed40dc0" },
   "lsp-colors.nvim": { "branch": "main", "commit": "750d59b643865b906996028147675e9af216ea95" },
   "lspkind-nvim": { "branch": "master", "commit": "c68b3a003483cf382428a43035079f78474cd11e" },
   "lualine.nvim": { "branch": "master", "commit": "d8c392dd75778d6258da4e7c55522e94ac389732" },

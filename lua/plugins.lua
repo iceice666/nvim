@@ -68,7 +68,7 @@ require("lazy").setup({
   "glepnir/dashboard-nvim",
 
   -- Make inactive windows dark
-  "sunjon/Shade.nvim",
+  -- "sunjon/Shade.nvim",
 
   -- Cursor navigate
   "tpope/vim-surround",

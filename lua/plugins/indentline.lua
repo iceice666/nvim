@@ -15,6 +15,6 @@ require("indent_blankline").setup {
     "IndentBlanklineIndent5",
     "IndentBlanklineIndent6",
   },
-  char_list = { '|', '¦', '┆', '┊', },
+  char_list = { '|', }, --'¦', '┆', '┊', },
   show_current_context_start = true,
 }

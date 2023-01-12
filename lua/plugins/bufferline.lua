@@ -1,7 +1,9 @@
 require("bufferline").setup({
   options = {
-    diagnostics = "nvim_lsp",
+    mode = "buffer",
+    number = "ordinal",
 
+    diagnostics = "nvim_lsp",
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
       local s = " "
       for e, n in pairs(diagnostics_dict) do
@@ -15,14 +17,18 @@ require("bufferline").setup({
         filetype = "NvimTree",
         text = "File Explorer",
         highlight = "Directory",
-        text_align = "left",
+        text_align = "center",
       },
       {
         filetype = "undotree",
         text = "Undo History",
         hightlight = "Directory",
-        text_align = "left",
+        text_align = "center",
       },
+      {
+        filetype = "alpha",
+        text = " "
+      }
     },
   },
 })

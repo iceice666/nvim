@@ -8,7 +8,7 @@ local completion = null_ls.builtins.completion
 null_ls.setup({
   sources = {
 
-    completion.spell,
+    --completion.spell.with({ filetypes = { "markdown", "text" } }),
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent_width", "2" } }),
   },
   on_attach = function(client, bufnr)

@@ -58,6 +58,8 @@ vim.o.shortmess = vim.o.shortmess .. "c"
 
 opt.pumheight = 10
 
+opt.background = "dark"
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 
   callback = function()

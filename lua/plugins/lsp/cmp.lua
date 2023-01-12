@@ -1,3 +1,5 @@
+local isInclude = require("utilities").isInclude
+
 local cmp = require("cmp")
 
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -8,7 +10,6 @@ local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
-
 cmp.setup({
   sources = {
     { name = "nvim_lsp" },
@@ -18,6 +19,15 @@ cmp.setup({
     { name = "nvim_lsp_signature_help" },
     { name = 'emoji' },
     { name = 'treesitter' },
+    { name = "spell",
+      option = {
+        enable_in_context = function()
+          if isInclude(vim.bo.filetype, { "text", "markdown" }) then
+            return true
+          end
+        end
+      }
+    }
   },
   snippet = {
     expand = function(args)
@@ -47,7 +57,8 @@ cmp.setup({
       end
     end, { "i", "s" }),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    ["<c-CR>"] = cmp.mapping.abort()
+    ["<s-CR>"] = cmp.mapping.abort()
+
   }
 })
 

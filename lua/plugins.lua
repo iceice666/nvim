@@ -13,23 +13,36 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
-
+  -- Theme
+  { "nyoom-engineering/oxocarbon.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd("colorscheme oxocarbon")
+    end },
   -- Window tabs
-  { "akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons" },
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = { "kyazdani42/nvim-web-devicons" }
+  },
   -- Status line
   "nvim-lualine/lualine.nvim",
   -- Smooth cursor
   "gen740/SmoothCursor.nvim",
   -- File explorer
-  { "nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
+  { "nvim-tree/nvim-tree.lua", },
   -- Auto close some chars like ()[]{}''""
   "m4xshen/autoclose.nvim",
-  -- Theme
-  "nyoom-engineering/oxocarbon.nvim",
   -- Switch true/false
   "rmagatti/alternate-toggler",
   -- indent line
   "lukas-reineke/indent-blankline.nvim",
+  -- Lazy git
+  "kdheepak/lazygit.nvim",
+  -- Speed up loading
+  "lewis6991/impatient.nvim",
+  -- dashboard
+   { "goolord/alpha-nvim", },
   ------------- Need Config -------------
   "folke/which-key.nvim",
   "folke/neodev.nvim",
@@ -38,10 +51,17 @@ require("lazy").setup({
     "nvim-telescope/telescope.nvim",
     dependencies = { "BurntSushi/ripgrep", "sharkdp/fd", "nvim-lua/plenary.nvim" },
   },
-  { "folke/trouble.nvim", dependencies = { "folke/lsp-colors.nvim" } },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "folke/lsp-colors.nvim" }
+  },
 
   -- LSP
-  { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "neovim/nvim-lspconfig" },
+  {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig"
+  },
 
   -- cmp resources
   {
@@ -52,20 +72,18 @@ require("lazy").setup({
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-emoji",
+    "f3fora/cmp-spell",
     "ray-x/cmp-treesitter",
   },
   -- Snippets
-  "L3MON4D3/LuaSnip",
   {
+    "L3MON4D3/LuaSnip",
     "rafamadriz/friendly-snippets",
     "onsails/lspkind-nvim",
   },
 
   -- Syntax highlight
   "nvim-treesitter/nvim-treesitter",
-
-  -- dashboard
-  "glepnir/dashboard-nvim",
 
   -- Make inactive windows dark
   -- "sunjon/Shade.nvim",

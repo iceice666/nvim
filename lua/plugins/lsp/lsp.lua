@@ -1,5 +1,4 @@
-local _set = require("keybindings")._set
-
+local km = require 'mapx'.setup { global = false }
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
@@ -15,25 +14,25 @@ local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- ===========================Mapping===================================
-
+local opt = { silent = true }
 -- LSP mappings
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-_set("n", "[d", vim.diagnostic.goto_prev)
-_set("n", "]d", vim.diagnostic.goto_next)
+km.nnoremap("[d", vim.diagnostic.goto_prev, opt)
+km.nnoremap("]d", vim.diagnostic.goto_next, opt)
 
 local lsp_mapping = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-  vim.keymap.set("n", "gh", vim.lsp.buf.hover, bufopts)
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, bufopts)
-  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+
+  km.nnoremap("n", "gD", vim.lsp.buf.declaration, opt)
+  km.nnoremap("n", "gd", vim.lsp.buf.definition, opt)
+  km.nnoremap("n", "gh", vim.lsp.buf.hover, opt)
+  km.nnoremap("n", "gi", vim.lsp.buf.implementation, opt)
+  km.nnoremap("n", "gs", vim.lsp.buf.signature_help, opt)
+  km.nnoremap("n", "<f2>", vim.lsp.buf.rename, opt)
+  km.nnoremap("n", "<space>ca", vim.lsp.buf.code_action, opt)
+  km.nnoremap("n", "gr", vim.lsp.buf.references, opt)
 end
 
 -- =====================================================================

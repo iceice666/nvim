@@ -25,10 +25,6 @@ require("bufferline").setup({
         hightlight = "Directory",
         text_align = "center",
       },
-      {
-        filetype = "alpha",
-        text = " "
-      }
     },
   },
 })

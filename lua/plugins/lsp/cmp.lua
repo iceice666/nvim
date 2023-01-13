@@ -1,4 +1,4 @@
-local isInclude = require("utilities").isInclude
+local isInclude = require("utilities/basic").isInclude
 
 local cmp = require("cmp")
 

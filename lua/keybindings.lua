@@ -1,86 +1,71 @@
 vim.g.mapleader = " "
+local mapx = require 'mapx'.setup {}
 
-local km = vim.keymap
-local opt = { noremap = true, silent = true }
-
-local _set = function(modes, keybindings, operations)
-  if type(keybindings) == "table" then
-    for _, k in ipairs(keybindings) do
-      km.set(modes, k, operations, opt)
-    end
-  else
-    km.set(modes, keybindings, operations, opt)
-
-  end
-end
+local opt = { silent = true }
 
 -- undo & redo
-_set({ "n", "v", "i" }, "<s-ScrollWheelUp>", "<cmd>:later<cr>")
-_set({ "n", "v", "i" }, "<s-ScrollWheelDown>", "<cmd>:earlier<cr>")
-_set("n", "U", "<cmd>:later<cr>")
+
+mapx.nnoremap("U", ":later<cr>", opt)
 
 -- Select all
-_set({ "n", "v" }, "<c-a>", "gg<s-v>G")
+mapx.nnoremap("<c-a>", "gg<s-v>G", opt)
+mapx.vnoremap("<c-a>", "gg<s-v>G", opt)
 
 -- Window split
-_set("n", "Wl", "<cmd>:set splitright<CR>:vsplit<CR>")
-_set("n", "Wh", "<cmd>:set nosplitright<CR>:vsplit<CR>")
-_set("n", "Wk", "<cmd>:set nosplitbelow<CR>:split<CR>")
-_set("n", "Wj", "<cmd>:set splitbelow<CR>:split<CR>")
+mapx.nnoremap("Wl", ":set splitright<CR>:vsplit<CR>", opt)
+mapx.nnoremap("Wh", ":set nosplitright<CR>:vsplit<CR>", opt)
+mapx.nnoremap("Wk", ":set nosplitbelow<CR>:split<CR>", opt)
+mapx.nnoremap("Wj", ":set splitbelow<CR>:split<CR>", opt)
 
 -- Cursor jumping
-_set("n", "L", "$")
-_set("n", "H", "^")
-_set("n", "J", "9j")
-_set("n", "K", "9k")
+mapx.nnoremap("L", "$", opt)
+mapx.nnoremap("H", "^", opt)
+mapx.nnoremap("J", "9j", opt)
+mapx.nnoremap("K", "9k", opt)
 
 -- File
-_set("n", "<leader>w", "<cmd>:w<cr>")
+mapx.nnoremap("<leader>w", ":w<cr>", opt)
 
 -- nohls
-_set("n", "<leader>/", "<cmd>:nohls<cr>")
+mapx.nnoremap("<leader>/", ":nohls<cr>", opt)
 
 -- Quit
-_set("n", "<leader>Q", "<cmd>:qa<cr>")
+mapx.nnoremap("<leader>Q", ":qa<cr>", opt)
 
 -- Clean cmdline
-_set("n", "<leader><leader>", "<cmd>:echo ' '<cr>")
+mapx.nnoremap("<leader><leader>", ":echo ' '<cr>", opt)
 
 -- ======================= PLUGINS MAPPINGS ===========================
 -- Dashboard
-_set("n", "<leader>d", "<cmd>:Alpha<cr>")
+mapx.nnoremap("<leader>d", ":Dashboard<cr>", opt)
 
 -- File tree
-_set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>")
+mapx.nnoremap("<leader>e", ":NvimTreeToggle<cr>", opt)
 
 -- Undo tree
-_set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
+mapx.nnoremap("<leader>u", ":UndotreeToggle<cr>", opt)
 
 -- Alternate toggler
-_set("n", "<leader>ta", "<cmd>:ToggleAlternate<cr>")
+mapx.nnoremap("<leader>ta", ":ToggleAlternate<cr>", opt)
 
 -- format
-_set("n", "<leader>f", "<cmd>:lua vim.lsp.buf.format({ bufnr = bufnr })<cr>")
+mapx.nnoremap("<leader>f", ":lua vim.lsp.buf.format({ bufnr = bufnr })<cr>", opt)
 
 -- LazyGit
-_set("n", "<leader>lg", "<cmd>:LazyGit<cr>")
+mapx.nnoremap("<leader>lg", ":LazyGit<cr>", opt)
 
 -- bufferline
-_set("n", "<leader>1", "<cmd>:BufferLineGoToBuffer 1<cr>")
-_set("n", "<leader>2", "<cmd>:BufferLineGoToBuffer 2<cr>")
-_set("n", "<leader>3", "<cmd>:BufferLineGoToBuffer 3<cr>")
-_set("n", "<leader>4", "<cmd>:BufferLineGoToBuffer 4<cr>")
-_set("n", "<leader>5", "<cmd>:BufferLineGoToBuffer 5<cr>")
-_set("n", "<leader>6", "<cmd>:BufferLineGoToBuffer 6<cr>")
-_set("n", "<leader>7", "<cmd>:BufferLineGoToBuffer 7<cr>")
-_set("n", "<leader>8", "<cmd>:BufferLineGoToBuffer 8<cr>")
-_set("n", "<leader>9", "<cmd>:BufferLineGoToBuffer 9<cr>")
+mapx.nnoremap("<leader>1", ":BufferLineGoToBuffer 1<cr>", opt)
+mapx.nnoremap("<leader>2", ":BufferLineGoToBuffer 2<cr>", opt)
+mapx.nnoremap("<leader>3", ":BufferLineGoToBuffer 3<cr>", opt)
+mapx.nnoremap("<leader>4", ":BufferLineGoToBuffer 4<cr>", opt)
+mapx.nnoremap("<leader>5", ":BufferLineGoToBuffer 5<cr>", opt)
+mapx.nnoremap("<leader>6", ":BufferLineGoToBuffer 6<cr>", opt)
+mapx.nnoremap("<leader>7", ":BufferLineGoToBuffer 7<cr>", opt)
+mapx.nnoremap("<leader>8", ":BufferLineGoToBuffer 8<cr>", opt)
+mapx.nnoremap("<leader>9", ":BufferLineGoToBuffer 9<cr>", opt)
 
 -- buffer close
-_set("n", { "<leader>bc", "<leader>q" }, "<cmd>:bdelete %<cr>")
-_set("n", "<leader>bp", "<cmd>:BufferLinePickClose<cr>")
-_set("n", "<leader>bo", "<cmd>:BufferLineCloseLeft<cr><cmd>:BufferLineCloseRight<cr>")
-
-return {
-  _set = _set,
-}
+mapx.nnoremap({ "<leader>bc", "<leader>q" }, ":bdelete %<cr>", opt)
+mapx.nnoremap("<leader>bp", ":BufferLinePickClose<cr>", opt)
+mapx.nnoremap("<leader>bo", ":BufferLineCloseLeft<cr>:BufferLineCloseRight<cr>", opt)

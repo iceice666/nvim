@@ -11,20 +11,45 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.runtimepath:prepend(lazypath)
+local root = vim.fn.stdpath("config") .. "/lua/"
+
+vim.opt.runtimepath:prepend(root .. "plugins")
+local split = require("utilities/basic").split
+local isInclude = require("utilities/basic").isInclude
+local blacklist = { "dashboard" }
+
+-- load plugins
+local function loadPlugins(pluginsPath)
+  pluginsPath = pluginsPath or "plugins/"
+  local plugins = vim.fn.systemlist("ls " .. root .. pluginsPath)
+  for _, k in ipairs(plugins) do
+    local _p = split(k, ".")
+
+    if isInclude(_p[1], blacklist) then
+    elseif #_p == 1 then
+      loadPlugins(pluginsPath .. _p[1] .. "/")
+    elseif _p[#_p] == "lua" then
+      require(pluginsPath .. _p[1])
+    end
+  end
+end
 
 require("lazy").setup({
   -- Theme
-  { "nyoom-engineering/oxocarbon.nvim",
+  { --"nyoom-engineering/oxocarbon.nvim",
+    "glepnir/zephyr-nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd("colorscheme oxocarbon")
+      vim.cmd("colorscheme zephyr")
     end },
   -- Window tabs
   {
     "akinsho/bufferline.nvim",
     dependencies = { "kyazdani42/nvim-web-devicons" }
   },
+  -- keymapp
+  { "b0o/mapx.nvim" },
   -- Status line
   "nvim-lualine/lualine.nvim",
   -- Smooth cursor
@@ -42,7 +67,12 @@ require("lazy").setup({
   -- Speed up loading
   "lewis6991/impatient.nvim",
   -- dashboard
-   { "goolord/alpha-nvim", },
+  -- { "goolord/alpha-nvim", },
+  { "glepnir/dashboard-nvim",
+    config = function()
+      require("dashboard").disable_at_vimenter = true
+    end
+  },
   ------------- Need Config -------------
   "folke/which-key.nvim",
   "folke/neodev.nvim",
@@ -85,14 +115,13 @@ require("lazy").setup({
   -- Syntax highlight
   "nvim-treesitter/nvim-treesitter",
 
-  -- Make inactive windows dark
-  -- "sunjon/Shade.nvim",
-
   -- Cursor navigate
-  "tpope/vim-surround",
-  "mg979/vim-visual-multi",
-  "gcmt/wildfire.vim",
-  "easymotion/vim-easymotion",
+  {
+    --"tpope/vim-surround",
+    --"mg979/vim-visual-multi",
+    --"gcmt/wildfire.vim",
+    --"easymotion/vim-easymotion",
+  },
 
   -- Undo history
   "mbbill/undotree",
@@ -105,27 +134,13 @@ require("lazy").setup({
   "b0o/SchemaStore.nvim",
 })
 
-local root = vim.fn.stdpath("config") .. "/lua/"
-
-vim.opt.runtimepath:prepend(root .. "plugins")
-local split = require("utilities").split
-local isInclude = require("utilities").isInclude
-local blacklist = { "coc" }
-
--- load plugins
-local function loadPlugins(pluginsPath)
-  pluginsPath = pluginsPath or "plugins/"
-  local plugins = vim.fn.systemlist("ls " .. root .. pluginsPath)
-  for _, k in ipairs(plugins) do
-    local _p = split(k, ".")
-
-    if isInclude(_p[1], blacklist) then
-    elseif #_p == 1 then
-      loadPlugins(pluginsPath .. _p[1] .. "/")
-    elseif _p[#_p] == "lua" then
-      require(pluginsPath .. _p[1])
-    end
-  end
-end
 
 loadPlugins()
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LazyVimStarted",
+  callback = function()
+    require("plugins/dashboard")
+    vim.cmd("Dashboard")
+  end,
+})

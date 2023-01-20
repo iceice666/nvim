@@ -15,3 +15,8 @@ require("alternate-toggler").setup({
     ["!="] = "==",
   },
 })
+
+local mapx = require('core.keymap').mapx
+local opt = { silent = true }
+-- Alternate toggler
+mapx.nnoremap("<leader>ms", "<cmd>ToggleAlternate<cr>", opt)

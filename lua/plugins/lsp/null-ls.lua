@@ -7,9 +7,18 @@ local completion = null_ls.builtins.completion
 
 null_ls.setup({
   sources = {
+    -- formatting
+    formatting.stylua.with(
+      {
+        extra_args = {
+          "--indent-type", "Spaces", "--indent_width", "2"
+        }
+      }
+    ),
+    formatting.autopep8,
 
-    --completion.spell.with({ filetypes = { "markdown", "text" } }),
-    formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent_width", "2" } }),
+    -- linter / diagnostics
+    diagnostics.ruff,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then

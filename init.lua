@@ -1,6 +1,3 @@
-require("basic")
-
-require("plugins")
-require("keybindings")
+require("init")
 
 vim.cmd("nohls")

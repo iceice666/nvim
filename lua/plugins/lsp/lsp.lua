@@ -1,4 +1,6 @@
-local km = require 'mapx'.setup { global = false }
+local mapx = require("core.keymap").mapx
+--require("neodev").setup({})
+
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
@@ -7,40 +9,41 @@ require("mason-lspconfig").setup({
   },
   automatic_installation = true,
 })
-
 local lspconfig = require("lspconfig")
-
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+require('lspsaga').setup({})
 -- ===========================Mapping===================================
-local opt = { silent = true }
--- LSP mappings
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-km.nnoremap("[d", vim.diagnostic.goto_prev, opt)
-km.nnoremap("]d", vim.diagnostic.goto_next, opt)
-
+mapx.nname("g", "Goto")
+mapx.nname("<leader>s", "Show info")
 local lsp_mapping = function(_, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  --  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  mapx.group({ silent = true, buffer = bufnr }, function()
+    mapx.nnoremap("gd", "<cmd>Lspsaga peek_definition<CR>", "LSP: Peek defintion")
+    mapx.nnoremap("gD", "<cmd>lua vim.lsp.buf.definition()<CR>", "LSP: Goto definiton")
+    mapx.nnoremap("gh", "<cmd>Lspsaga lsp_finder<CR>", "LSP: Find keyword")
+    mapx.nnoremap("gH", "<cmd>Lspsaga hover_doc<CR>", "LSP: Show doc")
+    mapx.nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+    mapx.nnoremap("gr", "<cmd>Lspsaga rename<CR>", "LSP: Rename")
+    mapx.nnoremap("g[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "LSP: Go prev diagnostic")
+    mapx.nnoremap("g]", "<cmd>lua vim.diagnostic.goto_next()<CR>", "LSP: Go next diagnostic")
+    mapx.nnoremap("<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", "LSP: Show current cursor diagnostics")
+    mapx.nnoremap("<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>", "LSP: Show current line diagnostics")
+    mapx.nnoremap("<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", "LSP: Show current buffer diagnostics")
+    mapx.nnoremap("<leader>so", "<cmd>Lspsaga outline<CR>", "LSP: Show current buffer symbol outline")
+    mapx.nnoremap("<leader>sh", "<cmd>vim.lsp.buf.signature_help", "LSP: Show signature help")
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-
-  km.nnoremap("n", "gD", vim.lsp.buf.declaration, opt)
-  km.nnoremap("n", "gd", vim.lsp.buf.definition, opt)
-  km.nnoremap("n", "gh", vim.lsp.buf.hover, opt)
-  km.nnoremap("n", "gi", vim.lsp.buf.implementation, opt)
-  km.nnoremap("n", "gs", vim.lsp.buf.signature_help, opt)
-  km.nnoremap("n", "<f2>", vim.lsp.buf.rename, opt)
-  km.nnoremap("n", "<space>ca", vim.lsp.buf.code_action, opt)
-  km.nnoremap("n", "gr", vim.lsp.buf.references, opt)
+    mapx.nnoremap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "LSP: Code action")
+    mapx.vnoremap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "LSP: Code action")
+  end)
 end
-
 -- =====================================================================
 
 local lsp_config = function(settings)
   settings = settings or {}
   return (
-      vim.tbl_deep_extend(
+      vim.tbl_extend(
         "force",
         {
           on_attach = lsp_mapping,

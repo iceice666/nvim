@@ -5,7 +5,7 @@ opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
 opt.number = true
-opt.relativenumber = true
+--opt.relativenumber = true
 
 opt.scrolloff = 5
 opt.sidescrolloff = 5
@@ -48,8 +48,6 @@ opt.cmdheight = 2
 
 opt.whichwrap = "b,s,<,>,[,],h,l"
 
-opt.mouse = "a"
-
 opt.wildmenu = true
 
 opt.showtabline = 2
@@ -59,6 +57,12 @@ vim.o.shortmess = vim.o.shortmess .. "c"
 opt.pumheight = 10
 
 opt.background = "dark"
+
+opt.hidden = true
+
+opt.mouse:append("a")
+
+opt.clipboard:append("unnamedplus")
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 

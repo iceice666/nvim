@@ -1,7 +1,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("nvim-tree").setup({
+require("neo-tree").setup({
   sort_by = "case_sensitive",
   actions = {
     open_file = { quit_on_open = true },
@@ -35,3 +35,8 @@ require("nvim-tree").setup({
     },
   },
 })
+
+local opt = { silent = true }
+-- File tree
+local mapx = require("core.keymap").mapx
+mapx.nnoremap("<leader>e", ":NeoTreeRevealToggle <cr>", opt)

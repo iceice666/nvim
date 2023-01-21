@@ -97,16 +97,6 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open({})
 end
 
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close({})
-  dap.repl.close()
-end
-
-
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close({})
-  dap.repl.close()
-end
 
 vim.api.nvim_set_hl(0, 'DapBreakpoint', {
   ctermbg = 0,
@@ -160,6 +150,10 @@ vim.fn.sign_define('DapStopped', {
 local mapx = require("core.keymap").mapx
 mapx.nnoremap("<F5>", "<cmd>DapContinue<cr>")
 mapx.nnoremap("<F17>", "<cmd>DapTerminate<cr>")
+mapx.nnoremap("<F6>", function()
+  dapui.close({})
+  dap.repl.close()
+end)
 mapx.nnoremap("<F9>", "<cmd>DapToggleBreakpoint<cr>")
 mapx.nnoremap("<F10>", "<cmd>DapStepOver<cr>")
 mapx.nnoremap("<F11>", "<cmd>DapStepInto<cr>")

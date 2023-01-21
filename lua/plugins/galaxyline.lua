@@ -53,7 +53,14 @@ end
 local galaxyline = require('galaxyline')
 local condition = require('galaxyline.condition')
 local gls = galaxyline.section
-galaxyline.short_line_list = {}
+galaxyline.short_line_list = {
+  "neo-tree",
+  "dapui_breakpoints",
+  "dapui_watches",
+  "dapui_stacks",
+  "dapui_scopes",
+  "dap-repl"
+}
 
 
 local separator = function()
@@ -252,4 +259,30 @@ gls.right = {
   },
 
   separator(),
+}
+gls.short_line_left = {
+  separator(),
+
+  {
+    FileName = {
+      highlight = { colors.fg, colors.bg, 'bold' },
+      provider = 'FileName',
+      separator = ' ',
+      separator_highlight = { 'NONE', colors.bg },
+    },
+  },
+
+
+
+
+
+}
+gls.short_line_right = {
+  {
+    BufferIcon = {
+      highlight = { colors.fg, colors.bg },
+      provider = 'BufferIcon',
+    },
+  },
+  separator()
 }

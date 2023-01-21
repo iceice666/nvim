@@ -29,10 +29,7 @@ require("mason-nvim-dap").setup_handlers({
         request = "launch",
         name = "Launch file",
         program = "${file}",
-        pythonPath = function()
-          -- return vim.fn.system("which python")
-          return "/usr/bin/python"
-        end
+        pythonPath = "${workspaceFolder}/venv/bin/python"
 
       }
     }

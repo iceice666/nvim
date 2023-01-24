@@ -12,8 +12,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- Theme
-  {
+
+  { -- Theme
     "iceice666/vscode.nvim",
     lazy = false,
     priority = 1000,
@@ -21,22 +21,29 @@ require("lazy").setup({
       vim.cmd("colorscheme vscode")
     end
   },
-  -- Sessions
-  {
+  { -- Notification
+    "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify"
+    },
+    config = function()
+      require("plugins.noice")
+    end
+  },
+  { -- Sessions
     "rmagatti/auto-session",
     config = function()
       require("plugins.auto-session")
     end
   },
-  -- Comment
-  {
+  { -- Comment
     'numToStr/Comment.nvim',
     config = function()
       require('plugins.comment')
     end
   },
-  -- Cursor motion
-  {
+  { -- Cursor motion
     "ggandor/leap.nvim",
     dependencies = {
       "tpope/vim-repeat"
@@ -45,61 +52,57 @@ require("lazy").setup({
       require("plugins.motion")
     end
   },
-  -- Undo history
-  {
+  { -- Undo history
+
     "mbbill/undotree",
   },
-  -- Window tabs
-  {
+  { -- Window tabs
     "akinsho/bufferline.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("plugins.bufferline")
     end
   },
-  -- Color preview / pick
-  -- Need config
-  {
+  { -- Color preview / pick
+    -- Need config
+
     "uga-rosa/ccc.nvim",
     config = function()
       require("plugins.ccc")
     end
   },
-  -- scroll related
-  {
+  { -- scroll related
     "petertriho/nvim-scrollbar",
     config = function()
       require("plugins.scroll")
     end
   },
-  -- hlslens
-  {
+  { -- hlslens
     "kevinhwang91/nvim-hlslens",
     config = function()
       require("plugins.nvim-hlslens")
     end
   },
-  -- toogle term
-  {
+  { -- toogle term
     "akinsho/toggleterm.nvim",
     config = function()
       require("plugins.toggleterm")
     end
   },
-  -- keymap
-  {
+  { -- keymap
+
     "b0o/mapx.nvim",
   },
-  -- Dim inactive portions code
-  -- Need config
-  {
+  { -- Dim inactive portions code
+    -- Need config
+
     "folke/twilight.nvim",
     config = function()
       require("plugins.twilight")
     end
   },
-  -- Status line
-  {
+  { -- Status line
+
     "glepnir/galaxyline.nvim",
     config = function()
       require("plugins.galaxyline")
@@ -108,17 +111,15 @@ require("lazy").setup({
       "konapun/vacuumline.nvim"
     }
   },
+  { --Smooth cursor
 
-  --Smooth cursor
-  {
     "gen740/SmoothCursor.nvim",
     config = function()
       require("plugins.cursor")
     end
   },
+  { -- File explorer
 
-  -- File explorer
-  {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -130,41 +131,39 @@ require("lazy").setup({
       require("plugins.neotree")
     end
   },
-  -- Switch true/false
-  {
+  { -- Switch true/false
+
     "rmagatti/alternate-toggler",
     config = function()
       require("plugins.alternate-toggler")
     end
   },
-  -- indent line
-  {
+  { -- indent line
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       require("plugins.indent-blankline")
     end
   },
-  -- Git signs
-  {
+  { -- Git signs
+
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end
   },
-  -- dashboard
-  {
+  { -- dashboard
+
     "glepnir/dashboard-nvim",
     config = function()
       require("dashboard").disable_at_vimenter = true
     end
   },
-  -- which key
-  {
+  { -- which key
+
     "folke/which-key.nvim"
   },
+  { -- Telescope
 
-  -- Telescope
-  {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
@@ -179,15 +178,15 @@ require("lazy").setup({
     "nvim-telescope/telescope-live-grep-args.nvim",
     "nvim-telescope/telescope-file-browser.nvim"
   },
-  -- Syntax highlight / parser
-  {
+  { -- Syntax highlight / parser
+
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("plugins.lsp.treesitter")
     end
   },
-  -- LSP
-  {
+  { -- LSP
+
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "glepnir/lspsaga.nvim",
@@ -198,9 +197,8 @@ require("lazy").setup({
       require("plugins.lsp.lsp")
     end,
   },
+  { -- cmp
 
-  -- cmp
-  {
     -- sources
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -227,8 +225,8 @@ require("lazy").setup({
     end,
     event = "BufEnter"
   },
-  -- DAP
-  {
+  { -- DAP
+
     "mfussenegger/nvim-dap",
     config = function()
       require("plugins.lsp.dap")
@@ -242,20 +240,18 @@ require("lazy").setup({
     --"mfussenegger/nvim-dap-python",
     --"nvim-telescope/telescope-dap.nvim"
   },
-  -- Format & lint
-  {
+  { -- Format & lint
+
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       require("plugins.lsp.null-ls")
     end
   },
   ------------- Wont Config -------------
-
   {
     "ckipp01/stylua-nvim",
     config = true
   },
-
   {
     "b0o/SchemaStore.nvim"
   },

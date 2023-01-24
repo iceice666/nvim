@@ -40,7 +40,7 @@ mapx.group({ silent = true }, function()
 
   -- Paste
   mapx.inoremap("<C-v>", '<esc>"+pi')
-  mapx.nnoremap("<C-v>", '"+p')
+  mapx.nnoremap("<leader><C-v>", '"+p')
 
   -- ======================= PLUGINS MAPPINGS ===========================
   -- Undo tree
@@ -49,8 +49,8 @@ mapx.group({ silent = true }, function()
   -- format
   mapx.nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>")
 
-  -- LazyGit
-  mapx.nnoremap("<leader>lg", "<cmd>TermExec cmd=lazygit<cr>")
+  -- azyGit
+  mapx.nnoremap("<leader>lg", "<cmd>TermExec cmd=lazygit&&exit<cr>")
   mapx.nnoremap("<leader>L", "<cmd>Lazy<cr>")
 
 end

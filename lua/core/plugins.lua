@@ -25,6 +25,13 @@ require("lazy").setup({
   {
     "rmagatti/auto-session",
   },
+  -- Comment
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('plugins.comment')
+    end
+  },
   -- Cursor navigate
   {
     --"tpope/vim-surround",
@@ -32,7 +39,6 @@ require("lazy").setup({
     --"gcmt/wildfire.vim",
     --"easymotion/vim-easymotion",
   },
-
   -- Undo history
   {
     "mbbill/undotree",

@@ -128,10 +128,6 @@ gls.left = {
 }
 -- Mid
 gls.mid = {
-
-
-
-
 }
 -- Right
 gls.right = {

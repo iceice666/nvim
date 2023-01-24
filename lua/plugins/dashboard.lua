@@ -45,6 +45,7 @@ db.footer_pad = 1
 -- footer
 local version = vim.version()
 version = "Neovim v" .. version.major .. "." .. version.minor .. "." .. version.patch
+
 local stats = require("lazy").stats()
 local loaded = stats.loaded
 local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)

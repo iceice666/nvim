@@ -38,9 +38,11 @@ mapx.group({ silent = true }, function()
   -- Clean cmdline
   mapx.nnoremap("<leader><leader>", "<cmd>echo ' '<cr>")
 
+  -- Paste
+  mapx.inoremap("<C-v>", '<esc>"+pi')
+  mapx.nnoremap("<C-v>", '"+p')
+
   -- ======================= PLUGINS MAPPINGS ===========================
-
-
   -- Undo tree
   mapx.nnoremap("<leader>u", "<cmd>UndotreeToggle<cr>")
 
@@ -48,7 +50,7 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>")
 
   -- LazyGit
-  mapx.nnoremap("<leader>lg", "<cmd>LazyGit<cr>")
+  mapx.nnoremap("<leader>lg", "<cmd>TermExec cmd=lazygit<cr>")
   mapx.nnoremap("<leader>L", "<cmd>Lazy<cr>")
 
 end

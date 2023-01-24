@@ -14,12 +14,28 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- Theme
   {
-    "Mofiqul/vscode.nvim",
+    "iceice666/vscode.nvim",
     lazy = false,
     priority = 1000,
     config = function()
       vim.cmd("colorscheme vscode")
     end
+  },
+  -- Sessions
+  {
+    "rmagatti/auto-session",
+  },
+  -- Cursor navigate
+  {
+    --"tpope/vim-surround",
+    --"mg979/vim-visual-multi",
+    --"gcmt/wildfire.vim",
+    --"easymotion/vim-easymotion",
+  },
+
+  -- Undo history
+  {
+    "mbbill/undotree",
   },
   -- Window tabs
   {
@@ -61,9 +77,9 @@ require("lazy").setup({
   -- keymap
   {
     "b0o/mapx.nvim",
-
   },
   -- Dim inactive portions code
+  -- Need config
   {
     "folke/twilight.nvim",
     config = function()
@@ -71,7 +87,6 @@ require("lazy").setup({
     end
   },
   -- Status line
-
   {
     "glepnir/galaxyline.nvim",
     config = function()
@@ -124,10 +139,6 @@ require("lazy").setup({
       require('gitsigns').setup()
     end
   },
-  -- Lazy git
-  {
-    "kdheepak/lazygit.nvim"
-  },
   -- dashboard
   {
     "glepnir/dashboard-nvim",
@@ -146,14 +157,15 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("plugins.telescope")
-    end
+    end,
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make'
+    build = 'make',
   },
   {
-    "nvim-telescope/telescope-live-grep-args.nvim"
+    "nvim-telescope/telescope-live-grep-args.nvim",
+    "nvim-telescope/telescope-file-browser.nvim"
   },
   -- Syntax highlight / parser
   {
@@ -194,12 +206,14 @@ require("lazy").setup({
     "L3MON4D3/LuaSnip",
     "rafamadriz/friendly-snippets",
     "onsails/lspkind-nvim",
+    event = "BufEnter"
   },
   {
     "hrsh7th/nvim-cmp",
     config = function()
       require("plugins.lsp.cmp")
     end,
+    event = "BufEnter"
   },
   -- DAP
   {
@@ -215,24 +229,6 @@ require("lazy").setup({
     "theHamsta/nvim-dap-virtual-text",
     --"mfussenegger/nvim-dap-python",
     --"nvim-telescope/telescope-dap.nvim"
-  },
-
-
-  {
-    "folke/trouble.nvim",
-    dependencies = { "folke/lsp-colors.nvim" }
-  },
-  -- Cursor navigate
-  {
-    --"tpope/vim-surround",
-    --"mg979/vim-visual-multi",
-    --"gcmt/wildfire.vim",
-    --"easymotion/vim-easymotion",
-  },
-
-  -- Undo history
-  {
-    "mbbill/undotree",
   },
   -- Format & lint
   {

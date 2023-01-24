@@ -1,54 +1,5 @@
-local colors = {}
-
-colors.fg = function()
-  return '#ffffff'
-end
-
-colors.bg = function()
-  return '#252526'
-end
-
-colors.green = function()
-  return '#619955'
-
-end
-
-colors.bluegreen = function()
-  return '#4ec9b0'
-
-end
-
-colors.yellow = function()
-  return '#ffaf00'
-end
-
-colors.purple = function()
-  return '#af00db'
-end
-
-colors.pink = function()
-  return '#ff7ab2'
-end
-
-colors.yelloworrange = function()
-  return '#d7ba7d'
-end
-
-colors.blue = function()
-  return '#0a7aca'
-end
-
-colors.red = function()
-  return '#f44747'
-end
-
-colors.lightblue = function()
-  return '#5CB6F8'
-end
-
-colors.orange = function()
-  return '#f15000'
-end
+local firstToUpper = require("core.utils").firstToUpper
+local colors = require("core.colors").colors
 
 local galaxyline = require('galaxyline')
 local condition = require('galaxyline.condition')
@@ -59,7 +10,8 @@ galaxyline.short_line_list = {
   "dapui_watches",
   "dapui_stacks",
   "dapui_scopes",
-  "dap-repl"
+  "dap-repl",
+  "lspsagaoutline",
 }
 
 
@@ -80,17 +32,18 @@ gls.left = {
 
   separator(),
   {
+
     VimMode = {
       provider = function()
         local modes = {
-          [110] = 'NORMAL  ',
-          [105] = 'INSERT  ',
-          [99]  = 'COMMAND ',
+          [110] = '  NORMAL',
+          [105] = '  INSERT',
+          [99]  = ' COMMAND',
           [116] = 'TERMINAL',
-          [118] = 'VISUAL  ',
-          [22]  = 'V-BLOCK ',
-          [86]  = 'V-LINE  ',
-          [82]  = 'REPLACE ',
+          [118] = '  VISUAL',
+          [22]  = ' V-BLOCK',
+          [86]  = '  V-LINE',
+          [82]  = ' REPLACE',
         }
         local mode = modes[vim.fn.mode():byte()]
         if mode ~= nil then
@@ -101,6 +54,16 @@ gls.left = {
 
       end,
       highlight = { colors.fg, colors.bg }
+    }
+  },
+  separator(),
+  {
+    SessionInfo = {
+      highlight = { colors.purple, colors.bg },
+      provider = function()
+        return require('auto-session-library').current_session_name()
+      end,
+      icon = "Session: "
     }
   },
   separator(),
@@ -121,7 +84,7 @@ gls.left = {
         colors.bg,
         'bold'
       },
-      icon = ' LSP:',
+      icon = ' LSP: ',
       provider = 'GetLspClient',
     },
   },
@@ -157,10 +120,20 @@ gls.left = {
       provider = 'DiagnosticInfo',
     },
   },
+}
+-- Mid
+gls.mid = {
+
+
+
+
+}
+-- Right
+gls.right = {
   {
     GitIcon = {
       provider = function()
-        return ' '
+        return ' '
       end,
       condition = condition.check_git_workspace,
       highlight = { colors.orange, colors.bg, 'bold' },
@@ -172,7 +145,7 @@ gls.left = {
   {
     GitBranch = {
       condition = condition.check_git_workspace,
-      highlight = { colors.violet, colors.bg, 'bold' },
+      highlight = { colors.fg, colors.bg, 'bold' },
       provider = 'GitBranch',
     },
   },
@@ -202,22 +175,8 @@ gls.left = {
       icon = '  ',
       provider = 'DiffRemove',
     },
-  }
-
-
-
-
-
-}
--- Mid
-gls.mid = {
-
-
-
-
-}
--- Right
-gls.right = {
+  },
+  separator(),
   {
     LineInfo = {
       highlight = { colors.bluegreen, colors.bg },
@@ -230,8 +189,6 @@ gls.right = {
     PerCent = {
       highlight = { colors.bluegreen, colors.bg, 'bold' },
       provider = 'LinePercent',
-      separator = ' ',
-      separator_highlight = { 'NONE', colors.bg },
     },
   },
   {
@@ -253,7 +210,7 @@ gls.right = {
         'bold'
       },
       provider = function()
-        return vim.bo.filetype
+        return firstToUpper(vim.bo.filetype)
       end,
     },
   },
@@ -271,9 +228,6 @@ gls.short_line_left = {
       separator_highlight = { 'NONE', colors.bg },
     },
   },
-
-
-
 
 
 }

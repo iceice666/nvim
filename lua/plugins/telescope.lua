@@ -1,12 +1,28 @@
 local actions = require("telescope.actions")
+local previewers = require("telescope.previewers")
 require("telescope").setup({
   defaults = {
     mappings = {
       i = {
         ["<esc>"] = actions.close,
-        ["?"] = "which_key"
-      }
-    }
+        ["?"] = "which_key",
+      },
+      n = {
+      },
+    },
+    buffer_previewer_maker = function(filepath, bufnr, opts)
+      opts = opts or {}
+
+      filepath = vim.fn.expand(filepath)
+      vim.loop.fs_stat(filepath, function(_, stat)
+        if not stat then return end
+        if stat.size > 100000 then
+          return
+        else
+          previewers.buffer_previewer_maker(filepath, bufnr, opts)
+        end
+      end)
+    end
   },
   preview = {
     mime_hook = function(filepath, bufnr, opts)
@@ -34,11 +50,25 @@ require("telescope").setup({
       end
     end
   },
+  extensions = {
+    file_browser = {
+      hijack_netrw = true,
+      --hidden = true,
+      grouped = true,
+      depth = 2
+    },
+  },
+  pickers = {
+    oldfiles = {
+      only_cwd = true
+    }
+  },
 
 })
 --require('telescope').load_extension('dap')
 require('telescope').load_extension('fzf')
 require("telescope").load_extension("live_grep_args")
+require("telescope").load_extension("file_browser")
 
 local mapx = require("core.keymap").mapx
 
@@ -46,6 +76,9 @@ mapx.nname("<leader>t", "Telescope")
 mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>tff", "<cmd>Telescope find_files<cr>")
   mapx.nnoremap("<leader>tfs", "<cmd>Telescope grep_string<cr>")
+  mapx.nnoremap("<leader>tfb", "<cmd>Telescope file_browser<cr>")
   mapx.nnoremap("<leader>tF", "<cmd>Telescope live_grep_args<cr>")
   mapx.nnoremap("<leader>tr", "<cmd>Telescope oldfiles<cr>")
+  mapx.nnoremap("<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>")
+  mapx.nnoremap("<leader>sD", "<cmd>Telescope diagnostics<cr>")
 end)

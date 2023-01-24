@@ -63,9 +63,9 @@ dapui.setup({
     },
     {
       elements = {
-        "repl"
+        "repl",
       },
-      size = 5,
+      size = 10,
       position = "bottom",
     }
   },
@@ -93,7 +93,6 @@ require("nvim-dap-virtual-text").setup({
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open({})
 end
-
 
 vim.api.nvim_set_hl(0, 'DapBreakpoint', {
   ctermbg = 0,

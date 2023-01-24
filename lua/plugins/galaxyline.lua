@@ -61,7 +61,12 @@ gls.left = {
     SessionInfo = {
       highlight = { colors.purple, colors.bg },
       provider = function()
-        return require('auto-session-library').current_session_name()
+        local ok, r = pcall(require('auto-session-library').current_session_name)
+        if ok == true then
+          return r
+        else
+          return "NONE"
+        end
       end,
       icon = "Session: "
     }

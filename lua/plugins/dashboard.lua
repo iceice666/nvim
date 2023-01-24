@@ -45,7 +45,7 @@ db.custom_center = _btn
 
 
 
-db.footer_pad = 10
+db.footer_pad = 3
 
 -- footer
 local version = vim.version()
@@ -54,8 +54,13 @@ local stats = require("lazy").stats()
 local loaded = stats.loaded
 local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 
-db.custom_footer = { version, loaded .. " plugins in " .. ms .. "ms" }
 
+local footer = { version, loaded .. " plugins in " .. ms .. "ms", '', '' }
+for _, k in ipairs(require("static.quotes").quote) do
+  footer[#footer + 1] = k
+end
+
+db.custom_footer = footer
 -- keymaps
 local mapx = require("core.keymap").mapx
 for _, k in ipairs(shortcuts) do

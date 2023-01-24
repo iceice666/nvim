@@ -55,7 +55,7 @@ local lsp_mapping = function(_, bufnr)
     mapx.nnoremap("g]", "<cmd>lua vim.diagnostic.goto_next()<CR>", "LSP: Go next diagnostic")
     mapx.nnoremap("<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", "LSP: Show current buffer diagnostics")
     mapx.nnoremap("<leader>so", "<cmd>Lspsaga outline<CR>", "LSP: Show current buffer symbol outline")
-    mapx.nnoremap("<leader>sh", "<cmd>vim.lsp.buf.signature_help", "LSP: Show signature help")
+    mapx.nnoremap("<leader>sh", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP: Show signature help")
 
     mapx.nnoremap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "LSP: Code action")
     mapx.vnoremap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "LSP: Code action")

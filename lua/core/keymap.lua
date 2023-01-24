@@ -23,8 +23,8 @@ mapx.group({ silent = true }, function()
   -- Cursor jumping
   mapx.nnoremap("L", "$")
   mapx.nnoremap("H", "^")
-  mapx.nnoremap("J", "9j")
-  mapx.nnoremap("K", "9k")
+  mapx.nnoremap("J", "10j")
+  mapx.nnoremap("K", "10k")
 
   -- File write
   mapx.nnoremap("<leader>w", "<cmd>w<cr>")
@@ -33,7 +33,7 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>/", "<cmd>nohls<cr>")
 
   -- Quit
-  mapx.nnoremap("<leader>Q", "<cmd>qa<cr>")
+  mapx.nnoremap("<leader>Q", "<cmd>qa!<cr>")
 
   -- Clean cmdline
   mapx.nnoremap("<leader><leader>", "<cmd>echo ' '<cr>")
@@ -44,10 +44,10 @@ mapx.group({ silent = true }, function()
 
   -- ======================= PLUGINS MAPPINGS ===========================
   -- Undo tree
-  mapx.nnoremap("<leader>u", "<cmd>UndotreeToggle<cr>")
+  mapx.nnoremap("<leader>u", "<cmd>UndotreeToggle<cr>", "Undo tree")
 
   -- format
-  mapx.nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>")
+  mapx.nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>", "Buf: format")
 
   -- azyGit
   mapx.nnoremap("<leader>lg", "<cmd>TermExec cmd=lazygit&&exit<cr>")

@@ -2,6 +2,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 require("neo-tree").setup({
+  close_if_last_window = true,
   sort_by = "case_sensitive",
   actions = {
     open_file = { quit_on_open = true },
@@ -28,10 +29,10 @@ require("neo-tree").setup({
     show_on_dirs = false,
     debounce_delay = 50,
     icons = {
-      hint = "H",
-      info = "I",
-      warning = "W",
-      error = "E",
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
     },
   },
 })

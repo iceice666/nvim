@@ -12,40 +12,35 @@ db.preview_file_height = 11
 
 -- buttons
 
-local shortcuts = {}
-local labels = {}
+local mapx = require("core.keymap").mapx
+local buttons = {}
 local button = function(shortcut, icon, label, action)
   shortcut = shortcut or nil
   icon = icon or nil
   label = label or nil
   action = action or nil
 
-  shortcuts[#shortcuts + 1] = { key = shortcut, action = action }
-  labels[#labels + 1] = icon .. "  " .. label .. string.rep(" ", 47 - #label)
+  buttons[#buttons + 1] = {
+    desc = icon .. "  " .. label .. string.rep(" ", 47 - #label),
+    action = action,
+    shortcut = shortcut
+  }
+
+  mapx.nnoremap(shortcut, action, { silent = true, ft = "dashboard" })
+  mapx.nnoremap(shortcut, action, { silent = true, ft = "dashboardpreview" })
+  db.custom_center = buttons
 end
 
-button("n", "ﱐ", "New file", function() vim.cmd("DashboardNewFile") end)
-button("f", "", "Find file", function() vim.cmd("Telescope find_files") end)
-button("r", "󱋡", "Recent files", function() vim.cmd("Telescope oldfiles") end)
+button("R", "ﮦ", "Restore session", function() vim.cmd("RestoreSession"); end)
+button("n", "ﱐ", "New file", function() vim.cmd("RestoreSession"); vim.cmd("DashboardNewFile"); end)
+button("f", "", "Find file", function() vim.cmd("Telescope find_files"); end)
+button("r", "󱋡", "Recent files", function() vim.cmd("Telescope oldfiles"); end)
 button("L", "", "Lazy", function() vim.cmd("Lazy") end)
 button("P", "", "Lazy profile", function() vim.cmd("Lazy profile") end)
-button("C", "", "Close dashboard", function() vim.cmd("DashboardNewFile"); vim.cmd("bd %"); end)
 button("q", "", "Quit", function() vim.cmd("qa") end)
--- string padding
-
-local _btn = {}
-for i, k in ipairs(labels) do
-  _btn[#_btn + 1] = {
-    desc = k,
-    action = shortcuts[i].action,
-    shortcut = shortcuts[i].key
-  }
-end
-db.custom_center = _btn
 
 
-
-db.footer_pad = 3
+db.footer_pad = 1
 
 -- footer
 local version = vim.version()
@@ -55,26 +50,20 @@ local loaded = stats.loaded
 local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 
 
-local footer = { version, loaded .. " plugins in " .. ms .. "ms", '', '' }
+local footer = { version, loaded .. " plugins in " .. ms .. "ms", '' }
+
 for _, k in ipairs(require("static.quotes").quote) do
   footer[#footer + 1] = k
 end
 
 db.custom_footer = footer
--- keymaps
-local mapx = require("core.keymap").mapx
-for _, k in ipairs(shortcuts) do
-  mapx.nnoremap(k.key, k.action, { silent = true, ft = "dashboard" })
-  mapx.nnoremap(k.key, k.action, { silent = true, ft = "dashboardpreview" })
-end
-
 
 -- start
 if vim.bo.filetype == "lazy" then
   vim.cmd("q")
 end
-if vim.bo.filetype == "neo-tree" then
-  vim.cmd("NeoTreeClose")
-end
+
+pcall(vim.cmd, "NeoTreeClose")
+
 vim.cmd("Dashboard")
 vim.cmd("echo ' '")

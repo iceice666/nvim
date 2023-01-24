@@ -24,6 +24,9 @@ require("lazy").setup({
   -- Sessions
   {
     "rmagatti/auto-session",
+    config = function()
+      require("plugins.auto-session")
+    end
   },
   -- Comment
   {
@@ -32,12 +35,15 @@ require("lazy").setup({
       require('plugins.comment')
     end
   },
-  -- Cursor navigate
+  -- Cursor motion
   {
-    --"tpope/vim-surround",
-    --"mg979/vim-visual-multi",
-    --"gcmt/wildfire.vim",
-    --"easymotion/vim-easymotion",
+    "ggandor/leap.nvim",
+    dependencies = {
+      "tpope/vim-repeat"
+    },
+    config = function()
+      require("plugins.motion")
+    end
   },
   -- Undo history
   {
@@ -59,11 +65,11 @@ require("lazy").setup({
       require("plugins.ccc")
     end
   },
-  -- scrollbar
+  -- scroll related
   {
     "petertriho/nvim-scrollbar",
     config = function()
-      require("plugins.scrollbar")
+      require("plugins.scroll")
     end
   },
   -- hlslens

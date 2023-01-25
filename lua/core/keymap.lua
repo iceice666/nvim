@@ -30,7 +30,7 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>w", "<cmd>w<cr>", "Save")
 
   -- Clear search
-  mapx.nnoremap("<leader>/", "<cmd>let @/ = ''<cr>", "Clear search")
+  mapx.nnoremap("<leader>/", "<cmd>nohls<cr><cmd>let @/ = ''<cr>", "Clear search")
 
   -- Quit
   mapx.nnoremap("<leader>Q", "<cmd>qa!<cr>", "Quit Neovim")
@@ -38,6 +38,9 @@ mapx.group({ silent = true }, function()
   -- Paste
   mapx.inoremap("<C-v>", '<esc>"+pi', "Paste from clipboard")
   mapx.nnoremap("<leader><C-v>", '"+p', "Paste from clipboard")
+
+  mapx.nnoremap("<leader>B",
+    '<Cmd>call jobstart(["microsoft-edge-stable","--new-window", expand("<cfile>")], {"detach": v:true})<CR>', "Open url")
 
   -- ======================= PLUGINS MAPPINGS ===========================
   -- Undo tree

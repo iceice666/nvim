@@ -21,6 +21,12 @@ require("lazy").setup({
       vim.cmd("colorscheme vscode")
     end
   },
+  { -- statuscolumn
+    "luukvbaal/statuscol.nvim",
+    config = function()
+      require("plugins.statuscol")
+    end
+  },
   { -- Markdown preview
     "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
@@ -89,7 +95,7 @@ require("lazy").setup({
       require("plugins.scroll")
     end
   },
-  { -- hlslens
+  { -- hlsearch lens
     "kevinhwang91/nvim-hlslens",
     config = function()
       require("plugins.nvim-hlslens")
@@ -116,12 +122,12 @@ require("lazy").setup({
       require("plugins.galaxyline")
     end
   },
-  { --Smooth cursor
-    "gen740/SmoothCursor.nvim",
-    config = function()
-      require("plugins.cursor")
-    end
-  },
+  -- { --Smooth cursor
+  --   "gen740/SmoothCursor.nvim",
+  --   config = function()
+  --     require("plugins.cursor")
+  --   end
+  -- },
   { -- File explorer
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
@@ -149,7 +155,7 @@ require("lazy").setup({
   { -- Git signs
     'lewis6991/gitsigns.nvim',
     config = function()
-      require('gitsigns').setup()
+      require('plugins.gitsigns')
     end
   },
   { -- dashboard

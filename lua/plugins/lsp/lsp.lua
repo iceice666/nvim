@@ -17,10 +17,10 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require('lspsaga').setup({
   lightbulb = {
     enable = true,
-    enable_in_insert = true,
-    sign = true,
+    enable_in_insert = false,
+    sign = false,
     sign_priority = 40,
-    virtual_text = false,
+    virtual_text = true,
   },
   ui = {
     colors = {
@@ -38,6 +38,31 @@ require('lspsaga').setup({
       black = colors.black(),
     }
   }
+})
+
+vim.fn.sign_define('DiagnosticSignError', {
+  text = "",
+  texthl = "DiagnosticSignError",
+  linehl = "DiagnosticSignError",
+  numhl = "DiagnosticSignError",
+})
+vim.fn.sign_define('DiagnosticSignWarn', {
+  text = "",
+  texthl = "DiagnosticSignWarn",
+  linehl = "DiagnosticSignWarn",
+  numhl = "DiagnosticSignWarn",
+})
+vim.fn.sign_define('DiagnosticSignHint', {
+  text = "",
+  texthl = "DiagnosticSignHint",
+  linehl = "DiagnosticSignHint",
+  numhl = "DiagnosticSignHint",
+})
+vim.fn.sign_define('DiagnosticSignInfo', {
+  text = "",
+  texthl = "DiagnosticSignInfo",
+  linehl = "DiagnosticSignInfo",
+  numhl = "DiagnosticSignInfo",
 })
 -- ===========================Mapping===================================
 mapx.nname("g", "Goto")

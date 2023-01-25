@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
 require("lazy").setup({
 
   { -- Theme
@@ -53,15 +54,21 @@ require("lazy").setup({
     end
   },
   { -- Toggle comment
-    'numToStr/Comment.nvim',
+    "folke/todo-comments.nvim",
     config = function()
       require('plugins.comment')
     end
   },
   { -- Color comment
-    "folke/todo-comments.nvim",
+    'numToStr/Comment.nvim',
     config = function()
       require("plugins.todo-comments")
+    end
+  },
+  { -- Comment box
+    "LudoPinelli/comment-box.nvim",
+    config = function()
+      require("plugins.comment-box")
     end
   },
   { -- Workspaces
@@ -161,13 +168,14 @@ require("lazy").setup({
       require('plugins.gitsigns')
     end
   },
-  --  { -- dashboard
-  --    "glepnir/dashboard-nvim",
-  --    config = function()
-  --      require("dashboard").disable_at_vimenter = true
-  --    end,
-  --    commit = "f7d623457d6621b25a1292b24e366fae40cb79ab"
-  --  },
+  --  BUG: dashboard !! breaking changes !!
+  -- { -- dashboard
+  --   "glepnir/dashboard-nvim",
+  --   config = function()
+  --     require("dashboard").disable_at_vimenter = true
+  --   end,
+  -- },
+
   { -- which key
     "folke/which-key.nvim"
   },

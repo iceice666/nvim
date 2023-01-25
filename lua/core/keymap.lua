@@ -8,11 +8,11 @@ mapx.group({ silent = true }, function()
   mapx.vnoremap("K", ":m '<-2<cr>gv=gv")
 
   -- undo & redo
-  mapx.nnoremap("U", "<cmd>later<cr>")
+  mapx.nnoremap("U", "<cmd>later<cr>", "Redo")
 
   -- Select all
-  mapx.nnoremap("<c-a>", "gg<s-v>G")
-  mapx.vnoremap("<c-a>", "gg<s-v>G")
+  mapx.nnoremap("<c-a>", "gg<s-v>G", "Select all")
+  mapx.vnoremap("<c-a>", "gg<s-v>G", "Select all")
 
   -- Window split
   mapx.nnoremap("Wl", "<cmd>set splitright<CR>:vsplit<CR>")
@@ -27,20 +27,17 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("K", "10k")
 
   -- File write
-  mapx.nnoremap("<leader>w", "<cmd>w<cr>")
+  mapx.nnoremap("<leader>w", "<cmd>w<cr>", "Save")
 
-  -- nohls
-  mapx.nnoremap("<leader>/", "<cmd>nohls<cr>")
+  -- Clear search
+  mapx.nnoremap("<leader>/", "<cmd>let @/ = ''<cr>", "Clear search")
 
   -- Quit
-  mapx.nnoremap("<leader>Q", "<cmd>qa!<cr>")
-
-  -- Clean cmdline
-  mapx.nnoremap("<leader><leader>", "<cmd>echo ' '<cr>")
+  mapx.nnoremap("<leader>Q", "<cmd>qa!<cr>", "Quit Neovim")
 
   -- Paste
-  mapx.inoremap("<C-v>", '<esc>"+pi')
-  mapx.nnoremap("<leader><C-v>", '"+p')
+  mapx.inoremap("<C-v>", '<esc>"+pi', "Paste from clipboard")
+  mapx.nnoremap("<leader><C-v>", '"+p', "Paste from clipboard")
 
   -- ======================= PLUGINS MAPPINGS ===========================
   -- Undo tree
@@ -50,8 +47,8 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>", "Buf: format")
 
   -- azyGit
-  mapx.nnoremap("<leader>lg", "<cmd>TermExec cmd=lazygit&&exit<cr>")
-  mapx.nnoremap("<leader>L", "<cmd>Lazy<cr>")
+  mapx.nnoremap("<leader>lg", "<cmd>TermExec cmd=lazygit&&exit<cr>", "Lazygit")
+  mapx.nnoremap("<leader>L", "<cmd>Lazy<cr>", "Lazy")
 
 end
 )

@@ -1,55 +1,33 @@
 require("todo-comments").setup({
   keywords = {
     FIX = {
-      icon = " ",
-      color = "error",
-      alt = {
-        "FIXME",
-        "BUG",
-        "FIXIT",
-        "ISSUE"
-      },
+      icon = " ", color = "error",
+      alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
     },
     TODO = {
-      icon = " ",
-      color = "hint"
+      icon = " ", color = "hint",
+      alt = { "TODO", "NEED" }
     },
     HACK = {
-      icon = " ",
-      color = "warning"
+      icon = " ", color = "warning",
+      alt = { "HACK", "HACKY" }
     },
     WARN = {
       icon = " ",
       color = "warning",
-      alt = {
-        "WARNING",
-        "WARN",
-        "XXX"
-      }
+      alt = { "WARNING", "WARN" }
     },
     PERF = {
       icon = " ",
-      alt = {
-        "OPTIM",
-        "PERFORMANCE",
-        "OPTIMIZE"
-      }
+      alt = { "PERFORMANCE", "OPTIMIZE" }
     },
     NOTE = {
-      icon = " ",
-      color = "hint",
-      alt = {
-        "INFO"
-      }
+      icon = " ", color = "hint",
+      alt = { "INFO", "NOTE" }
     },
     TEST = {
-      icon = "⏲ ",
-      color = "test",
-      alt = {
-        "TESTING",
-        "PASSED",
-        "FAILED"
-      }
+      icon = "⏲ ", color = "test",
+      alt = { "TESTING", "PASSED", "FAILED" }
     },
   },
   colors = {
@@ -61,3 +39,5 @@ require("todo-comments").setup({
     test = { "#FF00FF" }
   },
 })
+
+require("core.keymap").mapx.nnoremap("<leader>st", "<cmd>TodoTrouble<cr>", "Trouble: Show todos")

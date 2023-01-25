@@ -4,9 +4,10 @@ require("trouble").setup({
 
 local mapx = require("core.keymap").mapx
 mapx.group({ silent = true }, function()
-  mapx.nnoremap("<leader>sd", "<cmd>TroubleToggle document_diagnostics<cr>",
+  mapx.nnoremap("<leader>sd", "<cmd>Trouble document_diagnostics<cr>",
     "Trouble: Show diagnostics of current file")
-  mapx.nnoremap("<leader>sD", "<cmd>TroubleToggle workspace_diagnostics<cr>",
+  mapx.nnoremap("<leader>sD", "<cmd>Trouble workspace_diagnostics<cr>",
     "Trouble: Show diagnostics of current workspace")
+  mapx.nnoremap("<leader>sc", "<cmd>TroubleClose<cr>", "Trouble: Close Trouble")
 end
 )

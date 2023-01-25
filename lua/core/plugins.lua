@@ -22,6 +22,7 @@ require("lazy").setup({
     end
   },
   { -- statuscolumn
+    -- TODO: Need config
     "luukvbaal/statuscol.nvim",
     config = function()
       require("plugins.statuscol")
@@ -51,10 +52,16 @@ require("lazy").setup({
       require("plugins.auto-session")
     end
   },
-  { -- Comment
+  { -- Toggle comment
     'numToStr/Comment.nvim',
     config = function()
       require('plugins.comment')
+    end
+  },
+  { -- Color comment
+    "folke/todo-comments.nvim",
+    config = function()
+      require("plugins.todo-comments")
     end
   },
   { -- Workspaces
@@ -78,7 +85,9 @@ require("lazy").setup({
   },
   { -- Window tabs
     "akinsho/bufferline.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
     config = function()
       require("plugins.bufferline")
     end
@@ -122,12 +131,6 @@ require("lazy").setup({
       require("plugins.galaxyline")
     end
   },
-  -- { --Smooth cursor
-  --   "gen740/SmoothCursor.nvim",
-  --   config = function()
-  --     require("plugins.cursor")
-  --   end
-  -- },
   { -- File explorer
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
@@ -158,14 +161,22 @@ require("lazy").setup({
       require('plugins.gitsigns')
     end
   },
-  { -- dashboard
-    "glepnir/dashboard-nvim",
-    config = function()
-      require("dashboard").disable_at_vimenter = true
-    end
-  },
+  --  { -- dashboard
+  --    "glepnir/dashboard-nvim",
+  --    config = function()
+  --      require("dashboard").disable_at_vimenter = true
+  --    end,
+  --    commit = "f7d623457d6621b25a1292b24e366fae40cb79ab"
+  --  },
   { -- which key
     "folke/which-key.nvim"
+  },
+  { -- Trouble / show diagnostics
+    "folke/trouble.nvim",
+    requires = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("plugins.trouble")
+    end
   },
   { -- Telescope
     "nvim-telescope/telescope.nvim",
@@ -259,9 +270,9 @@ require("lazy").setup({
 
 
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "LazyVimStarted",
-  callback = function()
-    require("plugins.dashboard")
-  end,
-})
+--vim.api.nvim_create_autocmd("User", {
+--  pattern = "LazyVimStarted",
+--  callback = function()
+--    require("plugins.dashboard")
+--  end,
+--})

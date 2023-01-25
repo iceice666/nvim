@@ -1,5 +1,5 @@
 local firstToUpper = require("core.utils").firstToUpper
-local colors = require("core.colors").colors
+local colors = require("core.colors")
 
 local galaxyline = require('galaxyline')
 local condition = require('galaxyline.condition')

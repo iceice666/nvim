@@ -21,6 +21,14 @@ require("lazy").setup({
       vim.cmd("colorscheme vscode")
     end
   },
+  { -- Markdown preview
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.cmd('source ' .. vim.fn.stdpath('config') .. "/lua/plugins/mdpreview.vim")
+    end
+  },
   { -- Notification
     "folke/noice.nvim",
     dependencies = {
@@ -41,6 +49,12 @@ require("lazy").setup({
     'numToStr/Comment.nvim',
     config = function()
       require('plugins.comment')
+    end
+  },
+  { -- Workspaces
+    "natecraddock/workspaces.nvim",
+    config = function()
+      require("plugins.workspaces")
     end
   },
   { -- Cursor motion
@@ -64,8 +78,6 @@ require("lazy").setup({
     end
   },
   { -- Color preview / pick
-    -- Need config
-
     "uga-rosa/ccc.nvim",
     config = function()
       require("plugins.ccc")
@@ -90,36 +102,27 @@ require("lazy").setup({
     end
   },
   { -- keymap
-
     "b0o/mapx.nvim",
   },
   { -- Dim inactive portions code
-    -- Need config
-
     "folke/twilight.nvim",
     config = function()
       require("plugins.twilight")
     end
   },
   { -- Status line
-
     "glepnir/galaxyline.nvim",
     config = function()
       require("plugins.galaxyline")
-    end,
-    dependencies = {
-      "konapun/vacuumline.nvim"
-    }
+    end
   },
   { --Smooth cursor
-
     "gen740/SmoothCursor.nvim",
     config = function()
       require("plugins.cursor")
     end
   },
   { -- File explorer
-
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -132,7 +135,6 @@ require("lazy").setup({
     end
   },
   { -- Switch true/false
-
     "rmagatti/alternate-toggler",
     config = function()
       require("plugins.alternate-toggler")
@@ -145,25 +147,21 @@ require("lazy").setup({
     end
   },
   { -- Git signs
-
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end
   },
   { -- dashboard
-
     "glepnir/dashboard-nvim",
     config = function()
       require("dashboard").disable_at_vimenter = true
     end
   },
   { -- which key
-
     "folke/which-key.nvim"
   },
   { -- Telescope
-
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
@@ -179,14 +177,12 @@ require("lazy").setup({
     "nvim-telescope/telescope-file-browser.nvim"
   },
   { -- Syntax highlight / parser
-
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("plugins.lsp.treesitter")
     end
   },
   { -- LSP
-
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "glepnir/lspsaga.nvim",
@@ -226,7 +222,6 @@ require("lazy").setup({
     event = "BufEnter"
   },
   { -- DAP
-
     "mfussenegger/nvim-dap",
     config = function()
       require("plugins.lsp.dap")
@@ -241,7 +236,6 @@ require("lazy").setup({
     --"nvim-telescope/telescope-dap.nvim"
   },
   { -- Format & lint
-
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       require("plugins.lsp.null-ls")

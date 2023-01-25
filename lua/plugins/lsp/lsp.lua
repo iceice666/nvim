@@ -1,5 +1,5 @@
 local mapx = require("core.keymap").mapx
-local colors = require("core.colors").colors
+local colors = require("core.colors")
 --require("neodev").setup({})
 
 require("mason").setup()

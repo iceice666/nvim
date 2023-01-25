@@ -8,5 +8,9 @@ require("twilight").setup {
     "dapui_scopes",
     "dapui_console",
     "dap-repl"
-  }
+  },
+  dimming = {
+    term_bg = require('core.colors').bg()
+  },
+  context = 6
 }

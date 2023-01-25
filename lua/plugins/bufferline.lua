@@ -1,26 +1,17 @@
 require("bufferline").setup({
   options = {
-    buffer_close_icon = "",
-    close_command = "bd",
-    close_icon = "",
-    indicator = {
-      style = "icon",
-      icon = " ",
-    },
-    left_trunc_marker = "",
-    right_mouse_command = "bd!",
-    right_trunc_marker = "",
-    show_close_icon = false,
-    show_tab_indicators = true,
     modified_icon = "●",
+    indicator = {
+      style = 'icon'
+    },
 
     mode = "buffer",
-
     diagnostics = "nvim_lsp",
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
       local s = " "
-      for e, n in ipairs(diagnostics_dict) do
-        local sym = e == "error" and " " or (e == "warning" and " " or "")
+      for e, n in pairs(diagnostics_dict) do
+        local sym = e == "error" and " "
+            or (e == "warning" and " " or " ")
         s = s .. n .. sym
       end
       return s

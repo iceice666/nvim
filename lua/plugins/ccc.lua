@@ -1,2 +1,9 @@
 require("ccc").setup {}
-vim.cmd("CccHighlighterEnable")
+
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "",
+  callback = function()
+    vim.cmd("CccHighlighterEnable")
+  end,
+})

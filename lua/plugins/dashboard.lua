@@ -32,8 +32,8 @@ local button = function(shortcut, icon, label, action)
 end
 
 button("R", "ﮦ", "Restore session", function() vim.cmd("RestoreSession"); end)
+button("W", "", "Workspaces", function() vim.cmd("Telescope workspaces"); end)
 button("n", "ﱐ", "New file", function() vim.cmd("RestoreSession"); vim.cmd("DashboardNewFile"); end)
-button("f", "", "Find file", function() vim.cmd("Telescope find_files"); end)
 button("r", "󱋡", "Recent files", function() vim.cmd("Telescope oldfiles"); end)
 button("L", "", "Lazy", function() vim.cmd("Lazy") end)
 button("P", "", "Lazy profile", function() vim.cmd("Lazy profile") end)
@@ -49,9 +49,11 @@ version = "Neovim v" .. version.major .. "." .. version.minor .. "." .. version.
 local stats = require("lazy").stats()
 local loaded = stats.loaded
 local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-
-
-local footer = { version, loaded .. " plugins in " .. ms .. "ms", '' }
+local footer = {
+  version,
+  loaded .. " plugins in " .. ms .. "ms"
+  , ''
+}
 
 for _, k in ipairs(require("static.quotes").quote) do
   footer[#footer + 1] = k
@@ -68,3 +70,7 @@ pcall(vim.cmd, "NeoTreeClose")
 
 vim.cmd("Dashboard")
 vim.cmd("echo ' '")
+require("notify")(ms .. "ms", "info", {
+  title = loaded .. " plugins has been loaded!",
+}
+)

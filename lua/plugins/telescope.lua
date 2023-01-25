@@ -1,6 +1,7 @@
 local actions = require("telescope.actions")
 local previewers = require("telescope.previewers")
-require("telescope").setup({
+local telescope = require("telescope")
+telescope.setup({
   defaults = {
     mappings = {
       i = {
@@ -26,9 +27,9 @@ require("telescope").setup({
   },
   preview = {
     mime_hook = function(filepath, bufnr, opts)
-      local is_image = function(filepath)
+      local is_image = function(fp)
         local image_extensions = { 'png', 'jpg' } -- Supported image formats
-        local split_path = vim.split(filepath:lower(), '.', { plain = true })
+        local split_path = vim.split(fp:lower(), '.', { plain = true })
         local extension = split_path[#split_path]
         return vim.tbl_contains(image_extensions, extension)
       end
@@ -57,6 +58,9 @@ require("telescope").setup({
       grouped = true,
       depth = 2
     },
+    workspaces = {
+      keep_insert = true,
+    }
   },
   pickers = {
     oldfiles = {
@@ -65,11 +69,12 @@ require("telescope").setup({
   },
 
 })
---require('telescope').load_extension('dap')
-require('telescope').load_extension('fzf')
-require("telescope").load_extension("live_grep_args")
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("noice")
+--telescope.load_extension('dap')
+telescope.load_extension('fzf')
+telescope.load_extension("live_grep_args")
+telescope.load_extension("file_browser")
+telescope.load_extension("noice")
+telescope.load_extension("workspaces")
 
 local mapx = require("core.keymap").mapx
 
@@ -80,6 +85,7 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>tfb", "<cmd>Telescope file_browser<cr>")
   mapx.nnoremap("<leader>tF", "<cmd>Telescope live_grep_args<cr>")
   mapx.nnoremap("<leader>tr", "<cmd>Telescope oldfiles<cr>")
+  mapx.nnoremap("<leader>tw", "<cmd>Telescope workspaces<cr>")
   mapx.nnoremap("<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>")
   mapx.nnoremap("<leader>sD", "<cmd>Telescope diagnostics<cr>")
 end)

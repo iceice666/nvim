@@ -168,7 +168,7 @@ require("lazy").setup({
   },
   --  FIXME: dashboard !! breaking changes !!
   { -- dashboard
-    cond = false,
+    cond = true,
     "glepnir/dashboard-nvim",
     config = function()
       require("dashboard").disable_at_vimenter = true

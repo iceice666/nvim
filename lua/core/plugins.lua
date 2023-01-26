@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
-
   { -- Theme
     "iceice666/vscode.nvim",
     lazy = false,
@@ -26,7 +25,6 @@ require("lazy").setup({
     "tmillr/sos.nvim",
     config = function()
       require("sos").setup({
-        enable = true,
         timeout = 30000,
         autowrite = true,
         save_on_cmd = "some",
@@ -126,16 +124,10 @@ require("lazy").setup({
       require('hlslens').setup()
     end
   },
-  { -- toogle term
+  { -- toggle term
     "akinsho/toggleterm.nvim",
     config = function()
       require("plugins.toggleterm")
-    end
-  },
-  { -- Dim inactive portions code
-    "folke/twilight.nvim",
-    config = function()
-      require("plugins.twilight")
     end
   },
   { -- Status line
@@ -175,19 +167,19 @@ require("lazy").setup({
     end
   },
   --  FIXME: dashboard !! breaking changes !!
-  -- { -- dashboard
-  --   "glepnir/dashboard-nvim",
-  --   config = function()
-  --     require("dashboard").disable_at_vimenter = true
-  --     vim.api.nvim_create_autocmd("User", {
-  --       pattern = "LazyVimStarted",
-  --       callback = function()
-  --         require("plugins.dashboard")
-  --       end,
-  --     })
-  --   end,
-  -- },
-
+  { -- dashboard
+    cond = false,
+    "glepnir/dashboard-nvim",
+    config = function()
+      require("dashboard").disable_at_vimenter = true
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LazyVimStarted",
+        callback = function()
+          require("plugins.dashboard")
+        end,
+      })
+    end,
+  },
   { -- Trouble / show diagnostics
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons",
@@ -199,11 +191,14 @@ require("lazy").setup({
     "nacro90/numb.nvim",
     config = true
   },
-  -- Undo history
-  "mbbill/undotree",
   -- Image display
   -- NEED: implementation needed
-  'edluffy/hologram.nvim',
+  {
+    'edluffy/hologram.nvim',
+    cond = false
+  },
+  -- Undo history
+  "mbbill/undotree",
   -- which key
   "folke/which-key.nvim",
   -- neodev
@@ -220,18 +215,17 @@ require("lazy").setup({
   -- [ Telescope ]
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("plugins.telescope")
     end,
+    dependencies = {
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
+    },
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make',
-  },
-  {
-    "nvim-telescope/telescope-live-grep-args.nvim",
-    "nvim-telescope/telescope-file-browser.nvim",
   },
   -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   -- [ LSP / Language Server Protocol ]
@@ -240,11 +234,11 @@ require("lazy").setup({
     config = function()
       require("plugins.lsp.lsp")
     end,
-  },
-  {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "glepnir/lspsaga.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "glepnir/lspsaga.nvim",
+    },
   },
   -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   -- [ CMP / Completion engine ]
@@ -253,27 +247,26 @@ require("lazy").setup({
     config = function()
       require("plugins.lsp.cmp")
     end,
-    event = "BufEnter"
-  },
-  {
-    -- sources
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-    "hrsh7th/cmp-emoji",
-    "f3fora/cmp-spell",
-    "rcarriga/cmp-dap",
-    "saadparwaiz1/cmp_luasnip",
-    "ray-x/cmp-treesitter",
-    "windwp/nvim-autopairs",
+    event = "BufEnter",
+    dependencies = {
+      -- sources
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-emoji",
+      "f3fora/cmp-spell",
+      "rcarriga/cmp-dap",
+      "saadparwaiz1/cmp_luasnip",
+      "ray-x/cmp-treesitter",
+      "windwp/nvim-autopairs",
 
-    -- Snippets
-    "L3MON4D3/LuaSnip",
-    "rafamadriz/friendly-snippets",
-    "onsails/lspkind-nvim",
-    event = "BufEnter"
+      -- Snippets
+      "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
+      "onsails/lspkind-nvim",
+    }
   },
   -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   -- [ DAP / Debug Adapter Protocol ]
@@ -282,24 +275,24 @@ require("lazy").setup({
     config = function()
       require("plugins.lsp.dap")
     end,
-  },
-  { -- ui
-    "rcarriga/nvim-dap-ui",
-    "RubixDev/mason-update-all",
-    "jay-babu/mason-nvim-dap.nvim",
-    "theHamsta/nvim-dap-virtual-text",
+    dependencies = {
+      -- ui
+      "rcarriga/nvim-dap-ui",
+      "RubixDev/mason-update-all",
+      "jay-babu/mason-nvim-dap.nvim",
+      "theHamsta/nvim-dap-virtual-text",
+    }
   },
   { -- test adapter
     -- NEED: More research and config
     -- See https://github.com/nvim-neotest/neotest for helps
     "nvim-neotest/neotest",
-    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require("plugins.lsp.neotest")
-    end
-  },
-  {
-    "nvim-neotest/neotest-python",
+    end,
+    dependencies = {
+      "nvim-neotest/neotest-python",
+    },
   },
   -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   { -- Format & lint

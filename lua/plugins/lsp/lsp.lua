@@ -1,6 +1,6 @@
 local mapx = require("core.keymap").mapx
 local colors = require("core.colors")
---require("neodev").setup({})
+require("neodev").setup({ library = { plugins = { "neotest" }, types = true }, })
 
 require("mason").setup()
 require("mason-lspconfig").setup({
@@ -117,15 +117,6 @@ require("mason-lspconfig").setup_handlers({
           completion = {
             callSnippet = "Replace",
           },
-        },
-        json = {
-          schemas = require("schemastore").json.schemas({
-            ignore = {
-              ".eslintrc",
-              "package.json",
-            },
-          }),
-          validate = { enable = true },
         },
       },
     }))

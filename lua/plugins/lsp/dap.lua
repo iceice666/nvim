@@ -1,3 +1,4 @@
+local colors = require("core.colors")
 local dap = require("dap")
 require('mason-update-all').setup()
 vim.cmd("silent MasonUpdateAll")
@@ -97,17 +98,17 @@ end
 vim.api.nvim_set_hl(0, 'DapBreakpoint', {
   ctermbg = 0,
   fg = '#b81c1c',
-  bg = '#31353f',
+  bg = colors.bg(),
 })
 vim.api.nvim_set_hl(0, 'DapLogPoint', {
   ctermbg = 0,
   fg = '#61afef',
-  bg = '#31353f',
+  bg = colors.bg(),
 })
 vim.api.nvim_set_hl(0, 'DapStopped', {
   ctermbg = 0,
   fg = '#98c379',
-  bg = '#31353f'
+  bg = colors.bg()
 })
 
 vim.fn.sign_define('DapBreakpoint', {

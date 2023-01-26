@@ -60,6 +60,12 @@ telescope.setup({
     },
     workspaces = {
       keep_insert = true,
+    },
+    media_files = {
+      -- filetypes whitelist
+      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+      filetypes = { "png", "webp", "jpg", "jpeg" },
+      find_cmd = "rg" -- find command (defaults to `fd`)
     }
   },
   pickers = {
@@ -81,10 +87,11 @@ local mapx = require("core.keymap").mapx
 mapx.nname("<leader>t", "Telescope")
 mapx.nname("<leader>tf", "Telescope: Find")
 mapx.group({ silent = true }, function()
-  mapx.nnoremap("<leader>tff", "<cmd>Telescope find_files<cr>","Telescope: Find files")
-  mapx.nnoremap("<leader>tfS", "<cmd>Telescope grep_string<cr>","Telescope: Find files that contain the current cursor word")
-  mapx.nnoremap("<leader>tfb", "<cmd>Telescope file_browser<cr>","Telescope: File browser")
-  mapx.nnoremap("<leader>tfs", "<cmd>Telescope live_grep_args<cr>","Telescope: Find words")
-  mapx.nnoremap("<leader>tr", "<cmd>Telescope oldfiles<cr>","Telescope: Recent files")
-  mapx.nnoremap("<leader>tw", "<cmd>Telescope workspaces<cr>","Telescope: Show workspaces")
+  mapx.nnoremap("<leader>tff", "<cmd>Telescope find_files<cr>", "Telescope: Find files")
+  mapx.nnoremap("<leader>tfS", "<cmd>Telescope grep_string<cr>",
+    "Telescope: Find files that contain the current cursor word")
+  mapx.nnoremap("<leader>tfb", "<cmd>Telescope file_browser<cr>", "Telescope: File browser")
+  mapx.nnoremap("<leader>tfs", "<cmd>Telescope live_grep_args<cr>", "Telescope: Find words")
+  mapx.nnoremap("<leader>tr", "<cmd>Telescope oldfiles<cr>", "Telescope: Recent files")
+  mapx.nnoremap("<leader>tw", "<cmd>Telescope workspaces<cr>", "Telescope: Show workspaces")
 end)

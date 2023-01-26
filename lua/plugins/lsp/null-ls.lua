@@ -21,8 +21,6 @@ null_ls.setup({
     -- linter / diagnostics
     diagnostics.ruff,
 
-    -- code actions
-    code_actions.gitsigns,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then

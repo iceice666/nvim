@@ -4,8 +4,8 @@ local mapx = require 'mapx'.setup { whichkey = true }
 mapx.group({ silent = true }, function()
 
 
-  mapx.vnoremap("J", ":m '>+1<cr>gv=gv")
-  mapx.vnoremap("K", ":m '<-2<cr>gv=gv")
+  mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv")
+  mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv")
 
   -- undo & redo
   mapx.nnoremap("U", "<cmd>later<cr>", "Redo")
@@ -39,6 +39,7 @@ mapx.group({ silent = true }, function()
   mapx.inoremap("<C-v>", '<esc>"+pi', "Paste from clipboard")
   mapx.nnoremap("<leader><C-v>", '"+p', "Paste from clipboard")
 
+  -- Open url
   mapx.nnoremap("<leader>B",
     '<Cmd>call jobstart(["microsoft-edge-stable","--new-window", expand("<cfile>")], {"detach": v:true})<CR>', "Open url")
 

@@ -7,9 +7,5 @@ require("neotest").setup({
       runner = "pytest",
       python = "venv/bin/python"
     }),
-    require("neotest-plenary"),
-    require("neotest-vim-test")({
-      ignore_file_types = { "python", "vim", "lua" },
-    }),
   },
 })

@@ -293,6 +293,7 @@ require("lazy").setup({
     -- NEED: More research and config
     -- See https://github.com/nvim-neotest/neotest for helps
     "nvim-neotest/neotest",
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require("plugins.lsp.neotest")
     end

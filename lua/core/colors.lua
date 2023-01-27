@@ -28,7 +28,11 @@ return {
   end,
 
   yellow = function()
-    return '#ffaf00'
+    return '#ffff00'
+  end,
+
+  gold = function()
+    return "#ffb607"
   end,
 
   purple = function()

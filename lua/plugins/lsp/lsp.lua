@@ -1,6 +1,6 @@
 local mapx = require("core.keymap").mapx
 local colors = require("core.colors")
-require("neodev").setup({ library = { plugins = { "neotest" }, types = true }, })
+require("neodev").setup({ library = { plugins = { "neotest" }, types = true }, override = false })
 
 require("mason").setup()
 require("mason-lspconfig").setup({
@@ -73,7 +73,7 @@ local lsp_mapping = function(_, bufnr)
     mapx.nnoremap("gd", "<cmd>Lspsaga peek_definition<cr>", "LSP: Peek defintion")
     mapx.nnoremap("gD", "<cmd>Lspsaga goto_definition<cr>", "LSP: Goto definiton")
     mapx.nnoremap("gh", "<cmd>Lspsaga lsp_finder<cr>", "LSP: Find keyword")
-    mapx.nnoremap("gH", "<cmd>Lspsaga hover_doc<cr>", "LSP: Show doc")
+    mapx.nnoremap("gH", "<cmd>Lspsaga hover_doc <cr>", "LSP: Show doc")
     mapx.nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
     mapx.nnoremap("gr", "<cmd>Lspsaga rename<cr>", "LSP: Rename")
     mapx.nnoremap("g[", "<cmd>lua vim.diagnostic.goto_prev()<cr>", "LSP: Go prev diagnostic")
@@ -109,6 +109,7 @@ require("mason-lspconfig").setup_handlers({
 
   ["sumneko_lua"] = function()
     lspconfig.sumneko_lua.setup(lsp_config({
+      before_init = require("neodev.lsp").before_init,
       settings = {
         Lua = {
           diagnostics = {

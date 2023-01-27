@@ -1,5 +1,3 @@
-require("dap").repl.close()
-
 local colors = require("core.colors")
 local hl = vim.api.nvim_set_hl
 hl(0, "DashboardDesc", { fg = colors.bluegreen() })

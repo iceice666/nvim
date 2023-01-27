@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
+
   { -- Theme
     "iceice666/vscode.nvim",
     lazy = false,
@@ -166,20 +167,6 @@ require("lazy").setup({
       require("gitsigns").setup({})
     end
   },
-  --  FIXME: dashboard !! breaking changes !!
-  { -- dashboard
-    cond = false,
-    "glepnir/dashboard-nvim",
-    config = function()
-      require("dashboard").disable_at_vimenter = true
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "LazyVimStarted",
-        callback = function()
-          require("plugins.dashboard")
-        end,
-      })
-    end,
-  },
   { -- Trouble / show diagnostics
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons",
@@ -191,11 +178,22 @@ require("lazy").setup({
     "nacro90/numb.nvim",
     config = true
   },
-  -- Image display
   -- NEED: implementation needed
-  {
+  { -- Image display
     'edluffy/hologram.nvim',
     cond = false
+  },
+  { -- dashboard
+    cond = true,
+    "glepnir/dashboard-nvim",
+    config = function()
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LazyVimStarted",
+        callback = function()
+          require("plugins.dashboard")
+        end,
+      })
+    end,
   },
   -- Undo history
   "mbbill/undotree",

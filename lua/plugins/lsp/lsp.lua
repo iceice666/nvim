@@ -64,29 +64,10 @@ vim.fn.sign_define('DiagnosticSignInfo', {
   linehl = "DiagnosticSignInfo",
   numhl = "DiagnosticSignInfo",
 })
--- ===========================Mapping===================================
-mapx.nname("g", "Goto")
-mapx.nname("<leader>s", "Show info")
+
 local lsp_mapping = function(_, bufnr)
   --  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  mapx.group({ silent = true, buffer = bufnr }, function()
-    mapx.nnoremap("gd", "<cmd>Lspsaga peek_definition<cr>", "LSP: Peek defintion")
-    mapx.nnoremap("gD", "<cmd>Lspsaga goto_definition<cr>", "LSP: Goto definiton")
-    mapx.nnoremap("gh", "<cmd>Lspsaga lsp_finder<cr>", "LSP: Find keyword")
-    mapx.nnoremap("gH", "<cmd>Lspsaga hover_doc <cr>", "LSP: Show doc")
-    mapx.nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
-    mapx.nnoremap("gr", "<cmd>Lspsaga rename<cr>", "LSP: Rename")
-    mapx.nnoremap("g[", "<cmd>lua vim.diagnostic.goto_prev()<cr>", "LSP: Go prev diagnostic")
-    mapx.nnoremap("g]", "<cmd>lua vim.diagnostic.goto_next()<cr>", "LSP: Go next diagnostic")
-    mapx.nnoremap("<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<cr>", "LSP: Show current buffer diagnostics")
-    mapx.nnoremap("<leader>so", "<cmd>Lspsaga outline<cr>", "LSP: Show current buffer symbol outline")
-    mapx.nnoremap("<leader>sh", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP: Show signature help")
-
-    mapx.nnoremap("<leader>ca", "<cmd>Lspsaga code_action<cr>", "LSP: Code action")
-    mapx.vnoremap("<leader>ca", "<cmd>Lspsaga code_action<cr>", "LSP: Code action")
-  end)
 end
--- =====================================================================
 
 local lsp_config = function(settings)
   settings = settings or {}
@@ -123,3 +104,23 @@ require("mason-lspconfig").setup_handlers({
     }))
   end,
 })
+
+
+mapx.nname("g", "Goto")
+mapx.nname("<leader>s", "Show info")
+mapx.group({ silent = true }, function()
+  mapx.nnoremap("gd", "<cmd>Lspsaga peek_definition<cr>", "LSP: Peek defintion")
+  mapx.nnoremap("gD", "<cmd>Lspsaga goto_definition<cr>", "LSP: Goto definiton")
+  mapx.nnoremap("gh", "<cmd>Lspsaga lsp_finder<cr>", "LSP: Find keyword")
+  mapx.nnoremap("gH", "<cmd>Lspsaga hover_doc <cr>", "LSP: Show doc")
+  mapx.nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
+  mapx.nnoremap("gr", "<cmd>Lspsaga rename<cr>", "LSP: Rename")
+  mapx.nnoremap("g[", "<cmd>lua vim.diagnostic.goto_prev()<cr>", "LSP: Go prev diagnostic")
+  mapx.nnoremap("g]", "<cmd>lua vim.diagnostic.goto_next()<cr>", "LSP: Go next diagnostic")
+  mapx.nnoremap("<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<cr>", "LSP: Show current buffer diagnostics")
+  mapx.nnoremap("<leader>so", "<cmd>Lspsaga outline<cr>", "LSP: Show current buffer symbol outline")
+  mapx.nnoremap("<leader>sh", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP: Show signature help")
+
+  mapx.nnoremap("<leader>ca", "<cmd>Lspsaga code_action<cr>", "LSP: Code action")
+  mapx.vnoremap("<leader>ca", "<cmd>Lspsaga code_action<cr>", "LSP: Code action")
+end)

@@ -104,7 +104,7 @@ gls.left = {
   separator(),
   {
     DiagnosticWarn = {
-      highlight = { colors.yellow, colors.bg },
+      highlight = { colors.gold, colors.bg },
       icon = '  ',
       provider = 'DiagnosticWarn',
     },
@@ -112,7 +112,7 @@ gls.left = {
   separator(),
   {
     DiagnosticHint = {
-      highlight = { colors.cyan, colors.bg },
+      highlight = { colors.blue, colors.bg },
       icon = '  ',
       provider = 'DiagnosticHint',
     },
@@ -120,7 +120,7 @@ gls.left = {
   separator(),
   {
     DiagnosticInfo = {
-      highlight = { colors.blue, colors.bg },
+      highlight = { colors.lightblue, colors.bg },
       icon = '  ',
       provider = 'DiagnosticInfo',
     },

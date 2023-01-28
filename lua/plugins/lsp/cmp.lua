@@ -58,7 +58,7 @@ cmp.setup({
       end
     end, { "i", "s" }),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    ["<s-CR>"] = cmp.mapping.abort()
+    ["<S-CR>"] = cmp.mapping.abort()
 
   },
   window = {

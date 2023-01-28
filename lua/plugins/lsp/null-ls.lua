@@ -19,7 +19,7 @@ null_ls.setup({
     formatting.autopep8,
 
     -- linter / diagnostics
-    diagnostics.ruff,
+    --   diagnostics.ruff,
 
   },
   on_attach = function(client, bufnr)

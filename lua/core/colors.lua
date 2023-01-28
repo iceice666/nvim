@@ -47,10 +47,6 @@ return {
     return '#ff7ab2'
   end,
 
-  yelloworrange = function()
-    return '#d7ba7d'
-  end,
-
   blue = function()
     return '#0a7aca'
   end,

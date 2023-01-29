@@ -88,9 +88,11 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>7", "<cmd>BufferLineGoToBuffer 7<CR>", "Buf: Switch to buffer7")
   mapx.nnoremap("<leader>8", "<cmd>BufferLineGoToBuffer 8<CR>", "Buf: Switch to buffer8")
   mapx.nnoremap("<leader>9", "<cmd>BufferLineGoToBuffer 9<CR>", "Buf: Switch to buffer9")
-  mapx.nnoremap({ "<leader>q", "<leader>bd" }, "<cmd>bd %<cr>", "Buf: Close current buffer")
+  mapx.nnoremap("<leader>q", "<cmd>bd %<cr>", "Buf: Close current buffer")
   mapx.nnoremap("<leader>bo", "<cmd>BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", "Buf: Close all except current")
   mapx.nnoremap("<leader>bp", "<cmd>BufferLinePick<CR>", "Buf: Switch to picked one")
+  mapx.nnoremap("<leader>bd", "<cmd>BufferLinePickClose<CR>", "Buf: Close a picked one")
+
 
 
 end)

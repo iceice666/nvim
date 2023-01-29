@@ -18,17 +18,6 @@ cmp.setup({
     { name = 'emoji' },
     { name = 'treesitter' },
     { name = "luasnip" },
-    --    { name = "spell",
-    --      option = {
-    --        enable_in_context = function()
-    --          if string.match(vim.bo.filetype, "markdown") then
-    --            if string.match(vim.bo.filetype, "text") then
-    --              return true
-    --            end
-    --          end
-    --        end
-    --      }
-    --    }
   },
   snippet = {
     expand = function(args)
@@ -107,28 +96,3 @@ cmp.event:on(
   'confirm_done',
   cmp_autopairs.on_confirm_done()
 )
-
-
--- vim.api.nvim_create_autocmd(
---  { "TextChangedI", "TextChangedP" },
---  {
---    callback = function()
---      local line = vim.api.nvim_get_current_line()
---      local cursor = vim.api.nvim_win_get_cursor(0)[2]
---
---      local current = string.sub(line, cursor, cursor + 1)
---      if current == "." or current == "," or current == " " then
---        cmp.close()
---      end
---
---      local before_line = string.sub(line, 1, cursor + 1)
---      local after_line = string.sub(line, cursor + 1, -1)
---      if not string.match(before_line, '^%s+$') then
---        if after_line == "" or string.match(before_line, " $") or string.match(before_line, "%.$") then
---          cmp.complete()
---        end
---      end
---    end,
---    pattern = "*"
---  })
---

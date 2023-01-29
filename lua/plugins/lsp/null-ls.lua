@@ -29,7 +29,11 @@ null_ls.setup({
         group = augroup,
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr })
+          if vim.bo.filetype == "go" then
+            require('go.format').goimport()
+          else
+            vim.lsp.buf.format({ bufnr = bufnr })
+          end
         end,
       })
     end

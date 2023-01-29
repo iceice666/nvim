@@ -56,8 +56,13 @@ require("lazy").setup({
       "rcarriga/nvim-notify"
     },
     config = function()
-      require("plugins.noice")
-    end
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LazyVimStarted",
+        callback = function()
+          require("plugins.noice")
+        end,
+      })
+    end,
   },
   { -- Sessions
     "rmagatti/auto-session",
@@ -230,6 +235,8 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     config = function()
+      require("plugins.lsp.mason")
+      require("plugins.lsp.lspsaga")
       require("plugins.lsp.lsp")
     end,
     dependencies = {

@@ -8,7 +8,7 @@ local code_actions = null_ls.builtins.code_actions
 
 null_ls.setup({
   sources = {
-    -- formatting
+    -- lua
     formatting.stylua.with(
       {
         extra_args = {
@@ -16,10 +16,22 @@ null_ls.setup({
         }
       }
     ),
-    formatting.autopep8,
 
-    -- linter / diagnostics
+    -- python
+    formatting.autopep8,
     diagnostics.ruff,
+
+    --golang
+    diagnostics.golangci_lint,
+    diagnostics.revive,
+    formatting.golines.with({
+      extra_args = {
+        "--max-len=180",
+        "--base-formatter=gofumpt",
+      },
+    }),
+    require("go.null_ls").gotest(),
+    require("go.null_ls").gotest_action(),
 
   },
   on_attach = function(client, bufnr)
@@ -29,11 +41,7 @@ null_ls.setup({
         group = augroup,
         buffer = bufnr,
         callback = function()
-          if vim.bo.filetype == "go" then
-            require('go.format').goimport()
-          else
-            vim.lsp.buf.format({ bufnr = bufnr })
-          end
+          vim.lsp.buf.format({ bufnr = bufnr })
         end,
       })
     end

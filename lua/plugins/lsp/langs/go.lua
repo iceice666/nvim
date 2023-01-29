@@ -28,6 +28,8 @@ local lsp_config = require("plugins.lsp.langs.deflaut").lsp_config({
 
 return function()
   require("go").setup {
-    lsp_cfg = lsp_config
+    lsp_cfg = lsp_config,
+    trouble = true,
+    luasnip = true
   }
 end

@@ -8,8 +8,10 @@ require("mason-lspconfig").setup({
     -- python
     "pyright",
     -- golang
-    "gopls", "golangci_lint_ls",
+    "gopls",
+    --"golangci_lint_ls",
 
   },
   automatic_installation = true,
+
 })

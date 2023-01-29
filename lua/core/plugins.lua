@@ -238,6 +238,13 @@ require("lazy").setup({
       "glepnir/lspsaga.nvim",
     },
   },
+  -- [ Other langauges support]
+  { -- golang
+    'ray-x/go.nvim',
+    dependencies = {
+      'ray-x/guihua.lua'
+    }
+  },
   -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   -- [ CMP / Completion engine ]
   {

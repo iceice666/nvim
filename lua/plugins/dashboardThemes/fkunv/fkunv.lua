@@ -31,6 +31,8 @@ local footer = function()
   FUCK U
 
   [ Ref: https://www.youtube.com/watch?v=iYWzMvlj2RQ ]
+
+  (媽的垃圾nv 搞個顯卡直通搞到連tty都進不去 真服了妳個閉源驅動 還要搞一堆逆向)
   ]]
 
   for _, k in ipairs(vim.split(fkunv, "\n", { trimempty = true })) do

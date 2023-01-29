@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 require("mason-nvim-dap").setup({
-  ensure_installed = { "python" },
+  ensure_installed = { "python", "go" },
   automatic_installation = true,
 })
 
@@ -151,6 +151,9 @@ end)
 mapx.nnoremap("<F17>", "<cmd>DapTerminate<cr>")
 mapx.nnoremap("<F6>", function()
   dapui.close({})
+end)
+mapx.nnoremap("<F30>", function()
+  dap.repl.close()
 end)
 mapx.nnoremap("<F9>", "<cmd>DapToggleBreakpoint<cr>")
 mapx.nnoremap("<F10>", "<cmd>DapStepOver<cr>")

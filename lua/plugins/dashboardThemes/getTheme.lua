@@ -5,7 +5,7 @@
 local theme = "plugins.dashboardThemes."
 
 local themes = {
-  -- "default",
+  "default",
   "fkunv"
 }
 local t = themes[math.random(#themes)]

@@ -3,7 +3,7 @@ local mapx = require 'mapx'.setup { whichkey = true }
 
 mapx.group({ silent = true }, function()
 
-
+  -- Move selected sections
   mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv")
   mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv")
 

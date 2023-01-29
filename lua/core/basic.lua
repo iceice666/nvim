@@ -62,31 +62,11 @@ opt.hidden = true
 
 opt.mouse:append("a")
 
-opt.clipboard:append("unnamedplus")
-
 vim.api.nvim_create_autocmd("TextYankPost", {
-
   callback = function()
     vim.highlight.on_yank({
       higroup = "IncSearch",
       timeout = 300,
     })
   end,
-})
-
-local numbertogglegroup = vim.api.nvim_create_augroup("numbertoggle", { clear = true })
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
-  pattern = "*",
-  callback = function()
-    vim.wo.relativenumber = false
-  end,
-  group = numbertogglegroup,
-})
-
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
-  pattern = "*",
-  callback = function()
-    vim.wo.relativenumber = true
-  end,
-  group = numbertogglegroup,
 })

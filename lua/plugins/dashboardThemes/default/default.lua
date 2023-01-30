@@ -21,7 +21,6 @@ local center = function()
     }
   end
 
-  button("R", "ﮦ", "Restore session", "lua require('dashboard'):new_file(); vim.cmd('RestoreSession')")
   button("W", "", "Workspaces", "Telescope workspaces")
   button("r", "󱋡", "Recent files", "Telescope oldfiles")
   button("L", "", "Lazy", "Lazy")
@@ -60,7 +59,7 @@ local preview = function()
   return {
     command = "cat | bash " .. themePath .. "static/animated_lolcat.sh",
     file_path = themePath .. "default/icon.txt",
-    file_height = 11,
+    file_height = 7,
     file_width = 60,
   }
 end

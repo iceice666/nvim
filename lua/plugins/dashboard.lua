@@ -1,6 +1,9 @@
 local db = require("plugins.dashboardThemes.getTheme")
 
+
 require("dashboard").setup(db)
+vim.cmd("RestoreSession")
+vim.cmd("Dashboard")
 
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "",

@@ -33,7 +33,7 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>/", "<cmd>nohls<cr><cmd>let @/ = ''<cr>", "Clear search")
 
   -- Quit
-  mapx.nnoremap("<leader>Q", "<cmd>qa!<cr>", "Quit Neovim")
+  mapx.nnoremap("<leader>Q", "<cmd>SaveSession<cr><cmd>qa!<cr>", "Quit Neovim")
 
   -- Paste
   mapx.inoremap("<C-v>", '<esc>"+pi', "Paste from clipboard")

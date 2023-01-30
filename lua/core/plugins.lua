@@ -65,6 +65,7 @@ require("lazy").setup({
     end,
   },
   { -- Sessions
+    cond = true,
     "rmagatti/auto-session",
     config = function()
       require("plugins.auto-session")

@@ -24,7 +24,7 @@ local center = function()
       }
     elseif theme == 'doom' then
       buttons[#buttons + 1] = {
-        desc = icon .. " " .. label .. string.rep(" ", 47 - #label),
+        desc = icon --[[ .. " " .. label .. string.rep(" ", 47 - #label) ]] ,
         desc_hl = "DashboardDesc",
         action = action,
         key = shortcut,

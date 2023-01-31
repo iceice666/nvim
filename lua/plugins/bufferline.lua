@@ -1,5 +1,19 @@
+local colors = require("core.colors")
 require("bufferline").setup({
   options = {
+    custom_areas = {
+      right = function()
+        local result = {
+          {
+            text = vim.fn.strftime("%m/%y %H:%M:%S")
+          },
+          {
+            text = "  "
+          }
+        }
+        return result
+      end
+    },
     modified_icon = "●",
     indicator = {
       style = 'icon'
@@ -7,7 +21,7 @@ require("bufferline").setup({
 
     mode = "buffer",
     diagnostics = "nvim_lsp",
-    diagnostics_indicator = function(count, level, diagnostics_dict, context)
+    diagnostics_indicator = function(_, _, diagnostics_dict, _)
       local s = " "
       for e, n in pairs(diagnostics_dict) do
         local sym = e == "error" and " "
@@ -29,6 +43,12 @@ require("bufferline").setup({
         hightlight = "Directory",
         text_align = "center",
       },
+      {
+        filetype = "lspsagaoutline",
+        text = "Objects",
+        hightlight = "Directory",
+        text_align = "center"
+      }
     },
     highlights = {
       fill = {

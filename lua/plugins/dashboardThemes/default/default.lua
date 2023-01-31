@@ -25,7 +25,7 @@ local center = function()
   button("r", "󱋡", "Recent files", "Telescope oldfiles")
   button("L", "", "Lazy", "Lazy")
   button("P", "", "Lazy profile", "Lazy profile")
-  button("C", "", "Close dashboard", "lua require('dashboard'):new_file()")
+  button("C", "", "Close dashboard", "lua require('dashboard'):new_file();vim.cmd('RestoreSession')")
   button("q", "", "Quit", "qa")
 
   return buttons

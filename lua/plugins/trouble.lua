@@ -8,6 +8,6 @@ mapx.group({ silent = true }, function()
     "Trouble: Show diagnostics of current file")
   mapx.nnoremap("<leader>sD", "<cmd>Trouble workspace_diagnostics<cr>",
     "Trouble: Show diagnostics of current workspace")
-  mapx.nnoremap("<leader>sc", "<cmd>TroubleClose<cr>", "Trouble: Close Trouble")
+  mapx.nnoremap("<leader>stc", "<cmd>TroubleClose<cr>", "Trouble: Close Trouble")
 end
 )

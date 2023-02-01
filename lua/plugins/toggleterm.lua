@@ -9,8 +9,8 @@ require("toggleterm").setup({
 local mapx = require("core.keymap").mapx
 -- terminal mapping
 mapx.nnoremap("<a-t>", function()
-  if vim.fn.filereadable(vim.fn.expand(vim.fn.getcwd() .. "/venv/bin/activate")) == 1 then
-    pcall(vim.cmd, "TermExec cmd='source venv/bin/activate;clear'")
+  if vim.fn.filereadable(vim.fn.expand(vim.fn.getcwd() .. "/.venv/bin/activate")) == 1 then
+    pcall(vim.cmd, "TermExec cmd='source .venv/bin/activate;clear'")
   else
     vim.cmd("ToggleTerm")
   end

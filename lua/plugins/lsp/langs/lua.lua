@@ -10,7 +10,7 @@ return function()
           globals = { "vim", "require" },
         },
         completion = {
-          callSnippet = "Replace",
+          callSnippet = "Both",
         },
       },
     },

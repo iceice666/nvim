@@ -1,4 +1,3 @@
-local colors = require("core.colors")
 require("bufferline").setup({
   options = {
     custom_areas = {

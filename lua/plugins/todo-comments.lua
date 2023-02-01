@@ -40,4 +40,4 @@ require("todo-comments").setup({
   },
 })
 
-require("core.keymap").mapx.nnoremap("<leader>st", "<cmd>TodoTrouble<cr>", "Trouble: Show todos")
+require("core.keymap").mapx.nnoremap("<leader>sT", "<cmd>TodoTrouble<cr>", "Trouble: Show todos")

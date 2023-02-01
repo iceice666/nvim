@@ -16,6 +16,7 @@ require("lazy").setup({
 
   { -- Theme
     "iceice666/vscode.nvim",
+    branch = "dev",
     lazy = false,
     priority = 1000,
     config = function()

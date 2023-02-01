@@ -4,6 +4,12 @@ vim.g.loaded_netrwPlugin = 1
 require("neo-tree").setup({
   close_if_last_window = true,
   sort_by = "case_sensitive",
+  filesystem = {
+    filtered_items = {
+      hide_gitignored = false
+    },
+    follow_current_file = true
+  },
   actions = {
     open_file = { quit_on_open = true },
   },

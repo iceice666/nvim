@@ -40,7 +40,7 @@ opt.list = true
 
 
 opt.cursorline = true
-opt.colorcolumn = "80"
+opt.colorcolumn = "88"
 
 opt.termguicolors = true
 

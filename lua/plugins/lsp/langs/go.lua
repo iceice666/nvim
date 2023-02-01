@@ -23,6 +23,7 @@ local lsp_config = require("plugins.lsp.langs.deflaut").lsp_config({
   on_attach = function(_, bufnr)
     do_map(bufnr, nnoremaps, vnoremaps)
   end,
+  enableCodeLens = true
 }
 )
 

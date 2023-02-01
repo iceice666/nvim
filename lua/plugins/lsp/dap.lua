@@ -30,7 +30,7 @@ require("mason-nvim-dap").setup_handlers({
         request = "launch",
         name = "Launch file",
         program = "${file}",
-        pythonPath = "${workspaceFolder}/venv/bin/python"
+        pythonPath = "${workspaceFolder}/.venv/bin/python"
 
       }
     }

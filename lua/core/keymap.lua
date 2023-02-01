@@ -26,6 +26,11 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("J", "10j")
   mapx.nnoremap("K", "10k")
 
+  mapx.inoremap("<c-h>", "<Left>")
+  mapx.inoremap("<c-j>", "<Down>")
+  mapx.inoremap("<c-k>", "<Up>")
+  mapx.inoremap("<c-l>", "<Right>")
+
   -- File write
   mapx.nnoremap("<leader>w", "<cmd>w<cr>", "Save")
 

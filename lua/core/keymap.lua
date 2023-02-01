@@ -50,8 +50,7 @@ mapx.group({ silent = true }, function()
   -- format
   mapx.nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>", "Buf: format")
 
-  -- azyGit
-  mapx.nnoremap("<leader>lg", "<cmd>TermExec cmd=lazygit&&exit<cr>", "Lazygit")
+  -- Lazy
   mapx.nnoremap("<leader>L", "<cmd>Lazy<cr>", "Lazy")
 
 end

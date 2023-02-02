@@ -22,9 +22,9 @@ local center = function()
   end
 
   button(_, " ", "Current dir: " .. vim.fn.getcwd(), "Telescope workspaces")
-  button("R", "󰙰", "Restore Session", "lua require('dashboard'):new_file();vim.cmd('RestoreSession')")
-  button("r", "󱋡", "Recent files", "Telescope oldfiles")
-  button("C", "", "Close dashboard", "lua require('dashboard'):new_file();vim.cmd('bd')")
+  button("r", "󰙰", "Restore Session", "lua require('dashboard'):new_file();vim.cmd('RestoreSession')")
+  button("R", "󱋡", "Recent files", "Telescope oldfiles")
+  button("c", "", "Close dashboard", "lua require('dashboard'):new_file();vim.cmd('bd')")
   button("q", "", "Quit", "qa")
 
   return buttons

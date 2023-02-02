@@ -287,14 +287,16 @@ require("lazy").setup({
   { -- core
     "mfussenegger/nvim-dap",
     config = function()
-      require("plugins.lsp.dap")
+      require("plugins.dap.dap")
     end,
     dependencies = {
       -- ui
       "rcarriga/nvim-dap-ui",
-      "RubixDev/mason-update-all",
       "jay-babu/mason-nvim-dap.nvim",
       "theHamsta/nvim-dap-virtual-text",
+
+      -- langauges
+      "mfussenegger/nvim-dap-python",
     }
   },
   { -- test adapter
@@ -302,7 +304,7 @@ require("lazy").setup({
     -- See https://github.com/nvim-neotest/neotest for helps
     "nvim-neotest/neotest",
     config = function()
-      require("plugins.lsp.neotest")
+      require("plugins.dap.neotest")
     end,
     dependencies = {
       "nvim-neotest/neotest-python",

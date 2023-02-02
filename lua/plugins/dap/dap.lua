@@ -1,42 +1,25 @@
 local colors = require("core.colors")
 local dap = require("dap")
-require('mason-update-all').setup()
-vim.cmd("silent MasonUpdateAll")
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'MasonUpdateAllComplete',
-  callback = function()
-    print(' ')
-  end,
-})
+
 require("mason-nvim-dap").setup({
   ensure_installed = { "python", "go" },
   automatic_installation = true,
+  automatic_setup = true
 })
+require('dap-python').setup('/home/iceice666/local/share/nvim/mason/packages/debugpy/venv/bin/python')
 
-require("mason-nvim-dap").setup_handlers({
-  function(source_name)
-    require('mason-nvim-dap.automatic_setup')(source_name)
-  end,
-  python = function()
-    dap.adapters.python = {
-      type = "executable",
-      command = "debugpy-adapter",
-      args = {}
-    }
+dap.configurations.python = { {
+  type = 'python',
+  request = 'launch',
+  name = 'Run current file',
+  program = '${file}',
+}, }
 
-    dap.configurations.python = {
-      {
-        type = "python",
-        request = "launch",
-        name = "Launch file",
-        program = "${file}",
-        pythonPath = "${workspaceFolder}/.venv/bin/python"
 
-      }
-    }
-  end
-})
 
+-- require('dap-python').resolve_python = function()
+--   return vim.fn.expand(vim.fn.getcwd() .. "/.venv/bin/python")
+-- end
 local dapui = require("dapui")
 dapui.setup({
   layouts = {
@@ -91,9 +74,7 @@ require("nvim-dap-virtual-text").setup({
   virt_text_win_col = nil
 })
 
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open({})
-end
+
 
 vim.api.nvim_set_hl(0, 'DapBreakpoint', {
   ctermbg = 0,
@@ -145,13 +126,12 @@ vim.fn.sign_define('DapStopped', {
 
 
 local mapx = require("core.keymap").mapx
-mapx.nnoremap("<F5>", function()
-  dap.continue()
-end)
+
+mapx.nnoremap("<F5>", "<cmd>DapContinue<cr>")
 mapx.nnoremap("<F17>", "<cmd>DapTerminate<cr>")
-mapx.nnoremap("<F6>", function()
-  dapui.close({})
-end)
+
+mapx.nnoremap("<F6>", "<cmd>:lua require 'dapui'.open()<cr>")
+mapx.nnoremap("<F18>", "<cmd>:lua require 'dapui'.close()<cr>")
 mapx.nnoremap("<F30>", function()
   dap.repl.close()
 end)

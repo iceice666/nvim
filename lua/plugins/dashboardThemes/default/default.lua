@@ -60,7 +60,7 @@ local preview = function()
   return {
     command = "cat | bash " .. themePath .. "static/animated_lolcat.sh",
     file_path = themePath .. "default/icon.txt",
-    file_height = 7,
+    file_height = 8,
     file_width = 60,
   }
 end
@@ -75,7 +75,7 @@ return {
     footer = footer()
   },
   hide = {
+    tabline = false,
     statusline = true,
-    tabline = true,
   }
 }

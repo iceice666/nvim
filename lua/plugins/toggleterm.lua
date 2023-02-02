@@ -16,4 +16,4 @@ mapx.nnoremap("<a-t>", function()
   end
 end)
 mapx.tnoremap("<a-t>", "<c-\\><c-n><cmd>ToggleTerm<cr>")
-mapx.tnoremap("<a-e>", "<c-c><c-d><enter>exit<enter>")
+mapx.tnoremap("<a-e>", "exit<enter>")

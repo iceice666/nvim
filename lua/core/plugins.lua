@@ -191,7 +191,7 @@ require("lazy").setup({
     cond = false
   },
   { -- dashboard
-    cond = true,
+    pin = true,
     "glepnir/dashboard-nvim",
     config = function()
       vim.api.nvim_create_autocmd("User", {

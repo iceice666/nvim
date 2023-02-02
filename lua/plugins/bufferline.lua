@@ -2,14 +2,24 @@ require("bufferline").setup({
   options = {
     custom_areas = {
       right = function()
-        local result = {
-          {
-            text = vim.fn.strftime("%m/%y %H:%M:%S")
-          },
-          {
-            text = "  "
-          }
+        local result = {}
+
+
+        local week_table = {
+          ["Mon"] = "1️⃣",
+          ["Tue"] = "2️⃣",
+          ["Wed"] = "3️⃣",
+          ["Thu"] = "4️⃣",
+          ["Fri"] = "5️⃣",
+          ["Sat"] = "6️⃣",
+          ["Sun"] = "7️⃣"
         }
+        local date = vim.fn.strftime("%m/%y")
+        local week = week_table[vim.fn.strftime("%a")]
+        local time = vim.fn.strftime("%p %I:%M:%S")
+
+        result[#result + 1] = { text = date .. " " .. week .. " " .. time .. " " }
+
         return result
       end
     },

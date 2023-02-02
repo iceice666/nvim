@@ -1,24 +1,30 @@
+local clock_table = {
+  ["Mon"] = "(一)",
+  ["Tue"] = "(二)",
+  ["Wed"] = "(三)",
+  ["Thu"] = "(四)",
+  ["Fri"] = "(五)",
+  ["Sat"] = "(六)",
+  ["Sun"] = "(日)",
+}
+
+local get_time = function()
+  local date = vim.fn.strftime("%m/%y")
+  local week = clock_table[vim.fn.strftime("%a")]
+  local time = vim.fn.strftime("%H:%M:%S")
+
+  return { text = date .. " " .. week .. " " .. time .. " " }
+
+end
+
+
 require("bufferline").setup({
   options = {
     custom_areas = {
       right = function()
         local result = {}
 
-
-        local week_table = {
-          ["Mon"] = "1️⃣",
-          ["Tue"] = "2️⃣",
-          ["Wed"] = "3️⃣",
-          ["Thu"] = "4️⃣",
-          ["Fri"] = "5️⃣",
-          ["Sat"] = "6️⃣",
-          ["Sun"] = "7️⃣"
-        }
-        local date = vim.fn.strftime("%m/%y")
-        local week = week_table[vim.fn.strftime("%a")]
-        local time = vim.fn.strftime("%p %I:%M:%S")
-
-        result[#result + 1] = { text = date .. " " .. week .. " " .. time .. " " }
+        result[#result + 1] = get_time()
 
         return result
       end

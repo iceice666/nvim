@@ -21,9 +21,8 @@ local center = function()
     }
   end
 
-  button(_, " ", "Current dir: " .. vim.fn.getcwd())
+  button(_, " ", "Current dir: " .. vim.fn.getcwd(), "Telescope workspaces")
   button("R", "󰙰", "Restore Session", "lua require('dashboard'):new_file();vim.cmd('RestoreSession')")
-  button("W", "", "Workspaces", "Telescope workspaces")
   button("r", "󱋡", "Recent files", "Telescope oldfiles")
   button("C", "", "Close dashboard", "lua require('dashboard'):new_file();vim.cmd('bd')")
   button("q", "", "Quit", "qa")
@@ -74,7 +73,7 @@ return {
     footer = footer()
   },
   hide = {
-    tabline = false,
+    tabline = true,
     statusline = true,
   }
 }

@@ -54,7 +54,7 @@ require("lazy").setup({
     "folke/noice.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify"
+      "rcarriga/nvim-notify",
     },
     config = function()
       vim.api.nvim_create_autocmd("User", {
@@ -208,6 +208,8 @@ require("lazy").setup({
   "folke/which-key.nvim",
   -- neodev
   "folke/neodev.nvim",
+  -- scroll stop at end
+  "Aasim-A/scrollEOF.nvim",
   -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   -- Treesitter / Syntax
   {

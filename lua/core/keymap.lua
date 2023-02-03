@@ -3,6 +3,16 @@ local mapx = require 'mapx'.setup { whichkey = true }
 
 mapx.group({ silent = true }, function()
 
+  -- Quit
+  mapx.nnoremap("<leader>Q", function()
+    vim.cmd("NeoTreeClose")
+    vim.cmd("UndotreeHide")
+    vim.cmd("lua require 'dapui'.close()")
+
+    vim.cmd("SaveSession")
+    vim.cmd("qa!")
+  end, "Quit Neovim")
+
   -- Move selected sections
   mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv")
   mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv")
@@ -37,8 +47,6 @@ mapx.group({ silent = true }, function()
   -- Clear search
   mapx.nnoremap("<leader>/", "<cmd>nohls<cr><cmd>let @/ = ''<cr>", "Clear search")
 
-  -- Quit
-  mapx.nnoremap("<leader>Q", "<cmd>SaveSession<cr><cmd>qa!<cr>", "Quit Neovim")
 
   -- Paste
   mapx.inoremap("<C-v>", '<esc>"+pi', "Paste from clipboard")

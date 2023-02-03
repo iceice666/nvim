@@ -13,7 +13,7 @@ local center = function()
     action = action or nil
     hl = hl or "DashboardShotCut"
     buttons[#buttons + 1] = {
-      desc = icon .. " " .. label .. string.rep(" ", 47 - #label),
+      desc = icon .. "  " .. label .. string.rep(" ", 47 - #label),
       desc_hl = "DashboardDesc",
       action = action,
       key = shortcut,
@@ -21,11 +21,11 @@ local center = function()
     }
   end
 
-  button(_, " ", "Current dir: " .. vim.fn.getcwd(), "Telescope workspaces")
-  button("r", "󰙰", "Restore Session", "lua require('dashboard'):new_file();vim.cmd('RestoreSession')")
+  button(_, "󰉋", "Current dir: " .. vim.fn.getcwd(), "lua require('dashboard'):new_file();vim.cmd('RestoreSession')")
+  button("r", "", "Change workspaces", "Telescope workspaces")
   button("R", "󱋡", "Recent files", "Telescope oldfiles")
   button("c", "", "Close dashboard", "lua require('dashboard'):new_file();vim.cmd('bd')")
-  button("q", "", "Quit", "qa")
+  button("q", "󰗼", "Quit", "qa")
 
   return buttons
 end

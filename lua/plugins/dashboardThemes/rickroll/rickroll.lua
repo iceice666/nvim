@@ -38,7 +38,7 @@ db.config.footer = footer()
 
 db.preview = {
   file_width = 50,
-  file_height = 26,
+  file_height = 23,
   file_path = themeDir .. "icon.txt",
   command = db.preview.command,
 }

@@ -58,43 +58,6 @@ gls.left = {
   },
   separator(),
   {
-    SessionInfo = {
-      highlight = { colors.purple, colors.bg },
-      provider = function()
-        local ok, r = pcall(require('auto-session-library').current_session_name)
-        if ok == true then
-          return r
-        else
-          return "NONE"
-        end
-      end,
-      icon = "Session: "
-    }
-  },
-  separator(),
-  {
-    ShowLspClient = {
-      condition = function()
-        local tbl = {
-          ['dashboard'] = true,
-          [''] = true
-        }
-        if tbl[vim.bo.filetype] then
-          return false
-        end
-        return true
-      end,
-      highlight = {
-        colors.pink,
-        colors.bg,
-        'bold'
-      },
-      icon = ' LSP: ',
-      provider = 'GetLspClient',
-    },
-  },
-  separator(),
-  {
     DiagnosticError = {
       highlight = { colors.red, colors.bg },
       icon = '  ',
@@ -124,6 +87,21 @@ gls.left = {
       icon = '  ',
       provider = 'DiagnosticInfo',
     },
+  },
+  {
+    Cwd = {
+      highlight = { colors.cyan, colors.bg },
+      icon = '  ',
+      provider = function()
+        return vim.fn.getcwd() .. "/"
+      end
+    }
+  },
+  {
+    FilePath = {
+      provider = 'FilePath',
+      highlight = { colors.magenta, colors.bg },
+    }
   },
 }
 -- Mid
@@ -176,6 +154,43 @@ gls.right = {
       icon = '  ',
       provider = 'DiffRemove',
     },
+  },
+  separator(),
+  {
+    ShowLspClient = {
+      condition = function()
+        local tbl = {
+          ['dashboard'] = true,
+          [''] = true
+        }
+        if tbl[vim.bo.filetype] then
+          return false
+        end
+        return true
+      end,
+      highlight = {
+        colors.pink,
+        colors.bg,
+        'bold'
+      },
+      icon = ' LSP: ',
+      provider = 'GetLspClient',
+    },
+  },
+  separator(),
+  {
+    SessionInfo = {
+      highlight = { colors.purple, colors.bg },
+      provider = function()
+        local ok, r = pcall(require('auto-session-library').current_session_name)
+        if ok == true then
+          return r
+        else
+          return "NONE"
+        end
+      end,
+      icon = "Session: "
+    }
   },
   separator(),
   {

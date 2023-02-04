@@ -14,12 +14,11 @@ mapx.group({ silent = true }, function()
   end, "Quit Neovim")
 
   -- clear current lines
-  mapx.nnoremap("d ", "ddO<esc>")
+  mapx.nnoremap("d<space>", "ddO<esc>")
 
   -- Move selected sections
   mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv")
   mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv")
-
   -- redo
   mapx.nnoremap("U", "<cmd>later<cr>", "Redo")
 
@@ -70,8 +69,8 @@ mapx.group({ silent = true }, function()
   -- format
   mapx.nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>", "Buf: format")
 
-  -- Lazy
-  mapx.nnoremap("<leader>L", "<cmd>Lazy<cr>", "Lazy")
+  -- Lazygit
+  mapx.nnoremap("<leader>lg", "<cmd>TermExec cmd='lazygit&&exit'<cr>", "Lazy")
 
 end
 )

@@ -13,16 +13,19 @@ mapx.group({ silent = true }, function()
     vim.cmd("qa!")
   end, "Quit Neovim")
 
+  -- clear current lines
+  mapx.nnoremap("d ", "ddO<esc>")
+
   -- Move selected sections
   mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv")
   mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv")
 
-  -- undo & redo
+  -- redo
   mapx.nnoremap("U", "<cmd>later<cr>", "Redo")
 
   -- Select all
-  mapx.nnoremap("<c-a>", "gg<s-v>G", "Select all")
-  mapx.vnoremap("<c-a>", "gg<s-v>G", "Select all")
+  mapx.nnoremap("<c-a>", "ggVG", "Select all")
+  mapx.vnoremap("<c-a>", "ggVG", "Select all")
 
   -- Window split
   mapx.nnoremap("Wl", "<cmd>set splitright<CR>:vsplit<CR>")
@@ -33,6 +36,10 @@ mapx.group({ silent = true }, function()
   -- Cursor jumping
   mapx.nnoremap("L", "$")
   mapx.nnoremap("H", "^")
+
+  mapx.nnoremap("<home>", "^")
+  mapx.nnoremap("<end>", "$")
+
   mapx.nnoremap("J", "10j")
   mapx.nnoremap("K", "10k")
 

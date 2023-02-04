@@ -35,9 +35,10 @@ vim.bo.autoread = true
 
 opt.signcolumn = "yes"
 opt.list = true
---opt.listchars:append "space:⋅"
---opt.listchars:append "eol:↴"
+-- opt.listchars:append "space:⋅"
+-- opt.listchars:append "eol:↴"
 
+vim.cmd("set formatoptions-=cro")
 
 opt.cursorline = true
 opt.colorcolumn = "88"

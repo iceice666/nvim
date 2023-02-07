@@ -23,6 +23,12 @@ require("lazy").setup({
       vim.cmd("colorscheme vscode")
     end
   },
+  { -- searchbox
+    "VonHeikemen/searchbox.nvim",
+    config = function()
+      require("plugins.searchbox")
+    end
+  },
   { -- auto saver
     "tmillr/sos.nvim",
     config = function()
@@ -314,6 +320,7 @@ require("lazy").setup({
   },
   -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   { -- Format & lint
+    pin = true,
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       require("plugins.lsp.null-ls")

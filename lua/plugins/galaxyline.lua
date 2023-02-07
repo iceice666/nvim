@@ -88,15 +88,15 @@ gls.left = {
       provider = 'DiagnosticInfo',
     },
   },
-  {
-    Cwd = {
-      highlight = { colors.cyan, colors.bg },
-      icon = '  ',
-      provider = function()
-        return vim.fn.getcwd() .. "/"
-      end
-    }
-  },
+  -- {
+  --   Cwd = {
+  --     highlight = { colors.cyan, colors.bg },
+  --     icon = '  ',
+  --     provider = function()
+  --       return vim.fn.getcwd() .. "/"
+  --     end
+  --   }
+  -- },
   {
     FilePath = {
       provider = 'FilePath',
@@ -186,7 +186,7 @@ gls.right = {
         if ok == true then
           return r
         else
-          return "NONE"
+          return "Not loaded"
         end
       end,
       icon = "Session: "

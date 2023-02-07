@@ -8,18 +8,26 @@ require("mason-nvim-dap").setup({
 })
 require('dap-python').setup('/home/iceice666/local/share/nvim/mason/packages/debugpy/venv/bin/python')
 
-dap.configurations.python = { {
-  type = 'python',
-  request = 'launch',
-  name = 'Run current file',
-  program = '${file}',
-}, }
+dap.configurations.python = {
+  {
+    type = 'python',
+    request = 'launch',
+    name = 'Run current file',
+    program = '${file}',
+  },
+  {
+    type = 'python',
+    request = 'launch',
+    name = 'Run test.py',
+    program = '${workspaceFolder}/src/test.py'
+  }
+}
 
 
 
--- require('dap-python').resolve_python = function()
---   return vim.fn.expand(vim.fn.getcwd() .. "/.venv/bin/python")
--- end
+require('dap-python').resolve_python = function()
+  return vim.fn.expand(vim.fn.getcwd() .. "/.venv/bin/python")
+end
 local dapui = require("dapui")
 dapui.setup({
   layouts = {
@@ -27,19 +35,19 @@ dapui.setup({
       elements = {
         {
           id = 'scopes',
-          size = 0.35
+          size = 0.5
         },
         {
           id = "stacks",
-          size = 0.35
+          size = 0.1
         },
         {
           id = "watches",
-          size = 0.15
+          size = 0.3
         },
         {
           id = "breakpoints",
-          size = 0.15
+          size = 0.1
         },
       },
       size = 40,

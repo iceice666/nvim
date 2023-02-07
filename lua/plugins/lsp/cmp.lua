@@ -1,5 +1,4 @@
 local cmp = require("cmp")
-require("luasnip.loaders.from_vscode").lazy_load()
 local luasnip = require("luasnip")
 
 require("nvim-autopairs").setup {}
@@ -30,8 +29,6 @@ cmp.setup({
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-        --     elseif has_words_before() then
-        --     cmp.complete()
       else
         fallback()
       end
@@ -47,7 +44,17 @@ cmp.setup({
       end
     end, { "i", "s" }),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    ["<S-CR>"] = cmp.mapping.abort()
+    ["<S-CR>"] = function(fallback)
+      if cmp.visible() then
+        cmp.close()
+      else
+        fallback()
+      end
+    end,
+    ['<C-[>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-]>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+
 
   },
   window = {
@@ -96,3 +103,5 @@ cmp.event:on(
   'confirm_done',
   cmp_autopairs.on_confirm_done()
 )
+
+require("luasnip.loaders.from_vscode").lazy_load()

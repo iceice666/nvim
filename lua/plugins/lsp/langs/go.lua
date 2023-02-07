@@ -1,5 +1,5 @@
-local vnoremaps = require("plugins.lsp.langs.deflaut").vnoremaps
-local do_map = require("plugins.lsp.langs.deflaut").do_map
+local vnoremaps = require("plugins.lsp.langs.default").vnoremaps
+local do_map = require("plugins.lsp.langs.default").do_map
 
 local nnoremaps = {
   { "gd", "<cmd>Lspsaga peek_definition<cr>", "LSP: Peek defintion" },
@@ -19,7 +19,7 @@ local nnoremaps = {
 
 
 
-local lsp_config = require("plugins.lsp.langs.deflaut").lsp_config({
+local lsp_config = require("plugins.lsp.langs.default").lsp_config({
   on_attach = function(_, bufnr)
     do_map(bufnr, nnoremaps, vnoremaps)
   end,

@@ -35,12 +35,12 @@ mapx.group({ silent = true }, function()
   -- Cursor jumping
   mapx.nnoremap("L", "$")
   mapx.nnoremap("H", "^")
-
-  mapx.nnoremap("<home>", "^")
-  mapx.nnoremap("<end>", "$")
-
   mapx.nnoremap("J", "10j")
   mapx.nnoremap("K", "10k")
+
+  mapx.inoremap("<home>", "<esc>^i")
+  mapx.inoremap("<end>", "<esc>$a")
+
 
   mapx.inoremap("<c-h>", "<Left>")
   mapx.inoremap("<c-j>", "<Down>")

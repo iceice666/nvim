@@ -1,4 +1,4 @@
-local lsp_config = require("plugins.lsp.langs.deflaut").lsp_config
+local lsp_config = require("plugins.lsp.langs.default").lsp_config
 
 require("mason-lspconfig").setup_handlers({
   function(server_name)

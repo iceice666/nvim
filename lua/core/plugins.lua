@@ -23,6 +23,18 @@ require("lazy").setup({
       vim.cmd("colorscheme vscode")
     end
   },
+  { -- split windows
+    "beauwilliams/focus.nvim",
+    config = function()
+      require("plugins.focus")
+    end
+  },
+  { -- windows shifting
+    'sindrets/winshift.nvim',
+    config = function()
+      require("plugins.winshift")
+    end
+  },
   { -- searchbox
     "VonHeikemen/searchbox.nvim",
     config = function()
@@ -70,6 +82,12 @@ require("lazy").setup({
         end,
       })
     end,
+  },
+  { -- cursorline apperence
+    "tummetott/reticle.nvim",
+    config = function()
+      require("plugins.reticle")
+    end
   },
   { -- Sessions
     cond = true,
@@ -277,7 +295,7 @@ require("lazy").setup({
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp-signature-help",
-      "hrsh7th/cmp-emoji",
+      "chrisgrieser/cmp-nerdfont",
       "f3fora/cmp-spell",
       "rcarriga/cmp-dap",
       "saadparwaiz1/cmp_luasnip",

@@ -26,11 +26,7 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<c-a>", "ggVG", "Select all")
   mapx.vnoremap("<c-a>", "ggVG", "Select all")
 
-  -- Window split
-  mapx.nnoremap("Wl", "<cmd>set splitright<CR>:vsplit<CR>")
-  mapx.nnoremap("Wh", "<cmd>set nosplitright<CR>:vsplit<CR>")
-  mapx.nnoremap("Wk", "<cmd>set nosplitbelow<CR>:split<CR>")
-  mapx.nnoremap("Wj", "<cmd>set splitbelow<CR>:split<CR>")
+
 
   -- Cursor jumping
   mapx.nnoremap("L", "$")

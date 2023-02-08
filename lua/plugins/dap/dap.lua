@@ -136,7 +136,8 @@ vim.fn.sign_define('DapStopped', {
 local mapx = require("core.keymap").mapx
 
 mapx.nnoremap("<F5>", "<cmd>DapContinue<cr>", "Dap: Continue")
-mapx.nnoremap("<F17>", "<cmd>DapTerminate<cr>", "Dap: Stop")
+mapx.nnoremap("<F17>", "<cmd>DapRerun<cr>", "Dap: Rerun")
+mapx.nnoremap("<F29>", "<cmd>DapTerminate<cr>", "Dap: Stop")
 
 mapx.nnoremap("<F6>", "<cmd>:lua require 'dapui'.open()<cr>", "Dap: Open debug ui")
 mapx.nnoremap("<F18>", "<cmd>:lua require 'dapui'.close()<cr>", "Dap: Close debug ui")

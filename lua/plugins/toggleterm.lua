@@ -8,8 +8,6 @@ require("toggleterm").setup({
 
 local mapx = require("core.keymap").mapx
 -- terminal mapping
-mapx.nnoremap("<a-t>", function()
-  vim.cmd("ToggleTerm")
-end)
-mapx.tnoremap("<a-t>", "<c-\\><c-n><cmd>ToggleTerm<cr>")
-mapx.tnoremap("<a-e>", "exit<enter>")
+mapx.nnoremap("<a-t>", "<cmd>ToggleTerm<cr>", "Term: Open terminal")
+mapx.tnoremap("<a-t>", "<c-\\><c-n><cmd>ToggleTerm<cr>", "Term: Close terminal")
+mapx.tnoremap("<a-e>", "exit<enter>", "Term: exit")

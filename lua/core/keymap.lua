@@ -2,11 +2,11 @@ vim.g.mapleader = " "
 local mapx = require 'mapx'.setup { whichkey = true }
 
 mapx.group({ silent = true }, function()
-
   -- Quit
   mapx.nnoremap("<leader>Q", function()
     vim.cmd("NeoTreeClose")
     vim.cmd("UndotreeHide")
+    vim.cmd("TroubleClose")
     vim.cmd("lua require 'dapui'.close()")
 
     vim.cmd("SaveSession")
@@ -56,7 +56,8 @@ mapx.group({ silent = true }, function()
 
   -- Open url
   mapx.nnoremap("<leader>B",
-    '<Cmd>call jobstart(["microsoft-edge-stable","--new-window", expand("<cfile>")], {"detach": v:true})<CR>', "Open url")
+      '<Cmd>call jobstart(["microsoft-edge-stable","--new-window", expand("<cfile>")], {"detach": v:true})<CR>',
+      "Open url")
 
   -- ======================= PLUGINS MAPPINGS ===========================
   -- Undo tree
@@ -67,7 +68,6 @@ mapx.group({ silent = true }, function()
 
   -- Lazygit
   mapx.nnoremap("<leader>lg", "<cmd>TermExec cmd='lazygit&&exit'<cr>", "Lazy")
-
 end
 )
 return { mapx = mapx }

@@ -62,7 +62,10 @@ cmp.setup({
       winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
       col_offset = -3,
       side_padding = 0,
+      border = 'rounded',
+      scrollbar = '║',
     },
+    documentation = nil
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },

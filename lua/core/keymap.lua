@@ -26,7 +26,9 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<c-a>", "ggVG", "Select all")
   mapx.vnoremap("<c-a>", "ggVG", "Select all")
 
-
+  -- indent line ( tab insert & remove )
+  mapx.nnoremap("<leader><home>", "^i<tab><esc>")
+  mapx.nnoremap("<leader><end>", "^i<bs><esc>")
 
   -- Cursor jumping
   mapx.nnoremap("L", "$")
@@ -48,11 +50,6 @@ mapx.group({ silent = true }, function()
 
   -- Clear search
   mapx.nnoremap("<leader>/", "<cmd>nohls<cr><cmd>let @/ = ''<cr>", "Clear search")
-
-
-  -- Paste
-  mapx.inoremap("<C-v>", '<esc>"+pi', "Paste from clipboard")
-  mapx.nnoremap("<leader><C-v>", '"+p', "Paste from clipboard")
 
   -- Open url
   mapx.nnoremap("<leader>B",

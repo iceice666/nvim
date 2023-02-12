@@ -18,7 +18,7 @@ galaxyline.short_line_list = {
 local separator = function()
   return {
       Separator = {
-          highlight = { colors.fg, colors.bg, 'bold' },
+          highlight = { colors.fg, colors.bg, },
           provider = function()
             return ' '
           end,
@@ -26,26 +26,26 @@ local separator = function()
   }
 end
 
+local modes_texts = {
+    [110] = '  NORMAL',
+    [105] = '  INSERT',
+    [99]  = ' COMMAND',
+    [116] = 'TERMINAL',
+    [118] = '  VISUAL',
+    [22]  = ' V-BLOCK',
+    [86]  = '  V-LINE',
+    [82]  = ' REPLACE',
+}
+
 -- Left
 gls.left = {
-
     separator(),
     {
-
         VimMode = {
+            condition = condition.buffer_not_empty,
             icon = " ",
             provider = function()
-              local modes = {
-                  [110] = '  NORMAL',
-                  [105] = '  INSERT',
-                  [99]  = ' COMMAND',
-                  [116] = 'TERMINAL',
-                  [118] = '  VISUAL',
-                  [22]  = ' V-BLOCK',
-                  [86]  = '  V-LINE',
-                  [82]  = ' REPLACE',
-              }
-              local mode = modes[vim.fn.mode():byte()]
+              local mode = modes_texts[vim.fn.mode():byte()]
               if mode ~= nil then
                 return mode
               else
@@ -63,7 +63,6 @@ gls.left = {
             provider = 'DiagnosticError',
         },
     },
-    separator(),
     {
         DiagnosticWarn = {
             highlight = { colors.gold, colors.bg },
@@ -71,7 +70,6 @@ gls.left = {
             provider = 'DiagnosticWarn',
         },
     },
-    separator(),
     {
         DiagnosticHint = {
             highlight = { colors.blue, colors.bg },
@@ -79,7 +77,6 @@ gls.left = {
             provider = 'DiagnosticHint',
         },
     },
-    separator(),
     {
         DiagnosticInfo = {
             highlight = { colors.lightblue, colors.bg },
@@ -87,20 +84,12 @@ gls.left = {
             provider = 'DiagnosticInfo',
         },
     },
-    -- {
-    --   Cwd = {
-    --     highlight = { colors.cyan, colors.bg },
-    --     icon = '  ',
-    --     provider = function()
-    --       return vim.fn.getcwd() .. "/"
-    --     end
-    --   }
-    -- },
+    separator(),
     {
         FilePath = {
             icon = ' ',
             provider = 'FilePath',
-            highlight = { colors.blue, colors.bg },
+            highlight = { colors.lime, colors.bg },
         }
     },
 }
@@ -157,8 +146,8 @@ gls.right = {
     },
     separator(),
     {
-        ShowLspClient = {
-            --[[ condition = function()
+        LspClient = {
+            condition = function()
               local tbl = {
                   ['dashboard'] = true,
                   [''] = true
@@ -167,13 +156,43 @@ gls.right = {
                 return false
               end
               return true
-            end, ]]
+            end,
+            highlight = {
+                colors.pink,
+                colors.bg,
+                'bold' },
+            icon = '  LSP: ',
+            provider = function()
+              local clients = vim.lsp.get_active_clients()
+              local s = {}
+              for _, v in pairs(clients) do
+                if v.name ~= "null-ls" then
+                  s[#s + 1] = v.name
+                end
+              end
+              return table.concat(s, ", ")
+            end,
+        },
+    },
+    separator(),
+    {
+        NullLsClient = {
+            condition = function()
+              local tbl = {
+                  ['dashboard'] = true,
+                  [''] = true
+              }
+              if tbl[vim.bo.filetype] then
+                return false
+              end
+              return true
+            end,
             highlight = {
                 colors.pink,
                 colors.bg,
                 'bold'
             },
-            icon = ' LSP: ',
+            icon = '  null-ls: ',
             provider = function()
               local sources = require("null-ls").get_sources()
               local s = {}
@@ -225,19 +244,18 @@ gls.right = {
             end,
         },
     },
-
     separator(),
 }
+
+
 gls.short_line_left = {
     separator(),
-
     {
-        FileName = {
-            highlight = { colors.fg, colors.bg, 'bold' },
-            provider = 'FileName',
-            separator = ' ',
-            separator_highlight = { 'NONE', colors.bg },
-        },
+        FilePath = {
+            icon = ' ',
+            provider = 'FilePath',
+            highlight = { colors.lime, colors.bg },
+        }
     },
 
 

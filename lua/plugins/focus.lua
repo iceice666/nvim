@@ -1,4 +1,6 @@
-require("focus").setup({ excluded_filetypes = { "toggleterm" } })
+require("focus").setup({
+    excluded_filetypes = { "toggleterm" },
+})
 
 local mapx = require("core.keymap").mapx
 

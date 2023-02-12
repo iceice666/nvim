@@ -20,7 +20,6 @@ null_ls.setup({
         -- python
         formatting.black,
         formatting.isort,
-        diagnostics.ruff,
 
         --golang
         diagnostics.golangci_lint,
@@ -33,7 +32,6 @@ null_ls.setup({
         }),
         require("go.null_ls").gotest(),
         require("go.null_ls").gotest_action(),
-
     },
     on_attach = function(client, bufnr)
       if client.supports_method("textDocument/formatting") then

@@ -41,7 +41,7 @@ opt.list = true
 vim.cmd("set formatoptions-=cro")
 
 opt.cursorline = true
-opt.colorcolumn = "88"
+opt.colorcolumn = "80"
 
 opt.termguicolors = true
 
@@ -64,10 +64,10 @@ opt.hidden = true
 opt.mouse:append("a")
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank({
-      higroup = "IncSearch",
-      timeout = 300,
-    })
-  end,
+    callback = function()
+      vim.highlight.on_yank({
+          higroup = "IncSearch",
+          timeout = 300,
+      })
+    end,
 })

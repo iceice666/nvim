@@ -6,7 +6,7 @@ require("mason-lspconfig").setup_handlers({
     end,
     ["sumneko_lua"] = require("plugins.lsp.langs.lua"),
     ["gopls"] = require("plugins.lsp.langs.go"),
-    ["ruff_lsp"] = require("plugins.lsp.langs.python"),
+    ["pyright"] = require("plugins.lsp.langs.python"),
 }
 
 )

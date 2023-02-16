@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
-
     { -- Theme
         "iceice666/vscode.nvim",
         branch = "dev",
@@ -21,12 +20,6 @@ require("lazy").setup({
         priority = 1000,
         config = function()
           vim.cmd("colorscheme vscode")
-        end
-    },
-    { -- split windows
-        "beauwilliams/focus.nvim",
-        config = function()
-          require("plugins.focus")
         end
     },
     { -- windows shifting
@@ -209,10 +202,12 @@ require("lazy").setup({
         "nacro90/numb.nvim",
         config = true
     },
-    -- NEED: implementation needed
-    { -- Image display
-        'edluffy/hologram.nvim',
-        cond = false
+    { -- pets
+        "giusgad/pets.nvim",
+        dependencies = {
+            'edluffy/hologram.nvim',
+        },
+        config = true,
     },
     { -- dashboard
         pin = true,

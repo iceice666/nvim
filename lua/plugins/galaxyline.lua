@@ -1,6 +1,6 @@
 local firstToUpper = require("core.utils").firstToUpper
 local colors = require("core.colors")
-
+local fileinfo = require('galaxyline.provider_fileinfo')
 local galaxyline = require('galaxyline')
 local condition = require('galaxyline.condition')
 local gls = galaxyline.section
@@ -10,6 +10,7 @@ galaxyline.short_line_list = {
     "dapui_watches",
     "dapui_stacks",
     "dapui_scopes",
+    "dapui_console",
     "dap-repl",
     "lspsagaoutline",
 }
@@ -35,6 +36,15 @@ local modes_texts = {
     [22]  = ' V-BLOCK',
     [86]  = '  V-LINE',
     [82]  = ' REPLACE',
+}
+
+local filetype_names = {
+    ["dapui_stacks"] = "DAP Stacks",
+    ["dapui_scopes"] = "DAP Scopes",
+    ["dapui_watches"] = "DAP Watches",
+    ["dapui_breakpoints"] = "DAP Breakpoints",
+    ["dapui_console"] = "DAP Console",
+    ["dap-repl"] = "DAP Repl"
 }
 
 -- Left
@@ -251,9 +261,16 @@ gls.right = {
 gls.short_line_left = {
     separator(),
     {
-        FilePath = {
+        BufferName = {
             icon = ' ',
-            provider = 'FilePath',
+            provider = function()
+              local name = filetype_names[vim.bo.filetype]
+              if name ~= nil then
+                return name
+              else
+                return fileinfo.get_current_file_path()
+              end
+            end,
             highlight = { colors.lime, colors.bg },
         }
     },

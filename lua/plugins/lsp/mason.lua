@@ -2,13 +2,14 @@ require("neodev").setup({ library = { plugins = { "neotest" }, types = true }, o
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = {
-        -- lua
-        "sumneko_lua",
-        -- golang
-        "gopls",
-        --"golangci_lint_ls",
+  ensure_installed = {
+    -- lua
+    "lua_ls",
+    -- golang
+    "gopls",
+    -- python
+    "pyright"
 
-    },
-    automatic_installation = true,
+  },
+  automatic_installation = true,
 })

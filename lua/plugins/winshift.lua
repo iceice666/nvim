@@ -11,8 +11,4 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader><c-h>", "<cmd>WinShift left<cr>")
   mapx.nnoremap("<leader><c-j>", "<cmd>WinShift down<cr>")
   mapx.nnoremap("<leader><c-k>", "<cmd>WinShift up<cr> ")
-
-
-
-
 end)

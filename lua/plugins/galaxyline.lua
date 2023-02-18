@@ -28,14 +28,14 @@ local separator = function()
 end
 
 local modes_texts = {
-    [110] = '  NORMAL',
-    [105] = '  INSERT',
-    [99]  = ' COMMAND',
+    [110] = 'NORMAL  ',
+    [105] = 'INSERT  ',
+    [99]  = 'COMMAND ',
     [116] = 'TERMINAL',
-    [118] = '  VISUAL',
-    [22]  = ' V-BLOCK',
-    [86]  = '  V-LINE',
-    [82]  = ' REPLACE',
+    [118] = 'VISUAL  ',
+    [22]  = 'V-BLOCK ',
+    [86]  = 'V-LINE  ',
+    [82]  = 'REPLACE ',
 }
 
 local filetype_names = {

@@ -19,6 +19,7 @@ mapx.group({ silent = true }, function()
   -- Move selected sections
   mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv")
   mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv")
+
   -- redo
   mapx.nnoremap("U", "<cmd>later<cr>", "Redo")
 
@@ -39,11 +40,16 @@ mapx.group({ silent = true }, function()
   mapx.inoremap("<home>", "<esc>^i")
   mapx.inoremap("<end>", "<esc>$a")
 
-
   mapx.inoremap("<c-h>", "<Left>")
   mapx.inoremap("<c-j>", "<Down>")
   mapx.inoremap("<c-k>", "<Up>")
   mapx.inoremap("<c-l>", "<Right>")
+
+  -- Buffer jumping
+  mapx.nnoremap("<leader>h", "<c-w>h")
+  mapx.nnoremap("<leader>j", "<c-w>j")
+  mapx.nnoremap("<leader>k", "<c-w>k")
+  mapx.nnoremap("<leader>l", "<c-w>l")
 
   -- File write
   mapx.nnoremap("<leader>w", "<cmd>w<cr>", "Save")
@@ -53,8 +59,8 @@ mapx.group({ silent = true }, function()
 
   -- Open url
   mapx.nnoremap("<leader>B",
-      '<Cmd>call jobstart(["microsoft-edge-stable","--new-window", expand("<cfile>")], {"detach": v:true})<CR>',
-      "Open url")
+    '<Cmd>call jobstart(["microsoft-edge-stable","--new-window", expand("<cfile>")], {"detach": v:true})<CR>',
+    "Open url")
 
   -- ======================= PLUGINS MAPPINGS ===========================
   -- Undo tree
@@ -64,7 +70,7 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>", "Buf: format")
 
   -- Lazygit
-  mapx.nnoremap("<leader>lg", "<cmd>TermExec cmd='lazygit&&exit'<cr>", "Lazy")
+  mapx.nnoremap("<leader>g", "<cmd>TermExec cmd='cd " .. vim.fn.getcwd() .. "&& lazygit&&exit'<cr>", "Lazy")
 end
 )
 return { mapx = mapx }

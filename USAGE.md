@@ -5,6 +5,9 @@
 
 ## plugins
 
-- [rmagatti/alternate-toggler](https://github.com/rmagatti/alternate-toggler)
-:Toggle true/false, yes/no, 1/0, etc...
-
+<details>
+<summary>
+  <a href="https://github.com/rmagatti/alternate-toggler">rmagatti/alternate-toggler</a>
+ </summary>
+Toggle true/false, yes/no, 1/0, etc...
+</details>

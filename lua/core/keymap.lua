@@ -1,13 +1,13 @@
-vim.g.mapleader = " "
+
 local mapx = require 'mapx'.setup { whichkey = true }
 
 mapx.group({ silent = true }, function()
   -- Quit
   mapx.nnoremap("<leader>Q", function()
-    vim.cmd("NeoTreeClose")
-    vim.cmd("UndotreeHide")
-    vim.cmd("TroubleClose")
-    require 'dapui'.close()
+    pcall(vim.cmd,"NeoTreeClose")
+    pcall(vim.cmd,"UndotreeHide")
+    pcall(vim.cmd,"TroubleClose")
+    pcall(vim.cmd,"lua require 'dapui'.close()")
 
     vim.cmd("SaveSession")
     vim.cmd("qa!")

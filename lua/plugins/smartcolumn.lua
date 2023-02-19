@@ -1,10 +1,16 @@
-require("smartcolumn").setup {
-  colorcolumn = 80,
-  disabled_filetypes = {
-    "help",
-    "text",
-    "markdown",
-    "lazy",
-    "dashboard"
-  },
+return {
+  -- show column when line too long
+  "m4xshen/smartcolumn.nvim",
+  config = function()
+    require("smartcolumn").setup {
+      colorcolumn = 80,
+      disabled_filetypes = {
+        "help",
+        "text",
+        "markdown",
+        "lazy",
+        "dashboard"
+      },
+    }
+  end
 }

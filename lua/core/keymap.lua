@@ -51,6 +51,9 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>k", "<c-w>k")
   mapx.nnoremap("<leader>l", "<c-w>l")
 
+  mapx.nnoremap("<leaer><tab>", "<c-w>w")
+  mapx.nnoremap("<leader><s-tab>", "<c-w>W")
+
   -- File write
   mapx.nnoremap("<leader>w", "<cmd>w<cr>", "Save")
 

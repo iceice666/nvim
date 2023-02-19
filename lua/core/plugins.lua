@@ -22,6 +22,22 @@ require("lazy").setup({
       vim.cmd("colorscheme vscode")
     end
   },
+  { -- reg & yank history
+    "AckslD/nvim-neoclip.lua",
+    config = function()
+      require("plugins.nvim-neoclip")
+    end
+  },
+  { -- Mark treesitter node to enhance context changes in buffer.
+    "atusy/tsnode-marker.nvim",
+    init = function()
+      require("plugins.tsnode-marker")
+    end,
+    config = function()
+      vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#252525" })
+    end,
+    filetype = "markdown"
+  },
   { -- windows shifting
     'sindrets/winshift.nvim',
     config = function()
@@ -32,6 +48,12 @@ require("lazy").setup({
     "VonHeikemen/searchbox.nvim",
     config = function()
       require("plugins.searchbox")
+    end
+  },
+  { -- show column when line too long
+    "m4xshen/smartcolumn.nvim",
+    config = function()
+      require("plugins.smartcolumn")
     end
   },
   { -- auto saver
@@ -301,6 +323,9 @@ require("lazy").setup({
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
       "onsails/lspkind-nvim",
+
+      -- Other
+      "lukas-reineke/cmp-under-comparator"
     }
   },
   -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

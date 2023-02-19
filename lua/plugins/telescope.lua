@@ -73,7 +73,6 @@ telescope.setup({
       only_cwd = true
     }
   },
-
 })
 --telescope.load_extension('dap')
 telescope.load_extension('fzf')
@@ -81,17 +80,42 @@ telescope.load_extension("live_grep_args")
 telescope.load_extension("file_browser")
 telescope.load_extension("noice")
 telescope.load_extension("workspaces")
+telescope.load_extension('neoclip')
 
 local mapx = require("core.keymap").mapx
 
 mapx.nname("<leader>t", "Telescope")
 mapx.nname("<leader>tf", "Telescope: Find")
 mapx.group({ silent = true }, function()
-  mapx.nnoremap("<leader>tff", "<cmd>Telescope find_files<cr>", "Telescope: Find files")
-  mapx.nnoremap("<leader>tfS", "<cmd>Telescope grep_string<cr>",
+  mapx.nnoremap("<leader>tff",
+    "<cmd>Telescope find_files<cr>",
+    "Telescope: Find files")
+
+  mapx.nnoremap("<leader>tfS",
+    "<cmd>Telescope grep_string<cr>",
     "Telescope: Find files that contain the current cursor word")
-  mapx.nnoremap("<leader>tfb", "<cmd>Telescope file_browser<cr>", "Telescope: File browser")
-  mapx.nnoremap("<leader>tfs", "<cmd>Telescope live_grep_args<cr>", "Telescope: Find words")
-  mapx.nnoremap("<leader>tr", "<cmd>Telescope oldfiles<cr>", "Telescope: Recent files")
-  mapx.nnoremap("<leader>tw", "<cmd>Telescope workspaces<cr>", "Telescope: Show workspaces")
+
+  mapx.nnoremap("<leader>tfb",
+    "<cmd>Telescope file_browser<cr>",
+    "Telescope: File browser")
+
+  mapx.nnoremap("<leader>tfs",
+    "<cmd>Telescope live_grep_args<cr>",
+    "Telescope: Find words")
+
+  mapx.nnoremap("<leader>tr",
+    "<cmd>Telescope oldfiles<cr>",
+    "Telescope: Recent files")
+
+  mapx.nnoremap("<leader>tw",
+    "<cmd>Telescope workspaces<cr>",
+    "Telescope: Show workspaces")
+
+  mapx.nnoremap("<leader>ty",
+    "<cmd>Telescope neoclip<cr>",
+    "Telescope: Yank history")
+
+  mapx.nnoremap("<leader>tm",
+    "<cmd>lua require('telescope').extensions.macroscope.default()<cr>",
+    "Telescope: Macros history")
 end)

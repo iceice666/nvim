@@ -11,27 +11,40 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local req = function(plugin_name)
+  require("plugins." .. plugin_name)
+end
 
 require("lazy").setup({
   { -- Theme
-    "iceice666/vscode.nvim",
-    branch = "dev",
+    "Mofiqul/vscode.nvim",
+    branch = "main",
     lazy = false,
     priority = 1000,
     config = function()
+      vim.o.background = 'dark'
       vim.cmd("colorscheme vscode")
+
+      vim.api.nvim_set_hl(0, "SpecialChar", { fg = "#c586c0" })
+      -- vim.api.nvim_set_hl(0, "@stringEscape", { link = "@string.escape" })
+    end
+  },
+  { -- smooth scrolling
+    "karb94/neoscroll.nvim",
+    config = function()
+      req("neoscroll")
     end
   },
   { -- reg & yank history
     "AckslD/nvim-neoclip.lua",
     config = function()
-      require("plugins.nvim-neoclip")
+      req("nvim-neoclip")
     end
   },
   { -- Mark treesitter node to enhance context changes in buffer.
     "atusy/tsnode-marker.nvim",
     init = function()
-      require("plugins.tsnode-marker")
+      req("tsnode-marker")
     end,
     config = function()
       vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#252525" })
@@ -41,19 +54,19 @@ require("lazy").setup({
   { -- windows shifting
     'sindrets/winshift.nvim',
     config = function()
-      require("plugins.winshift")
+      req("winshift")
     end
   },
   { -- searchbox
     "VonHeikemen/searchbox.nvim",
     config = function()
-      require("plugins.searchbox")
+      req("searchbox")
     end
   },
   { -- show column when line too long
     "m4xshen/smartcolumn.nvim",
     config = function()
-      require("plugins.smartcolumn")
+      req("smartcolumn")
     end
   },
   { -- auto saver
@@ -72,7 +85,7 @@ require("lazy").setup({
     -- TODO: Need config
     "luukvbaal/statuscol.nvim",
     config = function()
-      require("plugins.statuscol")
+      req("statuscol")
     end
   },
   { -- Markdown preview
@@ -93,7 +106,7 @@ require("lazy").setup({
       vim.api.nvim_create_autocmd("User", {
         pattern = "LazyVimStarted",
         callback = function()
-          require("plugins.noice")
+          req("noice")
         end,
       })
     end,
@@ -101,38 +114,39 @@ require("lazy").setup({
   { -- cursorline apperence
     "tummetott/reticle.nvim",
     config = function()
-      require("plugins.reticle")
+      req("reticle")
     end
   },
   { -- Sessions
     cond = true,
     "rmagatti/auto-session",
     config = function()
-      require("plugins.auto-session")
+      req("auto-session")
     end
   },
-  { -- Toggle comment
+  { -- Todo comment
     "folke/todo-comments.nvim",
     config = function()
-      require('plugins.comment')
+      req('todo-comments')
     end
   },
-  { -- Color comment
+  {
+    -- Toggle comment
     'numToStr/Comment.nvim',
     config = function()
-      require("plugins.todo-comments")
+      req("comment")
     end
   },
   { -- Comment box
     "LudoPinelli/comment-box.nvim",
     config = function()
-      require("plugins.comment-box")
+      req("comment-box")
     end
   },
   { -- Workspaces
     "natecraddock/workspaces.nvim",
     config = function()
-      require("plugins.workspaces")
+      req("workspaces")
     end
   },
   { -- Cursor motion
@@ -141,7 +155,7 @@ require("lazy").setup({
       "tpope/vim-repeat"
     },
     config = function()
-      require("plugins.motion")
+      req("motion")
     end
   },
   { -- Window tabs
@@ -150,19 +164,19 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons"
     },
     config = function()
-      require("plugins.bufferline")
+      req("bufferline")
     end
   },
   { -- Color preview / pick
     "uga-rosa/ccc.nvim",
     config = function()
-      require("plugins.ccc")
+      req("ccc")
     end
   },
   { -- scroll related
     "petertriho/nvim-scrollbar",
     config = function()
-      require("plugins.scroll")
+      req("scroll")
     end
   },
   { -- hlsearch lens
@@ -174,13 +188,13 @@ require("lazy").setup({
   { -- toggle term
     "akinsho/toggleterm.nvim",
     config = function()
-      require("plugins.toggleterm")
+      req("toggleterm")
     end
   },
   { -- Status line
     "glepnir/galaxyline.nvim",
     config = function()
-      require("plugins.galaxyline")
+      req("galaxyline")
     end
   },
   { -- File explorer
@@ -192,19 +206,19 @@ require("lazy").setup({
     },
     branch = "v2.x",
     config = function()
-      require("plugins.neotree")
+      req("neotree")
     end
   },
   { -- Switch true/false
     "rmagatti/alternate-toggler",
     config = function()
-      require("plugins.alternate-toggler")
+      req("alternate-toggler")
     end
   },
   { -- indent line
     "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("plugins.indent-blankline")
+      req("indent-blankline")
     end
   },
   { -- Git signs
@@ -217,7 +231,7 @@ require("lazy").setup({
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons",
     config = function()
-      require("plugins.trouble")
+      req("trouble")
     end
   },
   { -- line peek
@@ -238,7 +252,7 @@ require("lazy").setup({
       vim.api.nvim_create_autocmd("User", {
         pattern = "LazyVimStarted",
         callback = function()
-          require("plugins.dashboard")
+          req("dashboard")
         end,
       })
     end,
@@ -256,7 +270,7 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     config = function()
-      require("plugins.lsp.treesitter")
+      req("lsp.treesitter")
     end
   },
   -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -264,7 +278,7 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim",
     config = function()
-      require("plugins.telescope")
+      req("telescope")
     end,
     dependencies = {
       "nvim-telescope/telescope-live-grep-args.nvim",
@@ -280,9 +294,9 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("plugins.lsp.mason")
-      require("plugins.lsp.lspsaga")
-      require("plugins.lsp.lsp")
+      req("lsp.mason")
+      req("lsp.lspsaga")
+      req("lsp.lsp")
     end,
     dependencies = {
       "williamboman/mason.nvim",
@@ -302,7 +316,7 @@ require("lazy").setup({
   {
     "hrsh7th/nvim-cmp",
     config = function()
-      require("plugins.lsp.cmp")
+      req("lsp.cmp")
     end,
     event = "BufEnter",
     dependencies = {
@@ -333,7 +347,7 @@ require("lazy").setup({
   { -- core
     "mfussenegger/nvim-dap",
     config = function()
-      require("plugins.dap.dap")
+      req("dap.dap")
     end,
     dependencies = {
       -- ui
@@ -350,7 +364,7 @@ require("lazy").setup({
     -- See https://github.com/nvim-neotest/neotest for helps
     "nvim-neotest/neotest",
     config = function()
-      require("plugins.dap.neotest")
+      req("dap.neotest")
     end,
     dependencies = {
       "nvim-neotest/neotest-python",
@@ -361,7 +375,7 @@ require("lazy").setup({
     pin = true,
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
-      require("plugins.lsp.null-ls")
+      req("lsp.null-ls")
     end
   },
   -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -369,5 +383,6 @@ require("lazy").setup({
   -- │                           Libs                           │
   -- ╰──────────────────────────────────────────────────────────╯
   "b0o/mapx.nvim",
-  "ckipp01/stylua-nvim"
+  "ckipp01/stylua-nvim",
+  "TravonteD/luajob"
 })

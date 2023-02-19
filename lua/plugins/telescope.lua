@@ -118,4 +118,8 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>tm",
     "<cmd>lua require('telescope').extensions.macroscope.default()<cr>",
     "Telescope: Macros history")
+
+  mapx.nnoremap("<leader>th",
+    "<cmd> Telescope highlights<cr>",
+    "Telescope: highlights")
 end)

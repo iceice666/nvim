@@ -7,7 +7,7 @@ mapx.group({ silent = true }, function()
     vim.cmd("NeoTreeClose")
     vim.cmd("UndotreeHide")
     vim.cmd("TroubleClose")
-    vim.cmd("lua require 'dapui'.close()")
+    require 'dapui'.close()
 
     vim.cmd("SaveSession")
     vim.cmd("qa!")
@@ -34,8 +34,9 @@ mapx.group({ silent = true }, function()
   -- Cursor jumping
   mapx.nnoremap("L", "$")
   mapx.nnoremap("H", "^")
-  mapx.nnoremap("J", "10j")
-  mapx.nnoremap("K", "10k")
+
+  mapx.nnoremap("n", "nzz")
+  mapx.nnoremap("N", "Nzz")
 
   mapx.inoremap("<home>", "<esc>^i")
   mapx.inoremap("<end>", "<esc>$a")
@@ -51,7 +52,7 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>k", "<c-w>k")
   mapx.nnoremap("<leader>l", "<c-w>l")
 
-  mapx.nnoremap("<leaer><tab>", "<c-w>w")
+  mapx.nnoremap("<leader><tab>", "<c-w>w")
   mapx.nnoremap("<leader><s-tab>", "<c-w>W")
 
   -- File write
@@ -61,8 +62,9 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>/", "<cmd>nohls<cr><cmd>let @/ = ''<cr>", "Clear search")
 
   -- Open url
+  -- https://www.google.com
   mapx.nnoremap("<leader>B",
-    '<Cmd>call jobstart(["microsoft-edge-stable","--new-window", expand("<cfile>")], {"detach": v:true})<CR>',
+    '<Cmd>call jobstart(["powershell.exe","start", expand("<cfile>")], {"detach": v:true})<CR>',
     "Open url")
 
   -- ======================= PLUGINS MAPPINGS ===========================

@@ -2,8 +2,21 @@
 
 # My Neovim Configs
 
-![Dashboard](./static/image.png "Dashboard")
+![Dashboard](./static/dashboard.png "Dashboard")
+
+Require Neovim >= v0.9.0
+
+## Features
+
+- 🚀 Extremely fast. took at most 35ms to start up.
+- 💤 Lazy.nvim's plugins structure. Easy to add plugins you want.
+
+[Plugins usage](./USAGE.md "Plugins")
 
 
-Require Neovim v0.9.0
+## Troubleshooting
+
+- Q: Null-ls says `"command xxx is not executable"`
+
+  A: Use `MasonInstall` to install missing modules.
 

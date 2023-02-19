@@ -1,5 +1,7 @@
 return {
   "glepnir/lspsaga.nvim",
+  pin = true,
+  cmd = "Lspsaga",
   config = function()
     local colors = require("core.colors")
     require('lspsaga').setup({

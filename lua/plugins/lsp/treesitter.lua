@@ -1,6 +1,7 @@
 -- Treesitter / Syntax
 return {
   "nvim-treesitter/nvim-treesitter",
+  event="BufReadPre",
   config = function()
     require("nvim-treesitter.configs").setup({
       ensure_installed = { "lua", "python", "vim", "regex", "bash", "markdown", --[[  "markdown_inline",  ]] "go" },

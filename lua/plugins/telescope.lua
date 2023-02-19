@@ -10,6 +10,8 @@ return
       build = 'make',
     }
   },
+  cmd = "Telescope",
+  keys = "<leader>t",
   config = function()
     local actions = require("telescope.actions")
     local previewers = require("telescope.previewers")

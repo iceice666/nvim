@@ -2,6 +2,13 @@ return {
   -- Format & lint
   pin = true,
   "jose-elias-alvarez/null-ls.nvim",
+  event = {
+    "BufReadPre",
+  },
+  dependencies = {
+    -- stylua
+    "ckipp01/stylua-nvim",
+  },
   config = function()
     local null_ls = require("null-ls")
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})

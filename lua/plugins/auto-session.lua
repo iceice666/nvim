@@ -2,6 +2,11 @@ return {
   -- Sessions
   cond = true,
   "rmagatti/auto-session",
+  keys = "<leader>R",
+  cmd = {
+    "RestoreSession",
+    "SaveSession"
+  },
   config = function()
     require("auto-session").setup({
       log_level = "error",

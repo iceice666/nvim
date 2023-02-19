@@ -1,6 +1,13 @@
 -- [ CMP / Completion engine ]
 return {
   "hrsh7th/nvim-cmp",
+  event = {
+    "InsertEnter",
+    "CmdlineEnter"
+  },
+  keys = {
+    "?", "/"
+  },
   dependencies = {
     -- sources
     "hrsh7th/cmp-nvim-lsp",
@@ -10,10 +17,9 @@ return {
     "hrsh7th/cmp-nvim-lsp-signature-help",
     "chrisgrieser/cmp-nerdfont",
     "f3fora/cmp-spell",
-    "rcarriga/cmp-dap",
+
     "saadparwaiz1/cmp_luasnip",
     "ray-x/cmp-treesitter",
-
 
     -- Snippets
     "L3MON4D3/LuaSnip",

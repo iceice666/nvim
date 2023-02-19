@@ -1,18 +1,19 @@
 return {
   -- smooth scrolling
   "karb94/neoscroll.nvim",
+  dependencies = {
+    "Aasim-A/scrollEOF.nvim",
+  },
+  keys = {
+    "j", "k", "J", "K", "gg", "G", },
   config = function()
     local neoscroll = require('neoscroll')
-    neoscroll.setup()
+    neoscroll.setup({
+      mappings = { "gg", "G", "j", "k" }
+    })
     local scroll = neoscroll.scroll
     local mapx = require("core.keymap").mapx
     mapx.group({ silent = true }, function()
-      mapx.nnoremap("j", function()
-        scroll(1, true, 10)
-      end)
-      mapx.nnoremap("k", function()
-        scroll( -1, true, 10)
-      end)
       mapx.nnoremap("J", function()
         scroll(0.25, true, 150)
       end)

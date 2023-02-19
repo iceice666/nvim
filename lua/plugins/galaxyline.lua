@@ -2,6 +2,7 @@ return {
   -- Status line
   "glepnir/galaxyline.nvim",
   cond = true,
+  event = "BufAdd",
   config = function()
     local firstToUpper = require("core.utils").firstToUpper
     local colors = require("core.colors")
@@ -19,8 +20,6 @@ return {
       "dap-repl",
       "lspsagaoutline",
     }
-
-
     local separator = function()
       return {
         Separator = {

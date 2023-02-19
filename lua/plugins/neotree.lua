@@ -7,6 +7,7 @@ return {
     "nvim-tree/nvim-web-devicons"
   },
   branch = "v2.x",
+  event = "BufAdd",
   config = function()
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1

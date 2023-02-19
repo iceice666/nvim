@@ -1,6 +1,7 @@
 return {
   -- Cursor motion
   "ggandor/leap.nvim",
+  event = "BufReadPost",
   dependencies = {
     "tpope/vim-repeat"
   },

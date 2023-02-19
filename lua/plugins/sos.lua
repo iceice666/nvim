@@ -1,6 +1,7 @@
 return {
   -- auto saver
   "tmillr/sos.nvim",
+  event = "InsertEnter",
   config = function()
     require("sos").setup({
       timeout = 30000,

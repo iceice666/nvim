@@ -5,4 +5,14 @@ return {
     'edluffy/hologram.nvim',
   },
   config = true,
+  cmd={
+    "PetsNew",
+    "PetsNewCustom",
+    "PetsList",
+    "PetsKill",
+    "PetsKillAll",
+    "PetsPauseToggle",
+    "PetsHideToggle",
+    "PetsSleepToggle"
+  }
 }

@@ -1,6 +1,7 @@
 return {
   -- reg && yank history
   "AckslD/nvim-neoclip.lua",
+  event="InsertEnter",
   config = function()
     local function is_whitespace(line)
       return vim.fn.match(line, [[^\s*$]]) ~= -1

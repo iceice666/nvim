@@ -1,6 +1,7 @@
 return {
   -- Comment box
   "LudoPinelli/comment-box.nvim",
+  event = "BufReadPost",
   config = function()
     require('comment-box').setup({
       doc_width = 60, -- width of the document

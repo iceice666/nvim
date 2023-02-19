@@ -25,6 +25,7 @@ local center = function()
   button("w", "", "Change workspaces", "Telescope workspaces")
   button("R", "󱋡", "Recent files", "Telescope oldfiles")
   button("c", "", "Close dashboard", "lua require('dashboard'):new_file();vim.cmd('bd')")
+  button("m", "", "Messages", "messages")
   button("q", "󰗼", "Quit", "qa")
 
   return buttons

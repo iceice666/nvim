@@ -1,7 +1,10 @@
 return {
--- Trouble / show diagnostics
+  -- Trouble / show diagnostics
   "folke/trouble.nvim",
-  requires = "nvim-tree/nvim-web-devicons",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons"
+  },
+  cmd = "Trouble",
   config = function()
     require("trouble").setup({
       use_diagnostic_signs = true

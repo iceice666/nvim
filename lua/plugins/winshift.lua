@@ -1,6 +1,7 @@
 return {
   -- windows shifting
   'sindrets/winshift.nvim',
+  event = "WinEnter",
   config = function()
     require("winshift").setup({
       keymaps = {

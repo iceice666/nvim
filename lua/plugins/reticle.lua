@@ -1,6 +1,7 @@
 return {
   -- cursorline apperence
   "tummetott/reticle.nvim",
+  event="BufNew",
   config = function()
     require("reticle").setup {
       on_focus = {
@@ -9,5 +10,6 @@ return {
         }
       }
     }
+    vim.cmd("set cursorline")
   end
 }

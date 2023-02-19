@@ -2,6 +2,17 @@
 return {
   -- core
   "mfussenegger/nvim-dap",
+  keys = "<F6>",
+  cmd = {
+    "DapUiToggle",
+    "DapToggleBreakpoint",
+    "DapStepOver",
+    "DapStepInto",
+    "DapStepOut",
+    "DapRerun",
+    "DapContinue",
+    "DapTerminate"
+  },
   dependencies = {
     -- core
     "williamboman/mason.nvim",
@@ -12,6 +23,9 @@ return {
 
     -- langauges
     "mfussenegger/nvim-dap-python",
+
+    "rcarriga/cmp-dap",
+
   },
   config = function()
     local colors = require("core.colors")
@@ -158,8 +172,7 @@ return {
     mapx.nnoremap("<F17>", "<cmd>DapRerun<cr>", "Dap: Rerun")
     mapx.nnoremap("<F29>", "<cmd>DapTerminate<cr>", "Dap: Stop")
 
-    mapx.nnoremap("<F6>", "<cmd>:lua require 'dapui'.open()<cr>", "Dap: Open debug ui")
-    mapx.nnoremap("<F18>", "<cmd>:lua require 'dapui'.close()<cr>", "Dap: Close debug ui")
+    mapx.nnoremap("<F6>", "<cmd>DapUiToggle<cr>", "Dap: Toggle debug ui")
     mapx.nnoremap("<F30>", function()
       dap.repl.close()
     end, "Dap: Close repl")

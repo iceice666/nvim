@@ -4,6 +4,7 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons"
   },
+  event = "BufAdd",
   config = function()
     local clock_table = {
       ["Mon"] = "(一)",

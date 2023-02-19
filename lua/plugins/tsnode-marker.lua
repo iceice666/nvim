@@ -1,6 +1,7 @@
 return {
   -- Mark treesitter node to enhance context changes in buffer.
   "atusy/tsnode-marker.nvim",
+  lazy = true,
   init = function()
     vim.api.nvim_create_autocmd("FileType", {
       group = vim.api.nvim_create_augroup("tsnode-marker-markdown", {}),
@@ -16,5 +17,4 @@ return {
   config = function()
     vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#252525" })
   end,
-  filetype = "markdown"
 }

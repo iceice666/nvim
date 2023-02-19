@@ -1,11 +1,18 @@
 return {
--- toggle term
+  -- toggle term
   "akinsho/toggleterm.nvim",
+  keys = {
+    "<a-t>",
+  },
+  cmd = {
+    "TermExec",
+    "ToggleTerm"
+  },
   config = function()
     require("toggleterm").setup({
       direction = "float",
       hide_numbers = true,
-      autochdir = true,
+      autochdir = false,
       shade_terminals = true,
       start_in_insert = true
     })

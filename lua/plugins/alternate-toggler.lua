@@ -1,6 +1,8 @@
 return {
--- Switch true/false
+  -- Switch true/false
   "rmagatti/alternate-toggler",
+  keys = "<leader>ms",
+  cmd = "ToggleAlternate",
   config = function()
     require("alternate-toggler").setup({
       alternates = {

@@ -7,7 +7,10 @@ return {
     "nvim-tree/nvim-web-devicons"
   },
   branch = "v2.x",
-  event = "BufAdd",
+  keys = "<leader>e",
+  cmd = {
+    "Neotree"
+  },
   config = function()
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
@@ -56,7 +59,7 @@ return {
           event = "file_opened",
           handler = function(file_path)
             --auto close
-            require("neo-tree").close_all()
+            pcall(vim.cmd, "Neotree close")
           end
         },
 
@@ -66,6 +69,6 @@ return {
     local opt = { silent = true }
     -- File tree
     local mapx = require("core.keymap").mapx
-    mapx.nnoremap("<leader>e", ":NeoTreeRevealToggle <cr>", opt)
+    mapx.nnoremap("<leader>e", ":Neotree reveal toggle<cr>", opt)
   end
 }

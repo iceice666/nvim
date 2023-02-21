@@ -1,7 +1,12 @@
 return {
   -- cursorline apperence
   "tummetott/reticle.nvim",
-  event="BufNew",
+  cmd = {
+    "Telescope",
+    "Messages",
+    "Enew",
+    "RestoreSession"
+  },
   config = function()
     require("reticle").setup {
       on_focus = {

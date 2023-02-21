@@ -1,27 +1,8 @@
-local db = require("plugins.dashboardThemes.default.default")
-
-local footer = function()
-  local version = vim.version()
-  if version ~= nil then
-    version = "Neovim v" .. version.major .. "." .. version.minor .. "." .. version.patch
-  end
-
-  local stats = require("lazy").stats()
-  local loaded = stats.loaded
-  local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-  local footer = {
-    '',
-    version,
-    loaded .. " plugins in " .. ms .. "ms"
-    , ''
-  }
-
-
-  local fkunv = [[
-  and I'm happy to say that it's 
+local fkunv = [[
+  and I'm happy to say that it's
   the exception rather than the rule and
-  I'm also happy to very publicly point out 
-  that NVIDIA has been one of the worst 
+  I'm also happy to very publicly point out
+  that NVIDIA has been one of the worst
   trouble spot we've had with hardware manufacturers
   and that is really sad because that NVIDIA tries
   to sell chips a lot of chips into the Android Market
@@ -33,20 +14,15 @@ local footer = function()
   [ Ref: https://www.youtube.com/watch?v=iYWzMvlj2RQ ]
   ]]
 
-  for _, k in ipairs(vim.split(fkunv, "\n", { trimempty = true })) do
-    footer[#footer + 1] = k
-  end
-  return footer
+local db = require("plugins.dashboardThemes.template")
+
+local footer = db.config.footer
+for _, k in ipairs(vim.split(fkunv, "\n", { trimempty = true })) do
+  footer[#footer + 1] = k
 end
 
-local themeDir = vim.fn.stdpath("config") .. "/lua/plugins/dashboardThemes/fkunv/"
+db.config.footer = footer
 
-db.config.footer = footer()
-
-db.preview = {
-  file_width = 70,
-  file_height = 19,
-  file_path = themeDir .. "icon.txt",
-  command = db.preview.command,
-}
+db.preview.file_height = 19
+db.preview.file_width = 70
 return db

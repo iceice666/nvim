@@ -5,17 +5,25 @@
 local theme = "plugins.dashboardThemes."
 
 local themes = {
-    "default",
-    "default",
-    "default",
-    "default",
-    "default",
-    "default",
-    "default",
-    "default",
-    "fkunv",
-    "rickroll"
+  "default",
+  "default",
+  "default",
+  "default",
+  "default",
+  "default",
+  "default",
+  "default",
+  "fkunv",
+  "rickroll"
 }
-local t = themes[math.random(#themes)]
+
+local themeName = themes[math.random(#themes)]
 math.randomseed(os.time())
-return require(theme .. t .. '.' .. t)
+local db = require(theme .. themeName .. '.' .. themeName)
+
+
+if db.preview.file_path == nil then
+  db.preview.file_path = vim.fn.stdpath("config") .. "/lua/plugins/dashboardThemes/" .. themeName .. "/icon.txt"
+end
+
+return db

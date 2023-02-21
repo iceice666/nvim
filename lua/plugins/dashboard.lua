@@ -10,7 +10,8 @@ return {
 
         require("dashboard").setup(db)
 
-        require('notify')("Plz check message if something go wrong!", "warn", {
+        require('notify')("Plz check message if something went wrong!",
+          "warn", {
           title = "Startup",
           timeout = 5000
         })

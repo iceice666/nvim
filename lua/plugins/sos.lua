@@ -2,6 +2,13 @@ return {
   -- auto saver
   "tmillr/sos.nvim",
   event = "InsertEnter",
+  keys = {
+    "p", "P", -- paste
+    "dd", -- delete line
+    "d ", -- clear line
+    'V', -- visual mode
+    "c", -- cut
+  },
   config = function()
     require("sos").setup({
       timeout = 30000,

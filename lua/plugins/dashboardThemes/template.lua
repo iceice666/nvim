@@ -43,7 +43,7 @@ local footer = function()
   local footer = {
     '',
     version,
-    "startup in " .. ms .. "ms"
+    "started in " .. ms .. "ms"
     , ''
   }
   return footer

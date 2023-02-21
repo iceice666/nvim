@@ -8,11 +8,6 @@ local themes = {
   "default",
   "default",
   "default",
-  "default",
-  "default",
-  "default",
-  "default",
-  "default",
   "fkunv",
   "rickroll"
 }

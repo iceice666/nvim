@@ -5,12 +5,12 @@ return {
   config = function()
     vim.cmd("highlight IndentBlanklineContextStart gui=underline guisp=#DDAAFF")
     vim.cmd("highlight IndentBlanklineContextChar gui=nocombine guifg=#DDAAFF")
-    vim.cmd("highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine")
-    vim.cmd("highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine")
-    vim.cmd("highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine")
-    vim.cmd("highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine")
-    vim.cmd("highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine")
-    vim.cmd("highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine")
+    vim.cmd("highlight IndentBlanklineIndent1 guifg=#770000 gui=nocombine")
+    vim.cmd("highlight IndentBlanklineIndent2 guifg=#a03000 gui=nocombine")
+    vim.cmd("highlight IndentBlanklineIndent3 guifg=#004000 gui=nocombine")
+    vim.cmd("highlight IndentBlanklineIndent4 guifg=#005477 gui=nocombine")
+    vim.cmd("highlight IndentBlanklineIndent5 guifg=#003d77 gui=nocombine")
+
     -- vim.cmd("highlight IndentBlanklineChar guifg=#6d12ff gui=nocombine")
 
 
@@ -22,7 +22,6 @@ return {
         "IndentBlanklineIndent3",
         "IndentBlanklineIndent4",
         "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
       },
       char = '▎',
       context_char = "▎",

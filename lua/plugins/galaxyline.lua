@@ -222,19 +222,20 @@ return {
       },
       separator(),
       {
-        LineInfo = {
+        Lines = {
           highlight = { colors.bluegreen, colors.bg },
-          provider = 'LineColumn',
+          icon = "ﴳLines ",
+          provider = function()
+            local current_line = vim.fn.line(".")
+            local total_lines = vim.fn.line("$")
+            return current_line .. "/" .. total_lines ..
+                " (" .. math.floor(current_line * 100 / total_lines) .. "%)"
+          end,
           separator = '',
           separator_highlight = { 'NONE', colors.bg },
         },
       },
-      {
-        PerCent = {
-          highlight = { colors.bluegreen, colors.bg, 'bold' },
-          provider = 'LinePercent',
-        },
-      },
+      separator(),
       {
         FileIcon = {
           condition = condition.buffer_not_empty,

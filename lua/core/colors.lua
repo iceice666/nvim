@@ -35,6 +35,9 @@ return {
   purple = function()
     return '#de15ff'
   end,
+  lightpurple = function()
+    return '#DDAAFF'
+  end,
   magenta = function()
     return '#ff00ff'
   end,

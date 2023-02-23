@@ -4,7 +4,6 @@ return {
   "mfussenegger/nvim-dap",
   keys = "<F6>",
   cmd = {
-    "DapUiToggle",
     "DapToggleBreakpoint",
     "DapStepOver",
     "DapStepInto",
@@ -172,7 +171,7 @@ return {
     mapx.nnoremap("<F17>", "<cmd>DapRerun<cr>", "Dap: Rerun")
     mapx.nnoremap("<F29>", "<cmd>DapTerminate<cr>", "Dap: Stop")
 
-    mapx.nnoremap("<F6>", "<cmd>DapUiToggle<cr>", "Dap: Toggle debug ui")
+    mapx.nnoremap("<F6>", "<cmd>require('dapui').toggle()<cr>", "Dap: Toggle debug ui")
     mapx.nnoremap("<F30>", function()
       dap.repl.close()
     end, "Dap: Close repl")

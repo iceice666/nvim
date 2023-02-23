@@ -12,8 +12,8 @@ local themes = {
   "rickroll"
 }
 
-local themeName = themes[math.random(#themes)]
 math.randomseed(os.time())
+local themeName = themes[math.random(#themes)]
 local db = require(theme .. themeName .. '.' .. themeName)
 
 

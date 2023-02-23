@@ -18,6 +18,8 @@ mapx.group({ silent = true }, function()
   -- Move selected sections
   mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv")
   mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv")
+  mapx.nnoremap("<c-j>", "V:m '>+1<cr>gv=gv<esc>")
+  mapx.nnoremap("<c-k>", "V:m '<-2<cr>gv=gv<esc>")
 
   -- redo
   mapx.nnoremap("U", "<cmd>later<cr>", "Redo")

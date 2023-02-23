@@ -25,7 +25,7 @@ local center = function()
   button("w", "", "Change workspaces", "Telescope workspaces")
   button("R", "󱋡", "Recent files", "Telescope oldfiles")
   button("c", "", "Close dashboard", "enew | bdelete")
-  button("m", "", "Messages", "Messages")
+  button("m", "", "Messages", "Noice telescope ")
   button("p", "", "Lazy profile", "Lazy profile")
   button("q", "󰗼", "Quit", "qa")
 
@@ -42,8 +42,8 @@ local footer = function()
   local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
   local footer = {
     '',
-    version,
-    "started in " .. ms .. "ms"
+    version .. " started in " .. ms .. "ms",
+    "loaded: " .. stats.loaded .. ", lazy-loaded: " .. stats.count - stats.loaded
     , ''
   }
   return footer

@@ -1,5 +1,6 @@
 return {
   { -- golang
+    cond = false,
     'ray-x/go.nvim',
     ft = {
       "go", "golang"
@@ -12,11 +13,13 @@ return {
     "folke/neodev.nvim",
     ft = "lua"
   },
-  { "williamboman/mason.nvim",
+  {
+    "neovim/nvim-lspconfig",
     dependencies = {
+      "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim"
     },
-    event="BufReadPre",
+    event = "BufReadPre",
     config = function()
       require("neodev").setup({ library = { plugins = { "neotest" }, types = true }, override = false })
       require("mason").setup()
@@ -31,12 +34,6 @@ return {
         },
         automatic_installation = true,
       })
-    end
-  },
-  {
-    "neovim/nvim-lspconfig",
-    event = "InsertEnter",
-    config = function()
       local lsp_config = require("plugins.lsp.langs.default").lsp_config
 
       require("mason-lspconfig").setup_handlers({
@@ -49,5 +46,6 @@ return {
       }
       )
     end
+
   }
 }

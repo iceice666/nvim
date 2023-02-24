@@ -8,9 +8,9 @@ return function()
         analysis = {
           autoSearchPaths = true,
           diagnosticMode = "workspace",
-          useLibraryCodeForTypes = true
-        }
-      }
+          useLibraryCodeForTypes = true,
+        },
+      },
     },
   }))
 end

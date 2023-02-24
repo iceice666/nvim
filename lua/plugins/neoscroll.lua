@@ -5,9 +5,13 @@ return {
     "Aasim-A/scrollEOF.nvim",
   },
   keys = {
-    "j", "k", "J", "K", },
+    "j",
+    "k",
+    "J",
+    "K",
+  },
   config = function()
-    local neoscroll = require('neoscroll')
+    local neoscroll = require("neoscroll")
     neoscroll.setup({
       mappings = { "j", "k" },
       hide_cursor = true,
@@ -24,8 +28,8 @@ return {
       end)
 
       mapx.nnoremap("K", function()
-        scroll( -0.25, true, 150)
+        scroll(-0.25, true, 150)
       end)
     end)
-  end
+  end,
 }

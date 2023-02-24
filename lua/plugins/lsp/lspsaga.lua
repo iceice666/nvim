@@ -4,7 +4,7 @@ return {
   cmd = "Lspsaga",
   config = function()
     local colors = require("core.colors")
-    require('lspsaga').setup({
+    require("lspsaga").setup({
       lightbulb = {
         enable = true,
         enable_in_insert = false,
@@ -26,33 +26,33 @@ return {
           purple = colors.pink(),
           white = colors.white(),
           black = colors.black(),
-        }
-      }
+        },
+      },
     })
 
-    vim.fn.sign_define('DiagnosticSignError', {
+    vim.fn.sign_define("DiagnosticSignError", {
       text = "",
       texthl = "DiagnosticSignError",
       linehl = "DiagnosticSignError",
       numhl = "DiagnosticSignError",
     })
-    vim.fn.sign_define('DiagnosticSignWarn', {
+    vim.fn.sign_define("DiagnosticSignWarn", {
       text = "",
       texthl = "DiagnosticSignWarn",
       linehl = "DiagnosticSignWarn",
       numhl = "DiagnosticSignWarn",
     })
-    vim.fn.sign_define('DiagnosticSignHint', {
+    vim.fn.sign_define("DiagnosticSignHint", {
       text = "",
       texthl = "DiagnosticSignHint",
       linehl = "DiagnosticSignHint",
       numhl = "DiagnosticSignHint",
     })
-    vim.fn.sign_define('DiagnosticSignInfo', {
+    vim.fn.sign_define("DiagnosticSignInfo", {
       text = "",
       texthl = "DiagnosticSignInfo",
       linehl = "DiagnosticSignInfo",
       numhl = "DiagnosticSignInfo",
     })
-  end
+  end,
 }

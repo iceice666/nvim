@@ -8,5 +8,5 @@ return {
       order = "FSNs",
       setopt = true,
     })
-  end
+  end,
 }

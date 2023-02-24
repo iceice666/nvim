@@ -13,9 +13,7 @@ return {
 
     -- vim.cmd("highlight IndentBlanklineChar guifg=#6d12ff gui=nocombine")
 
-
-
-    require("indent_blankline").setup {
+    require("indent_blankline").setup({
       char_highlight_list = {
         "IndentBlanklineIndent1",
         "IndentBlanklineIndent2",
@@ -23,14 +21,14 @@ return {
         "IndentBlanklineIndent4",
         "IndentBlanklineIndent5",
       },
-      char = '▎',
+      char = "▎",
       context_char = "▎",
       space_char_blankline = " ",
       show_current_context = true,
       show_current_context_start = true,
       show_first_indent_level = false,
       use_treesitter_scope = true,
-      stric_tabs = true
-    }
-  end
+      stric_tabs = true,
+    })
+  end,
 }

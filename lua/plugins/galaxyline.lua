@@ -6,9 +6,9 @@ return {
   config = function()
     local firstToUpper = require("core.utils").firstToUpper
     local colors = require("core.colors")
-    local fileinfo = require('galaxyline.provider_fileinfo')
-    local galaxyline = require('galaxyline')
-    local condition = require('galaxyline.condition')
+    local fileinfo = require("galaxyline.provider_fileinfo")
+    local galaxyline = require("galaxyline")
+    local condition = require("galaxyline.condition")
     local gls = galaxyline.section
     galaxyline.short_line_list = {
       "neo-tree",
@@ -23,23 +23,23 @@ return {
     local separator = function()
       return {
         Separator = {
-          highlight = { colors.fg, colors.bg, },
+          highlight = { colors.fg, colors.bg },
           provider = function()
-            return ' '
+            return " "
           end,
         },
       }
     end
 
     local modes_texts = {
-      [110] = 'NORMAL  ',
-      [105] = 'INSERT  ',
-      [99]  = 'COMMAND ',
-      [116] = 'TERMINAL',
-      [118] = 'VISUAL  ',
-      [22]  = 'V-BLOCK ',
-      [86]  = 'V-LINE  ',
-      [82]  = 'REPLACE ',
+      [110] = "NORMAL  ",
+      [105] = "INSERT  ",
+      [99] = "COMMAND ",
+      [116] = "TERMINAL",
+      [118] = "VISUAL  ",
+      [22] = "V-BLOCK ",
+      [86] = "V-LINE  ",
+      [82] = "REPLACE ",
     }
 
     local filetype_names = {
@@ -48,7 +48,7 @@ return {
       ["dapui_watches"] = "DAP Watches",
       ["dapui_breakpoints"] = "DAP Breakpoints",
       ["dapui_console"] = "DAP Console",
-      ["dap-repl"] = "DAP Repl"
+      ["dap-repl"] = "DAP Repl",
     }
 
     -- Left
@@ -66,69 +66,68 @@ return {
               return vim.fn.mode():byte()
             end
           end,
-          highlight = { colors.fg, colors.bg }
-        }
+          highlight = { colors.fg, colors.bg },
+        },
       },
       separator(),
       {
         DiagnosticError = {
           highlight = { colors.red, colors.bg },
-          icon = '  ',
-          provider = 'DiagnosticError',
+          icon = "  ",
+          provider = "DiagnosticError",
         },
       },
       {
         DiagnosticWarn = {
           highlight = { colors.gold, colors.bg },
-          icon = '  ',
-          provider = 'DiagnosticWarn',
+          icon = "  ",
+          provider = "DiagnosticWarn",
         },
       },
       {
         DiagnosticHint = {
           highlight = { colors.blue, colors.bg },
-          icon = '  ',
-          provider = 'DiagnosticHint',
+          icon = "  ",
+          provider = "DiagnosticHint",
         },
       },
       {
         DiagnosticInfo = {
           highlight = { colors.lightblue, colors.bg },
-          icon = '  ',
-          provider = 'DiagnosticInfo',
+          icon = "  ",
+          provider = "DiagnosticInfo",
         },
       },
       separator(),
       {
         FilePath = {
-          icon = ' ',
-          provider = 'FilePath',
+          icon = " ",
+          provider = "FilePath",
           highlight = { colors.lime, colors.bg },
-        }
+        },
       },
     }
     -- Mid
-    gls.mid = {
-    }
+    gls.mid = {}
     -- Right
     gls.right = {
       {
         GitIcon = {
           provider = function()
-            return ' '
+            return " "
           end,
           condition = condition.check_git_workspace,
-          highlight = { colors.orange, colors.bg, 'bold' },
-          separator = ' ',
-          separator_highlight = { 'NONE', colors.bg },
+          highlight = { colors.orange, colors.bg, "bold" },
+          separator = " ",
+          separator_highlight = { "NONE", colors.bg },
         },
       },
 
       {
         GitBranch = {
           condition = condition.check_git_workspace,
-          highlight = { colors.fg, colors.bg, 'bold' },
-          provider = 'GitBranch',
+          highlight = { colors.fg, colors.bg, "bold" },
+          provider = "GitBranch",
         },
       },
       separator(),
@@ -136,8 +135,8 @@ return {
         DiffAdd = {
           condition = condition.hide_in_width,
           highlight = { colors.green, colors.bg },
-          icon = '  ',
-          provider = 'DiffAdd',
+          icon = "  ",
+          provider = "DiffAdd",
         },
       },
 
@@ -145,8 +144,8 @@ return {
         DiffModified = {
           condition = condition.hide_in_width,
           highlight = { colors.orange, colors.bg },
-          icon = ' 柳',
-          provider = 'DiffModified',
+          icon = " 柳",
+          provider = "DiffModified",
         },
       },
 
@@ -154,8 +153,8 @@ return {
         DiffRemove = {
           condition = condition.hide_in_width,
           highlight = { colors.red, colors.bg },
-          icon = '  ',
-          provider = 'DiffRemove',
+          icon = "  ",
+          provider = "DiffRemove",
         },
       },
       separator(),
@@ -163,8 +162,8 @@ return {
         LspClient = {
           condition = function()
             local tbl = {
-              ['dashboard'] = true,
-              [''] = true
+              ["dashboard"] = true,
+              [""] = true,
             }
             if tbl[vim.bo.filetype] then
               return false
@@ -174,8 +173,9 @@ return {
           highlight = {
             colors.pink,
             colors.bg,
-            'bold' },
-          icon = '  LSP: ',
+            "bold",
+          },
+          icon = "  LSP: ",
           provider = function()
             local clients = vim.lsp.get_active_clients()
             local s = {}
@@ -193,8 +193,8 @@ return {
         NullLsClient = {
           condition = function()
             local tbl = {
-              ['dashboard'] = true,
-              [''] = true
+              ["dashboard"] = true,
+              [""] = true,
             }
             if tbl[vim.bo.filetype] then
               return false
@@ -204,9 +204,9 @@ return {
           highlight = {
             colors.pink,
             colors.bg,
-            'bold'
+            "bold",
           },
-          icon = '  null-ls: ',
+          icon = "  null-ls: ",
           provider = function()
             local sources = require("null-ls").get_sources()
             local s = {}
@@ -224,15 +224,19 @@ return {
       {
         Lines = {
           highlight = { colors.bluegreen, colors.bg },
-          icon = "ﴳLines ",
+          icon = "Lines ",
           provider = function()
             local current_line = vim.fn.line(".")
             local total_lines = vim.fn.line("$")
-            return current_line .. "/" .. total_lines ..
-                " (" .. math.floor(current_line * 100 / total_lines) .. "%)"
+            return current_line
+              .. "/"
+              .. total_lines
+              .. " ("
+              .. math.floor(current_line * 100 / total_lines)
+              .. "%)"
           end,
-          separator = '',
-          separator_highlight = { 'NONE', colors.bg },
+          separator = "",
+          separator_highlight = { "NONE", colors.bg },
         },
       },
       separator(),
@@ -240,19 +244,19 @@ return {
         FileIcon = {
           condition = condition.buffer_not_empty,
           highlight = {
-            require('galaxyline.provider_fileinfo').get_file_icon_color,
-            colors.bg
+            require("galaxyline.provider_fileinfo").get_file_icon_color,
+            colors.bg,
           },
-          provider = 'FileIcon',
+          provider = "FileIcon",
         },
       },
       {
         FileTypeName = {
           condition = condition.buffer_not_empty,
           highlight = {
-            require('galaxyline.provider_fileinfo').get_file_icon_color,
+            require("galaxyline.provider_fileinfo").get_file_icon_color,
             colors.bg,
-            'bold'
+            "bold",
           },
           provider = function()
             return firstToUpper(vim.bo.filetype)
@@ -262,12 +266,11 @@ return {
       separator(),
     }
 
-
     gls.short_line_left = {
       separator(),
       {
         BufferName = {
-          icon = ' ',
+          icon = " ",
           provider = function()
             local name = filetype_names[vim.bo.filetype]
             if name ~= nil then
@@ -277,19 +280,17 @@ return {
             end
           end,
           highlight = { colors.lime, colors.bg },
-        }
+        },
       },
-
-
     }
     gls.short_line_right = {
       {
         BufferIcon = {
           highlight = { colors.fg, colors.bg },
-          provider = 'BufferIcon',
+          provider = "BufferIcon",
         },
       },
-      separator()
+      separator(),
     }
-  end
+  end,
 }

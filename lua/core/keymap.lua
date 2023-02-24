@@ -1,4 +1,4 @@
-local mapx = require 'mapx'.setup { whichkey = true }
+local mapx = require("mapx").setup({ whichkey = true })
 
 mapx.group({ silent = true }, function()
   -- Quit
@@ -60,23 +60,36 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>w", "<cmd>w<cr>", "Save")
 
   -- Clear search
-  mapx.nnoremap("<leader>/", "<cmd>nohls<cr><cmd>let @/ = ''<cr>", "Clear search")
+  mapx.nnoremap(
+    "<leader>/",
+    "<cmd>nohls<cr><cmd>let @/ = ''<cr>",
+    "Clear search"
+  )
 
   -- Open url
   -- https://www.google.com
-  mapx.nnoremap("<leader>B",
-    '<Cmd>call jobstart(["powershell.exe","start", expand("<cfile>")], {"detach": v:true})<CR>',
-    "Open url")
+  mapx.nnoremap(
+    "<leader>B",
+    "<Cmd>call jobstart([\"powershell.exe\",\"start\", expand(\"<cfile>\")], {\"detach\": v:true})<CR>",
+    "Open url"
+  )
 
   -- ======================= PLUGINS MAPPINGS ===========================
   -- Undo tree
   mapx.nnoremap("<leader>u", "<cmd>UndotreeToggle<cr>", "Undo tree")
 
   -- format
-  mapx.nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>", "Buf: format")
+  mapx.nnoremap(
+    "<leader>f",
+    "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>",
+    "Buf: format"
+  )
 
   -- Lazygit
-  mapx.nnoremap("<leader>g", "<cmd>TermExec cmd='cd " .. vim.fn.getcwd() .. "&& lazygit&&exit'<cr>", "Lazy")
-end
-)
+  mapx.nnoremap(
+    "<leader>g",
+    "<cmd>TermExec cmd='cd " .. vim.fn.getcwd() .. "&& lazygit&&exit'<cr>",
+    "Lazy"
+  )
+end)
 return { mapx = mapx }

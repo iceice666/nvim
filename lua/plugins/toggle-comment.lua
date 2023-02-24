@@ -1,6 +1,6 @@
 return {
   -- Toggle comment
-  'numToStr/Comment.nvim',
+  "numToStr/Comment.nvim",
   event = "BufReadPost",
   config = function()
     require("Comment").setup({
@@ -13,22 +13,28 @@ return {
       },
     })
     local mapx = require("core.keymap").mapx
-    local api = require('Comment.api')
-    local esc = vim.api.nvim_replace_termcodes(
-      '<ESC>', true, false, true
-    )
+    local api = require("Comment.api")
+    local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
     mapx.group({ silent = true }, function()
-      mapx.nnoremap("<C-\\>", api.toggle.linewise.current, "Comment: line comment")
-      mapx.nnoremap("<A-\\>", api.toggle.blockwise.current, "Comment: block comment")
-      mapx.vnoremap('<C-\\>', function()
-        vim.api.nvim_feedkeys(esc, 'nx', false)
+      mapx.nnoremap(
+        "<C-\\>",
+        api.toggle.linewise.current,
+        "Comment: line comment"
+      )
+      mapx.nnoremap(
+        "<A-\\>",
+        api.toggle.blockwise.current,
+        "Comment: block comment"
+      )
+      mapx.vnoremap("<C-\\>", function()
+        vim.api.nvim_feedkeys(esc, "nx", false)
         api.toggle.linewise(vim.fn.visualmode())
       end, "Comment: line comment")
 
-      mapx.vnoremap('<A-\\>', function()
-        vim.api.nvim_feedkeys(esc, 'nx', false)
+      mapx.vnoremap("<A-\\>", function()
+        vim.api.nvim_feedkeys(esc, "nx", false)
         api.toggle.blockwise(vim.fn.visualmode())
       end, "Comment: block comment")
     end)
-  end
+  end,
 }

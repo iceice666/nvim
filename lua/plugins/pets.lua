@@ -2,10 +2,10 @@ return {
   -- pets
   "giusgad/pets.nvim",
   dependencies = {
-    'edluffy/hologram.nvim',
+    "edluffy/hologram.nvim",
   },
   config = true,
-  cmd={
+  cmd = {
     "PetsNew",
     "PetsNewCustom",
     "PetsList",
@@ -13,6 +13,6 @@ return {
     "PetsKillAll",
     "PetsPauseToggle",
     "PetsHideToggle",
-    "PetsSleepToggle"
-  }
+    "PetsSleepToggle",
+  },
 }

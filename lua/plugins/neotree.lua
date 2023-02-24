@@ -4,12 +4,12 @@ return {
   dependencies = {
     "MunifTanjim/nui.nvim",
     "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons"
+    "nvim-tree/nvim-web-devicons",
   },
   branch = "v2.x",
   keys = "<leader>e",
   cmd = {
-    "Neotree"
+    "Neotree",
   },
   config = function()
     vim.g.loaded_netrw = 1
@@ -20,9 +20,9 @@ return {
       sort_by = "case_sensitive",
       filesystem = {
         filtered_items = {
-          hide_gitignored = false
+          hide_gitignored = false,
         },
-        follow_current_file = true
+        follow_current_file = true,
       },
       actions = {
         open_file = { quit_on_open = true },
@@ -60,15 +60,14 @@ return {
           handler = function(file_path)
             --auto close
             pcall(vim.cmd, "Neotree close")
-          end
+          end,
         },
-
-      }
+      },
     })
 
     local opt = { silent = true }
     -- File tree
     local mapx = require("core.keymap").mapx
     mapx.nnoremap("<leader>e", ":Neotree reveal toggle<cr>", opt)
-  end
+  end,
 }

@@ -2,8 +2,7 @@
 return {
   -- "nvim-treesitter/playground",
   "nvim-treesitter/nvim-treesitter",
-  dependenices = {
-  },
+  dependenices = {},
   event = "BufReadPre",
   config = function()
     require("nvim-treesitter.configs").setup({
@@ -16,7 +15,7 @@ return {
         "markdown",
         "markdown_inline",
         "go",
-        "query"
+        "query",
       },
       sync_install = false,
       auto_install = true,
@@ -25,16 +24,16 @@ return {
         additional_vim_regex_highlighting = false,
       },
       indent = {
-        enable = true
+        enable = true,
       },
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = '<CR>',
-          node_incremental = '<CR>',
-          node_decremental = '<BS>',
-          scope_incremental = '<TAB>'
-        }
+          init_selection = "<CR>",
+          node_incremental = "<CR>",
+          node_decremental = "<BS>",
+          scope_incremental = "<TAB>",
+        },
       },
       -- playground = {
       --   enable = true,
@@ -55,5 +54,5 @@ return {
       --   },
       -- }
     })
-  end
+  end,
 }

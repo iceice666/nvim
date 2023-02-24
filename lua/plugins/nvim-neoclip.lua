@@ -1,7 +1,7 @@
 return {
   -- reg && yank history
   "AckslD/nvim-neoclip.lua",
-  event="InsertEnter",
+  event = "InsertEnter",
   config = function()
     local function is_whitespace(line)
       return vim.fn.match(line, [[^\s*$]]) ~= -1
@@ -16,13 +16,12 @@ return {
       return true
     end
 
-    require('neoclip').setup {
+    require("neoclip").setup({
 
       filter = function(data)
         return not all(data.event.regcontents, is_whitespace)
       end,
       enable_macro_history = true,
-
-    }
-  end
+    })
+  end,
 }

@@ -19,26 +19,25 @@ require("lazy").setup({
   -- which key
   "folke/which-key.nvim",
   { -- git sign
-    'lewis6991/gitsigns.nvim',
-    event = "BufReadPre"
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPre",
   },
   { -- hlsearch lens
     "kevinhwang91/nvim-hlslens",
     keys = "/",
     config = function()
       require("hlslens").setup()
-    end
+    end,
   },
   -- libs
   "b0o/mapx.nvim",
   {
     "TravonteD/luajob",
-    lazy = true
+    lazy = true,
   },
   -- [ Other langauges support]
 
   { import = "plugins" },
   { import = "plugins.lsp" },
-  { import = "plugins.dap" }
-
+  { import = "plugins.dap" },
 })

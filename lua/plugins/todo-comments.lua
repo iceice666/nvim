@@ -6,33 +6,38 @@ return {
     require("todo-comments").setup({
       keywords = {
         FIX = {
-          icon = " ", color = "error",
+          icon = " ",
+          color = "error",
           alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
         },
         TODO = {
-          icon = " ", color = "hint",
-          alt = { "TODO", "NEED" }
+          icon = " ",
+          color = "hint",
+          alt = { "TODO", "NEED" },
         },
         HACK = {
-          icon = " ", color = "warning",
-          alt = { "HACK", "HACKY" }
+          icon = " ",
+          color = "warning",
+          alt = { "HACK", "HACKY" },
         },
         WARN = {
           icon = " ",
           color = "warning",
-          alt = { "WARNING", "WARN" }
+          alt = { "WARNING", "WARN" },
         },
         PERF = {
           icon = " ",
-          alt = { "PERFORMANCE", "OPTIMIZE" }
+          alt = { "PERFORMANCE", "OPTIMIZE" },
         },
         NOTE = {
-          icon = " ", color = "hint",
-          alt = { "INFO", "NOTE" }
+          icon = " ",
+          color = "hint",
+          alt = { "INFO", "NOTE" },
         },
         TEST = {
-          icon = "⏲ ", color = "test",
-          alt = { "TESTING", "PASSED", "FAILED" }
+          icon = "⏲ ",
+          color = "test",
+          alt = { "TESTING", "PASSED", "FAILED" },
         },
       },
       colors = {
@@ -41,10 +46,14 @@ return {
         info = { "#2563EB" },
         hint = { "#10B981" },
         default = { "#7C3AED" },
-        test = { "#FF00FF" }
+        test = { "#FF00FF" },
       },
     })
 
-    require("core.keymap").mapx.nnoremap("<leader>sT", "<cmd>TodoTrouble<cr>", "Trouble: Show todos")
-  end
+    require("core.keymap").mapx.nnoremap(
+      "<leader>sT",
+      "<cmd>TodoTrouble<cr>",
+      "Trouble: Show todos"
+    )
+  end,
 }

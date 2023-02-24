@@ -5,29 +5,31 @@ return {
   event = {
     "BufReadPre",
   },
-  dependencies = {
-    -- stylua
-    "ckipp01/stylua-nvim",
-  },
+  dependencies = {},
   config = function()
     local null_ls = require("null-ls")
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
     local formatting = null_ls.builtins.formatting
     local diagnostics = null_ls.builtins.diagnostics
-    local completion = null_ls.builtins.completion
-    local code_actions = null_ls.builtins.code_actions
+    -- local completion = null_ls.builtins.completion
+    -- local code_actions = null_ls.builtins.code_actions
 
     null_ls.setup({
       sources = {
         -- lua
-        formatting.stylua.with(
-          {
-            extra_args = {
-              "--indent-type", "Spaces", "--indent_width", "2"
-            }
-          }
-        ),
+        formatting.stylua.with({
+          extra_args = {
+            "--column-width",
+            "80",
+            "--indent-type",
+            "Spaces",
+            "--indent-width",
+            "2",
+            "--quote-style",
+            "ForceDouble",
+          },
+        }),
 
         -- python
         formatting.black,
@@ -58,5 +60,5 @@ return {
         end
       end,
     })
-  end
+  end,
 }

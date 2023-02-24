@@ -4,5 +4,5 @@ return {
   cmd = "Telescope workspaces",
   config = function()
     require("workspaces").setup({})
-  end
+  end,
 }

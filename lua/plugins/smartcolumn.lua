@@ -3,15 +3,15 @@ return {
   "m4xshen/smartcolumn.nvim",
   event = "InsertEnter",
   config = function()
-    require("smartcolumn").setup {
+    require("smartcolumn").setup({
       colorcolumn = 80,
       disabled_filetypes = {
         "help",
         "text",
         "markdown",
         "lazy",
-        "dashboard"
+        "dashboard",
       },
-    }
-  end
+    })
+  end,
 }

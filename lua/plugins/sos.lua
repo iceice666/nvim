@@ -3,10 +3,11 @@ return {
   "tmillr/sos.nvim",
   event = "InsertEnter",
   keys = {
-    "p", "P", -- paste
+    "p",
+    "P", -- paste
     "dd", -- delete line
     "d ", -- clear line
-    'V', -- visual mode
+    "V", -- visual mode
     "c", -- cut
   },
   config = function()
@@ -17,5 +18,5 @@ return {
       save_on_bufleave = true,
       save_on_focuslost = true,
     })
-  end
+  end,
 }

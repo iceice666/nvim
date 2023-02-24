@@ -3,7 +3,7 @@ return {
   "LudoPinelli/comment-box.nvim",
   event = "BufReadPost",
   config = function()
-    require('comment-box').setup({
+    require("comment-box").setup({
       doc_width = 60, -- width of the document
       box_width = 60, -- width of the documentf the boxes
       borders = { -- symbols usef the documentd to draw a box
@@ -30,9 +30,8 @@ return {
 
     local mapx = require("core.keymap").mapx
 
-
     mapx.group({ silent = true }, function()
       mapx.vnoremap("<leader>bc", "<cmd>CBccbox<cr>")
     end)
-  end
+  end,
 }

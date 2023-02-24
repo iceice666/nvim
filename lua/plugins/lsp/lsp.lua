@@ -1,27 +1,31 @@
 return {
   { -- golang
     cond = false,
-    'ray-x/go.nvim',
+    "ray-x/go.nvim",
     ft = {
-      "go", "golang"
+      "go",
+      "golang",
     },
     dependencies = {
-      'ray-x/guihua.lua'
-    }
+      "ray-x/guihua.lua",
+    },
   },
   { -- neodev/ nvim lua setting help
     "folke/neodev.nvim",
-    ft = "lua"
+    ft = "lua",
   },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim"
+      "williamboman/mason-lspconfig.nvim",
     },
     event = "BufReadPre",
     config = function()
-      require("neodev").setup({ library = { plugins = { "neotest" }, types = true }, override = false })
+      require("neodev").setup({
+        library = { plugins = { "neotest" }, types = true },
+        override = false,
+      })
       require("mason").setup()
       require("mason-lspconfig").setup({
         ensure_installed = {
@@ -30,7 +34,7 @@ return {
           -- golang
           "gopls",
           -- python
-          "pyright"
+          "pyright",
         },
         automatic_installation = true,
       })
@@ -43,9 +47,7 @@ return {
         ["lua_ls"] = require("plugins.lsp.langs.lua"),
         ["gopls"] = require("plugins.lsp.langs.go"),
         ["pyright"] = require("plugins.lsp.langs.python"),
-      }
-      )
-    end
-
-  }
+      })
+    end,
+  },
 }

@@ -1,6 +1,6 @@
 return {
   -- windows shifting
-  'sindrets/winshift.nvim',
+  "sindrets/winshift.nvim",
   event = "WinEnter",
   config = function()
     require("winshift").setup({
@@ -17,5 +17,5 @@ return {
       mapx.nnoremap("<leader><c-j>", "<cmd>WinShift down<cr>")
       mapx.nnoremap("<leader><c-k>", "<cmd>WinShift up<cr> ")
     end)
-  end
+  end,
 }

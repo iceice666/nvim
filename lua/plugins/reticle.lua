@@ -5,16 +5,16 @@ return {
     "Telescope",
     "Messages",
     "Enew",
-    "RestoreSession"
+    "RestoreSession",
   },
   config = function()
-    require("reticle").setup {
+    require("reticle").setup({
       on_focus = {
         cursorline = {
-          "neo-tree"
-        }
-      }
-    }
+          "neo-tree",
+        },
+      },
+    })
     vim.cmd("set cursorline")
-  end
+  end,
 }

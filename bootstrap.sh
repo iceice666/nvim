@@ -1,5 +1,5 @@
 
-mkdir ~/.config/nvim
+mkdir -p ~/.config/nvim
 cd ~/.config
 
 sudo pacman -S git make gcc ripgrep fd

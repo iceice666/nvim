@@ -17,6 +17,10 @@ return {
 
     null_ls.setup({
       sources = {
+        -- "javascript", "javascriptreact",
+        -- "typescript", "typescriptreact"
+        -- "json", "jsonc", "markdown",
+        formatting.deno_fmt,
         -- lua
         formatting.stylua.with({
           extra_args = {
@@ -32,7 +36,12 @@ return {
         }),
 
         -- python
-        formatting.black,
+        formatting.black.with({
+          extra_args = {
+            "--line-length",
+            "80",
+          },
+        }),
         formatting.isort,
 
         --golang

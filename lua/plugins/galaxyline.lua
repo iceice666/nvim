@@ -2,7 +2,7 @@ return {
   -- Status line
   "glepnir/galaxyline.nvim",
   cond = true,
-  event = "BufAdd",
+  event = "BufReadPre",
   config = function()
     local firstToUpper = require("core.utils").firstToUpper
     local colors = require("core.colors")

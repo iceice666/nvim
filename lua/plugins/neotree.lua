@@ -31,9 +31,6 @@ return {
         enable = true,
         update_cwd = true,
       },
-      filters = {
-        custom = { "^.git$", "^node_modules$" },
-      },
       git = {
         enable = true,
       },

@@ -9,6 +9,7 @@ return {
         ["true"] = "false",
         ["True"] = "False",
         ["TRUE"] = "FALSE",
+        ["yes"] = "no",
         ["Yes"] = "No",
         ["YES"] = "NO",
         ["==="] = "!==",

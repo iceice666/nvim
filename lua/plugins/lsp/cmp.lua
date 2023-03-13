@@ -51,6 +51,7 @@ return {
         { name = "nerdfont" },
         { name = "treesitter" },
         { name = "luasnip" },
+        { name = "crates" },
       },
       snippet = {
         expand = function(args)

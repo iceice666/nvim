@@ -1,8 +1,10 @@
-local mapx = require("core.keymap").mapx
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local rt = require("rust-tools")
+local vnoremaps = require("plugins.lsp.langs.default").vnoremaps
+local do_map = require("plugins.lsp.langs.default").do_map
 
 -- stylua: ignore
+--
+-- https://github.com/simrat39/rust-tools.nvim#usage
 local nnoremaps = {
   { "gd",         "<cmd>Lspsaga peek_definition<cr>",          "LSP: Peek defintion" },
   { "gD",         "<cmd>Lspsaga goto_definition<cr>",          "LSP: Goto definiton" },
@@ -18,40 +20,12 @@ local nnoremaps = {
   { "<leader>ca", "<cmd>Lspsaga code_action<cr>",              "LSP: Code action" }
 }
 
-local vnoremaps = {
-  { "<leader>ca", "<cmd>Lspsaga code_action<cr>", "LSP: Code action" },
-}
-
-mapx.nname("g", "Goto")
-mapx.nname("<leader>s", "Show info")
-
-local do_map = function(bufnr, nnms, vnms)
-  mapx.group({ silent = true, buffer = bufnr }, function()
-    for _, k in ipairs(nnms) do
-      mapx.nnoremap(k[1], k[2], k[3])
-    end
-    for _, k in ipairs(vnms) do
-      mapx.vnoremap(k[1], k[2], k[3])
-    end
-  end)
+return function()
+  rt.setup({
+    server = {
+      on_attach = function(_, bufnr)
+        do_map(bufnr, nnoremaps, vnoremaps)
+      end,
+    },
+  })
 end
-
-local lsp_config = function(settings)
-  settings = settings or {}
-  return (
-      vim.tbl_extend("force", {
-        on_attach = function(_, bufnr)
-          do_map(bufnr, nnoremaps, vnoremaps)
-        end,
-        capabilities = capabilities,
-      }, settings)
-      )
-end
-
-return {
-  nnoremaps = nnoremaps,
-  vnoremaps = vnoremaps,
-  lsp_config = lsp_config,
-  do_map = do_map,
-  capabilities = capabilities,
-}

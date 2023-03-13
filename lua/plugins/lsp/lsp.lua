@@ -1,4 +1,27 @@
 return {
+  { -- rust
+    "simrat39/rust-tools.nvim",
+    config = function() end,
+    ft = {
+      "rust",
+    },
+  },
+  {
+    "Saecki/crates.nvim",
+    config = function()
+      -- https://github.com/Saecki/crates.nvim#show-appropriate-documentation-in-cargotoml
+      require("crates").setup({
+        null_ls = {
+          enabled = true,
+          name = "crates.nvim",
+        },
+      })
+    end,
+    ft = {
+      "rust",
+      "rs",
+    },
+  },
   { -- golang
     cond = false,
     "ray-x/go.nvim",
@@ -15,11 +38,11 @@ return {
     ft = "lua",
   },
   {
+    "williamboman/mason.nvim",
+    dependencies = { "williamboman/mason-lspconfig.nvim" },
+  },
+  {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
     event = "BufReadPre",
     config = function()
       require("neodev").setup({
@@ -47,6 +70,7 @@ return {
         ["lua_ls"] = require("plugins.lsp.langs.lua"),
         ["gopls"] = require("plugins.lsp.langs.go"),
         ["pyright"] = require("plugins.lsp.langs.python"),
+        ["rust_analyzer"] = require("plugins.lsp.langs.rust"),
       })
     end,
   },

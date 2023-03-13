@@ -70,7 +70,7 @@ mapx.group({ silent = true }, function()
   -- https://www.google.com
   mapx.nnoremap(
     "<leader>B",
-    "<Cmd>call jobstart([\"powershell.exe\",\"start\", expand(\"<cfile>\")], {\"detach\": v:true})<CR>",
+    "<Cmd>call jobstart([\"hyprctl\",\"dispatch\",\"exec\",\"--\",\"firefox\",\"--new-window\", expand(\"<cfile>\")], {\"detach\": v:true})<CR>",
     "Open url"
   )
 

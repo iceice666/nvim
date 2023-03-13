@@ -35,6 +35,9 @@ return {
           },
         }),
 
+        -- rust
+        formatting.rustfmt,
+
         -- python
         formatting.black.with({
           extra_args = {

@@ -55,6 +55,29 @@ return {
       },
     }
 
+    dap.adapters.codelldb = {
+      type = "server",
+      host = "127.0.0.1",
+      port = 13000,
+    }
+
+    dap.configurations.rust = {
+      {
+        type = "codelldb",
+        request = "launch",
+        program = function()
+          return vim.fn.input(
+            "Path to executable: ",
+            vim.fn.getcwd() .. "/",
+            "file"
+          )
+        end,
+        cwd = "${workspaceFolder}",
+        terminal = "integrated",
+        sourceLanguages = { "rust" },
+      },
+    }
+
     require("dap-python").resolve_python = function()
       local py = vim.fn.expand(vim.fn.getcwd() .. "/.venv/bin/python")
       if vim.fn.filereadable(py) == 1 then

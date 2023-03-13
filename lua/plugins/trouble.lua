@@ -13,12 +13,12 @@ return {
     local mapx = require("core.keymap").mapx
     mapx.group({ silent = true }, function()
       mapx.nnoremap(
-        "<leader>sd",
+        "<leader>stf",
         "<cmd>Trouble document_diagnostics<cr>",
         "Trouble: Show diagnostics of current file"
       )
       mapx.nnoremap(
-        "<leader>sD",
+        "<leader>stw",
         "<cmd>Trouble workspace_diagnostics<cr>",
         "Trouble: Show diagnostics of current workspace"
       )

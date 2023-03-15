@@ -47,17 +47,6 @@ return {
         }),
         formatting.isort,
 
-        --golang
-        diagnostics.golangci_lint,
-        diagnostics.revive,
-        formatting.golines.with({
-          extra_args = {
-            "--max-len=180",
-            "--base-formatter=gofumpt",
-          },
-        }),
-        require("go.null_ls").gotest(),
-        require("go.null_ls").gotest_action(),
       },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then

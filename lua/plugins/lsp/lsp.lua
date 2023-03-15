@@ -2,8 +2,7 @@ return {
   {
     -- rust
     "simrat39/rust-tools.nvim",
-    config = function()
-    end,
+    config = function() end,
     ft = {
       "rust",
     },
@@ -22,18 +21,6 @@ return {
     ft = {
       "rust",
       "rs",
-    },
-  },
-  {
-    -- golang
-    cond = false,
-    "ray-x/go.nvim",
-    ft = {
-      "go",
-      "golang",
-    },
-    dependencies = {
-      "ray-x/guihua.lua",
     },
   },
   {
@@ -58,12 +45,10 @@ return {
         ensure_installed = {
           -- lua
           "lua_ls",
-          -- golang
-          -- "gopls",
           -- python
           "pyright",
           -- rust
-          "rust_analyzer"
+          "rust_analyzer",
         },
         automatic_installation = true,
       })
@@ -74,7 +59,6 @@ return {
           require("lspconfig")[server_name].setup(lsp_config())
         end,
         ["lua_ls"] = require("plugins.lsp.langs.lua"),
-        ["gopls"] = require("plugins.lsp.langs.go"),
         ["pyright"] = require("plugins.lsp.langs.python"),
         ["rust_analyzer"] = require("plugins.lsp.langs.rust"),
       })

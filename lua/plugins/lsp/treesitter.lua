@@ -14,7 +14,6 @@ return {
         "bash",
         "markdown",
         "markdown_inline",
-        "go",
         "query",
         "rust",
       },

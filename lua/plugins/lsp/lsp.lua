@@ -1,7 +1,9 @@
 return {
-  { -- rust
+  {
+    -- rust
     "simrat39/rust-tools.nvim",
-    config = function() end,
+    config = function()
+    end,
     ft = {
       "rust",
     },
@@ -22,7 +24,8 @@ return {
       "rs",
     },
   },
-  { -- golang
+  {
+    -- golang
     cond = false,
     "ray-x/go.nvim",
     ft = {
@@ -33,7 +36,8 @@ return {
       "ray-x/guihua.lua",
     },
   },
-  { -- neodev/ nvim lua setting help
+  {
+    -- neodev/ nvim lua setting help
     "folke/neodev.nvim",
     ft = "lua",
   },
@@ -55,9 +59,11 @@ return {
           -- lua
           "lua_ls",
           -- golang
-          "gopls",
+          -- "gopls",
           -- python
           "pyright",
+          -- rust
+          "rust_analyzer"
         },
         automatic_installation = true,
       })

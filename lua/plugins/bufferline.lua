@@ -37,21 +37,19 @@ return {
 
     require("bufferline").setup({
       options = {
-
         custom_areas = {
-          right = function()
-            local result = {}
-
-            result[#result + 1] = get_time()
-
-            return result
-          end,
+          -- right = function()
+          --   local result = {}
+          --
+          --   result[#result + 1] = get_time()
+          --
+          --   return result
+          -- end,
         },
         modified_icon = "●",
         indicator = {
           style = "icon",
         },
-
         mode = "buffer",
         diagnostics = "nvim_lsp",
         diagnostics_indicator = function(_, _, diagnostics_dict, _)

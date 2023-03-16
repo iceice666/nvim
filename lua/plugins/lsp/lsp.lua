@@ -2,7 +2,8 @@ return {
   {
     -- rust
     "simrat39/rust-tools.nvim",
-    config = function() end,
+    config = function()
+    end,
     ft = {
       "rust",
     },
@@ -49,6 +50,8 @@ return {
           "pyright",
           -- rust
           "rust_analyzer",
+          -- ts/js
+          "tsserver",
         },
         automatic_installation = true,
       })

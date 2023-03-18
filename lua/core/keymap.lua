@@ -47,12 +47,6 @@ mapx.group({ silent = true }, function()
   mapx.inoremap("<c-k>", "<Up>")
   mapx.inoremap("<c-l>", "<Right>")
 
-  -- Buffer jumping
-  mapx.nnoremap("<leader>h", "<c-w>h")
-  mapx.nnoremap("<leader>j", "<c-w>j")
-  mapx.nnoremap("<leader>k", "<c-w>k")
-  mapx.nnoremap("<leader>l", "<c-w>l")
-
   mapx.nnoremap("<leader><tab>", "<c-w>w")
   mapx.nnoremap("<leader><s-tab>", "<c-w>W")
 
@@ -86,10 +80,12 @@ mapx.group({ silent = true }, function()
   )
 
   -- Lazygit
-  mapx.nnoremap(
-    "<leader>g",
-    "<cmd>TermExec cmd='cd " .. vim.fn.getcwd() .. "&& lazygit&&exit'<cr>",
-    "Lazy"
-  )
+  mapx.nnoremap("<leader>g", function()
+    vim.cmd(
+      "TermExec cmd='cd "
+        .. require("neo-tree.sources.manager").get_state("filesystem").path
+        .. " && lazygit&&exit'"
+    )
+  end, "Lazy")
 end)
 return { mapx = mapx }

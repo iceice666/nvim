@@ -11,6 +11,7 @@ return {
     })
 
     local mapx = require("core.keymap").mapx
+    mapx.name("<leader>st", "Trouble: Show Troubles")
     mapx.group({ silent = true }, function()
       mapx.nnoremap(
         "<leader>stf",

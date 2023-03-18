@@ -6,9 +6,17 @@ return {
   priority = 1000,
   config = function()
     vim.o.background = "dark"
-    vim.cmd("colorscheme vscode")
+    local c = require("vscode.colors").get_colors()
+    require("vscode").setup({
+      transparent = false,
+      italic_comments = false,
+      group_overrides = {
+        -- this supports the same val table as vim.api.nvim_set_hl
+        -- use colors from this colorscheme by requiring vscode.colors!
 
-    vim.api.nvim_set_hl(0, "SpecialChar", { fg = "#c586c0" })
-    -- vim.api.nvim_set_hl(0, "@stringEscape", { link = "@string.escape" })
+        SpecialChar = { fg = "#c586c0", bg = "NONE" },
+      },
+    })
+    require("vscode").load()
   end,
 }

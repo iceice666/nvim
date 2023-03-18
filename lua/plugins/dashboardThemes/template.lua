@@ -3,7 +3,6 @@ local shl = vim.api.nvim_set_hl
 shl(0, "DashboardDesc", { fg = colors.bluegreen() })
 shl(0, "DashboardKey", { fg = colors.gold() })
 
-
 local center = function()
   local buttons = {}
   local button = function(shortcut, icon, label, action, hl)
@@ -17,7 +16,7 @@ local center = function()
       desc_hl = "DashboardDesc",
       action = action,
       key = shortcut,
-      key_hl = "DashboardKey"
+      key_hl = "DashboardKey",
     }
   end
 
@@ -35,39 +34,46 @@ end
 local footer = function()
   local version = vim.version()
   if version ~= nil then
-    version = "Neovim v" .. version.major .. "." .. version.minor .. "." .. version.patch
+    version = "Neovim v"
+      .. version.major
+      .. "."
+      .. version.minor
+      .. "."
+      .. version.patch
   end
 
   local stats = require("lazy").stats()
   local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
   local footer = {
-    '',
+    "",
     version .. " started in " .. ms .. "ms",
-    "loaded: " .. stats.loaded .. ", lazy-loaded: " .. stats.count - stats.loaded
-    , ''
+    "loaded: "
+      .. stats.loaded
+      .. ", lazy-loaded: "
+      .. stats.count - stats.loaded,
+    "",
   }
   return footer
 end
 
-
-
 return {
-  theme = 'doom',
+  theme = "doom",
   preview = {
     file_width = nil,
     file_height = nil,
-    command = "cat | bash " ..
-    vim.fn.stdpath("config") .. "/lua/plugins/dashboardThemes/static/animated_lolcat.sh",
-    file_path = nil
+    command = "cat | bash "
+      .. vim.fn.stdpath("config")
+      .. "/lua/plugins/dashboardThemes/static/animated_lolcat.sh",
+    file_path = nil,
   },
   config = {
     packages = { enable = false },
     shortcut = center(),
     center = center(),
-    footer = footer()
+    footer = footer(),
   },
   hide = {
     tabline = true,
     statusline = true,
-  }
+  },
 }

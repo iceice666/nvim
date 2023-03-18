@@ -81,11 +81,14 @@ mapx.group({ silent = true }, function()
 
   -- Lazygit
   mapx.nnoremap("<leader>g", function()
-    vim.cmd(
-      "TermExec cmd='cd "
-        .. require("neo-tree.sources.manager").get_state("filesystem").path
-        .. " && lazygit&&exit'"
-    )
+    local path =
+      require("neo-tree.sources.manager").get_state("filesystem").path
+    if path == nil then
+      vim.cmd("NeoTreeShow")
+      vim.cmd("NeoTreeClose")
+      path = require("neo-tree.sources.manager").get_state("filesystem").path
+    end
+    vim.cmd("TermExec cmd='cd " .. path .. " && lazygit&&exit'")
   end, "Lazy")
 end)
 return { mapx = mapx }

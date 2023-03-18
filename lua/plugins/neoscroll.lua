@@ -27,7 +27,7 @@ return {
       end)
 
       mapx.nnoremap("K", function()
-        scroll(-0.25, true, 150)
+        scroll( -0.25, true, 150)
       end)
     end)
   end,

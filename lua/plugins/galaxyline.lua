@@ -259,7 +259,14 @@ return {
             "bold",
           },
           provider = function()
-            return firstToUpper(vim.bo.filetype)
+            local ft = vim.bo.filetype
+            local exclude = { "css", "scss", "html" }
+            for _, v in pairs(exclude) do
+              if ft == v then
+                return string.upper(ft)
+              end
+            end
+            return firstToUpper(ft)
           end,
         },
       },

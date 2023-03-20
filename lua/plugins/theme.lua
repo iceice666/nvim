@@ -17,6 +17,6 @@ return {
         SpecialChar = { fg = c.vscPink, bg = "NONE" },
       },
     })
-    require("vscode").load()
+    -- require("vscode").load()
   end,
 }

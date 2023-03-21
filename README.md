@@ -11,7 +11,7 @@ Require Neovim >= v0.9.0
 - 🚀 Extremely fast. took at most 35ms to start up.
 - 💤 Lazy.nvim's plugins structure. Easy to add plugins you want.
 
-[Plugins usage](./USAGE.md "Plugins")
+<!-- [Plugins usage](./USAGE.md "Plugins")-->
 
 
 ## Troubleshooting

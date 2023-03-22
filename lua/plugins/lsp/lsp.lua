@@ -2,8 +2,7 @@ return {
   {
     -- rust
     "simrat39/rust-tools.nvim",
-    config = function()
-    end,
+    config = function() end,
     ft = {
       "rust",
     },
@@ -52,6 +51,8 @@ return {
           "rust_analyzer",
           -- ts/js
           "tsserver",
+          -- css
+          "cssls",
         },
         automatic_installation = true,
       })

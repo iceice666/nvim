@@ -54,9 +54,9 @@ return {
       event_handlers = {
         {
           event = "file_opened",
-          handler = function(file_path)
+          handler = function(_)
             --auto close
-            pcall(vim.cmd, "Neotree close")
+            require("neo-tree").close_all()
           end,
         },
       },

@@ -11,16 +11,23 @@ return {
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
     local formatting = null_ls.builtins.formatting
-    local diagnostics = null_ls.builtins.diagnostics
+    -- local diagnostics = null_ls.builtins.diagnostics
     -- local completion = null_ls.builtins.completion
     -- local code_actions = null_ls.builtins.code_actions
 
     null_ls.setup({
       sources = {
         -- "javascript", "javascriptreact",
-        -- "typescript", "typescriptreact"
-        -- "json", "jsonc", "markdown",
-        formatting.deno_fmt,
+        -- "typescript", "typescriptreact",
+        -- "vue", "css", "scss", "less",
+        -- "html",
+        -- "json", "jsonc",
+        -- "yaml",
+        -- "markdown", "markdown.mdx",
+        -- "graphql",
+        -- "handlebars"
+        formatting.prettier_d_slim,
+
         -- lua
         formatting.stylua.with({
           extra_args = {
@@ -46,7 +53,6 @@ return {
           },
         }),
         formatting.isort,
-
       },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then

@@ -16,10 +16,13 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("d<space>", "ddO<esc>")
 
   -- Move selected sections
-  mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv")
-  mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv")
-  mapx.nnoremap("<c-j>", "V:m '>+1<cr>gv=gv<esc>")
-  mapx.nnoremap("<c-k>", "V:m '<-2<cr>gv=gv<esc>")
+  -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32
+  mapx.nnoremap("<c-j>", "<cmd>m .+1<cr>==", "Move down")
+  mapx.nnoremap("<c-k>", "<cmd>m .-2<cr>==", "Move up")
+  mapx.inoremap("<c-j>", "<esc><cmd>m .+1<cr>==gi", "Move down")
+  mapx.inoremap("<c-k>", "<esc><cmd>m .-2<cr>==gi", "Move up")
+  mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv", "Move down")
+  mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv", "Move up")
 
   -- redo
   mapx.nnoremap("U", "<cmd>later<cr>", "Redo")
@@ -28,9 +31,9 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<c-a>", "ggVG", "Select all")
   mapx.vnoremap("<c-a>", "ggVG", "Select all")
 
-  -- indent line ( tab insert & remove )
-  mapx.nnoremap("<leader><home>", "^i<tab><esc>")
-  mapx.nnoremap("<leader><end>", "^i<bs><esc>")
+  -- better indenting
+  -- mapx.vnoremap("<", "^i<bs><esc>")
+  -- mapx.vnoremap(">", "^i<tab><esc>")
 
   -- Cursor jumping
   mapx.nnoremap("J", "10j")
@@ -38,12 +41,18 @@ mapx.group({ silent = true }, function()
 
   mapx.nnoremap("L", "$")
   mapx.nnoremap("H", "^")
-
-  mapx.nnoremap("n", "nzz")
-  mapx.nnoremap("N", "Nzz")
-
   mapx.inoremap("<home>", "<esc>^i")
   mapx.inoremap("<end>", "<esc>$a")
+
+  -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+  -- stylua: ignore start
+  mapx.nnoremap("n", "'Nn'[v:searchforward]", "Next search result", { expr = true, })
+  mapx.xnoremap("n", "'Nn'[v:searchforward]", { expr = true, })
+  mapx.onoremap("n", "'Nn'[v:searchforward]", { expr = true, })
+  mapx.nnoremap("N", "'nN'[v:searchforward]", { expr = true, })
+  mapx.xnoremap("N", "'nN'[v:searchforward]", { expr = true, })
+  mapx.onoremap("N", "'nN'[v:searchforward]", { expr = true, })
+  -- stylua: ignore end
 
   mapx.inoremap("<c-h>", "<Left>")
   mapx.inoremap("<c-j>", "<Down>")
@@ -73,7 +82,7 @@ mapx.group({ silent = true }, function()
 
   -- ======================= PLUGINS MAPPINGS ===========================
   -- Undo tree
-  mapx.nnoremap("<leader>u", "<cmd>UndotreeToggle<cr>", "Undo tree")
+  mapx.nnoremap("<leader>U", "<cmd>UndotreeToggle<cr>", "Undo tree")
 
   -- format
   mapx.nnoremap(
@@ -85,7 +94,7 @@ mapx.group({ silent = true }, function()
   -- Lazygit
   mapx.nnoremap("<leader>g", function()
     local path =
-        require("neo-tree.sources.manager").get_state("filesystem").path
+      require("neo-tree.sources.manager").get_state("filesystem").path
     if path == nil then
       vim.cmd("NeoTreeShow")
       vim.cmd("NeoTreeClose")
@@ -93,5 +102,13 @@ mapx.group({ silent = true }, function()
     end
     vim.cmd("TermExec cmd='cd " .. path .. " && lazygit&&exit'")
   end, "Lazy")
+
+  --custom group
+  mapx.nname("<leader>u", "Utils")
+  mapx.nname("<leader>t", "Telescope")
+  mapx.nname("<leader>tf", "Telescope: Find")
+  mapx.nname("g", "Goto")
+  mapx.nname("<leader>s", "Show info")
 end)
+
 return { mapx = mapx }

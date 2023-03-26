@@ -1,6 +1,6 @@
 return {
   "Wansmer/treesj",
-  keys = { "<space>Tm" },
+  keys = { "<space>ut" },
   event = "BufReadPost",
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   config = function()
@@ -8,8 +8,8 @@ return {
     require("treesj").setup({
       use_default_keymaps = false,
     })
-    mapx.nnoremap("<leader>Tm", function()
+    mapx.nnoremap("<leader>ut", function()
       require("treesj").toggle()
-    end)
+    end, "Utils: Toggle split/join")
   end,
 }

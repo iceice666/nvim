@@ -75,6 +75,7 @@ return {
           --hidden = true,
           grouped = true,
           depth = 2,
+          theme = "ivy",
         },
         workspaces = {
           keep_insert = true,
@@ -90,20 +91,24 @@ return {
         oldfiles = {
           only_cwd = true,
         },
+        find_files = {
+          theme = "ivy",
+        },
+        git_files = {
+          theme = "ivy",
+        },
       },
     })
     --telescope.load_extension('dap')
     telescope.load_extension("fzf")
     telescope.load_extension("live_grep_args")
-    telescope.load_extension("file_browser")
+    -- telescope.load_extension("file_browser")
     telescope.load_extension("noice")
     telescope.load_extension("workspaces")
     telescope.load_extension("neoclip")
 
     local mapx = require("core.keymap").mapx
 
-    mapx.nname("<leader>t", "Telescope")
-    mapx.nname("<leader>tf", "Telescope: Find")
     mapx.group({ silent = true }, function()
       mapx.nnoremap(
         "<leader>tff",
@@ -112,15 +117,21 @@ return {
       )
 
       mapx.nnoremap(
-        "<leader>tfS",
-        "<cmd>Telescope grep_string<cr>",
-        "Telescope: Find files that contain the current cursor word"
+        "<leader>tfg",
+        "<cmd>Telescope git_files<cr>",
+        "Telescope: Find git tracked files"
       )
 
       mapx.nnoremap(
         "<leader>tfb",
         "<cmd>Telescope file_browser<cr>",
         "Telescope: File browser"
+      )
+
+      mapx.nnoremap(
+        "<leader>tfc",
+        "<cmd>Telescope grep_string<cr>",
+        "Telescope: Find files that contain the current cursor word"
       )
 
       mapx.nnoremap(

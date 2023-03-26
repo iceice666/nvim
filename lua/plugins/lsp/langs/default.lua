@@ -21,9 +21,6 @@ local vnoremaps = {
   { "<leader>ca", "<cmd>Lspsaga code_action<cr>", "LSP: Code action" },
 }
 
-mapx.nname("g", "Goto")
-mapx.nname("<leader>s", "Show info")
-
 local do_map = function(bufnr, nnms, vnms)
   mapx.group({ silent = true, buffer = bufnr }, function()
     for _, k in ipairs(nnms) do
@@ -38,13 +35,13 @@ end
 local lsp_config = function(settings)
   settings = settings or {}
   return (
-    vim.tbl_extend("force", {
-      on_attach = function(_, bufnr)
-        do_map(bufnr, nnoremaps, vnoremaps)
-      end,
-      capabilities = capabilities,
-    }, settings)
-  )
+      vim.tbl_extend("force", {
+        on_attach = function(_, bufnr)
+          do_map(bufnr, nnoremaps, vnoremaps)
+        end,
+        capabilities = capabilities,
+      }, settings)
+      )
 end
 
 return {

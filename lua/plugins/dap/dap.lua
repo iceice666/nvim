@@ -26,7 +26,7 @@ return {
     "rcarriga/cmp-dap",
   },
   config = function()
-    local colors = require("core.colors")
+    local colors = vim.g.colors
     local dap = require("dap")
 
     require("mason-nvim-dap").setup({

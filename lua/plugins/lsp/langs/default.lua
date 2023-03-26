@@ -4,9 +4,9 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- stylua: ignore
 local nnoremaps = {
-  { "gd",         "<cmd>Lspsaga peek_definition<cr>",          "LSP: Peek defintion" },
-  { "gD",         "<cmd>Lspsaga goto_definition<cr>",          "LSP: Goto definiton" },
-  { "gh",         "<cmd>Lspsaga lsp_finder<cr>",               "LSP: Find keyword" },
+  { "gp",         "<cmd>Lspsaga peek_definition<cr>",          "LSP: Peek defintion" },
+  { "gd",         "<cmd>Lspsaga goto_definition<cr>",          "LSP: Goto definiton" },
+  { "gf",         "<cmd>Lspsaga lsp_finder<cr>",               "LSP: Find keyword" },
   { "gH",         "<cmd>Lspsaga hover_doc ++keep<cr>",         "LSP: Show doc" },
   { "gi",         "<cmd>lua vim.lsp.buf.implementation()<cr>" },
   { "gr",         "<cmd>Lspsaga rename<cr>",                   "LSP: Rename" },

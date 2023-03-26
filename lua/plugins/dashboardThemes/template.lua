@@ -1,4 +1,4 @@
-local colors = require("core.colors")
+local colors = vim.g.colors
 local shl = vim.api.nvim_set_hl
 shl(0, "DashboardDesc", { fg = colors.bluegreen() })
 shl(0, "DashboardKey", { fg = colors.gold() })
@@ -24,7 +24,7 @@ local center = function()
   button("w", "", "Change workspaces", "Telescope workspaces")
   button("R", "󱋡", "Recent files", "Telescope oldfiles")
   button("c", "", "Close dashboard", "enew | bdelete")
-  button("m", "", "Messages", "Noice telescope ")
+  button("m", "", "Messages", "Noice")
   button("p", "", "Lazy profile", "Lazy profile")
   button("q", "󰗼", "Quit", "qa")
 
@@ -35,11 +35,11 @@ local footer = function()
   local version = vim.version()
   if version ~= nil then
     version = "Neovim v"
-      .. version.major
-      .. "."
-      .. version.minor
-      .. "."
-      .. version.patch
+        .. version.major
+        .. "."
+        .. version.minor
+        .. "."
+        .. version.patch
   end
 
   local stats = require("lazy").stats()
@@ -48,9 +48,9 @@ local footer = function()
     "",
     version .. " started in " .. ms .. "ms",
     "loaded: "
-      .. stats.loaded
-      .. ", lazy-loaded: "
-      .. stats.count - stats.loaded,
+    .. stats.loaded
+    .. ", lazy-loaded: "
+    .. stats.count - stats.loaded,
     "",
   }
   return footer
@@ -62,8 +62,8 @@ return {
     file_width = nil,
     file_height = nil,
     command = "cat | bash "
-      .. vim.fn.stdpath("config")
-      .. "/lua/plugins/dashboardThemes/static/animated_lolcat.sh",
+    .. vim.fn.stdpath("config")
+    .. "/lua/plugins/dashboardThemes/static/animated_lolcat.sh",
     file_path = nil,
   },
   config = {

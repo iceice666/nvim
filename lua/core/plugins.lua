@@ -35,7 +35,7 @@ require("lazy").setup({
     "TravonteD/luajob",
     lazy = true,
   },
-  -- [ Other langauges support]
+  -- [ Other plugins]
 
   { import = "plugins" },
   { import = "plugins.lsp" },

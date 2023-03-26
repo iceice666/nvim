@@ -5,7 +5,7 @@ return {
   event = "BufReadPre",
   config = function()
     local firstToUpper = require("core.utils").firstToUpper
-    local colors = require("core.colors")
+    local colors = vim.g.colors
     local fileinfo = require("galaxyline.provider_fileinfo")
     local galaxyline = require("galaxyline")
     local condition = require("galaxyline.condition")
@@ -229,11 +229,11 @@ return {
             local current_line = vim.fn.line(".")
             local total_lines = vim.fn.line("$")
             return current_line
-              .. "/"
-              .. total_lines
-              .. " ("
-              .. math.floor(current_line * 100 / total_lines)
-              .. "%)"
+                .. "/"
+                .. total_lines
+                .. " ("
+                .. math.floor(current_line * 100 / total_lines)
+                .. "%)"
           end,
           separator = "",
           separator_highlight = { "NONE", colors.bg },

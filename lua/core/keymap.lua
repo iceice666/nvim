@@ -33,6 +33,9 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader><end>", "^i<bs><esc>")
 
   -- Cursor jumping
+  mapx.nnoremap("J", "10j")
+  mapx.nnoremap("K", "10k")
+
   mapx.nnoremap("L", "$")
   mapx.nnoremap("H", "^")
 
@@ -82,7 +85,7 @@ mapx.group({ silent = true }, function()
   -- Lazygit
   mapx.nnoremap("<leader>g", function()
     local path =
-      require("neo-tree.sources.manager").get_state("filesystem").path
+        require("neo-tree.sources.manager").get_state("filesystem").path
     if path == nil then
       vim.cmd("NeoTreeShow")
       vim.cmd("NeoTreeClose")

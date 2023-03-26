@@ -2,8 +2,8 @@ return {
   "glepnir/lspsaga.nvim",
   pin = true,
   cmd = "Lspsaga",
+  theme = "tokyonight",
   config = function()
-    local colors = require("core.colors")
     require("lspsaga").setup({
       lightbulb = {
         enable = true,
@@ -11,22 +11,6 @@ return {
         sign = false,
         sign_priority = 40,
         virtual_text = true,
-      },
-      ui = {
-        colors = {
-          normal_bg = colors.bg(),
-          title_bg = colors.bg(),
-          red = colors.red(),
-          magenta = colors.magenta(),
-          orange = colors.orange(),
-          yellow = colors.yellow(),
-          green = colors.green(),
-          cyan = colors.cyan(),
-          blue = colors.blue(),
-          purple = colors.pink(),
-          white = colors.white(),
-          black = colors.black(),
-        },
       },
     })
 

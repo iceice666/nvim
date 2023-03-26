@@ -1,7 +1,8 @@
-return {
+vim.g.colors = {
   mzk = function()
     return "#DDAACC"
   end,
+  --------------------------------------
   fg = function()
     return "#ffffff"
   end,

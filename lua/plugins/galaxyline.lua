@@ -72,28 +72,28 @@ return {
       separator(),
       {
         DiagnosticError = {
-          highlight = { colors.red, colors.bg },
+          highlight = { colors.error, colors.bg },
           icon = "  ",
           provider = "DiagnosticError",
         },
       },
       {
         DiagnosticWarn = {
-          highlight = { colors.gold, colors.bg },
+          highlight = { colors.warning, colors.bg },
           icon = "  ",
           provider = "DiagnosticWarn",
         },
       },
       {
         DiagnosticHint = {
-          highlight = { colors.blue, colors.bg },
+          highlight = { colors.hint, colors.bg },
           icon = "  ",
           provider = "DiagnosticHint",
         },
       },
       {
         DiagnosticInfo = {
-          highlight = { colors.lightblue, colors.bg },
+          highlight = { colors.info, colors.bg },
           icon = "  ",
           provider = "DiagnosticInfo",
         },
@@ -103,7 +103,7 @@ return {
         FilePath = {
           icon = " ",
           provider = "FilePath",
-          highlight = { colors.lime, colors.bg },
+          highlight = { colors.teal, colors.bg },
         },
       },
     }
@@ -113,20 +113,11 @@ return {
     gls.right = {
       {
         GitIcon = {
-          provider = function()
-            return " "
-          end,
+          icon = " ",
           condition = condition.check_git_workspace,
           highlight = { colors.orange, colors.bg, "bold" },
           separator = " ",
           separator_highlight = { "NONE", colors.bg },
-        },
-      },
-
-      {
-        GitBranch = {
-          condition = condition.check_git_workspace,
-          highlight = { colors.fg, colors.bg, "bold" },
           provider = "GitBranch",
         },
       },
@@ -171,7 +162,7 @@ return {
             return true
           end,
           highlight = {
-            colors.pink,
+            colors.red,
             colors.bg,
             "bold",
           },
@@ -202,7 +193,7 @@ return {
             return true
           end,
           highlight = {
-            colors.pink,
+            colors.red,
             colors.bg,
             "bold",
           },
@@ -223,7 +214,7 @@ return {
       separator(),
       {
         Lines = {
-          highlight = { colors.bluegreen, colors.bg },
+          highlight = { colors.green2, colors.bg },
           icon = "Lines ",
           provider = function()
             local current_line = vim.fn.line(".")

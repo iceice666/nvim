@@ -143,18 +143,18 @@ return {
 
     vim.api.nvim_set_hl(0, "DapBreakpoint", {
       ctermbg = 0,
-      fg = "#b81c1c",
-      bg = colors.bg(),
+      fg = colors.magenta2,
+      bg = colors.bg,
     })
     vim.api.nvim_set_hl(0, "DapLogPoint", {
       ctermbg = 0,
-      fg = "#61afef",
-      bg = colors.bg(),
+      fg = colors.cyan,
+      bg = colors.bg,
     })
     vim.api.nvim_set_hl(0, "DapStopped", {
       ctermbg = 0,
-      fg = "#98c379",
-      bg = colors.bg(),
+      fg = colors.green,
+      bg = colors.bg,
     })
 
     vim.fn.sign_define("DapBreakpoint", {

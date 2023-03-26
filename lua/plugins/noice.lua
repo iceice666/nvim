@@ -41,5 +41,8 @@ return {
         view = "notify",
       },
     })
+
+    local mapx = require("core.keymap").mapx
+    mapx.nnoremap("<leader>sn", "<cmd>Noice<cr>", "Noice: Show noice")
   end,
 }

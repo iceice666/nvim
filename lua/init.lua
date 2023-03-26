@@ -27,6 +27,5 @@
 
 require("core.basic")
 require("core.plugins")
-require("core.colors")
 require("core.keymap")
 require("core.devKeymap")

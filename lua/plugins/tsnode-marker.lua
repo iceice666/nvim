@@ -14,7 +14,5 @@ return {
       end,
     })
   end,
-  config = function()
-    vim.api.nvim_set_hl(0, "CodeBlock", { bg = vim.g.colors.bg() })
-  end,
+  config = true,
 }

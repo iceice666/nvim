@@ -10,7 +10,7 @@ return {
       use_diagnostic_signs = true,
     })
 
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
     mapx.name("<leader>st", "Trouble: Show Troubles")
     mapx.group({ silent = true }, function()
       mapx.nnoremap(

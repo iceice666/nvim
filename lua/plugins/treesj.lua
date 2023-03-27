@@ -4,7 +4,7 @@ return {
   event = "BufReadPost",
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   config = function()
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
     require("treesj").setup({
       use_default_keymaps = false,
     })

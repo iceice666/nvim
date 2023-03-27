@@ -1,4 +1,4 @@
-local mapx = require("mapx").setup({ whichkey = true })
+local mapx = vim.g.mapx
 
 mapx.group({ silent = true }, function()
   -- Quit
@@ -13,7 +13,7 @@ mapx.group({ silent = true }, function()
   end, "Quit Neovim")
 
   -- clear current lines
-  mapx.nnoremap("d<space>", "ddO<esc>")
+  mapx.nnoremap("d<space>", "<esc>ddO<esc>")
 
   -- Move selected sections
   -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32
@@ -47,11 +47,11 @@ mapx.group({ silent = true }, function()
   -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
   -- stylua: ignore start
   mapx.nnoremap("n", "'Nn'[v:searchforward]", "Next search result", { expr = true, })
-  mapx.xnoremap("n", "'Nn'[v:searchforward]", { expr = true, })
-  mapx.onoremap("n", "'Nn'[v:searchforward]", { expr = true, })
-  mapx.nnoremap("N", "'nN'[v:searchforward]", { expr = true, })
-  mapx.xnoremap("N", "'nN'[v:searchforward]", { expr = true, })
-  mapx.onoremap("N", "'nN'[v:searchforward]", { expr = true, })
+  mapx.xnoremap("n", "'Nn'[v:searchforward]", "Next search result", { expr = true, })
+  mapx.onoremap("n", "'Nn'[v:searchforward]", "Next search result", { expr = true, })
+  mapx.nnoremap("N", "'nN'[v:searchforward]", "Prev search result", { expr = true, })
+  mapx.xnoremap("N", "'nN'[v:searchforward]", "Prev search result", { expr = true, })
+  mapx.onoremap("N", "'nN'[v:searchforward]", "Prev search result", { expr = true, })
   -- stylua: ignore end
 
   mapx.inoremap("<c-h>", "<Left>")
@@ -63,7 +63,7 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader><s-tab>", "<c-w>W")
 
   -- File write
-  mapx.nnoremap("<leader>w", "<cmd>w<cr>", "Save")
+  mapx.nnoremap("<leader>w", "<cmd>w<cr>", "Write")
 
   -- Clear search
   mapx.nnoremap(
@@ -80,17 +80,6 @@ mapx.group({ silent = true }, function()
     "Open url"
   )
 
-  -- ======================= PLUGINS MAPPINGS ===========================
-  -- Undo tree
-  mapx.nnoremap("<leader>U", "<cmd>UndotreeToggle<cr>", "Undo tree")
-
-  -- format
-  mapx.nnoremap(
-    "<leader>f",
-    "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>",
-    "Buf: format"
-  )
-
   -- Lazygit
   mapx.nnoremap("<leader>g", function()
     local path =
@@ -105,10 +94,9 @@ mapx.group({ silent = true }, function()
 
   --custom group
   mapx.nname("<leader>u", "Utils")
+  mapx.nname("<leader>b", "Buffers")
   mapx.nname("<leader>t", "Telescope")
   mapx.nname("<leader>tf", "Telescope: Find")
   mapx.nname("g", "Goto")
   mapx.nname("<leader>s", "Show info")
 end)
-
-return { mapx = mapx }

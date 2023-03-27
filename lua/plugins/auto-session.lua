@@ -30,7 +30,7 @@ return {
     vim.o.sessionoptions =
       "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-    require("core.keymap").mapx.nnoremap(
+    vim.g.mapx.nnoremap(
       "<leader>R",
       "<cmd>RestoreSession<cr>",
       "Restore Session"

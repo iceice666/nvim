@@ -3,7 +3,7 @@ return {
   keys = { "<space>Td" },
   event = "BufReadPost",
   config = function()
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
     require("lsp_lines").setup()
     mapx.nnoremap("<leader>Td", function()
       local diagnostics_on = require("lsp_lines").toggle()

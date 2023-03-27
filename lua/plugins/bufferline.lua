@@ -6,35 +6,6 @@ return {
   },
   event = "BufAdd",
   config = function()
-    local clock_table = {
-      ["Mon"] = "(一)",
-      ["Tue"] = "(二)",
-      ["Wed"] = "(三)",
-      ["Thu"] = "(四)",
-      ["Fri"] = "(五)",
-      ["Sat"] = "(六)",
-      ["Sun"] = "(日)",
-    }
-
-    --
-    -- local clock_table = {
-    --     ["Mon"] = "",
-    --     ["Tue"] = "",
-    --     ["Wed"] = "",
-    --     ["Thu"] = "",
-    --     ["Fri"] = "",
-    --     ["Sat"] = "",
-    --     ["Sun"] = "",
-    -- }
-
-    local get_time = function()
-      local date = vim.fn.strftime("%m/%d")
-      local week = clock_table[vim.fn.strftime("%a")]
-      local time = vim.fn.strftime("%H:%M:%S")
-
-      return { text = " " .. date .. " " .. week .. " " .. time .. " " }
-    end
-
     require("bufferline").setup({
       options = {
         custom_areas = {
@@ -125,7 +96,7 @@ return {
         },
       },
     })
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
     mapx.group({ silent = true }, function()
       mapx.nnoremap(
         "<leader>[",

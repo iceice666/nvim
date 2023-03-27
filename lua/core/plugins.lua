@@ -12,10 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  { -- Undo history
-    "mbbill/undotree",
-    event = "BufAdd",
-  },
+
   -- which key
   "folke/which-key.nvim",
   { -- git sign
@@ -30,7 +27,15 @@ require("lazy").setup({
     end,
   },
   -- libs
-  "b0o/mapx.nvim",
+  {
+    "b0o/mapx.nvim",
+    lazy = false,
+    priority = 9999,
+    config = function()
+      local mapx = require("mapx").setup({ whichkey = true })
+      vim.g.mapx = mapx
+    end,
+  },
   {
     "TravonteD/luajob",
     lazy = true,

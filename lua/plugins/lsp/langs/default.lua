@@ -1,4 +1,4 @@
-local mapx = require("core.keymap").mapx
+local mapx = vim.g.mapx
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -21,6 +21,7 @@ local vnoremaps = {
   { "<leader>ca", "<cmd>Lspsaga code_action<cr>", "LSP: Code action" },
 }
 
+-- mapping keybind
 local do_map = function(bufnr, nnms, vnms)
   mapx.group({ silent = true, buffer = bufnr }, function()
     for _, k in ipairs(nnms) do

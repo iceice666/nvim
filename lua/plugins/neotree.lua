@@ -64,7 +64,7 @@ return {
 
     local opt = { silent = true }
     -- File tree
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
     mapx.nnoremap("<leader>e", ":Neotree reveal toggle<cr>", opt)
   end,
 }

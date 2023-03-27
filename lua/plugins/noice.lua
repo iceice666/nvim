@@ -42,7 +42,7 @@ return {
       },
     })
 
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
     mapx.nnoremap("<leader>sn", "<cmd>Noice<cr>", "Noice: Show noice")
   end,
 }

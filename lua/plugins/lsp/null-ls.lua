@@ -67,5 +67,12 @@ return {
         end
       end,
     })
+
+    vim.g.mapx.nnoremap(
+      "<leader>f",
+      "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>",
+      "Buf: format",
+      { silent = true }
+    )
   end,
 }

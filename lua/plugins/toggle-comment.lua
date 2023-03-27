@@ -12,7 +12,7 @@ return {
         extra = false,
       },
     })
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
     local api = require("Comment.api")
     local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
     mapx.group({ silent = true }, function()

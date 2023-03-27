@@ -2,7 +2,7 @@ local rt = require("rust-tools")
 local vnoremaps = require("plugins.lsp.langs.default").vnoremaps
 local do_map = require("plugins.lsp.langs.default").do_map
 
--- stylua: ignore
+-- stylua: ignore start
 --
 -- https://github.com/simrat39/rust-tools.nvim#usage
 local nnoremaps = {
@@ -19,6 +19,7 @@ local nnoremaps = {
   { "<leader>sh", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP: Show signature help" },
   { "<leader>ca", "<cmd>Lspsaga code_action<cr>",              "LSP: Code action" }
 }
+-- stylua: ignore end
 
 return function()
   rt.setup({

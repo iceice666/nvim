@@ -107,7 +107,7 @@ return {
     telescope.load_extension("workspaces")
     telescope.load_extension("neoclip")
 
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
 
     mapx.group({ silent = true }, function()
       mapx.nnoremap(

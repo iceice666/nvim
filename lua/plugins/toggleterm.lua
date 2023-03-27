@@ -17,7 +17,7 @@ return {
       start_in_insert = true,
     })
 
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
     -- terminal mapping
     mapx.nnoremap("<a-t>", "<cmd>ToggleTerm<cr>", "Term: Open terminal")
     mapx.tnoremap(

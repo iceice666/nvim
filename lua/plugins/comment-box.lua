@@ -28,7 +28,7 @@ return {
       line_blank_line_below = false, -- insert a blank line below the line
     })
 
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
 
     mapx.group({ silent = true }, function()
       mapx.vnoremap("<leader>bc", "<cmd>CBccbox<cr>")

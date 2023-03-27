@@ -188,7 +188,7 @@ return {
       numhl = "DapStopped",
     })
 
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
 
     mapx.nnoremap("<F5>", "<cmd>DapContinue<cr>", "Dap: Continue")
     mapx.nnoremap("<F17>", "<cmd>DapRerun<cr>", "Dap: Rerun")

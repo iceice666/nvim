@@ -50,7 +50,7 @@ return {
       },
     })
 
-    require("core.keymap").mapx.nnoremap(
+    vim.g.mapx.nnoremap(
       "<leader>sT",
       "<cmd>TodoTrouble<cr>",
       "Trouble: Show todos"

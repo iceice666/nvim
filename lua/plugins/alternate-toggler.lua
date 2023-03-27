@@ -18,9 +18,11 @@ return {
       },
     })
 
-    local mapx = require("core.keymap").mapx
-    local opt = { silent = true }
     -- Alternate toggler
-    mapx.nnoremap("<leader>ms", "<cmd>ToggleAlternate<cr>", opt)
+    vim.g.mapxnnoremap(
+      "<leader>ms",
+      "<cmd>ToggleAlternate<cr>",
+      { silent = true }
+    )
   end,
 }

@@ -9,7 +9,7 @@ return {
       },
     })
 
-    local mapx = require("core.keymap").mapx
+    local mapx = vim.g.mapx
 
     mapx.group({ silent = true }, function()
       mapx.nnoremap("<leader><c-l>", "<cmd>WinShift right<cr>")

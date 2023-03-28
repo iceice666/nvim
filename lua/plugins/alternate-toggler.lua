@@ -19,7 +19,7 @@ return {
     })
 
     -- Alternate toggler
-    vim.g.mapxnnoremap(
+    vim.g.mapx.nnoremap(
       "<leader>ms",
       "<cmd>ToggleAlternate<cr>",
       { silent = true }

@@ -17,7 +17,10 @@ require("lazy").setup({
   "folke/which-key.nvim",
   { -- git sign
     "lewis6991/gitsigns.nvim",
-    event = "BufReadPre",
+    config = function()
+      require("gitsigns").setup()
+    end,
+    -- event = "BufReadPre",
   },
   { -- hlsearch lens
     "kevinhwang91/nvim-hlslens",

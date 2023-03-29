@@ -33,28 +33,28 @@ local function flatten(t, sep, key_modifier, res)
 end
 
 local function table_to_string(tbl)
-  local result = "{"
+  local result = "{\n"
   for k, v in pairs(tbl) do
     -- Check the key type (ignore any numerical keys - assume its an array)
     if type(k) == "string" then
-      result = result .. "[\"" .. k .. "\"]" .. "="
+      result = "  " .. result .. "[\"" .. k .. "\"]" .. "="
     end
 
     -- Check the value type
     if type(v) == "table" then
-      result = result .. table_to_string(v)
+      result = result .. "\n" .. table_to_string(v) .. "\n"
     elseif type(v) == "boolean" or type(v) == "function" then
       result = result .. tostring(v)
     else
       result = result .. "\"" .. v .. "\""
     end
-    result = result .. ","
+    result = result .. ",\n"
   end
   -- Remove leading commas from the result
   if result ~= "" then
     result = result:sub(1, result:len() - 1)
   end
-  return result .. "}"
+  return result .. "\n}"
 end
 
 return {

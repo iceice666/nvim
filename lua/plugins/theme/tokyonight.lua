@@ -22,6 +22,7 @@ return {
       day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
       on_colors = function(colors)
         colors.mzk = "#DDAACC"
+        colors.dark_red = "#51112f"
       end,
       on_highlights = function(hl, c)
         hl.CodeBlock = { bg = c.dark3 }

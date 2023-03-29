@@ -4,20 +4,17 @@ local conditions = require("heirline.conditions")
 local FileNameBlock = {
   -- let's first set up some attributes needed by this component and it's children
   init = function(self)
-    self.filename = vim.api.nvim_buf_get_name(0)
+    local filename = vim.api.nvim_buf_get_name(0)
+    self.filename = filename
+    self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color(
+      filename,
+      vim.fn.fnamemodify(filename, ":e"),
+      { default = true }
+    )
   end,
 }
 
 local FileIcon = {
-  init = function(self)
-    local filename = self.filename
-    local extension = vim.fn.fnamemodify(filename, ":e")
-    self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color(
-      filename,
-      extension,
-      { default = true }
-    )
-  end,
   provider = function(self)
     return self.icon and (self.icon .. " ")
   end,
@@ -28,15 +25,15 @@ local FileIcon = {
 
 local FileName = {
   provider = function(self)
-    -- first, trim the pattern relative to the current directory. For other
-    -- options, see :h filename-modifers
     local filename = vim.fn.fnamemodify(self.filename, ":.")
     if filename == "" then
       return "[No Name]"
     end
+
     if not conditions.width_percent_below(#filename, 0.25) then
       filename = vim.fn.pathshorten(filename)
     end
+
     return filename
   end,
   hl = { fg = utils.get_highlight("Directory").fg },
@@ -44,7 +41,7 @@ local FileName = {
 
 local firstToUpper = require("core.utils").firstToUpper
 local FileType = {
-  provider = function()
+  provider = function(self)
     local ft = vim.bo.filetype
     local exclude = { "css", "scss", "html" }
     for _, v in pairs(exclude) do
@@ -54,7 +51,30 @@ local FileType = {
     end
     return firstToUpper(ft)
   end,
-  hl = { fg = utils.get_highlight("Type").fg, bold = true },
+  hl = function(self)
+    return { fg = self.icon_color, bold = true }
+  end,
+}
+
+local HelpFileName = {
+  condition = function()
+    return vim.bo.filetype == "help"
+  end,
+  provider = function()
+    local filename = vim.api.nvim_buf_get_name(0)
+    return vim.fn.fnamemodify(filename, ":t")
+  end,
+  hl = { fg = "green" },
+}
+
+local TerminalName = {
+  -- we could add a condition to check that buftype == 'terminal'
+  -- or we could do that later (see #conditional-statuslines below)
+  provider = function()
+    local tname, _ = vim.api.nvim_buf_get_name(0):gsub(".*:", "")
+    return " " .. tname
+  end,
+  hl = { fg = "blue", bold = true },
 }
 
 return {
@@ -65,4 +85,6 @@ return {
     { provider = "%<" }
   ),
   FileName = utils.insert(FileNameBlock, FileName, { provider = "%<" }),
+  HelpFileName = HelpFileName,
+  TerminalName = TerminalName,
 }

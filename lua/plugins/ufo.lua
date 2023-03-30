@@ -13,25 +13,31 @@ return {
     local mapx = vim.g.mapx
     mapx.group({}, function()
       mapx.nnoremap(
-        "<leader>fR",
+        "<leader>fO",
         require("ufo").openAllFolds,
         "UFO: open all folds"
       )
       mapx.nnoremap(
-        "<leader>fM",
+        "<leader>fC",
         require("ufo").closeAllFolds,
         "UFO: close all folds"
       )
-      mapx.nnoremap("<leader>fr", require("ufo").openFoldsExceptKinds)
-      mapx.nnoremap("<leader>fm", require("ufo").closeFoldsWith)
-      mapx.nnoremap("<leader>fk", function()
+      mapx.nnoremap("<leader>fo", require("ufo").openFoldsExceptKinds)
+      mapx.nnoremap("<leader>fc", require("ufo").closeFoldsWith)
+      mapx.nnoremap("<leader>fp", function()
         local winid = require("ufo").peekFoldedLinesUnderCursor()
-        if not winid then
-          -- choose one of coc.nvim and nvim lsp
-          vim.fn.CocActionAsync("definitionHover") -- coc.nvim
+        if winid then
+          local bufnr = vim.api.nvim_win_get_buf(winid)
+          mapx.group({ buffer = bufnr }, function()
+            local keys = { "a", "i", "o", "A", "I", "O", "gd", "gr" }
+            for _, k in ipairs(keys) do
+              mapx.nnoremap(k, "<cr>" .. k)
+            end
+          end)
+        else
           vim.lsp.buf.hover()
         end
-      end)
+      end, "UFO: Peek fold")
     end)
 
     require("ufo").setup({

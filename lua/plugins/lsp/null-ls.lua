@@ -69,7 +69,7 @@ return {
     })
 
     vim.g.mapx.nnoremap(
-      "<leader>f",
+      "<leader>F",
       "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr })<cr>",
       "Buf: format",
       { silent = true }

@@ -23,6 +23,11 @@ local nnoremaps = {
 
 return function()
   rt.setup({
+    tools = {
+      inlay_hints = {
+        auto = false,
+      },
+    },
     server = {
       on_attach = function(_, bufnr)
         do_map(bufnr, nnoremaps, vnoremaps)

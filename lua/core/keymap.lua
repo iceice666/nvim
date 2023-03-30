@@ -85,7 +85,7 @@ mapx.group({ silent = true }, function()
   -- Lazygit
   mapx.nnoremap("<leader>g", function()
     local path =
-        require("neo-tree.sources.manager").get_state("filesystem").path
+      require("neo-tree.sources.manager").get_state("filesystem").path
     if path == nil then
       vim.cmd("NeoTreeShow")
       vim.cmd("sleep 100m")
@@ -98,6 +98,7 @@ mapx.group({ silent = true }, function()
   --custom group
   mapx.nname("<leader>u", "Utils")
   mapx.nname("<leader>b", "Buffers")
+  mapx.nname("<leader>f", "UFO Folds")
   mapx.nname("<leader>t", "Telescope")
   mapx.nname("<leader>tf", "Telescope: Find")
   mapx.nname("g", "Goto")

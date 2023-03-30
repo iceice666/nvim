@@ -33,6 +33,13 @@ return {
     dependencies = { "williamboman/mason-lspconfig.nvim" },
   },
   {
+    "lvimuser/lsp-inlayhints.nvim",
+    event = "FileReadPost",
+    config = function()
+      require("lsp-inlayhints").setup()
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     config = function()

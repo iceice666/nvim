@@ -4,6 +4,7 @@ end
 
 return {
   "rebelot/heirline.nvim",
+  event = "BufReadPost",
   config = function()
     local cond = require("heirline.conditions")
     local utils = require("heirline.utils")

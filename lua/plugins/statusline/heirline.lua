@@ -1,5 +1,5 @@
 local function req(modules)
-  return require("plugins.statusline.heirline" .. modules)
+  return require("plugins.statusline.heirline." .. modules)
 end
 
 return {

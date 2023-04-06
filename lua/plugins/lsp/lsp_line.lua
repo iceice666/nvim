@@ -1,4 +1,5 @@
 return {
+  cond=false,
   "ErichDonGubler/lsp_lines.nvim",
   keys = { "<space>Td" },
   event = "BufReadPost",

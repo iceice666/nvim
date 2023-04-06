@@ -25,7 +25,7 @@ return function()
   rt.setup({
     tools = {
       inlay_hints = {
-        auto = false,
+        auto = true,
       },
     },
     server = {

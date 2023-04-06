@@ -12,7 +12,6 @@ return {
     require("toggleterm").setup({
       direction = "float",
       hide_numbers = true,
-      autochdir = true,
       shade_terminals = true,
       start_in_insert = true,
     })

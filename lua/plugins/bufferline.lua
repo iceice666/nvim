@@ -4,7 +4,7 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  event = "BufAdd",
+  event = "BufReadPost",
   config = function()
     require("bufferline").setup({
       options = {

@@ -6,8 +6,17 @@ return function()
     before_init = require("neodev.lsp").before_init,
     settings = {
       Lua = {
+        runtime = {
+          version = "LuaJIT",
+        },
         diagnostics = {
-          globals = { "vim", "require" },
+          globals = { "vim" },
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = {
+          enable = false,
         },
         completion = {
           callSnippet = "Both",

@@ -11,12 +11,15 @@ return {
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
     local formatting = null_ls.builtins.formatting
-    -- local diagnostics = null_ls.builtins.diagnostics
+    local diagnostics = null_ls.builtins.diagnostics
     -- local completion = null_ls.builtins.completion
     -- local code_actions = null_ls.builtins.code_actions
 
     null_ls.setup({
       sources = {
+        -- "c", "cpp", "cs", "java", "cuda", "proto"
+        formatting.clang_format,
+
         -- "javascript", "javascriptreact",
         -- "typescript", "typescriptreact",
         -- "vue", "css", "scss", "less",

@@ -48,6 +48,7 @@ return {
         ["lua_ls"] = require("plugins.lsp.langs.lua"),
         ["pyright"] = require("plugins.lsp.langs.python"),
         ["rust_analyzer"] = require("plugins.lsp.langs.rust"),
+        ["clangd"] = require("plugins.lsp.langs.c_cpp"),
       })
     end,
   },

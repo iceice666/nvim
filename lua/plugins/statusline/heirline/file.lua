@@ -43,13 +43,18 @@ local firstToUpper = require("core.utils").firstToUpper
 local FileType = {
   provider = function(self)
     local ft = vim.bo.filetype
-    local exclude = { "css", "scss", "html" }
-    for _, v in pairs(exclude) do
-      if ft == v then
-        return string.upper(ft)
-      end
+    local custom = {
+      ["css"] = "CSS",
+      ["scss"] = "SCSS",
+      ["html"] = "HTML",
+      ["cpp"] = "C++",
+    }
+    local r = custom[ft]
+    if r == nil then
+      return firstToUpper(ft)
+    else
+      return r
     end
-    return firstToUpper(ft)
   end,
   hl = function(self)
     return { fg = self.icon_color, bold = true }

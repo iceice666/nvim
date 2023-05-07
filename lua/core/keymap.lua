@@ -46,14 +46,17 @@ mapx.group({ silent = true }, function()
   mapx.inoremap("<home>", "<esc>^i")
   mapx.inoremap("<end>", "<esc>$a")
 
-  -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
   -- stylua: ignore start
+  -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
   mapx.nnoremap("n", "'Nn'[v:searchforward]", "Next search result", { expr = true, })
   mapx.xnoremap("n", "'Nn'[v:searchforward]", "Next search result", { expr = true, })
   mapx.onoremap("n", "'Nn'[v:searchforward]", "Next search result", { expr = true, })
   mapx.nnoremap("N", "'nN'[v:searchforward]", "Prev search result", { expr = true, })
   mapx.xnoremap("N", "'nN'[v:searchforward]", "Prev search result", { expr = true, })
   mapx.onoremap("N", "'nN'[v:searchforward]", "Prev search result", { expr = true, })
+
+  -- https://github.com/mhinz/vim-galore#saner-ctrl-l
+  mapx.nnoremap("<leader>l", "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><c-l>")
   -- stylua: ignore end
 
   mapx.inoremap("<c-h>", "<Left>")
@@ -67,13 +70,6 @@ mapx.group({ silent = true }, function()
   -- File write
   mapx.nnoremap("<leader>w", "<cmd>w<cr>", "Write")
 
-  -- Clear search
-  mapx.nnoremap(
-    "<leader>/",
-    "<cmd>nohls<cr><cmd>let @/ = ''<cr>",
-    "Clear search"
-  )
-
   -- Open url
   -- https://www.google.com
   mapx.nnoremap(
@@ -85,7 +81,7 @@ mapx.group({ silent = true }, function()
   -- Lazygit
   mapx.nnoremap("<leader>g", function()
     local path =
-      require("neo-tree.sources.manager").get_state("filesystem").path
+        require("neo-tree.sources.manager").get_state("filesystem").path
     if path == nil then
       vim.cmd("NeoTreeShow")
       vim.cmd("sleep 100m")

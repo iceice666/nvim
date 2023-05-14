@@ -1,6 +1,6 @@
 local rt = require("rust-tools")
-local vnoremaps = require("plugins.lsp.langs.default").vnoremaps
-local do_map = require("plugins.lsp.langs.default").do_map
+local lsp_config = require("plugins.lsp.langs.default").lsp_config
+local util = require("lspconfig/util")
 
 -- stylua: ignore start
 --
@@ -28,10 +28,16 @@ return function()
         auto = true,
       },
     },
-    server = {
-      on_attach = function(_, bufnr)
-        do_map(bufnr, nnoremaps, vnoremaps)
-      end,
-    },
+    server = lsp_config({
+      filetypes = { "rust" },
+      root_dir = { util.root_pattern("Cargo.toml") },
+      settings = {
+        ["rust-analyzer"] = {
+          cargo = {
+            allFeatures = true,
+          },
+        },
+      },
+    }, nnoremaps, _),
   })
 end

@@ -33,12 +33,14 @@ local do_map = function(bufnr, nnms, vnms)
   end)
 end
 
-local lsp_config = function(settings)
+local lsp_config = function(settings, nmaps, vmaps)
   settings = settings or {}
+  nmaps = nnoremaps or {}
+  vmaps = vnoremaps or {}
   return (
       vim.tbl_extend("force", {
         on_attach = function(_, bufnr)
-          do_map(bufnr, nnoremaps, vnoremaps)
+          do_map(bufnr, nmaps, vmaps)
         end,
         capabilities = capabilities,
       }, settings)
@@ -49,6 +51,4 @@ return {
   nnoremaps = nnoremaps,
   vnoremaps = vnoremaps,
   lsp_config = lsp_config,
-  do_map = do_map,
-  capabilities = capabilities,
 }

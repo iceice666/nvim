@@ -2,6 +2,7 @@ local mapx = vim.g.mapx
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+
 -- stylua: ignore
 local nnoremaps = {
   { "gp",         "<cmd>Lspsaga peek_definition<cr>",          "LSP: Peek defintion" },
@@ -38,13 +39,13 @@ local lsp_config = function(settings, nmaps, vmaps)
   nmaps = nnoremaps or {}
   vmaps = vnoremaps or {}
   return (
-      vim.tbl_extend("force", {
-        on_attach = function(_, bufnr)
-          do_map(bufnr, nmaps, vmaps)
-        end,
-        capabilities = capabilities,
-      }, settings)
-      )
+    vim.tbl_extend("force", {
+      on_attach = function(_, bufnr)
+        do_map(bufnr, nmaps, vmaps)
+      end,
+      capabilities = capabilities,
+    }, settings)
+  )
 end
 
 return {

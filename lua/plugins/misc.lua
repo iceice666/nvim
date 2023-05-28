@@ -15,7 +15,7 @@ return {
     config = function()
       require("gitsigns").setup()
     end,
-    -- event = "BufReadPre",
+    event = "BufReadPre",
   },
   {
     -- hlsearch lens

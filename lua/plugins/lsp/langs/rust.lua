@@ -30,7 +30,7 @@ return function()
     },
     server = lsp_config({
       filetypes = { "rust" },
-      root_dir = { util.root_pattern("Cargo.toml") },
+      root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
       settings = {
         ["rust-analyzer"] = {
           cargo = {

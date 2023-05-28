@@ -8,6 +8,12 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
     },
+    {
+      -- TODO: usage
+      "ecthelionvi/NeoComposer.nvim",
+      dependencies = "kkharji/sqlite.lua",
+      opts = {}
+    }
   },
   cmd = "Telescope",
   keys = "<leader>t",
@@ -105,7 +111,7 @@ return {
     -- telescope.load_extension("file_browser")
     telescope.load_extension("noice")
     telescope.load_extension("workspaces")
-    telescope.load_extension("neoclip")
+    telescope.load_extension('macros')
 
     local mapx = vim.g.mapx
 
@@ -160,7 +166,7 @@ return {
 
       mapx.nnoremap(
         "<leader>tm",
-        "<cmd>lua require('telescope').extensions.macroscope.default()<cr>",
+        "<cmd>Telescope macros<cr>",
         "Telescope: Macros history"
       )
 

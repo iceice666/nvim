@@ -5,10 +5,6 @@ return {
     ft = "lua",
   },
   {
-    "williamboman/mason.nvim",
-    dependencies = { "williamboman/mason-lspconfig.nvim" },
-  },
-  {
     "lvimuser/lsp-inlayhints.nvim",
     event = "FileReadPost",
     config = function()
@@ -18,6 +14,10 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
+    dependencies = {
+      "williamboman/mason.nvim",
+      dependencies = { "williamboman/mason-lspconfig.nvim" },
+    },
     config = function()
       require("neodev").setup({
         library = { plugins = { "neotest" }, types = true },

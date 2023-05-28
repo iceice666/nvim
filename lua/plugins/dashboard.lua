@@ -1,6 +1,7 @@
 return {
   -- dashboard
   pin = true,
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   "glepnir/dashboard-nvim",
   config = function()
     vim.api.nvim_create_autocmd("User", {

@@ -5,14 +5,14 @@ return {
     require("relative-toggle").setup({
       pattern = "*",
       events = {
-        off = {
+        on = {
           "BufEnter",
           "FocusGained",
           "InsertLeave",
           "WinEnter",
           "CmdlineLeave",
         },
-        on = {
+        off = {
           "BufLeave",
           "FocusLost",
           "InsertEnter",

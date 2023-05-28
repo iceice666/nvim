@@ -1,4 +1,3 @@
--- [ CMP / Completion engine ]
 return {
   "hrsh7th/nvim-cmp",
   event = {
@@ -38,19 +37,61 @@ return {
     require("nvim-autopairs").setup({})
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
+    local confirm_mapping = function(fallback)
+      if luasnip.expandable() then
+        return luasnip.expand()
+      end
+      if cmp and cmp.visible() and cmp.get_active_entry() then
+        cmp.confirm({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = false,
+        })
+        return
+      end
+      fallback()
+    end
+
+    local next_option_mapping = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end
+
+    local previous_option_mapping = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end
+
     cmp.setup({
       enabled = function()
-        return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
-          or require("cmp_dap").is_dap_buffer()
+        -- disable completion in comments
+        local context = require("cmp.config.context")
+        -- keep command mode completion enabled when cursor is in a comment
+        if vim.api.nvim_get_mode().mode == "c" then
+          return true
+        else
+          return not context.in_treesitter_capture("comment")        -- comment
+              and not context.in_syntax_group("Comment")             -- comment
+              or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" -- prompt
+              or require("cmp_dap").is_dap_buffer()                  -- dap buffer
+        end
       end,
       sources = {
         { name = "nvim_lsp" },
+        { name = "nvim_lsp_signature_help" },
         { name = "buffer" },
         { name = "path" },
-        { name = "nvim_lsp_signature_help" },
         { name = "nerdfont" },
         { name = "treesitter" },
-        { name = "luasnip" },
+        {
+          name = "luasnip",
+          option = { show_autosnippets = true },
+        },
         { name = "crates" },
       },
       snippet = {
@@ -59,40 +100,16 @@ return {
         end,
       },
       mapping = {
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<S-CR>"] = function(fallback)
-          if cmp.visible() then
-            cmp.close()
-          else
-            fallback()
-          end
-        end,
-        ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-        ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        ["<CR>"] = confirm_mapping,
+        ["<Tab>"] = cmp.mapping(next_option_mapping, { "i" }),
+        ["<S-Tab>"] = cmp.mapping(previous_option_mapping, { "i" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+        ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
+        ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
       },
       window = {
         completion = {
-          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:Visual,Search:None",
           col_offset = -3,
           side_padding = 0,
           border = "rounded",
@@ -103,15 +120,22 @@ return {
       formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
-          local kind = require("lspkind").cmp_format({
-            mode = "symbol_text",
-            maxwidth = 50,
-          })(entry, vim_item)
-          local strings = vim.split(kind.kind, "%s", { trimempty = true })
-          kind.kind = " " .. (strings[1] or "") .. " "
-          kind.menu = "    (" .. (strings[2] or "") .. ")"
-
-          return kind
+          vim_item.menu = vim_item.kind
+          if vim.tbl_contains({ "path" }, entry.source.name) then
+            local icon, hl_group = require("nvim-web-devicons").get_icon(
+              entry:get_completion_item().label
+            )
+            if icon then
+              vim_item.kind = icon
+              vim_item.kind_hl_group = hl_group
+              vim_item.menu_hl_group = hl_group
+              return vim_item
+            end
+          end
+          return require("lspkind").cmp_format({ with_text = false })(
+            entry,
+            vim_item
+          )
         end,
       },
       sorting = {

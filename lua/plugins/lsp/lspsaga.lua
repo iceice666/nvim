@@ -2,9 +2,31 @@ return {
   "glepnir/lspsaga.nvim",
   pin = true,
   cmd = "Lspsaga",
-  theme = "tokyonight",
   config = function()
+    local theme_dyeing = function()
+      if vim.g.theme == "catppuccin" then
+        return require("catppuccin.groups.integrations.lsp_saga").custom_kind()
+      else
+        return {
+          -- This option only works in Neovim 0.9
+          title = true,
+          -- Border type can be single, double, rounded, solid, shadow.
+          border = "single",
+          winblend = 0,
+          expand = "",
+          collapse = "",
+          code_action = "💡",
+          incoming = " ",
+          outgoing = " ",
+          hover = " ",
+          kind = {},
+        }
+      end
+    end
     require("lspsaga").setup({
+      ui = {
+        kind = theme_dyeing(),
+      },
       lightbulb = {
         enable = true,
         enable_in_insert = false,

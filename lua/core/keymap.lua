@@ -56,7 +56,7 @@ mapx.group({ silent = true }, function()
   mapx.onoremap("N", "'nN'[v:searchforward]", "Prev search result", { expr = true, })
 
   -- https://github.com/mhinz/vim-galore#saner-ctrl-l
-  mapx.nnoremap("<leader>l", "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><c-l>")
+  mapx.nnoremap("<leader>/", "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><c-l>")
   -- stylua: ignore end
 
   mapx.inoremap("<c-h>", "<Left>")
@@ -77,19 +77,6 @@ mapx.group({ silent = true }, function()
     "<Cmd>call jobstart([\"hyprctl\",\"dispatch\",\"exec\",\"--\",\"firefox\",\"--new-window\", expand(\"<cfile>\")], {\"detach\": v:true})<CR>",
     "Open url"
   )
-
-  -- Lazygit
-  mapx.nnoremap("<leader>g", function()
-    local path =
-        require("neo-tree.sources.manager").get_state("filesystem").path
-    if path == nil then
-      vim.cmd("NeoTreeShow")
-      vim.cmd("sleep 100m")
-      vim.cmd("NeoTreeClose")
-      path = require("neo-tree.sources.manager").get_state("filesystem").path
-    end
-    vim.cmd("TermExec cmd='cd " .. path .. " && lazygit&&exit'")
-  end, "Lazy")
 
   --custom group
   mapx.nname("<leader>u", "Utils")

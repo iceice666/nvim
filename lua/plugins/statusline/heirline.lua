@@ -25,15 +25,17 @@ return {
     local LspClients = req("lsp").LspClients
     local Snippets = req("lsp").Snippets
     local MacroRec = req("misc").MacroRec
+    local NeoComposer = req("misc").NeoComposer
 
-    ViMode = utils.surround({ "█", "" }, "bg_visual", { ViMode })
+    ViMode = utils.surround({ "█", "" }, "bg", { ViMode })
 
     local ActiveStatusline = {
       ViMode,
       Space,
       FileName,
       Space,
-      MacroRec,
+      -- MacroRec,
+      NeoComposer,
       Space,
       DAPMessages,
       Space,

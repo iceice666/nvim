@@ -5,7 +5,6 @@ return {
     "Telescope",
     "Messages",
     "Enew",
-    "RestoreSession",
   },
   config = function()
     require("reticle").setup({

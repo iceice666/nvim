@@ -9,7 +9,6 @@ return {
       color_overrides = {
         all = {
           mzk = "#DDAACC",
-          dark_red = "#51112f",
         },
       },
       custom_highlights = function(c)
@@ -34,8 +33,17 @@ return {
         },
       },
     })
-    vim.g.theme = "catppuccin"
-    vim.g.colors = require("catppuccin.palettes").get_palette("mocha")
     vim.cmd("colorscheme catppuccin")
+    vim.g.theme = "catppuccin"
+
+    local colors = require("catppuccin.palettes").get_palette("mocha")
+    colors.bg = colors.base
+    colors.git = {
+      add = colors.green,
+      change = colors.yellow,
+      delete = colors.red,
+    }
+
+    vim.g.colors = colors
   end,
 }

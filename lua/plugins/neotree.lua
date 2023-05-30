@@ -21,13 +21,13 @@ return {
       window = {
         mappings = {
           ["ge"] = function()
-            vim.api.nvim_exec("Neotree focus filesystem left", true)
+            vim.cmd("Neotree focus filesystem left")
           end,
           ["gb"] = function()
-            vim.api.nvim_exec("Neotree focus buffers left", true)
+            vim.cmd("Neotree focus buffers left")
           end,
           ["gg"] = function()
-            vim.api.nvim_exec("Neotree focus git_status left", true)
+            vim.cmd("Neotree focus git_status left")
           end,
 
           ["<cr>"] = "open",
@@ -81,9 +81,9 @@ return {
         },
         follow_current_file = true,
         always_show = {
-          ".gitignored",
+          ".gitignore",
         },
-        never_show = {
+        never_show_by_pattern = {
           ".vscode",
           ".git",
         },

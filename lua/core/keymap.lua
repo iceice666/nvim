@@ -8,7 +8,7 @@ mapx.group({ silent = true }, function()
     pcall(vim.cmd, "TroubleClose")
     pcall(vim.cmd, "lua require 'dapui'.close()")
 
-    pcall(vim.cmd, "SaveSession")
+    pcall(vim.cmd, "SessionSave")
     vim.cmd("qa!")
   end, "Quit Neovim")
 

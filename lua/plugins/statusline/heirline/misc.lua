@@ -21,4 +21,16 @@ return {
       end),
     },
   },
+  NeoComposer = {
+    provider = require("NeoComposer.ui").status_recording,
+    hl = { fg = "red", bold = true },
+    update = {
+      "RecordingEnter",
+      "RecordingLeave",
+      -- redraw the statusline on recording events
+      callback = vim.schedule_wrap(function()
+        vim.cmd("redrawstatus")
+      end),
+    },
+  },
 }

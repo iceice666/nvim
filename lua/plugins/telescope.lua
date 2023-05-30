@@ -12,8 +12,20 @@ return {
       -- TODO: usage
       "ecthelionvi/NeoComposer.nvim",
       dependencies = "kkharji/sqlite.lua",
-      opts = {}
-    }
+      config = function()
+        require("NeoComposer").setup({
+          keymaps = {
+            play_macro = "Q",
+            yank_macro = "yq",
+            stop_macro = "cq",
+            toggle_record = "q",
+            cycle_next = "<c-n>",
+            cycle_prev = "<c-p>",
+            toggle_macro_menu = "<c-q>",
+          },
+        })
+      end,
+    },
   },
   cmd = "Telescope",
   keys = "<leader>t",
@@ -111,7 +123,7 @@ return {
     -- telescope.load_extension("file_browser")
     telescope.load_extension("noice")
     telescope.load_extension("workspaces")
-    telescope.load_extension('macros')
+    telescope.load_extension("macros")
 
     local mapx = vim.g.mapx
 

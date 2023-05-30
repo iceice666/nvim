@@ -9,20 +9,13 @@ return {
   end,
   on_click = {
     callback = function()
-      local path =
-        require("neo-tree.sources.manager").get_state("filesystem").path
-      if path == nil then
-        vim.cmd("NeoTreeShow")
-        vim.cmd("sleep 100m")
-        vim.cmd("NeoTreeClose")
-        path = require("neo-tree.sources.manager").get_state("filesystem").path
-      end
-      vim.cmd("TermExec cmd='cd " .. path .. " && lazygit&&exit'")
+      vim.cmd("LazyGit")
     end,
     name = "heirline_git",
   },
   hl = { fg = "orange" },
-  { -- git branch name
+  {
+    -- git branch name
     provider = function(self)
       return " " .. self.status_dict.head
     end,

@@ -18,7 +18,12 @@ return {
     "chrisgrieser/cmp-nerdfont",
     "f3fora/cmp-spell",
 
-    "yehuohan/cmp-im",
+    {
+      "yehuohan/cmp-im",
+      dependencies = {
+        "yehuohan/cmp-im-zh",
+      },
+    },
 
     "saadparwaiz1/cmp_luasnip",
     "ray-x/cmp-treesitter",
@@ -36,17 +41,30 @@ return {
 
     local luasnip = require("luasnip")
 
-    local cmp_im = require('cmp_im')
-    cmp_im.setup {
+    local cmp_im = require("cmp_im")
+    cmp_im.setup({
       -- Enable/Disable IM
-      enable = true,
+      enable = false,
       -- IM tables path array
-      tables = {},
+      tables = require("cmp_im_zh").tables({ "pinyin" }),
       -- Function to format IM-key and IM-tex for completion display
-      format = function(key, text) return vim.fn.printf('%-15S %s', text, key) end,
+      format = function(key, text)
+        return vim.fn.printf("%-15S %s", text, key)
+      end,
       -- Max number entries to show for completion of each table
       maxn = 8,
-    }
+    })
+
+    vim.g.mapx.noremap("<a-;>", function()
+      require("notify")(
+        string.format("IM is %s", cmp_im.toggle() and "enabled" or "disabled"),
+        "info",
+        {
+          title = "cmp Input Method",
+          timeout = 1500,
+        }
+      )
+    end)
 
     require("nvim-autopairs").setup({})
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -89,10 +107,10 @@ return {
         if vim.api.nvim_get_mode().mode == "c" then
           return true
         else
-          return not context.in_treesitter_capture("comment")          -- comment
-              and not context.in_syntax_group("Comment")               -- comment
+          return not context.in_treesitter_capture("comment")        -- comment
+              and not context.in_syntax_group("Comment")             -- comment
               or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" -- prompt
-              or require("cmp_dap").is_dap_buffer()                    -- dap buffer
+              or require("cmp_dap").is_dap_buffer()                  -- dap buffer
         end
       end,
       sources = {
@@ -118,9 +136,10 @@ return {
         ["<CR>"] = confirm_mapping,
         ["<Tab>"] = cmp.mapping(next_option_mapping, { "i" }),
         ["<S-Tab>"] = cmp.mapping(previous_option_mapping, { "i" }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
         ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
         ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
+        ["<Space>"] = cmp.mapping(cmp_im.select(), { "i" }),
       },
       window = {
         completion = {

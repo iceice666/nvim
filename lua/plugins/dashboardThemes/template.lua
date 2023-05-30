@@ -15,10 +15,10 @@ local center = function()
     }
   end
 
-  button("r", "󰉋", "Restore Session", "enew | RestoreSession")
+  button("r", "󰉋", "Restore Session", "enew | bd! 3 | SessionRestore")
   button("w", "", "Change workspaces", "Telescope workspaces")
   button("R", "󱋡", "Recent files", "Telescope oldfiles")
-  button("c", "", "Close dashboard", "enew | bdelete")
+  button("c", "", "Close dashboard", "enew | bd! 3")
   button("m", "", "Messages", "Noice")
   button("p", "", "Lazy profile", "Lazy profile")
   button("q", "󰗼", "Quit", "qa")
@@ -30,11 +30,11 @@ local footer = function()
   local version = vim.version()
   if version ~= nil then
     version = "Neovim v"
-      .. version.major
-      .. "."
-      .. version.minor
-      .. "."
-      .. version.patch
+        .. version.major
+        .. "."
+        .. version.minor
+        .. "."
+        .. version.patch
   end
 
   local stats = require("lazy").stats()
@@ -43,9 +43,9 @@ local footer = function()
     "",
     version .. " started in " .. ms .. "ms",
     "loaded: "
-      .. stats.loaded
-      .. ", lazy-loaded: "
-      .. stats.count - stats.loaded,
+    .. stats.loaded
+    .. ", lazy-loaded: "
+    .. stats.count - stats.loaded,
     "",
   }
   return footer
@@ -57,8 +57,8 @@ return {
     file_width = nil,
     file_height = nil,
     command = "cat | bash "
-      .. vim.fn.stdpath("config")
-      .. "/lua/plugins/dashboardThemes/static/animated_lolcat.sh",
+        .. vim.fn.stdpath("config")
+        .. "/lua/plugins/dashboardThemes/static/animated_lolcat.sh",
     file_path = nil,
   },
   config = {

@@ -18,6 +18,8 @@ return {
     "chrisgrieser/cmp-nerdfont",
     "f3fora/cmp-spell",
 
+    "yehuohan/cmp-im",
+
     "saadparwaiz1/cmp_luasnip",
     "ray-x/cmp-treesitter",
 
@@ -33,6 +35,18 @@ return {
     local cmp = require("cmp")
 
     local luasnip = require("luasnip")
+
+    local cmp_im = require('cmp_im')
+    cmp_im.setup {
+      -- Enable/Disable IM
+      enable = true,
+      -- IM tables path array
+      tables = {},
+      -- Function to format IM-key and IM-tex for completion display
+      format = function(key, text) return vim.fn.printf('%-15S %s', text, key) end,
+      -- Max number entries to show for completion of each table
+      maxn = 8,
+    }
 
     require("nvim-autopairs").setup({})
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -75,10 +89,10 @@ return {
         if vim.api.nvim_get_mode().mode == "c" then
           return true
         else
-          return not context.in_treesitter_capture("comment")        -- comment
-              and not context.in_syntax_group("Comment")             -- comment
+          return not context.in_treesitter_capture("comment")          -- comment
+              and not context.in_syntax_group("Comment")               -- comment
               or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" -- prompt
-              or require("cmp_dap").is_dap_buffer()                  -- dap buffer
+              or require("cmp_dap").is_dap_buffer()                    -- dap buffer
         end
       end,
       sources = {
@@ -88,6 +102,7 @@ return {
         { name = "path" },
         { name = "nerdfont" },
         { name = "treesitter" },
+        { name = "IM" },
         {
           name = "luasnip",
           option = { show_autosnippets = true },

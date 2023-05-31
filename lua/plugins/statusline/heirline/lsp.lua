@@ -50,7 +50,7 @@ return {
     -- check that we are in insert or select mode
     condition = function()
       return vim.tbl_contains({ "s", "i" }, vim.fn.mode())
-        and (luasnip.expand_or_jumpable() or luasnip.jumpable(-1))
+          and (luasnip.expand_or_jumpable() or luasnip.jumpable(-1))
     end,
     provider = function()
       local forward = luasnip.expand_or_jumpable() and " " or ""
@@ -58,5 +58,16 @@ return {
       return " " .. backward .. forward
     end,
     hl = { fg = "red", bold = true },
+  },
+  CmpIM = {
+    provider = function()
+      if vim.g.isIMEnable then
+        return "  Pinyin: actived"
+      else
+        return ""
+      end
+    end,
+    hl = { fg = "red", bold = true },
+    update = true,
   },
 }

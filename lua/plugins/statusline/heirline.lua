@@ -1,11 +1,11 @@
-local function req(modules)
-  return require("plugins.statusline.heirline." .. modules)
-end
-
 return {
   "rebelot/heirline.nvim",
   event = "BufReadPost",
   config = function()
+    local function req(modules)
+      return require("plugins.statusline.heirline." .. modules)
+    end
+
     local cond = require("heirline.conditions")
     local utils = require("heirline.utils")
     local Align = { provider = "%=" }
@@ -24,8 +24,14 @@ return {
     local NullLsClients = req("lsp").NullLsClients
     local LspClients = req("lsp").LspClients
     local Snippets = req("lsp").Snippets
-    local MacroRec = req("misc").MacroRec
-    local NeoComposer = req("misc").NeoComposer
+    local CmpIM = req("lsp").CmpIM
+    local MacroRecoder = function()
+      if pcall(require, "NeoComposer") then
+        return req("macro").NeoComposer
+      else
+        return req("macro").MacroRec
+      end
+    end
 
     ViMode = utils.surround({ "█", "" }, "bg", { ViMode })
 
@@ -34,19 +40,20 @@ return {
       Space,
       FileName,
       Space,
-      -- MacroRec,
-      NeoComposer,
+      MacroRecoder(),
       Space,
       DAPMessages,
       Space,
       ------------------------------------------------
       Align,
       ------------------------------------------------
+      CmpIM,
+      Space,
+      ------------------------------------------------
       Align,
       ------------------------------------------------
       Snippets,
       Space,
-      -- Space,
       Git,
       Space,
       LspClients,

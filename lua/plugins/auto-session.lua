@@ -32,7 +32,7 @@ return {
 
     vim.g.mapx.nnoremap(
       "<leader>R",
-      "<cmd>RestoreSession<cr>",
+      "<cmd>RestorSession<cr>",
       "Restore Session"
     )
   end,

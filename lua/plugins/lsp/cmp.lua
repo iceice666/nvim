@@ -55,15 +55,8 @@ return {
       maxn = 8,
     })
 
-    vim.g.mapx.noremap("<a-;>", function()
-      require("notify")(
-        string.format("IM is %s", cmp_im.toggle() and "enabled" or "disabled"),
-        "info",
-        {
-          title = "cmp Input Method",
-          timeout = 1500,
-        }
-      )
+    vim.g.mapx.inoremap("<a-;>", function()
+      vim.g.isIMEnable = cmp_im.toggle()
     end)
 
     require("nvim-autopairs").setup({})
@@ -133,10 +126,10 @@ return {
         end,
       },
       mapping = {
-        ["<CR>"] = confirm_mapping,
+        ["<CR>"] = cmp.mapping(confirm_mapping),
+        ["<S-CR>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
         ["<Tab>"] = cmp.mapping(next_option_mapping, { "i" }),
         ["<S-Tab>"] = cmp.mapping(previous_option_mapping, { "i" }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
         ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
         ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
         ["<Space>"] = cmp.mapping(cmp_im.select(), { "i" }),

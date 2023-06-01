@@ -57,10 +57,28 @@ local function table_to_string(tbl)
   return result .. "\n}"
 end
 
+local function insert_between_items(src, sep, res)
+  local result = res or {}
+  local i = 1
+  while true do
+    table.insert(result, src[i])
+    if i < #src then
+      table.insert(result, sep)
+    else
+      break
+    end
+
+    i = i + 1
+  end
+
+  return result
+end
+
 return {
   firstToUpper = function(str)
     return (str:gsub("^%l", string.upper))
   end,
   flatten = flatten,
   table_to_string = table_to_string,
+  insert_between_items = insert_between_items,
 }

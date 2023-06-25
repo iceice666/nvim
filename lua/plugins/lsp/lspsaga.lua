@@ -4,7 +4,7 @@ return {
   cmd = "Lspsaga",
   config = function()
     local theme_dyeing = function()
-      if not (true or vim.g.theme == "catppuccin") then
+      if vim.g.theme == "catppuccin" and (not vim.g.theme == "catppuccin") then
         return require("catppuccin.groups.integrations.lsp_saga").custom_kind()
       else
         return {

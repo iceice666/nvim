@@ -62,36 +62,6 @@ return {
     require("nvim-autopairs").setup({})
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
-    local confirm_mapping = function(fallback)
-      if luasnip.expandable() then
-        return luasnip.expand()
-      end
-      if cmp and cmp.visible() and cmp.get_active_entry() then
-        cmp.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = false,
-        })
-        return
-      end
-      fallback()
-    end
-
-    local next_option_mapping = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end
-
-    local previous_option_mapping = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end
-
     cmp.setup({
       enabled = function()
         -- disable completion in comments
@@ -100,10 +70,10 @@ return {
         if vim.api.nvim_get_mode().mode == "c" then
           return true
         else
-          return not context.in_treesitter_capture("comment")        -- comment
-              and not context.in_syntax_group("Comment")             -- comment
-              or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" -- prompt
-              or require("cmp_dap").is_dap_buffer()                  -- dap buffer
+          return not context.in_treesitter_capture("comment") -- comment
+              and not context.in_syntax_group("Comment") -- comment
+            or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" -- prompt
+            or require("cmp_dap").is_dap_buffer() -- dap buffer
         end
       end,
       sources = {
@@ -126,13 +96,41 @@ return {
         end,
       },
       mapping = {
-        ["<CR>"] = cmp.mapping(confirm_mapping),
-        ["<S-CR>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
-        ["<Tab>"] = cmp.mapping(next_option_mapping, { "i" }),
-        ["<S-Tab>"] = cmp.mapping(previous_option_mapping, { "i" }),
+        ["<CR>"] = cmp.mapping(function(fallback)
+          if cmp.visible() and cmp.get_active_entry() then
+            cmp.confirm({
+              behavior = cmp.ConfirmBehavior.Replace,
+              select = true,
+            })
+          else
+            fallback()
+          end
+        end, { "i", "c" }),
+        ["<esc>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- they way you will only jump inside the snippet region
+          elseif luasnip.expand_or_locally_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
         ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
         ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
         ["<Space>"] = cmp.mapping(cmp_im.select(), { "i" }),
+        ["<c-space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       },
       window = {
         completion = {

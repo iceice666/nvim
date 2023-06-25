@@ -32,10 +32,6 @@ return {
           "pyright",
           -- rust
           "rust_analyzer",
-          -- ts/js
-          "tsserver",
-          -- css
-          "cssls",
         },
         automatic_installation = true,
       })

@@ -1,19 +1,29 @@
 local mapx = vim.g.mapx
 
 mapx.group({ silent = true }, function()
-  -- Quit
-  mapx.nnoremap("<leader>Q", function()
+  local pre_quit = function()
     pcall(vim.cmd, "NeoTreeClose")
     pcall(vim.cmd, "UndotreeHide")
     pcall(vim.cmd, "TroubleClose")
     pcall(vim.cmd, "lua require 'dapui'.close()")
 
     pcall(vim.cmd, "SessionSave")
+  end
+
+  -- Quit
+  mapx.nnoremap("<leader>Q", function()
+    pre_quit()
     vim.cmd("qa!")
   end, "Quit Neovim")
 
+  -- restart ( exit with code 1 )
+  mapx.nnoremap("<leader>rr", function()
+    pre_quit()
+    vim.cmd("cq!")
+  end, "Reload Neovim")
+
   -- clear current lines
-  mapx.nnoremap("d<space>", "<esc>ddO<esc>")
+  mapx.nnoremap("d<space>", "ddO")
 
   -- Move selected sections
   -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32
@@ -76,6 +86,50 @@ mapx.group({ silent = true }, function()
     "<leader>B",
     "<Cmd>call jobstart([\"hyprctl\",\"dispatch\",\"exec\",\"--\",\"firefox\",\"--new-window\", expand(\"<cfile>\")], {\"detach\": v:true})<CR>",
     "Open url"
+  )
+
+  -- An expression mapping for dd that doesn't yank an empty line into your default register
+  mapx.nnoremap(
+    "dd",
+    (function()
+      if vim.api.nvim_get_current_line():match("^%s*$") then
+        return "\"_dd"
+      else
+        return "dd"
+      end
+    end)()
+  )
+
+  --An expression mapping for i that will indent properly on empty lines
+  mapx.nnoremap(
+    "i",
+    (function()
+      if #vim.fn.getline(".") == 0 then
+        return [["_cc]]
+      else
+        return "i"
+      end
+    end)()
+  )
+
+  --  in json file, that will auto append a comma at the EOL when adding a new line
+  mapx.nnoremap(
+    "o",
+    (function()
+      local line = vim.api.nvim_get_current_line()
+
+      if vim.bo.filetype == "json" then
+        return "o"
+      end
+
+      local should_add_comma = string.find(line, "[^,{[]$")
+      if should_add_comma then
+        return "A,<cr>"
+      else
+        return "o"
+      end
+    end)(),
+    { buffer = true, expr = true }
   )
 
   --custom group

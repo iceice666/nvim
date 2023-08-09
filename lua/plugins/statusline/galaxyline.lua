@@ -3,7 +3,7 @@ return {
   "glepnir/galaxyline.nvim",
   event = "BufReadPre",
   config = function()
-    local firstToUpper = require("core.utils").firstToUpper
+    local firstToUpper = vim.g.util.firstToUpper
     local colors = vim.g.colors
     local fileinfo = require("galaxyline.provider_fileinfo")
     local galaxyline = require("galaxyline")
@@ -17,7 +17,6 @@ return {
       "dapui_scopes",
       "dapui_console",
       "dap-repl",
-      "lspsagaoutline",
     }
     local separator = function()
       return {
@@ -219,11 +218,11 @@ return {
             local current_line = vim.fn.line(".")
             local total_lines = vim.fn.line("$")
             return current_line
-                .. "/"
-                .. total_lines
-                .. " ("
-                .. math.floor(current_line * 100 / total_lines)
-                .. "%)"
+              .. "/"
+              .. total_lines
+              .. " ("
+              .. math.floor(current_line * 100 / total_lines)
+              .. "%)"
           end,
           separator = "",
           separator_highlight = { "NONE", colors.bg },

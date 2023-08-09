@@ -88,13 +88,6 @@ return {
         end,
       },
       extensions = {
-        file_browser = {
-          hijack_netrw = true,
-          --hidden = true,
-          grouped = true,
-          depth = 2,
-          theme = "ivy",
-        },
         workspaces = {
           keep_insert = true,
         },
@@ -120,7 +113,6 @@ return {
     --telescope.load_extension('dap')
     telescope.load_extension("fzf")
     telescope.load_extension("live_grep_args")
-    -- telescope.load_extension("file_browser")
     telescope.load_extension("noice")
     telescope.load_extension("workspaces")
     telescope.load_extension("macros")
@@ -138,12 +130,6 @@ return {
         "<leader>tfg",
         "<cmd>Telescope git_files<cr>",
         "Telescope: Find git tracked files"
-      )
-
-      mapx.nnoremap(
-        "<leader>tfb",
-        "<cmd>Telescope file_browser<cr>",
-        "Telescope: File browser"
       )
 
       mapx.nnoremap(

@@ -5,39 +5,39 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- stylua: ignore
 local nnoremaps = {
-  { "gp",         "<cmd>Lspsaga peek_definition<cr>",          "LSP: Peek defintion" },
-  { "gd",         "<cmd>Lspsaga goto_definition<cr>",          "LSP: Goto definiton" },
-  { "gf",         "<cmd>Lspsaga lsp_finder<cr>",               "LSP: Find keyword" },
-  { "gH",         "<cmd>Lspsaga hover_doc ++keep<cr>",         "LSP: Show doc" },
-  { "gi",         "<cmd>lua vim.lsp.buf.implementation()<cr>" },
-  { "gr",         "<cmd>Lspsaga rename<cr>",                   "LSP: Rename" },
-  { "g[",         "<cmd>lua vim.diagnostic.goto_prev()<cr>",   "LSP: Go prev diagnostic" },
-  { "g]",         "<cmd>lua vim.diagnostic.goto_next()<cr>",   "LSP: Go next diagnostic" },
-  { "<leader>so", "<cmd>Lspsaga outline<cr>",                  "LSP: Show current buffer symbol outline" },
-  { "<leader>sh", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP: Show signature help" },
-  { "<leader>ca", "<cmd>Lspsaga code_action<cr>",              "LSP: Code action" }
+  ["gp"]         = { "<cmd>Lspsaga peek_definition<cr>", "LSP: Peek defintion" },
+  ["gd"]         = { vim.lsp.buf.definition, "LSP: Goto definiton" },
+  ["gH"]         = { vim.lsp.buf.hover, "LSP: Show doc" },
+  ["gi"]         = { vim.lsp.buf.implementation },
+  ["gr"]         = { vim.lsp.buf.rename, "LSP: Rename" },
+  ["g["]         = { vim.diagnostic.goto_prev, "LSP: Go prev diagnostic" },
+  ["g]"]         = { vim.diagnostic.goto_next, "LSP: Go next diagnostic" },
+  ["<leader>so"] = { vim.lsp.buf.document_symbol, "LSP: Show current buffer symbol outline" },
+  ["<leader>sh"] = { vim.lsp.buf.signature_help, "LSP: Show signature help" },
+  ["<leader>ca"] = { vim.lsp.buf.code_action, "LSP: Code action" }
 }
 
 local vnoremaps = {
-  { "<leader>ca", "<cmd>Lspsaga code_action<cr>", "LSP: Code action" },
+  ["<leader>ca"] = { "<cmd>Lspsaga code_action<cr>", "LSP: Code action" },
 }
 
 -- mapping keybind
 local do_map = function(bufnr, nnms, vnms)
   mapx.group({ silent = true, buffer = bufnr }, function()
-    for _, k in ipairs(nnms) do
-      mapx.nnoremap(k[1], k[2], k[3])
+    for k, v in ipairs(nnms) do
+      mapx.nnoremap(k, v[1], v[2])
     end
-    for _, k in ipairs(vnms) do
-      mapx.vnoremap(k[1], k[2], k[3])
+    for k, v in ipairs(vnms) do
+      mapx.vnoremap(k, v[1], v[2])
     end
   end)
 end
 
 local lsp_config = function(settings, nmaps, vmaps)
   settings = settings or {}
-  nmaps = nnoremaps or {}
-  vmaps = vnoremaps or {}
+  nmaps = nmaps or nnoremaps
+  vmaps = vmaps or vnoremaps
+
   return (
     vim.tbl_extend("force", {
       on_attach = function(_, bufnr)

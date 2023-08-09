@@ -39,7 +39,7 @@ local FileName = {
   hl = { fg = utils.get_highlight("Directory").fg },
 }
 
-local firstToUpper = require("core.utils").firstToUpper
+local firstToUpper = vim.g.util.firstToUpper
 local FileType = {
   provider = function(self)
     local ft = vim.bo.filetype

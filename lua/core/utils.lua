@@ -2,6 +2,8 @@ local function noop(...)
   return ...
 end
 
+local util = {}
+
 local function flatten(t, sep, key_modifier, res)
   if type(t) ~= "table" then
     return t
@@ -31,6 +33,7 @@ local function flatten(t, sep, key_modifier, res)
   end
   return res
 end
+util.flatten = flatten
 
 local function table_to_string(tbl)
   local result = "{\n"
@@ -56,6 +59,7 @@ local function table_to_string(tbl)
   end
   return result .. "\n}"
 end
+util.table_to_string = table_to_string
 
 local function insert_between_items(src, sep, res)
   local result = res or {}
@@ -73,12 +77,11 @@ local function insert_between_items(src, sep, res)
 
   return result
 end
+util.insert_between_items = insert_between_items
 
-return {
-  firstToUpper = function(str)
-    return (str:gsub("^%l", string.upper))
-  end,
-  flatten = flatten,
-  table_to_string = table_to_string,
-  insert_between_items = insert_between_items,
-}
+local function firstToUpper(str)
+  return (str:gsub("^%l", string.upper))
+end
+util.firstToUpper = firstToUpper
+
+return util

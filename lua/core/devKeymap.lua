@@ -15,13 +15,13 @@ mapx.nnoremap("<F4>", function()
 end, "Print activated null-ls cilents")
 mapx.nnoremap("<F7>", function()
   local error =
-      #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+    #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
   local warn =
-      #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+    #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
   local info =
-      #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+    #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
   local hint =
-      #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+    #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
   print("error " .. error)
   print("warn " .. warn)
   print("info " .. info)
@@ -36,5 +36,5 @@ mapx.nnoremap("<F8>", function()
 end, "Print activated lsp clients")
 
 mapx.nnoremap("<F12>", function()
-  require("core.utils").flatten(vim.g.colors)
+  vim.g.util.flatten(vim.g.colors)
 end)

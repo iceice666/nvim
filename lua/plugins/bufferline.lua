@@ -18,7 +18,7 @@ return {
           local s = " "
           for e, n in pairs(diagnostics_dict) do
             local sym = e == "error" and " "
-              or (e == "warning" and " " or " ")
+                or (e == "warning" and " " or " ")
             s = s .. n .. sym
           end
           return s
@@ -33,12 +33,6 @@ return {
           {
             filetype = "undotree",
             text = "Undo History",
-            hightlight = "Directory",
-            text_align = "center",
-          },
-          {
-            filetype = "lspsagaoutline",
-            text = "Objects",
             hightlight = "Directory",
             text_align = "center",
           },
@@ -144,10 +138,15 @@ return {
         "<cmd>BufferLineGoToBuffer 9<CR>",
         "Buf: Switch to buffer9"
       )
-      mapx.nnoremap("<leader>q", "<cmd>bd %<cr>", "Buf: Close current buffer")
+      mapx.nnoremap(
+        "<leader>q",
+        "<cmd>Neotree close<cr><cmd>bdelete %<cr>",
+        "Buf: Close current buffer"
+      )
+
       mapx.nnoremap(
         "<leader>bo",
-        "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>",
+        "<cmd>BufferLineCloseOthers<CR>",
         "Buf: Close all except current"
       )
       mapx.nnoremap(

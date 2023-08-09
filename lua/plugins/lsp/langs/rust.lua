@@ -1,31 +1,39 @@
 local rt = require("rust-tools")
-local lsp_config = require("plugins.lsp.langs.default").lsp_config
 local util = require("lspconfig/util")
+local lsp_config = require("plugins.lsp.langs.default").lsp_config
+local nmaps = require("plugins.lsp.langs.default").nnoremaps
 
--- stylua: ignore start
---
--- https://github.com/simrat39/rust-tools.nvim#usage
-local nnoremaps = {
-  { "gd",         "<cmd>Lspsaga peek_definition<cr>",          "LSP: Peek defintion" },
-  { "gD",         "<cmd>Lspsaga goto_definition<cr>",          "LSP: Goto definiton" },
-  { "gh",         "<cmd>Lspsaga lsp_finder<cr>",               "LSP: Find keyword" },
-  { "gH",         "<cmd>Lspsaga hover_doc ++keep<cr>",         "LSP: Show doc" },
-  { "gi",         "<cmd>lua vim.lsp.buf.implementation()<cr>" },
-  { "gr",         "<cmd>Lspsaga rename<cr>",                   "LSP: Rename" },
-  { "g[",         "<cmd>lua vim.diagnostic.goto_prev()<cr>",   "LSP: Go prev diagnostic" },
-  { "g]",         "<cmd>lua vim.diagnostic.goto_next()<cr>",   "LSP: Go next diagnostic" },
-  { "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<cr>",     "LSP: Show current buffer diagnostics" },
-  { "<leader>so", "<cmd>Lspsaga outline<cr>",                  "LSP: Show current buffer symbol outline" },
-  { "<leader>sh", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "LSP: Show signature help" },
-  { "<leader>ca", "<cmd>Lspsaga code_action<cr>",              "LSP: Code action" }
-}
--- stylua: ignore end
+-- nmaps["gh"] = { rt.hover_actions.hover_actions, "LSP: rust: hover actions " }
 
 return function()
   rt.setup({
     tools = {
       inlay_hints = {
         auto = true,
+      },
+      hover_actions = {
+        -- the border that is used for the hover window
+        -- see vim.api.nvim_open_win()
+        border = {
+          { "╭", "FloatBorder" },
+          { "─", "FloatBorder" },
+          { "╮", "FloatBorder" },
+          { "│", "FloatBorder" },
+          { "╯", "FloatBorder" },
+          { "─", "FloatBorder" },
+          { "╰", "FloatBorder" },
+          { "│", "FloatBorder" },
+        },
+
+        -- Maximal width of the hover window. Nil means no max.
+        max_width = nil,
+
+        -- Maximal height of the hover window. Nil means no max.
+        max_height = nil,
+
+        -- whether the hover action window gets automatically focused
+        -- default: false
+        auto_focus = true,
       },
     },
     server = lsp_config({
@@ -38,6 +46,6 @@ return function()
           },
         },
       },
-    }, nnoremaps, _),
+    }, nmaps),
   })
 end

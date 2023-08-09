@@ -29,8 +29,19 @@ return {
     "ray-x/cmp-treesitter",
 
     -- Snippets
-    "L3MON4D3/LuaSnip",
-    "rafamadriz/friendly-snippets",
+
+    {
+      "L3MON4D3/LuaSnip",
+      dependencies = { "rafamadriz/friendly-snippets" },
+      config = function()
+        require("luasnip").config.set_config({
+          enable_autosnippets = true,
+        })
+        require("luasnip.loaders.from_lua").load({
+          paths = vim.fn.stdpath("config") .. "/snippets",
+        })
+      end,
+    },
     "onsails/lspkind-nvim",
 
     -- Other
@@ -59,8 +70,23 @@ return {
       vim.g.isIMEnable = cmp_im.toggle()
     end)
 
+    vim.g.mapx.nnoremap("<a-;>", function()
+      vim.g.isIMEnable = cmp_im.toggle()
+    end)
+
     require("nvim-autopairs").setup({})
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
+    local has_words_before = function()
+      unpack = unpack or table.unpack
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0
+          and vim.api
+          .nvim_buf_get_lines(0, line - 1, line, true)[1]
+          :sub(col, col)
+          :match("%s")
+          == nil
+    end
 
     cmp.setup({
       enabled = function()
@@ -70,10 +96,10 @@ return {
         if vim.api.nvim_get_mode().mode == "c" then
           return true
         else
-          return not context.in_treesitter_capture("comment") -- comment
-              and not context.in_syntax_group("Comment") -- comment
-            or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" -- prompt
-            or require("cmp_dap").is_dap_buffer() -- dap buffer
+          return not context.in_treesitter_capture("comment")        -- comment
+              and not context.in_syntax_group("Comment")             -- comment
+              or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" -- prompt
+              or require("cmp_dap").is_dap_buffer()                  -- dap buffer
         end
       end,
       sources = {
@@ -106,7 +132,9 @@ return {
             fallback()
           end
         end, { "i", "c" }),
+
         ["<esc>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
+
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -114,10 +142,13 @@ return {
             -- they way you will only jump inside the snippet region
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
           else
             fallback()
           end
         end, { "i", "s" }),
+
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -127,6 +158,7 @@ return {
             fallback()
           end
         end, { "i", "s" }),
+
         ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
         ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
         ["<Space>"] = cmp.mapping(cmp_im.select(), { "i" }),

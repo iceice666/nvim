@@ -6,7 +6,7 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
   },
-  branch = "v2.x",
+  branch = "v3.x",
   keys = "<leader>e",
   cmd = {
     "Neotree",
@@ -79,13 +79,16 @@ return {
           hide_hidden = false,
           hide_dotfiles = false,
         },
-        follow_current_file = true,
+        follow_current_file = {
+          enabled = true,
+        },
         always_show = {
           ".gitignore",
         },
-        never_show_by_pattern = {
+        never_show = {
           ".vscode",
           ".git",
+          ".idea",
         },
       },
 

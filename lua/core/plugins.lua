@@ -13,12 +13,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-  -- which key
-  "folke/which-key.nvim",
-
   -- libs
+
   {
     "b0o/mapx.nvim",
+    -- which key
+    dependencies = {
+      "folke/which-key.nvim",
+    },
     lazy = false,
     priority = 9999,
     config = function()

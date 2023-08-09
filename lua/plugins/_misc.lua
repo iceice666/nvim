@@ -25,4 +25,15 @@ return {
       require("hlslens").setup()
     end,
   },
+  {
+    -- Structural search and replace
+    "cshuaimin/ssr.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("ssr").setup({})
+      vim.keymap.set({ "n", "x" }, "<leader>sr", function()
+        require("ssr").open()
+      end)
+    end,
+  },
 }

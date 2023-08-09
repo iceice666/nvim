@@ -23,6 +23,7 @@ return {
         library = { plugins = { "neotest" }, types = true },
         override = false,
       })
+
       require("mason").setup()
       require("mason-lspconfig").setup({
         ensure_installed = {

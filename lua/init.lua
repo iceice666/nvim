@@ -27,5 +27,7 @@
 
 require("core.basic")
 require("core.plugins")
+
+vim.g.util = require("core.utils")
 require("core.keymap")
 require("core.devKeymap")

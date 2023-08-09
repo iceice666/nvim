@@ -58,7 +58,7 @@ return {
         ScrollBar,
       }
 
-      local insert_between_items = require("core.utils").insert_between_items
+      local insert_between_items = vim.g.util.insert_between_items
       insert_between_items(left, Space, result)
       table.insert(result, Align)
       insert_between_items(middle, Space, result)
@@ -117,7 +117,7 @@ return {
       ActiveStatusline,
     }
 
-    require("heirline").load_colors(require("core.utils").flatten(vim.g.colors))
+    require("heirline").load_colors(vim.g.util.flatten(vim.g.colors))
     require("heirline").setup({ statusline = StatusLines })
   end,
 }

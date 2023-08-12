@@ -5,15 +5,23 @@ return {
   config = function()
     require("todo-comments").setup({
       keywords = {
-        FIX = {
-          icon = " ",
+        IMPORTANT = {
+          icon = "󰀨 ",
           color = "error",
-          alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+          alt = {
+            "NEED_FIX",
+            "FIXME",
+            "BUG",
+            "FIXIT",
+            "ISSUE",
+            "IMPORTANT",
+            "!!!!!",
+          },
         },
         TODO = {
           icon = " ",
-          color = "hint",
-          alt = { "TODO", "NEED" },
+          color = "todo",
+          alt = { "TODO" },
         },
         HACK = {
           icon = " ",
@@ -24,10 +32,6 @@ return {
           icon = " ",
           color = "warning",
           alt = { "WARNING", "WARN" },
-        },
-        PERF = {
-          icon = " ",
-          alt = { "PERFORMANCE", "OPTIMIZE" },
         },
         NOTE = {
           icon = " ",
@@ -41,11 +45,10 @@ return {
         },
       },
       colors = {
+        todo = { "#ccddff" },
         error = { "#DC2626" },
         warning = { "#FBBF24" },
-        info = { "#2563EB" },
         hint = { "#10B981" },
-        default = { "#7C3AED" },
         test = { "#FF00FF" },
       },
     })

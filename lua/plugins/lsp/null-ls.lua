@@ -17,8 +17,6 @@ return {
 
     null_ls.setup({
       sources = {
-        -- "c", "cpp", "cs", "java", "cuda", "proto"
-        formatting.clang_format,
 
         -- "javascript", "javascriptreact",
         -- "typescript", "typescriptreact",

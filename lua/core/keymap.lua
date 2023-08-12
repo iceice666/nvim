@@ -1,15 +1,28 @@
 local mapx = vim.g.mapx
 
-mapx.group({ silent = true }, function()
-  local pre_quit = function()
-    pcall(vim.cmd, "NeoTreeClose")
-    pcall(vim.cmd, "UndotreeHide")
-    pcall(vim.cmd, "TroubleClose")
-    pcall(vim.cmd, "lua require 'dapui'.close()")
-
-    pcall(vim.cmd, "SessionSave")
+local feed_keys = function(keys, mode)
+  if keys == nil then
+    return
   end
 
+  mode = mode or "n"
+  vim.api.nvim_feedkeys(
+    vim.api.nvim_replace_termcodes(keys, true, false, true),
+    mode,
+    false
+  )
+end
+
+local pre_quit = function()
+  pcall(vim.cmd, "NeoTreeClose")
+  pcall(vim.cmd, "UndotreeHide")
+  pcall(vim.cmd, "TroubleClose")
+  pcall(vim.cmd, "lua require 'dapui'.close()")
+
+  pcall(vim.cmd, "SessionSave")
+end
+
+mapx.group({ silent = true }, function()
   -- Quit
   mapx.nnoremap("<leader>Q", function()
     pre_quit()
@@ -40,10 +53,6 @@ mapx.group({ silent = true }, function()
   -- Select all
   mapx.nnoremap("<c-a>", "ggVG", "Select all")
   mapx.vnoremap("<c-a>", "ggVG", "Select all")
-
-  -- better indenting
-  -- mapx.vnoremap("<", "^i<bs><esc>")
-  -- mapx.vnoremap(">", "^i<tab><esc>")
 
   -- Cursor jumping
   mapx.nnoremap("J", "10j")
@@ -89,48 +98,34 @@ mapx.group({ silent = true }, function()
   )
 
   -- An expression mapping for dd that doesn't yank an empty line into your default register
-  mapx.nnoremap(
-    "dd",
-    (function()
-      if vim.api.nvim_get_current_line():match("^%s*$") then
-        return "\"_dd"
-      else
-        return "dd"
-      end
-    end)()
-  )
+  mapx.nnoremap("dd", function()
+    if vim.api.nvim_get_current_line():match("^%s*$") then
+      feed_keys("\"_dd")
+    else
+      feed_keys("dd")
+    end
+  end)
 
   --An expression mapping for i that will indent properly on empty lines
-  mapx.nnoremap(
-    "i",
-    (function()
-      if #vim.fn.getline(".") == 0 then
-        return [["_cc]]
-      else
-        return "i"
-      end
-    end)()
-  )
+  mapx.nnoremap("i", function()
+    if #vim.fn.getline(".") == 0 then
+      feed_keys("\"_cc")
+    else
+      feed_keys("i")
+    end
+  end)
 
-  --  in json file, that will auto append a comma at the EOL when adding a new line
-  mapx.nnoremap(
-    "o",
-    (function()
-      local line = vim.api.nvim_get_current_line()
+  --  in json-like structure, that will auto append a comma at the EOL when adding a new line
+  mapx.nnoremap("o", function()
+    local line = vim.api.nvim_get_current_line()
 
-      if vim.bo.filetype == "json" then
-        return "o"
-      end
-
-      local should_add_comma = string.find(line, "[^,{[]$")
-      if should_add_comma then
-        return "A,<cr>"
-      else
-        return "o"
-      end
-    end)(),
-    { buffer = true, expr = true }
-  )
+    local should_add_comma = string.find(line, "[^,{[]$")
+    if should_add_comma then
+      feed_keys("A,<CR>")
+    else
+      feed_keys("o")
+    end
+  end)
 
   --custom group
   mapx.nname("<leader>u", "Utils")

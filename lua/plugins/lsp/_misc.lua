@@ -1,8 +1,19 @@
 return {
   {
+    "p00f/clangd_extensions.nvim",
+    ft = { "c", "cpp" },
+    config = function()
+      require("clangd_extensions").setup()
+    end,
+  },
+  {
+    -- eww yuck support
+    "elkowar/yuck.vim",
+    ft = { "yuck" },
+  },
+  {
     -- rust
     "simrat39/rust-tools.nvim",
-    config = function() end,
     ft = {
       "rust",
     },
@@ -22,9 +33,5 @@ return {
       "rust",
       "rs",
     },
-  },
-  {
-    "baskerville/vim-sxhkdrc",
-    ft = { "sxhkdrc" },
   },
 }

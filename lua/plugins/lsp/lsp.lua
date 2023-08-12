@@ -4,6 +4,7 @@ return {
     "folke/neodev.nvim",
     ft = "lua",
   },
+
   {
     "lvimuser/lsp-inlayhints.nvim",
     event = "FileReadPost",
@@ -36,16 +37,27 @@ return {
         },
         automatic_installation = true,
       })
-      local lsp_config = require("plugins.lsp.langs.default").lsp_config
+
+      local lsp_config = require("plugins.lsp.langs._default").lsp_config
+
+      local load = function(lang)
+        return function()
+          require("plugins.lsp.langs." .. lang)
+        end
+      end
 
       require("mason-lspconfig").setup_handlers({
         function(server_name)
           require("lspconfig")[server_name].setup(lsp_config())
         end,
-        ["lua_ls"] = require("plugins.lsp.langs.lua"),
-        ["pyright"] = require("plugins.lsp.langs.python"),
-        ["rust_analyzer"] = require("plugins.lsp.langs.rust"),
-        ["clangd"] = require("plugins.lsp.langs.c_cpp"),
+
+        -- NOTE: when 'load' a lang, that means let lua require/load the lang's setup.
+        -- The setup will be defined under `lua/plugins/lsp/langs`.
+        --
+        -- IMPORTANT: the return value of load() is a function
+        ["lua_ls"] = load("lua"),
+        ["pyright"] = load("python"),
+        ["rust_analyzer"] = load("rust"),
       })
     end,
   },

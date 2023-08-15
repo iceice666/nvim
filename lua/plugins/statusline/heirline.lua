@@ -23,6 +23,7 @@ return {
     local Ruler = req("ruler").Ruler
     local ScrollBar = req("ruler").ScrollBar
     local DAPMessages = req("dap").DAPMessages
+    local Diagnostics = req("lsp").Diagnostics
     local NullLsClients = req("lsp").NullLsClients
     local LspClients = req("lsp").LspClients
     local Snippets = req("lsp").Snippets
@@ -40,6 +41,7 @@ return {
       local left = {
         ViMode,
         FileName,
+        Diagnostics,
         MacroRecoder,
         DAPMessages,
       }

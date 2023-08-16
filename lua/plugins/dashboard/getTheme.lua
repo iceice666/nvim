@@ -2,23 +2,26 @@
 -- │                      Theme wrapper                       │
 -- ╰──────────────────────────────────────────────────────────╯
 
-local theme = "plugins.dashboardThemes."
+local theme = "plugins.dashboard.themes."
 
 local themes = {
   "default",
   "default",
   "default",
+  "default",
+  "default",
+  "default",
+  "fozhu",
+  "fozhu",
   "fkunv",
-  "rickroll"
+  "rickroll",
 }
 
 math.randomseed(os.time())
 local themeName = themes[math.random(#themes)]
-local db = require(theme .. themeName .. '.' .. themeName)
-
-
-if db.preview.file_path == nil then
-  db.preview.file_path = vim.fn.stdpath("config") .. "/lua/plugins/dashboardThemes/" .. themeName .. "/icon.txt"
-end
+local cfg = require(theme .. themeName)
+local db = require("plugins.dashboard.template")
+db.config.header = db.config.header(cfg.header)
+db.config.footer = db.config.footer(cfg.footer)
 
 return db

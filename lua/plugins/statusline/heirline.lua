@@ -24,7 +24,7 @@ return {
     local ScrollBar = req("ruler").ScrollBar
     local DAPMessages = req("dap").DAPMessages
     local Diagnostics = req("lsp").Diagnostics
-    local NullLsClients = req("lsp").NullLsClients
+    -- local NullLsClients = req("lsp").NullLsClients
     local LspClients = req("lsp").LspClients
     local Snippets = req("lsp").Snippets
     local CmpIM = req("lsp").CmpIM
@@ -54,7 +54,7 @@ return {
         Snippets,
         Git,
         LspClients,
-        NullLsClients,
+        -- NullLsClients,
         Ruler,
         FileType,
         ScrollBar,
@@ -97,7 +97,6 @@ return {
       condition = function()
         return cond.buffer_matches({ buftype = { "terminal" } })
       end,
-      hl = { bg = "dark_red" },
       -- Quickly add a condition to the ViMode to only show it when buffer is active!
       { condition = cond.is_active, ViMode, Space },
       TerminalName,

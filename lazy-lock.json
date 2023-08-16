@@ -85,7 +85,6 @@
   "tsnode-marker.nvim": { "branch": "main", "commit": "c60f75520fcc8d9519bbc5bd3ca99fb41e014ba1" },
   "undotree": { "branch": "master", "commit": "0e11ba7325efbbb3f3bebe06213afa3e7ec75131" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
-  "vim-sxhkdrc": { "branch": "master", "commit": "7b8abc305ba346c3af7d57da0ebec2b2f2d3f5b0" },
   "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" },
   "winshift.nvim": { "branch": "main", "commit": "37468ed6f385dfb50402368669766504c0e15583" },
   "workspaces.nvim": { "branch": "master", "commit": "c8bd98990d322b107e58ff5373038b753a8ef66d" },

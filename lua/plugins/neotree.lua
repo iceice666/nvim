@@ -32,8 +32,8 @@ return {
 
           ["<cr>"] = "open",
           ["<tab>"] = { "toggle_preview", config = { use_float = true } },
-          ["S"] = "open_split",
-          ["s"] = "open_vsplit",
+          ["S"] = "split_with_window_picker",
+          ["s"] = "vsplit_with_window_picker",
           ["w"] = "open_with_window_picker",
           ["a"] = {
             "add",
@@ -59,8 +59,8 @@ return {
             config = {
               show_path = "relative", -- "none", "relative", "absolute"
             },
-          }, -- takes text input for destination, also accepts the optional config.show_path option like "add".
-          ["q"] = "close_window",
+          },                          -- takes text input for destination, also accepts the optional config.show_path option like "add".
+          ["q"] = "cancel",
           ["R"] = "refresh",
           ["?"] = "show_help",
           ["["] = "prev_source",
@@ -74,21 +74,45 @@ return {
 
       filesystem = {
         filtered_items = {
-          visible = true,
-          hide_gitignored = false,
+          visible = false,
+          hide_gitignored = true,
           hide_hidden = false,
           hide_dotfiles = false,
+          follow_current_file = {
+            enabled = true,
+          },
+          always_show = {
+            ".gitignore",
+          },
+          never_show = {
+            ".vscode",
+            ".git",
+            ".idea",
+          },
+          hide_by_pattern = { -- uses glob style patterns
+            "*.lock",
+          },
         },
-        follow_current_file = {
-          enabled = true,
-        },
-        always_show = {
-          ".gitignore",
-        },
-        never_show = {
-          ".vscode",
-          ".git",
-          ".idea",
+        window = {
+          mappings = {
+            ["<bs>"] = "navigate_up",
+            ["."] = "set_root",
+            ["H"] = "toggle_hidden",
+            ["/"] = "fuzzy_finder",
+            ["D"] = "fuzzy_finder_directory",
+            ["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
+            -- ["D"] = "fuzzy_sorter_directory",
+            ["f"] = "filter_on_submit",
+            ["<c-/>"] = "clear_filter",
+            ["g["] = "prev_git_modified",
+            ["g]"] = "next_git_modified",
+          },
+          fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
+            ["<down>"] = "move_cursor_down",
+            ["<C-n>"] = "move_cursor_down",
+            ["<up>"] = "move_cursor_up",
+            ["<C-p>"] = "move_cursor_up",
+          },
         },
       },
 

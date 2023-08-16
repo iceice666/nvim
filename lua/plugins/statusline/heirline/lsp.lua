@@ -1,11 +1,8 @@
 local luasnip = require("luasnip")
-local conditions = require("heirline.conditions")
 
 return {
 
   Diagnostics = {
-
-    condition = conditions.has_diagnostics,
 
     static = {
       error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1].text,
@@ -25,37 +22,31 @@ return {
           #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
     end,
 
-    update = { "DiagnosticChanged", "BufEnter" },
+    update = { "DiagnosticChanged" },
 
     {
-      provider = "![",
-    },
-    {
       provider = function(self)
-        return " " .. self.error_icon .. self.errors .. " "
+        return self.error_icon .. self.errors .. " "
       end,
-      hl = { fg = "diag_error" },
+      hl = { fg = "red" },
     },
     {
       provider = function(self)
         return self.warn_icon .. self.warnings .. " "
       end,
-      hl = { fg = "diag_warn" },
+      hl = { fg = "yellow" },
     },
     {
       provider = function(self)
         return self.info_icon .. self.info .. " "
       end,
-      hl = { fg = "diag_info" },
+      hl = { fg = "sapphire" },
     },
     {
       provider = function(self)
         return self.hint_icon .. self.hints
       end,
-      hl = { fg = "diag_hint" },
-    },
-    {
-      provider = "]",
+      hl = { fg = "green" },
     },
   },
 

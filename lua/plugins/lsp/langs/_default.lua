@@ -32,19 +32,19 @@ local nnoremaps = {
 }
 
 local vnoremaps = {
-  ["<leader>ca"] = { "<cmd>Lspsaga code_action<cr>", "LSP: [C]ode [A]ction" },
+	["<leader>ca"] = { "<cmd>Lspsaga code_action<cr>", "LSP: [C]ode [A]ction" },
 }
 
 -- mapping keybind
 local do_map = function(bufnr, nnms, vnms)
-  mapx.group({ silent = true, buffer = bufnr }, function()
-    for k, v in pairs(nnms) do
-      mapx.nnoremap(k, v[1], v[2])
-    end
-    for k, v in pairs(vnms) do
-      mapx.vnoremap(k, v[1], v[2])
-    end
-  end)
+	mapx.group({ silent = true, buffer = bufnr }, function()
+		for k, v in pairs(nnms) do
+			mapx.nnoremap(k, v[1], v[2])
+		end
+		for k, v in pairs(vnms) do
+			mapx.vnoremap(k, v[1], v[2])
+		end
+	end)
 end
 
 -- default:
@@ -56,23 +56,23 @@ end
 -- }
 
 local lsp_config = function(settings, nmaps, vmaps)
-  settings = settings or {}
-  nmaps = nmaps or nnoremaps
-  vmaps = vmaps or vnoremaps
+	settings = settings or {}
+	nmaps = nmaps or nnoremaps
+	vmaps = vmaps or vnoremaps
 
-  return (
-    vim.tbl_extend("force", {
-      on_attach = function(_, bufnr)
-        do_map(bufnr, nmaps, vmaps)
-      end,
-      capabilities = capabilities,
-    }, settings)
-  )
+	return (
+		vim.tbl_extend("force", {
+			on_attach = function(_, bufnr)
+				do_map(bufnr, nmaps, vmaps)
+			end,
+			capabilities = capabilities,
+		}, settings)
+	)
 end
 
 return {
-  nnoremaps = nnoremaps,
-  vnoremaps = vnoremaps,
-  lsp_config = lsp_config,
-  capabilities = capabilities,
+	nnoremaps = nnoremaps,
+	vnoremaps = vnoremaps,
+	lsp_config = lsp_config,
+	capabilities = capabilities,
 }

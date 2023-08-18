@@ -17,10 +17,10 @@ local center = function()
 
 	button("r", "󰉋 ", "Restore Session", "enew | bd! 3 | SessionRestore")
 	button("w", " ", "Change workspaces", "Telescope workspaces")
-	button("R", "󰑓 ", "Restart nvim", "cq")
 	button("c", "󱎘 ", "Close dashboard", "enew | bd! 3")
 	button("m", "󰍦 ", "Messages", "Noice")
 	button("p", " ", "Lazy profile", "Lazy profile")
+	button("R", "󰑓 ", "Restart nvim", "cq")
 	button("q", "󰗼 ", "Quit", "qa")
 
 	return buttons

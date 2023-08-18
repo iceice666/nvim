@@ -1,48 +1,59 @@
 return {
-    -- Format & lint
-    cond = true,
-    "jose-elias-alvarez/null-ls.nvim",
-    event = {
-        "BufReadPre",
-    },
-    dependencies = {},
-    config = function()
-        local null_ls = require("null-ls")
+	-- Format & lint
+	cond = true,
+	"jose-elias-alvarez/null-ls.nvim",
+	event = {
+		"BufReadPre",
+	},
+	dependencies = {},
+	config = function()
+		local null_ls = require("null-ls")
 
-        local formatting = null_ls.builtins.formatting
-        -- local diagnostics = null_ls.builtins.diagnostics
-        -- local completion = null_ls.builtins.completion
-        -- local code_actions = null_ls.builtins.code_actions
+		local formatting = null_ls.builtins.formatting
+		-- local diagnostics = null_ls.builtins.diagnostics
+		-- local completion = null_ls.builtins.completion
+		-- local code_actions = null_ls.builtins.code_actions
 
-        null_ls.setup({
-            sources = {
+		null_ls.setup({
+			sources = {
 
-                -- "javascript", "javascriptreact",
-                -- "typescript", "typescriptreact",
-                -- "vue", "css", "scss", "less",
-                -- "html",
-                -- "json", "jsonc",
-                -- "yaml",
-                -- "markdown", "markdown.mdx",
-                -- "graphql",
-                -- "handlebars"
-                formatting.prettier_d_slim,
+				-- "javascript", "javascriptreact",
+				-- "typescript", "typescriptreact",
+				-- "vue", "css", "scss", "less",
+				-- "html",
+				-- "json", "jsonc",
+				-- "yaml",
+				-- "markdown", "markdown.mdx",
+				-- "graphql",
+				-- "handlebars"
+				formatting.prettier_d_slim,
 
-                -- lua
-                formatting.stylua,
+				-- lua
+				formatting.stylua.with({
+					extra_args = {
+						"--column-width",
+						"80",
+						"--indent-type",
+						"Spaces",
+						"--indent-width",
+						"2",
+						"--quote-style",
+						"ForceDouble",
+					},
+				}),
 
-                -- rust
-                formatting.rustfmt,
+				-- rust
+				formatting.rustfmt,
 
-                -- python
-                formatting.black.with({
-                    extra_args = {
-                        "--line-length",
-                        "80",
-                    },
-                }),
-                formatting.isort,
-            },
-        })
-    end,
+				-- python
+				formatting.black.with({
+					extra_args = {
+						"--line-length",
+						"80",
+					},
+				}),
+				formatting.isort,
+			},
+		})
+	end,
 }

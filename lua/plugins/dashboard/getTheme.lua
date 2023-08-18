@@ -5,16 +5,16 @@
 local theme = "plugins.dashboard.themes."
 
 local themes = {
-  "default",
-  "default",
-  "default",
-  "default",
-  "default",
-  "default",
-  "fozhu",
-  "fozhu",
-  "fkunv",
-  "rickroll",
+	"default",
+	"default",
+	"default",
+	"default",
+	"default",
+	"default",
+	"fozhu",
+	"fozhu",
+	"fkunv",
+	"rickroll",
 }
 
 math.randomseed(os.time())

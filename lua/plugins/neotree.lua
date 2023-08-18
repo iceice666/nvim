@@ -32,7 +32,10 @@ return {
 					end,
 
 					["<cr>"] = "open",
-					["<tab>"] = { "toggle_preview", config = { use_float = true } },
+					["<tab>"] = {
+						"toggle_preview",
+						config = { use_float = true },
+					},
 					["S"] = "split_with_window_picker",
 					["s"] = "vsplit_with_window_picker",
 					["w"] = "open_with_window_picker",

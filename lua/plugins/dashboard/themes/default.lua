@@ -1,5 +1,5 @@
 return {
-  header = [[
+	header = [[
                                                           
                                                           
                                                           
@@ -20,5 +20,5 @@ return {
                                                           
                                                           
 ]],
-    footer = require("plugins.dashboard.quotes").quote,
+	footer = require("plugins.dashboard.quotes").quote,
 }

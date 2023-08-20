@@ -91,9 +91,6 @@ return {
 				end,
 			},
 			extensions = {
-				workspaces = {
-					keep_insert = true,
-				},
 				media_files = {
 					-- filetypes whitelist
 					-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
@@ -117,7 +114,6 @@ return {
 		telescope.load_extension("fzf")
 		telescope.load_extension("live_grep_args")
 		telescope.load_extension("noice")
-		telescope.load_extension("workspaces")
 		telescope.load_extension("macros")
 
 		local mapx = vim.g.mapx
@@ -136,8 +132,6 @@ return {
 			mapx.nnoremap("<leader>tfs", "<cmd>Telescope live_grep_args<cr>", "Telescope: Find words")
 
 			mapx.nnoremap("<leader>tr", "<cmd>Telescope oldfiles<cr>", "Telescope: Recent files")
-
-			mapx.nnoremap("<leader>tw", "<cmd>Telescope workspaces<cr>", "Telescope: Show workspaces")
 
 			mapx.nnoremap("<leader>ty", "<cmd>Telescope neoclip<cr>", "Telescope: Yank history")
 

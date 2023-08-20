@@ -15,9 +15,8 @@ local center = function()
 		}
 	end
 
-	button("r", "󰉋 ", "Restore Session", "enew | bd! 3 | SessionRestore")
-	button("w", " ", "Change workspaces", "Telescope workspaces")
-	button("c", "󱎘 ", "Close dashboard", "enew | bd! 3")
+	button("r", "󰉋 ", "Restore Session", "SessionRestore")
+	button("c", "󱎘 ", "Close dashboard", "enew ")
 	button("m", "󰍦 ", "Messages", "Noice")
 	button("p", " ", "Lazy profile", "Lazy profile")
 	button("R", "󰑓 ", "Restart nvim", "cq")

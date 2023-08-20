@@ -18,7 +18,7 @@ return {
 			self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
 		end,
 
-		update = { "DiagnosticChanged" },
+		update = { "DiagnosticChanged","InsertLeave" },
 
 		{
 			provider = function(self)

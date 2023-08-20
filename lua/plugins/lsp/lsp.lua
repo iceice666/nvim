@@ -30,7 +30,6 @@ return {
 				ensure_installed = {
 					-- lua
 					"lua_ls",
-          "stylua",
 					-- python
 					"pyright",
 					-- rust

@@ -4,7 +4,14 @@ return {
 
   Diagnostics = {
     condition = function()
-      return #vim.lsp.get_active_clients({ bufnr = 0 }) > 0
+      local lsps = vim.lsp.get_active_clients({ bufnr = 0 })
+      local n = 0
+      for _, k in ipairs(lsps) do
+        if k.name ~= "null-ls" then
+          n = n + 1
+        end
+      end
+      return n > 0
     end,
 
     static = {
@@ -15,20 +22,21 @@ return {
     },
 
     init = function(self)
-      self.errors =
-          vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+      self.error_table =
+        vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+      self.errors = #self.error_table
       self.warnings =
-          vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+        #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
       self.hints =
-          vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+        #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
       self.info =
-          vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+        #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
     end,
 
     {
       update = { "DiagnosticChanged", "BufEnter" },
       condition = function(self)
-        return #self.errors + #self.warnings + #self.info + #self.hints == 0
+        return self.errors + self.warnings + self.info + self.hints == 0
       end,
 
       provider = "󰔓 Ur code has no errors!",
@@ -38,26 +46,26 @@ return {
     {
       update = { "DiagnosticChanged", "BufEnter" },
       condition = function(self)
-        return #self.errors > 0
+        return self.errors > 0
       end,
       provider = function(self)
-        return self.error_icon .. #self.errors .. " "
+        return self.error_icon .. self.errors .. " "
       end,
       hl = { fg = "red" },
     },
     {
       update = { "CursorMoved", "CursorMovedI" },
       condition = function(self)
-        return #self.errors > 0
+        return self.errors > 0
       end,
       provider = function(self)
-        if #self.errors == 1 then
-          return self.errors[1].message .. " "
+        if self.errors == 1 then
+          return self.error_table[1].message .. " "
         else
           local cursor = vim.api.nvim_win_get_cursor(0)[1]
           local offset = 1145141919810 -- tbh, can a human-readable file has so many lines in real world?
           local closest = 1
-          for i, n in ipairs(self.errors) do
+          for i, n in ipairs(self.error_table) do
             local current_offset = math.abs(cursor - n.lnum)
             if current_offset < offset then
               offset = current_offset
@@ -67,7 +75,7 @@ return {
             end
           end
 
-          return self.errors[closest].message .. " "
+          return self.error_table[closest].message .. " "
         end
       end,
       hl = { fg = "red" },
@@ -75,30 +83,30 @@ return {
     {
       update = { "DiagnosticChanged", "BufEnter" },
       condition = function(self)
-        return #self.errors == 0 and #self.warnings > 0
+        return self.errors == 0 and self.warnings > 0
       end,
       provider = function(self)
-        return self.warn_icon .. #self.warnings .. " "
+        return self.warn_icon .. self.warnings .. " "
       end,
       hl = { fg = "yellow" },
     },
     {
       update = { "DiagnosticChanged", "BufEnter" },
       condition = function(self)
-        return #self.errors == 0 and #self.info > 0
+        return self.errors == 0 and self.info > 0
       end,
       provider = function(self)
-        return self.info_icon .. #self.info .. " "
+        return self.info_icon .. self.info .. " "
       end,
       hl = { fg = "sapphire" },
     },
     {
       update = { "DiagnosticChanged", "BufEnter" },
       condition = function(self)
-        return #self.errors == 0 and #self.hints > 0
+        return self.errors == 0 and self.hints > 0
       end,
       provider = function(self)
-        return self.hint_icon .. #self.hints
+        return self.hint_icon .. self.hints
       end,
       hl = { fg = "green" },
     },
@@ -154,7 +162,7 @@ return {
     -- check that we are in insert or select mode
     condition = function()
       return vim.tbl_contains({ "s", "i" }, vim.fn.mode())
-          and (luasnip.expand_or_jumpable() or luasnip.jumpable(-1))
+        and (luasnip.expand_or_jumpable() or luasnip.jumpable(-1))
     end,
     provider = function()
       local forward = luasnip.expand_or_jumpable() and " " or ""

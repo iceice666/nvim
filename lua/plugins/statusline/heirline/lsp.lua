@@ -4,14 +4,14 @@ return {
 
   Diagnostics = {
     condition = function()
-      return #vim.lsp.get_active_clients()
+      return #vim.lsp.get_active_clients({ bufnr = 0 }) > 0
     end,
 
     static = {
-        error_icon = " ",
-        warn_icon =  " ",
-        hint_icon =  " ",
-        info_icon =  " ",
+      error_icon = " ",
+      warn_icon = " ",
+      hint_icon = " ",
+      info_icon = " ",
     },
 
     init = function(self)
@@ -26,13 +26,27 @@ return {
     end,
 
     {
-      update = { "DiagnosticChanged", "InsertLeave" },
+      update = { "DiagnosticChanged", "BufEnter" },
+      condition = function(self)
+        return #self.errors + #self.warnings + #self.info + #self.hints == 0
+      end,
+
+      provider = "󰔓 Good job! Ur code has no bugs!",
+      hl = { fg = "green" },
+    },
+
+    {
+      update = { "DiagnosticChanged", "BufEnter" },
+      condition = function(self)
+        return #self.errors > 0
+      end,
       provider = function(self)
         return self.error_icon .. #self.errors .. " "
       end,
       hl = { fg = "red" },
     },
     {
+      update = { "CursorMoved", "CursorMovedI" },
       condition = function(self)
         return #self.errors > 0
       end,
@@ -41,7 +55,7 @@ return {
           return self.errors[1].message .. " "
         else
           local cursor = vim.api.nvim_win_get_cursor(0)[1]
-          local offset = 1145141919810
+          local offset = 1145141919810 -- tbh, can a human-readable file has so many lines in real world?
           local closest = 1
           for i, n in ipairs(self.errors) do
             local current_offset = math.abs(cursor - n.lnum)
@@ -59,9 +73,9 @@ return {
       hl = { fg = "red" },
     },
     {
-      update = { "DiagnosticChanged" },
+      update = { "DiagnosticChanged", "BufEnter" },
       condition = function(self)
-        return #self.errors == 0
+        return #self.errors == 0 and #self.warnings > 0
       end,
       provider = function(self)
         return self.warn_icon .. #self.warnings .. " "
@@ -69,9 +83,9 @@ return {
       hl = { fg = "yellow" },
     },
     {
-      update = { "DiagnosticChanged" },
+      update = { "DiagnosticChanged", "BufEnter" },
       condition = function(self)
-        return #self.errors == 0
+        return #self.errors == 0 and #self.info > 0
       end,
       provider = function(self)
         return self.info_icon .. #self.info .. " "
@@ -79,9 +93,9 @@ return {
       hl = { fg = "sapphire" },
     },
     {
-      update = { "DiagnosticChanged" },
+      update = { "DiagnosticChanged", "BufEnter" },
       condition = function(self)
-        return #self.errors == 0
+        return #self.errors == 0 and #self.hints > 0
       end,
       provider = function(self)
         return self.hint_icon .. #self.hints

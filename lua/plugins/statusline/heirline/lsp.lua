@@ -31,7 +31,7 @@ return {
         return #self.errors + #self.warnings + #self.info + #self.hints == 0
       end,
 
-      provider = "󰔓 Good job! Ur code has no bugs!",
+      provider = "󰔓 Ur code has no errors!",
       hl = { fg = "green" },
     },
 

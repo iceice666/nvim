@@ -165,9 +165,9 @@ return {
         and (luasnip.expand_or_jumpable() or luasnip.jumpable(-1))
     end,
     provider = function()
-      local forward = luasnip.expand_or_jumpable() and " " or ""
-      local backward = luasnip.jumpable(-1) and " " or ""
-      return " " .. backward .. forward
+      local forward = luasnip.expand_or_jumpable() and "󰜲 " or ""
+      local backward = luasnip.jumpable(-1) and "󰜵 " or ""
+      return "󰈚 " .. backward .. forward
     end,
     hl = { fg = "red", bold = true },
   },

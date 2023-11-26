@@ -1,7 +1,7 @@
 -- Treesitter / Syntax
 return {
 	"nvim-treesitter/playground",
-	dependenices = {
+	dependencies = {
 
 		"nvim-treesitter/nvim-treesitter",
 	},

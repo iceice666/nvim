@@ -41,10 +41,6 @@ mapx.group({ silent = true }, function()
 
   -- Move selected sections
   -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32
-  mapx.nnoremap("<c-j>", "<cmd>m .+1<cr>==", "Move down")
-  mapx.nnoremap("<c-k>", "<cmd>m .-2<cr>==", "Move up")
-  mapx.inoremap("<c-j>", "<esc><cmd>m .+1<cr>==gi", "Move down")
-  mapx.inoremap("<c-k>", "<esc><cmd>m .-2<cr>==gi", "Move up")
   mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv", "Move down")
   mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv", "Move up")
 

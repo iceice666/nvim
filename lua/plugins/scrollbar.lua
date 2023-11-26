@@ -1,13 +1,12 @@
 return {
-	-- scrollbar
-	"petertriho/nvim-scrollbar",
-	event = "BufReadPost",
-	theme = "tokyonight",
-	config = function()
-		require("scrollbar").setup({
-			show_in_active_only = true,
-		})
+  -- scrollbar
+  "petertriho/nvim-scrollbar",
+  event = "BufReadPost",
+  config = function()
+    require("scrollbar").setup({
+      show_in_active_only = true,
+    })
 
-		require("scrollbar.handlers.search").setup({})
-	end,
+    require("scrollbar.handlers.search").setup({})
+  end,
 }

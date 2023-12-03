@@ -21,7 +21,7 @@ rt.setup({
           allFeatures = true,
         },
         check = {
-          ignore = { "unused_variables", "dead_code", "unused_imports" },
+          ignore = { "unused_variables", "dead_code"},
         },
       },
     },

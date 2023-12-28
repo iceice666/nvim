@@ -36,8 +36,8 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>F", "<cmd>lua vim.lsp.buf.format()<cr>", "Buf: Format")
   mapx.nnoremap("<leader>W", "<cmd>lua vim.lsp.buf.format()<cr><cmd>w<cr>", "Buf: Format and write")
 
-  -- clear current lines
-  mapx.nnoremap("d<space>", "ddO")
+  -- delete text of current line
+  mapx.nnoremap("d<space>", "cc<esc>", "Content of current line")
 
   -- Move selected sections
   -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32

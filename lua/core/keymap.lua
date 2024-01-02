@@ -45,7 +45,7 @@ mapx.group({ silent = true }, function()
   mapx.vnoremap("<c-k>", ":m '<-2<cr>gv=gv", "Move up")
 
   -- redo
-  mapx.nnoremap("U", "<cmd>later<cr>", "Redo")
+  mapx.nnoremap("U", "<C-R>", "Redo")
 
   -- Select all
   mapx.nnoremap("<c-a>", "ggVG", "Select all")

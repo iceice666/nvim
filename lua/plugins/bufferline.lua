@@ -13,7 +13,7 @@ return {
           local s = " "
           for e, n in pairs(diagnostics_dict) do
             local sym = e == "error" and " "
-              or (e == "warning" and " " or " ")
+                or (e == "warning" and " " or " ")
             s = s .. n .. sym
           end
           return s
@@ -34,95 +34,63 @@ return {
         },
       },
 
-      highlights ={
+      highlights = {
         buffer_visible = {
           fg = vim.g.colors.text
         }
       }
     })
-    local mapx = vim.g.mapx
-    mapx.group({ silent = true }, function()
-      mapx.nnoremap(
-        "<leader>[",
-        "<cmd>BufferLineCyclePrev<cr>",
-        "Buf: Switch to prev buffer"
-      )
-      mapx.nnoremap(
-        "<leader>]",
-        "<cmd>BufferLineCycleNext<cr>",
-        "Buf: Switch to next buffer"
-      )
-      mapx.nnoremap(
-        "<leader>1",
-        "<cmd>BufferLineGoToBuffer 1<CR>",
-        "Buf: Switch to buffer1"
-      )
-      mapx.nnoremap(
-        "<leader>2",
-        "<cmd>BufferLineGoToBuffer 2<CR>",
-        "Buf: Switch to buffer2"
-      )
-      mapx.nnoremap(
-        "<leader>3",
-        "<cmd>BufferLineGoToBuffer 3<CR>",
-        "Buf: Switch to buffer3"
-      )
-      mapx.nnoremap(
-        "<leader>4",
-        "<cmd>BufferLineGoToBuffer 4<CR>",
-        "Buf: Switch to buffer4"
-      )
-      mapx.nnoremap(
-        "<leader>5",
-        "<cmd>BufferLineGoToBuffer 5<CR>",
-        "Buf: Switch to buffer5"
-      )
-      mapx.nnoremap(
-        "<leader>6",
-        "<cmd>BufferLineGoToBuffer 6<CR>",
-        "Buf: Switch to buffer6"
-      )
-      mapx.nnoremap(
-        "<leader>7",
-        "<cmd>BufferLineGoToBuffer 7<CR>",
-        "Buf: Switch to buffer7"
-      )
-      mapx.nnoremap(
-        "<leader>8",
-        "<cmd>BufferLineGoToBuffer 8<CR>",
-        "Buf: Switch to buffer8"
-      )
-      mapx.nnoremap(
-        "<leader>9",
-        "<cmd>BufferLineGoToBuffer 9<CR>",
-        "Buf: Switch to buffer9"
-      )
-      mapx.nnoremap(
-        "<leader>q",
-        "<cmd>Neotree close<cr><cmd>bdelete %<cr>",
-        "Buf: Close current buffer"
-      )
-
-      mapx.nnoremap(
-        "<leader>bo",
-        "<cmd>BufferLineCloseOthers<CR>",
-        "Buf: Close all except current"
-      )
-      mapx.nnoremap(
-        "<leader>ba",
-        "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR><cmd>bd<cr>",
-        "Buf: Close all buffers"
-      )
-      mapx.nnoremap(
-        "<leader>bp",
-        "<cmd>BufferLinePick<CR>",
-        "Buf: Switch to picked one"
-      )
-      mapx.nnoremap(
-        "<leader>bd",
-        "<cmd>BufferLinePickClose<CR>",
-        "Buf: Close a picked one"
-      )
-    end)
   end,
+  keys = {
+    {
+      "<leader>[", "<cmd>BufferLineCyclePrev<cr>", desc = "Buf: Switch to prev buffer"
+    },
+    {
+      "<leader>]", "<cmd>BufferLineCycleNext<cr>", desc = "Buf: Switch to next buffer"
+    },
+    {
+      "<leader>1", "<cmd>BufferLineGoToBuffer 1<CR>", desc = "Buf: Switch to buffer1"
+    },
+    {
+      "<leader>2", "<cmd>BufferLineGoToBuffer 2<CR>", desc = "Buf: Switch to buffer2"
+    },
+    {
+      "<leader>3", "<cmd>BufferLineGoToBuffer 3<CR>", desc = "Buf: Switch to buffer3"
+    },
+    {
+      "<leader>4", "<cmd>BufferLineGoToBuffer 4<CR>", desc = "Buf: Switch to buffer4"
+    },
+    {
+      "<leader>5", "<cmd>BufferLineGoToBuffer 5<CR>", desc = "Buf: Switch to buffer5"
+    },
+    {
+      "<leader>6", "<cmd>BufferLineGoToBuffer 6<CR>", desc = "Buf: Switch to buffer6"
+    },
+    {
+      "<leader>7", "<cmd>BufferLineGoToBuffer 7<CR>", desc = "Buf: Switch to buffer7"
+    },
+    {
+      "<leader>8", "<cmd>BufferLineGoToBuffer 8<CR>", desc = "Buf: Switch to buffer8"
+    },
+    {
+      "<leader>9", "<cmd>BufferLineGoToBuffer 9<CR>", desc = "Buf: Switch to buffer9"
+    },
+    {
+      "<leader>q", "<cmd>Neotree close<cr><cmd>bd %<cr>", desc = "Buf: Close current buffer"
+    },
+    {
+      "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", desc = "Buf: Close all except current"
+    },
+    {
+      "<leader>ba",
+      "<cmd>BufferLineCloseOthers<CR><cmd>bd<cr>",
+      desc = "Buf: Close all buffers"
+    },
+    {
+      "<leader>bp", "<cmd>BufferLinePick<CR>", desc = "Buf: Switch to picked one"
+    },
+    {
+      "<leader>bd", "<cmd>BufferLinePickClose<CR>", desc = "Buf: Close a picked one"
+    },
+  }
 }

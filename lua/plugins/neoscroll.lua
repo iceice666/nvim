@@ -18,12 +18,10 @@ return {
       mode = { "n", "x", "o" }
     }
   },
-  config = function()
-    require("neoscroll").setup({
-      mappings = {},
-      hide_cursor = true,
-      stop_eof = true,
-      cursor_scrolls_alone = true,
-    })
-  end,
+  opts = {
+    mappings = {},
+    hide_cursor = true,
+    stop_eof = true,
+    cursor_scrolls_alone = true,
+  },
 }

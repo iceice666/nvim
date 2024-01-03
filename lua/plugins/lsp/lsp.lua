@@ -3,29 +3,23 @@ return {
     -- neodev/ nvim lua setting help
     "folke/neodev.nvim",
     ft = "lua",
+    config = true
   },
 
   {
     "lvimuser/lsp-inlayhints.nvim",
     event = "FileReadPost",
-    config = function()
-      require("lsp-inlayhints").setup()
-    end,
+    config = true
   },
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     dependencies = {
       "williamboman/mason.nvim",
+      config = true,
       dependencies = { "williamboman/mason-lspconfig.nvim" },
     },
     config = function()
-      require("neodev").setup({
-        library = { plugins = { "neotest" }, types = true },
-        override = false,
-      })
-
-      require("mason").setup()
       require("mason-lspconfig").setup({
         ensure_installed = {
           -- lua
@@ -74,7 +68,7 @@ return {
           require("lspconfig")[server_name].setup(lsp_config())
         end,
 
-        -- NOTE: when 'load' a lang, that means let lua require/load the lang's setup.
+        -- NOTE: when load a langauge (server), that means let lua require/load the lang's setup.
         -- The setup will be defined under `lua/plugins/lsp/langs`.
         --
         -- IMPORTANT: the return value of load() is a function

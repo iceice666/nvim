@@ -2,9 +2,7 @@ return {
   -- Structural search and replace
   "cshuaimin/ssr.nvim",
   event = "BufReadPre",
-  config = function()
-    require("ssr").setup({})
-  end,
+  config = true,
   keys = {
     {
       "<leader>sr",

@@ -3,59 +3,58 @@ return {
   "folke/noice.nvim",
   dependencies = {
     "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
+    {
+      "rcarriga/nvim-notify",
+      opt = {
+        backgruund = "#252525",
+      },
+    },
   },
-  config = function()
-    require("notify").setup({
-      backgruund = "#252525",
-    })
-
-    require("noice").setup({
-      lsp = {
-        signature = {
-          enabled = false,
-        },
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
-        },
+  opts = {
+    lsp = {
+      signature = {
+        enabled = false,
       },
-      presets = {
-        bottom_search = false,
-        command_palette = true,
-        long_message_to_split = true,
-        inc_rename = false,
-        lsp_doc_border = false,
+      override = {
+        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        ["vim.lsp.util.stylize_markdown"] = true,
+        ["cmp.entry.get_documentation"] = true,
       },
-      messages = {
-        view_search = false,
+    },
+    presets = {
+      bottom_search = false,
+      command_palette = true,
+      long_message_to_split = true,
+      inc_rename = false,
+      lsp_doc_border = false,
+    },
+    messages = {
+      view_search = false,
+    },
+    routes = {
+      {
+        filter = {
+          event = "msg_show",
+          kind = "",
+          find = "written",
+        },
+        opts = { skip = true },
       },
-      routes = {
-        {
-          filter = {
-            event = "msg_show",
-            kind = "",
-            find = "written",
-          },
-          opts = { skip = true },
+      {
+        filter = {
+          event = "msg_show",
+          kind = "search_count",
         },
-        {
-          filter = {
-            event = "msg_show",
-            kind = "search_count",
-          },
-          opts = { skip = true },
-        },
-        {
-          filter = {
-            event = "msg_show",
-            kind = "",
-          },
-          opts = { skip = true },
-        },
+        opts = { skip = true },
       },
-    })
-  end,
+      {
+        filter = {
+          event = "msg_show",
+          kind = "",
+        },
+        opts = { skip = true },
+      },
+    },
+  },
   keys = { { "<leader>sn", "<cmd>Noice<cr>", "Noice: Show noice" } },
 }

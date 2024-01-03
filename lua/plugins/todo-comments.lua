@@ -2,8 +2,7 @@ return {
   -- Todo comment
   "folke/todo-comments.nvim",
   event = "BufReadPost",
-  config = function()
-    require("todo-comments").setup({
+  opts = {
       keywords = {
         IMPORTANT = {
           icon = "󰀨 ",
@@ -51,8 +50,7 @@ return {
         hint = { "#ffb9ff" },
         test = { "#FF00FF" },
       },
-    })
-  end,
+    },
   keys = {
     { "<leader>sT", "<cmd>TodoTrouble<cr>", desc = "Trouble: Show todos" },
   },

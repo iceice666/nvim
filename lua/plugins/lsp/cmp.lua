@@ -5,8 +5,22 @@ return {
     "CmdlineEnter",
   },
   keys = {
-    "?",
-    "/",
+
+    {
+      "<a-;>",
+      function()
+        vim.g.isIMEnable = require("cmp_im").toggle()
+      end,
+      desc = "Change IME",
+    },
+
+    {
+      "<a-;>",
+      function()
+        vim.g.isIMEnable = require("cmp_im").toggle()
+      end,
+      desc = "Change IME",
+    },
   },
   dependencies = {
     -- sources
@@ -14,7 +28,7 @@ return {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
+    "hrsh7th/cmp-emoji",
     "chrisgrieser/cmp-nerdfont",
     "f3fora/cmp-spell",
 
@@ -27,21 +41,6 @@ return {
 
     "saadparwaiz1/cmp_luasnip",
     "ray-x/cmp-treesitter",
-
-    -- Snippets
-
-    {
-      "L3MON4D3/LuaSnip",
-      dependencies = { "rafamadriz/friendly-snippets" },
-      config = function()
-        require("luasnip").config.set_config({
-          enable_autosnippets = true,
-        })
-        require("luasnip.loaders.from_lua").load({
-          paths = vim.fn.stdpath("config") .. "/snippets",
-        })
-      end,
-    },
     "onsails/lspkind-nvim",
 
     -- Other
@@ -65,14 +64,6 @@ return {
       -- Max number entries to show for completion of each table
       maxn = 8,
     })
-
-    vim.g.mapx.inoremap("<a-;>", function()
-      vim.g.isIMEnable = cmp_im.toggle()
-    end)
-
-    vim.g.mapx.nnoremap("<a-;>", function()
-      vim.g.isIMEnable = cmp_im.toggle()
-    end)
 
     require("nvim-autopairs").setup({})
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -104,7 +95,6 @@ return {
       end,
       sources = {
         { name = "nvim_lsp" },
-        { name = "nvim_lsp_signature_help" },
         { name = "buffer" },
         { name = "path" },
         { name = "nerdfont" },
@@ -112,7 +102,7 @@ return {
         { name = "IM" },
         {
           name = "luasnip",
-          option = { show_autosnippets = true },
+          option = { show_autosnippets = false },
         },
         { name = "crates" },
       },
@@ -170,11 +160,16 @@ return {
           col_offset = -3,
           side_padding = 0,
           border = "rounded",
-          scrollbar = "║",
+          scrollbar = true,
         },
-        documentation = nil,
+      },
+      view = {
+        docs = {
+          auto_open = true,
+        },
       },
       formatting = {
+        expandable_indicator = true,
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
           vim_item.menu = vim_item.kind
@@ -197,7 +192,6 @@ return {
       },
       sorting = {
         comparators = {
-
           cmp.config.compare.offset,
           cmp.config.compare.exact,
           cmp.config.compare.recently_used,
@@ -209,6 +203,7 @@ return {
           cmp.config.compare.length,
           cmp.config.compare.order,
         },
+        priority_weight = 1,
       },
     })
 

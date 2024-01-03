@@ -67,6 +67,11 @@ opt.mouse:append("a")
 
 opt.clipboard = "unnamedplus,unnamed"
 
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 if vim.fn.has('wsl') == 1 then
   vim.api.nvim_create_autocmd('TextYankPost', {
 

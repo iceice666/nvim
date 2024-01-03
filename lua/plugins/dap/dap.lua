@@ -2,7 +2,6 @@
 return {
   -- core
   "mfussenegger/nvim-dap",
-  keys = "<F6>",
   cmd = {
     "DapToggleBreakpoint",
     "DapStepOver",
@@ -30,7 +29,7 @@ return {
     local dap = require("dap")
 
     require("mason-nvim-dap").setup({
-      ensure_installed = { "python", "go" },
+      ensure_installed = { "python" },
       automatic_installation = true,
       automatic_setup = true,
     })
@@ -187,28 +186,38 @@ return {
       linehl = "DapStopped",
       numhl = "DapStopped",
     })
+  end,
 
-    local mapx = vim.g.mapx
+  keys = {
+    {
+      "<F5>",
+      "<cmd>DapContinue<cr>",
+      desc = "Dap: Continue",
+    },
+    { "<F17>", "<cmd>DapRerun<cr>", desc = "Dap: Rerun" },
+    { "<F29>", "<cmd>DapTerminate<cr>", desc = "Dap: Stop" },
 
-    mapx.nnoremap("<F5>", "<cmd>DapContinue<cr>", "Dap: Continue")
-    mapx.nnoremap("<F17>", "<cmd>DapRerun<cr>", "Dap: Rerun")
-    mapx.nnoremap("<F29>", "<cmd>DapTerminate<cr>", "Dap: Stop")
-
-    mapx.nnoremap(
+    {
       "<F6>",
-      "<cmd>lua require('dapui').toggle()<cr>",
-      "Dap: Toggle debug ui"
-    )
-    mapx.nnoremap("<F30>", function()
-      dap.repl.close()
-    end, "Dap: Close repl")
-    mapx.nnoremap(
+      function()
+        require("dapui").toggle()
+      end,
+      desc = "Dap: Toggle debug ui",
+    },
+    {
+      "<F30>",
+      function()
+        require("dap").repl.close()
+      end,
+      desc = "Dap: Close repl",
+    },
+    {
       "<F9>",
       "<cmd>DapToggleBreakpoint<cr>",
-      "Dap: Toggle breakpoint"
-    )
-    mapx.nnoremap("<F10>", "<cmd>DapStepOver<cr>", "Dap: Step over")
-    mapx.nnoremap("<F11>", "<cmd>DapStepInto<cr>", "Dap: Step into")
-    mapx.nnoremap("<F12>", "<cmd>DapStepOut<cr>", "Dap: Step out")
-  end,
+      desc = "Dap: Toggle breakpoint",
+    },
+    { "<F10>", "<cmd>DapStepOver<cr>", desc = "Dap: Step over" },
+    { "<F11>", "<cmd>DapStepInto<cr>", desc = "Dap: Step into" },
+    { "<F12>", "<cmd>DapStepOut<cr>", desc = "Dap: Step out" },
+  },
 }

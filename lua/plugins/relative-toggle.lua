@@ -1,8 +1,7 @@
 return {
   "cpea2506/relative-toggle.nvim",
   event = "BufReadPost",
-  config = function()
-    require("relative-toggle").setup({
+  opts ={
       pattern = "*",
       events = {
         off = {
@@ -20,6 +19,5 @@ return {
           "CmdlineEnter",
         },
       },
-    })
-  end,
+    },
 }

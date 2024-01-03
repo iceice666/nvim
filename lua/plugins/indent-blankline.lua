@@ -8,15 +8,13 @@ return {
     highlight IblCurIndent gui=nocombine guifg=#bff3fe
         ]])
   end,
-  config =
-      function()
-        require("ibl").setup({
-          indent = {
-            char = "▎",
-          },
-          scope = {
-            highlight = { "IblCurIndent" },
-          },
-        })
-      end,
+  opts = {
+    indent = {
+      char = "▎",
+    },
+    scope = {
+      highlight = { "IblCurIndent" },
+    },
+  }
+  ,
 }

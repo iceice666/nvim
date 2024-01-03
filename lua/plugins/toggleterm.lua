@@ -8,14 +8,12 @@ return {
   --   "TermExec",
   --   "ToggleTerm",
   -- },
-  config = function()
-    require("toggleterm").setup({
-      direction = "float",
-      hide_numbers = true,
-      shade_terminals = true,
-      start_in_insert = true,
-    })
-  end,
+  opts = {
+    direction = "float",
+    hide_numbers = true,
+    shade_terminals = true,
+    start_in_insert = true,
+  },
   keys = {
     {
       "<a-t>",

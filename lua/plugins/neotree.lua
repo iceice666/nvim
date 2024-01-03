@@ -8,7 +8,6 @@ return {
     "s1n7ax/nvim-window-picker",
   },
   branch = "v3.x",
-  keys = "<leader>e",
   cmd = {
     "Neotree",
   },
@@ -63,7 +62,7 @@ return {
             config = {
               show_path = "relative", -- "none", "relative", "absolute"
             },
-          }, -- takes text input for destination, also accepts the optional config.show_path option like "add".
+          },                          -- takes text input for destination, also accepts the optional config.show_path option like "add".
           ["q"] = "cancel",
           ["R"] = "refresh",
           ["?"] = "show_help",
@@ -207,10 +206,10 @@ return {
         statusline = false,
       },
     })
-
-    local opt = { silent = true }
-    -- File tree
-    local mapx = vim.g.mapx
-    mapx.nnoremap("<leader>e", ":Neotree reveal toggle<cr>", opt)
   end,
+  keys = {
+    {
+      "<leader>e", "<cmd>Neotree reveal toggle<cr>", "Toggle file tree"
+    }
+  }
 }

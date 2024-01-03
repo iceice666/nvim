@@ -28,11 +28,11 @@ return {
     },
   },
   cmd = "Telescope",
-  keys = "<leader>t",
   config = function()
     local actions = require("telescope.actions")
     local previewers = require("telescope.previewers")
     local telescope = require("telescope")
+
     telescope.setup({
       defaults = {
         mappings = {
@@ -114,30 +114,48 @@ return {
     telescope.load_extension("fzf")
     telescope.load_extension("live_grep_args")
     telescope.load_extension("noice")
-    telescope.load_extension("macros")
-
-    local mapx = vim.g.mapx
-
-    mapx.group({ silent = true }, function()
-      mapx.nnoremap("<leader>tff", "<cmd>Telescope find_files<cr>", "Telescope: Find files")
-
-      mapx.nnoremap("<leader>tfg", "<cmd>Telescope git_files<cr>", "Telescope: Find git tracked files")
-
-      mapx.nnoremap(
-        "<leader>tfc",
-        "<cmd>Telescope grep_string<cr>",
-        "Telescope: Find files that contain the current cursor word"
-      )
-
-      mapx.nnoremap("<leader>tfs", "<cmd>Telescope live_grep_args<cr>", "Telescope: Find words")
-
-      mapx.nnoremap("<leader>tr", "<cmd>Telescope oldfiles<cr>", "Telescope: Recent files")
-
-      mapx.nnoremap("<leader>ty", "<cmd>Telescope neoclip<cr>", "Telescope: Yank history")
-
-      mapx.nnoremap("<leader>tm", "<cmd>Telescope macros<cr>", "Telescope: Macros history")
-
-      mapx.nnoremap("<leader>th", "<cmd> Telescope highlights<cr>", "Telescope: highlights")
-    end)
   end,
+
+  keys = {
+    {
+      "<leader>tff",
+      "<cmd>Telescope find_files<cr>",
+      desc = "Telescope: Find files",
+    },
+    {
+      "<leader>tfg",
+      "<cmd>Telescope git_files<cr>",
+      desc = "Telescope: Find git tracked files",
+    },
+    {
+      "<leader>tfc",
+      "<cmd>Telescope grep_string<cr>",
+      desc = "Telescope: Find files that contain the current cursor word",
+    },
+    {
+      "<leader>tfs",
+      "<cmd>Telescope live_grep_args<cr>",
+      desc = "Telescope: Find words",
+    },
+    {
+      "<leader>tr",
+      "<cmd>Telescope oldfiles<cr>",
+      desc = "Telescope: Recent files",
+    },
+    {
+      "<leader>ty",
+      "<cmd>Telescope neoclip<cr>",
+      desc = "Telescope: Yank history",
+    },
+    {
+      "<leader>tm",
+      "<cmd>Telescope macros<cr>",
+      desc = "Telescope: Macros history",
+    },
+    {
+      "<leader>th",
+      "<cmd> Telescope highlights<cr>",
+      desc = "Telescope: highlights",
+    },
+  },
 }

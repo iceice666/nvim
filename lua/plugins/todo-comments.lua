@@ -52,7 +52,8 @@ return {
         test = { "#FF00FF" },
       },
     })
-
-    vim.g.mapx.nnoremap("<leader>sT", "<cmd>TodoTrouble<cr>", "Trouble: Show todos")
   end,
+  keys = {
+    { "<leader>sT", "<cmd>TodoTrouble<cr>", desc = "Trouble: Show todos" },
+  },
 }

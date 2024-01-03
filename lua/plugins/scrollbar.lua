@@ -1,12 +1,13 @@
 return {
-  -- scrollbar
-  "petertriho/nvim-scrollbar",
+  "kevinhwang91/nvim-hlslens",
+  dependencies = {
+    "petertriho/nvim-scrollbar",
+  },
   event = "BufReadPost",
   config = function()
-    require("scrollbar").setup({
-      show_in_active_only = true,
+    -- require('hlslens').setup() is not required
+    require("scrollbar.handlers.search").setup({
+      -- hlslens config overrides
     })
-
-    require("scrollbar.handlers.search").setup({})
   end,
 }

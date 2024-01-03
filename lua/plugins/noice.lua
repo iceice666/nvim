@@ -40,14 +40,22 @@ return {
           },
           opts = { skip = true },
         },
-      },
-      notify = {
-        enabled = true,
-        view = "notify",
+        {
+          filter = {
+            event = "msg_show",
+            kind = "search_count",
+          },
+          opts = { skip = true },
+        },
+        {
+          filter = {
+            event = "msg_show",
+            kind = "",
+          },
+          opts = { skip = true },
+        },
       },
     })
-
-    local mapx = vim.g.mapx
-    mapx.nnoremap("<leader>sn", "<cmd>Noice<cr>", "Noice: Show noice")
   end,
+  keys = { { "<leader>sn", "<cmd>Noice<cr>", "Noice: Show noice" } },
 }

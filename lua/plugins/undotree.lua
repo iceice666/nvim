@@ -1,8 +1,10 @@
 return {
-	-- Undo history
-	"mbbill/undotree",
-	event = "BufAdd",
-	config = function()
-		vim.g.mapx.nnoremap("<leader>U", "<cmd>UndotreeToggle<cr>", "Undo tree")
-	end,
+  -- TODO: change the way to add keybinding
+
+  -- Undo history
+  "mbbill/undotree",
+  event = "BufAdd",
+  config = function()
+    vim.g.mapx.nnoremap("<leader>U", "<cmd>UndotreeToggle<cr>", "Undo tree")
+  end,
 }

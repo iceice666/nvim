@@ -1,25 +1,33 @@
 return {
-	-- toggle term
-	"akinsho/toggleterm.nvim",
-	-- keys = {
-	--   "<a-t>",
-	-- },
-	-- cmd = {
-	--   "TermExec",
-	--   "ToggleTerm",
-	-- },
-	config = function()
-		require("toggleterm").setup({
-			direction = "float",
-			hide_numbers = true,
-			shade_terminals = true,
-			start_in_insert = true,
-		})
-
-		local mapx = vim.g.mapx
-		-- terminal mapping
-		mapx.nnoremap("<a-t>", "<cmd>ToggleTerm<cr>", "Term: Open terminal")
-		mapx.tnoremap("<a-t>", "<c-\\><c-n><cmd>ToggleTerm<cr>", "Term: Close terminal")
-		mapx.tnoremap("<a-e>", "exit<enter>", "Term: exit")
-	end,
+  -- toggle term
+  "akinsho/toggleterm.nvim",
+  -- keys = {
+  --   "<a-t>",
+  -- },
+  -- cmd = {
+  --   "TermExec",
+  --   "ToggleTerm",
+  -- },
+  config = function()
+    require("toggleterm").setup({
+      direction = "float",
+      hide_numbers = true,
+      shade_terminals = true,
+      start_in_insert = true,
+    })
+  end,
+  keys = {
+    {
+      "<a-t>",
+      "<cmd>ToggleTerm<cr>",
+      desc = "Term: Open terminal",
+      mode = { "n" },
+    },
+    {
+      "<a-t>",
+      "<c-\\><c-n><cmd>ToggleTerm<cr>",
+      desc = "Term: Close terminal",
+      mode = { "t" },
+    },
+  },
 }

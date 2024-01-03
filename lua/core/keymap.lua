@@ -36,9 +36,6 @@ mapx.group({ silent = true }, function()
   mapx.nnoremap("<leader>F", "<cmd>lua vim.lsp.buf.format()<cr>", "Buf: Format")
   mapx.nnoremap("<leader>W", "<cmd>lua vim.lsp.buf.format()<cr><cmd>w<cr>", "Buf: Format and write")
 
-  -- delete text of current line
-  mapx.nnoremap("d<space>", "cc<esc>", "Content of current line")
-
   -- Move selected sections
   -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32
   mapx.vnoremap("<c-j>", ":m '>+1<cr>gv=gv", "Move down")
@@ -52,10 +49,6 @@ mapx.group({ silent = true }, function()
   mapx.vnoremap("<c-a>", "ggVG", "Select all")
 
   -- Cursor jumping
-  mapx.nnoremap("J", "10j")
-  mapx.nnoremap("K", "10k")
-  mapx.vnoremap("J", "10j")
-  mapx.vnoremap("K", "10k")
 
   mapx.nnoremap("L", "$")
   mapx.nnoremap("H", "^")

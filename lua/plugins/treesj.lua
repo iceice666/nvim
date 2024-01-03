@@ -1,15 +1,17 @@
 return {
-	"Wansmer/treesj",
-	keys = { "<space>ut" },
-	event = "BufReadPost",
-	dependencies = { "nvim-treesitter/nvim-treesitter" },
-	config = function()
-		local mapx = vim.g.mapx
-		require("treesj").setup({
-			use_default_keymaps = false,
-		})
-		mapx.nnoremap("<leader>ut", function()
-			require("treesj").toggle()
-		end, "Utils: Toggle split/join")
-	end,
+  -- TODO: change the way to add keybinding
+
+  "Wansmer/treesj",
+  keys = { "<space>ut" },
+  event = "BufReadPost",
+  dependencies = { "nvim-treesitter/nvim-treesitter" },
+  config = function()
+    local mapx = vim.g.mapx
+    require("treesj").setup({
+      use_default_keymaps = false,
+    })
+    mapx.nnoremap("<leader>ut", function()
+      require("treesj").toggle()
+    end, "Utils: Toggle split/join")
+  end,
 }

@@ -13,9 +13,4 @@ return {
     end,
     event = "BufReadPre",
   },
-  {
-    -- hlsearch lens
-    "kevinhwang91/nvim-hlslens",
-    keys = "/",
-  },
 }

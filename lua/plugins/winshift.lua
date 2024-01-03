@@ -1,4 +1,6 @@
 return {
+  -- TODO: change the way to add keybinding
+
   -- windows shifting
   "sindrets/winshift.nvim",
   event = "WinEnter",

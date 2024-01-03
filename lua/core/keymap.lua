@@ -33,8 +33,6 @@ mapx.group({ silent = true }, function()
 
   -- write
   mapx.nnoremap("<leader>w", "<cmd>w<cr>", "Buf: Write")
-  mapx.nnoremap("<leader>F", "<cmd>lua vim.lsp.buf.format()<cr>", "Buf: Format")
-  mapx.nnoremap("<leader>W", "<cmd>lua vim.lsp.buf.format()<cr><cmd>w<cr>", "Buf: Format and write")
 
   -- Move selected sections
   -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32

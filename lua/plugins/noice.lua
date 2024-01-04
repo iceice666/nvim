@@ -1,15 +1,11 @@
 return {
+  enabled = true,
   -- Notification
   "folke/noice.nvim",
   lazy = false,
   dependencies = {
     "MunifTanjim/nui.nvim",
-    {
-      "rcarriga/nvim-notify",
-      opt = {
-        backgruund = "#252525",
-      },
-    },
+    "rcarriga/nvim-notify",
   },
   opts = {
     lsp = {

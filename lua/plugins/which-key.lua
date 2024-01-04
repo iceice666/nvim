@@ -41,7 +41,7 @@ return {
 
     -- restart ( exit with code 1 )
     {
-      "<leader>rr",
+      "<leader><C-Q>",
       function()
         vim.cmd("cq!")
       end,

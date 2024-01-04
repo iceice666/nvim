@@ -12,14 +12,7 @@ return {
         vim.g.isIMEnable = require("cmp_im").toggle()
       end,
       desc = "Change IME",
-    },
-
-    {
-      "<a-;>",
-      function()
-        vim.g.isIMEnable = require("cmp_im").toggle()
-      end,
-      desc = "Change IME",
+      mode = { "i", "n" },
     },
   },
   dependencies = {
@@ -45,6 +38,7 @@ return {
 
     -- Other
     "lukas-reineke/cmp-under-comparator",
+    "kawre/neotab.nvim",
   },
   config = function()
     local cmp = require("cmp")
@@ -65,18 +59,18 @@ return {
       maxn = 8,
     })
 
-    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-
     local has_words_before = function()
       unpack = unpack or table.unpack
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
       return col ~= 0
-          and vim.api
-          .nvim_buf_get_lines(0, line - 1, line, true)[1]
-          :sub(col, col)
-          :match("%s")
+        and vim.api
+            .nvim_buf_get_lines(0, line - 1, line, true)[1]
+            :sub(col, col)
+            :match("%s")
           == nil
     end
+
+    local neotab = require("neotab")
 
     cmp.setup({
       enabled = function()
@@ -86,10 +80,10 @@ return {
         if vim.api.nvim_get_mode().mode == "c" then
           return true
         else
-          return not context.in_treesitter_capture("comment")        -- comment
-              and not context.in_syntax_group("Comment")             -- comment
-              or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" -- prompt
-              or require("cmp_dap").is_dap_buffer()                  -- dap buffer
+          return not context.in_treesitter_capture("comment") -- comment
+              and not context.in_syntax_group("Comment") -- comment
+            or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" -- prompt
+            or require("cmp_dap").is_dap_buffer() -- dap buffer
         end
       end,
       sources = {
@@ -131,10 +125,8 @@ return {
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
           else
-            fallback()
+            neotab.tabout()
           end
         end, { "i", "s" }),
 
@@ -150,6 +142,7 @@ return {
 
         ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
         ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
+
         ["<Space>"] = cmp.mapping(cmp_im.select(), { "i" }),
         ["<c-space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       },
@@ -228,6 +221,7 @@ return {
       },
     })
 
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
     require("luasnip.loaders.from_vscode").lazy_load()

@@ -58,7 +58,7 @@ return {
           config = {
             show_path = "relative", -- "none", "relative", "absolute"
           },
-        },                          -- takes text input for destination, also accepts the optional config.show_path option like "add".
+        }, -- takes text input for destination, also accepts the optional config.show_path option like "add".
         ["q"] = "close_window",
         ["R"] = "refresh",
         ["?"] = "show_help",
@@ -204,7 +204,9 @@ return {
   },
   keys = {
     {
-      "<leader>e", "<cmd>Neotree reveal toggle<cr>", "Toggle file tree"
-    }
-  }
+      "<leader>E",
+      "<cmd>Neotree reveal toggle<cr>",
+      "Toggle file tree",
+    },
+  },
 }

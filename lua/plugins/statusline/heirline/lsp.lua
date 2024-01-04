@@ -59,18 +59,19 @@ return {
         return self.errors > 0
       end,
       provider = function(self)
+        -- Iterate the error table and find the closest one
         if self.errors == 1 then
           return self.error_table[1].message .. " "
         else
           local cursor = vim.api.nvim_win_get_cursor(0)[1]
-          local offset = 1145141919810 -- tbh, can a human-readable file has so many lines in real world?
+          local offset_limit = 1145141919810 -- tbh, can a human-readable file has so many lines in real world?
           local closest = 1
           for i, n in ipairs(self.error_table) do
             local current_offset = math.abs(cursor - n.lnum)
-            if current_offset < offset then
-              offset = current_offset
+            if current_offset < offset_limit then
+              offset_limit = current_offset
               closest = i
-            elseif current_offset > offset then
+            elseif current_offset > offset_limit then
               break
             end
           end

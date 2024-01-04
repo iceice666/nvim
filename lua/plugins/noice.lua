@@ -22,6 +22,11 @@ return {
         ["cmp.entry.get_documentation"] = true,
       },
     },
+    cmdline = {
+      format = {
+        filter = false,
+      },
+    },
     presets = {
       bottom_search = false,
       command_palette = true,

@@ -2,6 +2,7 @@
 return {
   -- core
   "mfussenegger/nvim-dap",
+  event = "BufReadPost",
   cmd = {
     "DapToggleBreakpoint",
     "DapStepOver",

@@ -5,11 +5,13 @@ return {
   opts = {
     use_default_keymaps = false,
   },
-  keys = { {
-    "<leader>sj",
-    function()
-      require("treesj").toggle()
-    end,
-    desc = "Utils: Toggle split/join"
-  } }
+  keys = {
+    {
+      "<leader>sj",
+      function()
+        require("treesj").toggle()
+      end,
+      desc = "Utils: Toggle split/join",
+    },
+  },
 }

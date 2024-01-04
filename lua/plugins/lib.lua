@@ -6,7 +6,7 @@ return {
       "folke/which-key.nvim",
     },
     lazy = false,
-    priority = 9999,
+    priority = 999,
     config = function()
       local mapx = require("mapx").setup({ whichkey = true })
       vim.g.mapx = mapx
@@ -14,6 +14,10 @@ return {
   },
   {
     "TravonteD/luajob",
+  },
+  {
+    "stevearc/dressing.nvim",
+    opts = {},
   },
   {
     "MunifTanjim/nui.nvim",

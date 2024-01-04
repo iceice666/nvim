@@ -1,12 +1,11 @@
 return {
   -- windows shifting
   "sindrets/winshift.nvim",
-  event = "WinEnter",
-  opts =
-  {
+  event = "BufAdd",
+  opts = {
     keymaps = {
       disable_defaults = true,
-    }
+    },
   },
 
   keys = {
@@ -14,5 +13,5 @@ return {
     { "<c-h>", "<cmd>WinShift left<cr>" },
     { "<c-j>", "<cmd>WinShift down<cr>" },
     { "<c-k>", "<cmd>WinShift up<cr> " },
-  }
+  },
 }

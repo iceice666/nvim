@@ -1,13 +1,12 @@
-return
-{
+return {
   "folke/flash.nvim",
-  event = "VeryLazy",
+  event = "BufReadPost",
   opts = {
     modes = {
       search = {
-        enabled = false
-      }
-    }
+        enabled = false,
+      },
+    },
   },
   -- stylua: ignore
   keys = {

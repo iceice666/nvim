@@ -25,9 +25,6 @@
 --  │                           佛祖保佑         永無BUG                           │
 --  ╰──────────────────────────────────────────────────────────────────────────────╯
 
+vim.g.util = require("core.utils")
 require("core.basic")
 require("core.plugins")
-
-vim.g.util = require("core.utils")
-require("core.keymap")
-require("core.devKeymap")

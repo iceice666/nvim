@@ -2,8 +2,8 @@ return {
 
   -- Undo history
   "mbbill/undotree",
-  event = "BufAdd",
+  event = "BufReadPost",
   keys = {
-    { "<leader>U", "<cmd>UndotreeToggle<cr>", desc = "Undo tree" }
-  }
+    { "<leader>U", "<cmd>UndotreeToggle<cr>", desc = "Undo tree" },
+  },
 }

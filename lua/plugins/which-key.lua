@@ -11,21 +11,24 @@ local feed_keys = function(keys, mode)
   )
 end
 
+-- ==============================================
+--         Keymap defined here
+-- ==============================================
+
 return {
   "folke/which-key.nvim",
   lazy = false,
   priority = 10000,
   config = true,
   keys = {
-    -- default keymap
 
     --custom group
-    -- { "<leader>b", desc = "Buffers" },
-    -- { "<leader>f", desc = "UFO Folds" },
-    -- { "<leader>t", desc = "Telescope" },
-    -- { "<leader>tf", desc = "Telescope: Find" },
-    -- { "g", desc = "Goto" },
-    -- { "<leader>s", desc = "Show info" },
+    { "<leader>b", desc = "Buffers" },
+    { "<leader>f", desc = "UFO Folds" },
+    { "<leader>t", desc = "Telescope" },
+    { "<leader>tf", desc = "Telescope: Find" },
+    { "g", desc = "Goto" },
+    { "<leader>s", desc = "Show info" },
 
     -- Quit
     {
@@ -76,14 +79,28 @@ return {
     { "<home>", "<esc>^i", mode = "i" },
     { "<end>", "<esc>$a", mode = "i" },
 
-  -- stylua: ignore start
-  -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-  {"n","'Nn'[v:searchforward]",desc="Next search result",  expr = true , mode ={ "n","x","o"}},
-  {"N","'nN'[v:searchforward]",desc="Prev search result",  expr = true , mode ={ "n","x","o"}},
+    -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+    {
+      "n",
+      "'Nn'[v:searchforward]",
+      desc = "Next search result",
+      expr = true,
+      mode = { "n", "x", "o" },
+    },
+    {
+      "N",
+      "'nN'[v:searchforward]",
+      desc = "Prev search result",
+      expr = true,
+      mode = { "n", "x", "o" },
+    },
 
-  -- https://github.com/mhinz/vim-galore#saner-ctrl-l
-  {"<leader>/","<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><c-l>",desc="Buf: Redraw"},
-    -- stylua: ignore end
+    -- https://github.com/mhinz/vim-galore#saner-ctrl-l
+    {
+      "<leader>/",
+      "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><c-l>",
+      desc = "Buf: Redraw",
+    },
 
     { "<c-h>", "<Left>", mode = "i" },
     { "<c-j>", "<Down>", mode = "i" },

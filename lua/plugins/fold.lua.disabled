@@ -1,8 +1,15 @@
 return {
-  enabled = false,
   "kevinhwang91/nvim-ufo",
   dependencies = {
     "kevinhwang91/promise-async",
+  },
+  keys = {
+    -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+    { "<leader>fO", require("ufo").openAllFolds },
+    { "<leader>fC", require("ufo").closeAllFolds },
+    { "<leader>fo", require("ufo").openFoldsExceptKinds },
+    { "<leader>fc", require("ufo").closeFoldsWith },
+    { "<leader>ft", "za" },
   },
   event = { "BufReadPre" },
   config = function()
@@ -12,16 +19,6 @@ return {
     vim.o.foldenable = true
 
     vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
-    -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-    local mapx = vim.g.mapx
-    mapx.group({ silent = true }, function()
-      mapx.nnoremap("<leader>fO", require("ufo").openAllFolds)
-      mapx.nnoremap("<leader>fC", require("ufo").closeAllFolds)
-      mapx.nnoremap("<leader>fo", require("ufo").openFoldsExceptKinds)
-      mapx.nnoremap("<leader>fc", require("ufo").closeFoldsWith)
-      mapx.nnoremap("<leader>ft", "za")
-    end)
 
     local ftMap = {
       vim = "indent",
@@ -39,13 +36,13 @@ return {
       end
 
       return require("ufo")
-          .getFolds(bufnr, "lsp")
-          :catch(function(err)
-            return handleFallbackException(err, "treesitter")
-          end)
-          :catch(function(err)
-            return handleFallbackException(err, "indent")
-          end)
+        .getFolds(bufnr, "lsp")
+        :catch(function(err)
+          return handleFallbackException(err, "treesitter")
+        end)
+        :catch(function(err)
+          return handleFallbackException(err, "indent")
+        end)
     end
 
     require("ufo").setup({
@@ -66,7 +63,13 @@ return {
           jumpBot = "<C-N>",
         },
       },
-      fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
+      fold_virt_text_handler = function(
+        virtText,
+        lnum,
+        endLnum,
+        width,
+        truncate
+      )
         local newVirtText = {}
         local suffix = ("  %d lines"):format(endLnum - lnum)
         local sufWidth = vim.fn.strdisplaywidth(suffix)

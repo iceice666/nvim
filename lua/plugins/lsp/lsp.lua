@@ -3,13 +3,13 @@ return {
     -- neodev/ nvim lua setting help
     "folke/neodev.nvim",
     ft = "lua",
-    config = true
+    config = true,
   },
 
   {
     "lvimuser/lsp-inlayhints.nvim",
     event = "FileReadPost",
-    config = true
+    config = true,
   },
   {
     "neovim/nvim-lspconfig",
@@ -55,7 +55,7 @@ return {
         linehl = "DiagnosticSignInfo",
         numhl = "DiagnosticSignInfo",
       })
-      local lsp_config = require("plugins.lsp.langs._default").lsp_config
+      local lsp_config = require("plugins.lsp.langs.default").on_attach
 
       local load = function(lang)
         return function()
@@ -63,15 +63,18 @@ return {
         end
       end
 
+      -- FIXME:
       require("mason-lspconfig").setup_handlers({
         function(server_name)
-          require("lspconfig")[server_name].setup(lsp_config())
+          require("lspconfig")[server_name].setup({
+            on_attach = on_attach,
+          })
         end,
 
         -- NOTE: when load a langauge (server), that means let lua require/load the lang's setup.
         -- The setup will be defined under `lua/plugins/lsp/langs`.
         --
-        -- IMPORTANT: the return value of load() is a function
+        -- INFO: Use `load` to laod a langauge server and config
         ["lua_ls"] = load("lua"),
         ["pyright"] = load("python"),
         ["rust_analyzer"] = load("rust"),

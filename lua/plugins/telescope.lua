@@ -4,27 +4,10 @@ return {
   dependencies = {
     "nvim-telescope/telescope-live-grep-args.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
+    "ecthelionvi/NeoComposer.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
-    },
-    {
-      -- TODO: usage
-      "ecthelionvi/NeoComposer.nvim",
-      dependencies = "kkharji/sqlite.lua",
-      config = function()
-        require("NeoComposer").setup({
-          keymaps = {
-            play_macro = "Q",
-            yank_macro = "yq",
-            stop_macro = "cq",
-            toggle_record = "q",
-            cycle_next = "<c-n>",
-            cycle_prev = "<c-p>",
-            toggle_macro_menu = "<c-q>",
-          },
-        })
-      end,
     },
   },
   cmd = "Telescope",

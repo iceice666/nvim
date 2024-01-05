@@ -1,6 +1,6 @@
 return {
   "rebelot/heirline.nvim",
-  event = "BufAdd",
+  event = "BufReadPost",
   config = function()
     local function req(modules)
       return require("plugins.statusline.heirline." .. modules)

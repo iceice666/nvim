@@ -10,7 +10,7 @@ return {
       toggle_record = "q",
       cycle_next = "<c-n>",
       cycle_prev = "<c-p>",
-      toggle_macro_menu = "<a-q>",
+      toggle_macro_menu = "<c-q>",
     },
   },
 }

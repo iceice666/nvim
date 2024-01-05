@@ -19,16 +19,27 @@ return {
   "folke/which-key.nvim",
   lazy = false,
   priority = 10000,
-  config = true,
-  keys = {
+  config = function()
+    local wk = require("which-key")
+    wk.setup()
 
-    --custom group
-    { "<leader>b", desc = "Buffers" },
-    { "<leader>f", desc = "UFO Folds" },
-    { "<leader>t", desc = "Telescope" },
-    { "<leader>tf", desc = "Telescope: Find" },
-    { "g", desc = "Goto" },
-    { "<leader>s", desc = "Show info" },
+    wk.register({
+      --custom group
+      ["<leader>b"] = "Buffers",
+      ["<leader>t"] = "relescope",
+      ["<leader>tf"] = "Telescope: Find",
+      ["g"] = "Goto",
+      ["<leader>s"] = "Show info",
+    })
+  end,
+  keys = {
+    {
+      -- esc in insert mode
+      "jk",
+      "<ESC>",
+      mode = { "i" },
+      desc = "Escape",
+    },
 
     -- Quit
     {
@@ -39,9 +50,9 @@ return {
       desc = "Quit Neovim",
     },
 
-    -- restart ( exit with code 1 )
+    -- restart / exit with code 1
     {
-      "<leader><C-Q>",
+      "<leader>rr",
       function()
         vim.cmd("cq!")
       end,

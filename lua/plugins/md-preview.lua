@@ -11,8 +11,20 @@ return {
 
     vim.cmd([[
         function OpenMarkdownPreview (url)
-          execute "silent ! firefox --new-window " . a:url
+
+          if has("win32")
+            call system(['powershell.exe','start' , a:url])
+          elseif has("unix")
+            let s:uname = system("uname")
+            if s:uname == "Darwin\n"
+              "Mac options here
+          
+            elseif s:uname == "Linux\n"
+             execute "silent ! firefox --new-window " . a:url
+            endif
+          endif
         endfunction
+
         let g:mkdp_browserfunc = 'OpenMarkdownPreview'
       ]])
   end,

@@ -3,9 +3,19 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim", -- required
     "sindrets/diffview.nvim", -- optional - Diff integration
-
-    -- Only one of these is needed, not both.
     "nvim-telescope/telescope.nvim", -- optional
+  },
+  opts = {
+    status = {
+      recent_commit_count = 114514,
+    },
+    signs = {
+      -- { CLOSED, OPENED }
+      hunk = { "", "" },
+      item = { "", "" },
+      section = { "", "" },
+    },
+    graph_style = "unicode",
   },
   config = true,
   keys = {

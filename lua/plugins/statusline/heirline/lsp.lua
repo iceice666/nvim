@@ -4,14 +4,7 @@ return {
 
   Diagnostics = {
     condition = function()
-      local lsps = vim.lsp.get_active_clients({ bufnr = 0 })
-      local n = 0
-      for _, k in ipairs(lsps) do
-        if k.name ~= "null-ls" then
-          n = n + 1
-        end
-      end
-      return n > 0
+      return #vim.lsp.get_active_clients({ bufnr = 0 }) > 0
     end,
 
     static = {
@@ -34,7 +27,7 @@ return {
     end,
 
     {
-      update = { "DiagnosticChanged", "BufEnter" },
+      update = { "DiagnosticChanged", "BufLeave" },
       condition = function(self)
         return self.errors + self.warnings + self.info + self.hints == 0
       end,
@@ -44,7 +37,7 @@ return {
     },
 
     {
-      update = { "DiagnosticChanged", "BufEnter" },
+      update = { "DiagnosticChanged", "BufLeave" },
       condition = function(self)
         return self.errors > 0
       end,
@@ -88,7 +81,7 @@ return {
       hl = { fg = "red" },
     },
     {
-      update = { "DiagnosticChanged", "BufEnter" },
+      update = { "DiagnosticChanged", "BufLeave" },
       condition = function(self)
         return self.errors == 0 and self.warnings > 0
       end,
@@ -98,7 +91,7 @@ return {
       hl = { fg = "yellow" },
     },
     {
-      update = { "DiagnosticChanged", "BufEnter" },
+      update = { "DiagnosticChanged", "BufLeave" },
       condition = function(self)
         return self.errors == 0 and self.info > 0
       end,
@@ -108,7 +101,7 @@ return {
       hl = { fg = "sapphire" },
     },
     {
-      update = { "DiagnosticChanged", "BufEnter" },
+      update = { "DiagnosticChanged", "BufLeave" },
       condition = function(self)
         return self.errors == 0 and self.hints > 0
       end,
@@ -119,29 +112,6 @@ return {
     },
   },
 
-  NullLsClients = {
-    provider = function()
-      local sources = {}
-      local ft = vim.bo.filetype
-      for _, v in pairs(require("null-ls").get_sources()) do
-        if v.filetypes[ft] == true or v.filetypes["_all"] == true then
-          sources[#sources + 1] = v.name
-        end
-      end
-      if sources == {} then
-        return " null-ls: no clients"
-      end
-
-      return " null-ls: " .. table.concat(sources, ", ")
-    end,
-    hl = { fg = "mauve" },
-    on_click = {
-      callback = function()
-        vim.cmd("NullLsInfo")
-      end,
-      name = "heirline_null_ls",
-    },
-  },
   LspClients = {
     condition = function()
       local tbl = {
@@ -165,6 +135,7 @@ return {
       return " LSP:" .. table.concat(s, ", ")
     end,
   },
+
   Snippets = {
     -- check that we are in insert or select mode
     condition = function()
@@ -178,6 +149,7 @@ return {
     end,
     hl = { fg = "red", bold = true },
   },
+
   CmpIM = {
     provider = function()
       if vim.g.isIMEnable then

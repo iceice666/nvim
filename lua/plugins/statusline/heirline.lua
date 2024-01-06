@@ -25,7 +25,6 @@ return {
     local ScrollBar = req("ruler").ScrollBar
     local DAPMessages = req("dap").DAPMessages
     local Diagnostics = req("lsp").Diagnostics
-    -- local NullLsClients = req("lsp").NullLsClients
     local LspClients = req("lsp").LspClients
     local Snippets = req("lsp").Snippets
     local CmpIM = req("lsp").CmpIM
@@ -54,7 +53,6 @@ return {
         Snippets,
         Git,
         LspClients,
-        -- NullLsClients,
         Ruler,
         FileType,
         ScrollBar,
@@ -76,6 +74,7 @@ return {
       Space,
       FileName,
       Space,
+      Diagnostics,
       DAPMessages,
       Align,
     }
@@ -84,7 +83,7 @@ return {
       condition = function()
         return cond.buffer_matches({
           buftype = { "nofile", "prompt", "help", "quickfix" },
-          filetype = { "^git.*", "fugitive" },
+          filetype = { "^git.*", "fugitive", "^Neogit*" },
         })
       end,
       FileType,

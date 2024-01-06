@@ -17,6 +17,7 @@ return {
           return { "isort", "black" }
         end
       end,
+      ["markdown"] = {},
       ["_"] = { "trim_whitespace" },
     },
     formatters = {

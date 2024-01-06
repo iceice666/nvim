@@ -68,13 +68,13 @@ return {
       "<c-k>",
       ":m '<-2<cr>gv=gv",
       desc = "Move up",
-      mode = { "n", "v" },
+      mode = { "v" },
     },
     {
       "<c-j>",
       ":m '>+1<cr>gv=gv",
       desc = "Move down",
-      mode = { "n", "v" },
+      mode = { "v" },
     },
 
     -- redo
@@ -87,8 +87,6 @@ return {
 
     { "L", "$" },
     { "H", "^" },
-    { "<home>", "<esc>^i", mode = "i" },
-    { "<end>", "<esc>$a", mode = "i" },
 
     -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
     {
@@ -113,13 +111,13 @@ return {
       desc = "Buf: Redraw",
     },
 
-    { "<c-h>", "<Left>", mode = "i" },
-    { "<c-j>", "<Down>", mode = "i" },
-    { "<c-k>", "<Up>", mode = "i" },
-    { "<c-l>", "<Right>", mode = "i" },
+    { "<m-h>", "<Left>", mode = "i" },
+    { "<m-j>", "<Down>", mode = "i" },
+    { "<m-k>", "<Up>", mode = "i" },
+    { "<m-l>", "<Right>", mode = "i" },
 
-    { "<leader><tab>", "<c-w>w" },
-    { "<leader><s-tab>", "<c-w>W" },
+    { "<m-tab>", "<c-w>w" },
+    { "<m-s-tab>", "<c-w>W" },
 
     -- Open url
     -- https://www.google.com

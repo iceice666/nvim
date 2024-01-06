@@ -46,7 +46,9 @@ vim.g.rustaceanvim = {
         ["<leader>out"] = { "<cmd>Lspsaga outgoing_calls<cr>",       "LSP: Show [out]going calls",            buffer = bufnr, },
         ["<leader>so"]  = { "<cmd>Lspsaga outline<cr>",              "LSP: Show [s]ymbol [o]utline",          buffer = bufnr, },
         ["<leader>ca"]  = { "<cmd>RustLsp codeAction<cr>",           "LSP: [C]ode [A]ction",                  buffer = bufnr, mode = { "n", "v" } },
-        ["<leader>oc"]  = { "<cmd>RustLsp openCargo<cr>",            "Rust: Open Cargo.toml",                 buffer = bufnr, },
+        ["<leader>oc"]  = { "<cmd>RustLsp openCargo<cr>",            "Rust: [O]pen [C]argo.toml",             buffer = bufnr, },
+        ["<leader>em"]  = { "<cmd>RustLsp expandMacro<cr>",          "Rust: [E]xpand [m]acro",                buffer = bufnr, },
+
       })
       require("lsp-inlayhints").on_attach(client, bufnr)
       require("lsp-inlayhints").show()

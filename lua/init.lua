@@ -26,5 +26,5 @@
 --  ╰──────────────────────────────────────────────────────────────────────────────╯
 
 vim.g.util = require("core.utils")
-require("core.basic")
+require("core.options")
 require("core.plugins")

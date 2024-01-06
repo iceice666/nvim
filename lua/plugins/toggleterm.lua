@@ -1,13 +1,6 @@
 return {
   -- toggle term
   "akinsho/toggleterm.nvim",
-  -- keys = {
-  --   "<a-t>",
-  -- },
-  -- cmd = {
-  --   "TermExec",
-  --   "ToggleTerm",
-  -- },
   opts = {
     direction = "float",
     hide_numbers = true,
@@ -16,13 +9,13 @@ return {
   },
   keys = {
     {
-      "<a-t>",
+      "<m-t>",
       "<cmd>ToggleTerm<cr>",
       desc = "Term: Open terminal",
       mode = { "n" },
     },
     {
-      "<a-t>",
+      "<m-t>",
       "<c-\\><c-n><cmd>ToggleTerm<cr>",
       desc = "Term: Close terminal",
       mode = { "t" },

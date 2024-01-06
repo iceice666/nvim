@@ -7,7 +7,7 @@ return {
   keys = {
 
     {
-      "<a-;>",
+      "<m-;>",
       function()
         vim.g.isIMEnable = require("cmp_im").toggle()
       end,

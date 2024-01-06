@@ -23,7 +23,7 @@ return {
       desc = "Comment: line comment",
     },
     {
-      "<A-\\>",
+      "<M-\\>",
       function()
         require("Comment.api").toggle.blockwise.current()
       end,
@@ -40,7 +40,7 @@ return {
     },
 
     {
-      "<A-\\>",
+      "<M-\\>",
       function()
         vim.api.nvim_feedkeys(esc, "nx", false)
         require("Comment.api").toggle.blockwise(vim.fn.visualmode())

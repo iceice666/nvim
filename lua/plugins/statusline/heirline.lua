@@ -1,6 +1,7 @@
 return {
   "rebelot/heirline.nvim",
-  event = "BufReadPost",
+  cmd = { "SessionRestore" },
+  event = { "VimEnter", "BufReadPost" },
   config = function()
     local function req(modules)
       return require("plugins.statusline.heirline." .. modules)

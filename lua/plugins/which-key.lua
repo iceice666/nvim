@@ -124,20 +124,38 @@ return {
     {
       "<leader>B",
       function()
-        local url = vim.fn.expand("<cfile>")
-        local cmd = (function()
-          if vim.fn.has("wsl") == 1 then
-            return "start.exe"
+        local word = vim.fn.expand("<cfile>")
+        local search_url = "https://www.google.com/search?q="
+        local browser = "firefox"
+
+        local url = (function()
+          if
+            vim.startswith(word, "http://") or vim.startswith(word, "https://")
+          then
+            return word
           else
-            return "xdg-open"
+            return search_url .. word
           end
         end)()
 
-        vim.fn.jobstart({ cmd, url }, {
-          detach = true,
-        })
+        local cmd = (function()
+          if vim.fn.has("wsl") == 1 then
+            return {
+              "powershell.exe",
+              "[system.Diagnostics.Process]::Start(\""
+                .. browser
+                .. "\",\""
+                .. url
+                .. "\")",
+            }
+          else
+            return { "xdg-open", url }
+          end
+        end)()
+
+        vim.fn.jobstart(cmd, { detach = true })
       end,
-      desc = "Open url",
+      desc = "Open with browser",
     },
 
     -- An expression mapping for dd that doesn't yank an empty line into your default register

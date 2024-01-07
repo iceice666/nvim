@@ -17,6 +17,10 @@ return {
           DashboardDesc = { fg = c.teal },
           DashboardKey = { fg = c.orange },
           ["@comment"] = { fg = "#009f69" },
+          DapBreakpoint = { fg = c.red1 },
+          DapLogPoint = { fg = c.cyan },
+          DapStop = { fg = c.green },
+          LspInlayHint = { fg = "#a6adc8", bg = "#11111b" },
         }
       end,
       integrations = {

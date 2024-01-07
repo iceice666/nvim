@@ -33,7 +33,7 @@ return {
       if vim.fn.filereadable(py) == 1 then
         return py
       else
-        return "/usr/bin/python"
+        return "/usr/bin/env python3"
       end
     end
   end,

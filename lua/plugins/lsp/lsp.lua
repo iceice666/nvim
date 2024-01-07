@@ -10,15 +10,7 @@ return {
     {
       "lvimuser/lsp-inlayhints.nvim",
       event = "FileReadPost",
-      config = function()
-        require("lsp-inlayhints").setup()
-
-        vim.api.nvim_set_hl(
-          0,
-          "LspInlayHint",
-          { fg = "#a6adc8", bg = "#11111b" }
-        )
-      end,
+      config = true,
     },
   },
   config = function()

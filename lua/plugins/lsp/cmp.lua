@@ -5,7 +5,6 @@ return {
     "CmdlineEnter",
   },
   keys = {
-
     {
       "<m-;>",
       function()
@@ -93,12 +92,12 @@ return {
         end
       end,
       sources = {
+        { name = "IM" },
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "path" },
         { name = "nerdfont" },
         { name = "treesitter" },
-        { name = "IM" },
         {
           name = "luasnip",
           option = { show_autosnippets = false },

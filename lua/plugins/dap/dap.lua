@@ -19,38 +19,20 @@ return {
     "LiadOz/nvim-dap-repl-highlights",
   },
   config = function()
-    local colors = vim.g.colors
-
-    vim.api.nvim_set_hl(0, "DapBreakpoint", {
-      ctermbg = 0,
-      fg = colors.magenta2,
-      bg = colors.bg,
-    })
-    vim.api.nvim_set_hl(0, "DapLogPoint", {
-      ctermbg = 0,
-      fg = colors.cyan,
-      bg = colors.bg,
-    })
-    vim.api.nvim_set_hl(0, "DapStopped", {
-      ctermbg = 0,
-      fg = colors.green,
-      bg = colors.bg,
-    })
-
     vim.fn.sign_define("DapBreakpoint", {
-      text = "",
+      text = "",
       texthl = "DapBreakpoint",
       linehl = "DapBreakpoint",
       numhl = "DapBreakpoint",
     })
     vim.fn.sign_define("DapBreakpointCondition", {
-      text = "ﳁ",
+      text = "",
       texthl = "DapBreakpoint",
       linehl = "DapBreakpoint",
       numhl = "DapBreakpoint",
     })
     vim.fn.sign_define("DapBreakpointRejected", {
-      text = "",
+      text = "",
       texthl = "DapBreakpint",
       linehl = "DapBreakpoint",
       numhl = "DapBreakpoint",

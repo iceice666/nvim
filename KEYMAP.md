@@ -36,6 +36,7 @@ leader key is `<space>`
 | `<ldeader>rr` | `n` | Quit with code 1 ([Useful for restart](https://github.com/iceice666/dotfiles/blob/main/.zshrc#L13:L21)) |
 | `<leader>w`   | `n` | Write |
 | `<leader>/`   | `n` | [saner ctrl+l](https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n) |
+| `<leader>!`   | `n` | Reverse `True` `False`, `yes` `no`, `1` `0`, ... etc.
 | `U`           | `n` | Redo ( equals `<c-r>`) |
 | `dd`          | `n` | Doesn't yank an empty line into default register |
 | `i`           | `n` | Indent properly on empty lines |
@@ -44,6 +45,24 @@ leader key is `<space>`
 - [nvim-surround](https://github.com/kylechui/nvim-surround)
 
 <!-- TODO: surround operation -->
+
+## Buffers
+
+| Keybinding | Mode | Description |
+|------------|------|-------------|
+| `<leader>E` | `n` | Open file tree |
+
+## [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+
+| Keybinding | Mode | Description |
+|------------|------|-------------|
+| `<leader>tff` | `n` | Find files |
+| `<leader>tfg` | `n` | Find git tracked files | 
+| `<leader>tfc` | `n` | Find files that contain the current cursor word | 
+| `<leader>tfs` | `n` | Find words |
+| `<leader>tr`  | `n` | Recent files |
+| `<leader>th`  | `n` | Check highlights |
+| `<leader>tu`  | `n` | Undo history |
 
 ## LSP
 

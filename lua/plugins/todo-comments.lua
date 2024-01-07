@@ -54,7 +54,7 @@ return {
   keys = {
     {
       "<leader>sT",
-      "<cmd>TodoTrouble keywords=TODO<cr>",
+      "<cmd>TodoTrouble keywords=TODO,FIXME<cr>",
       desc = "Trouble: Show todos",
     },
   },

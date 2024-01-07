@@ -76,7 +76,6 @@ leader key is `<space>`
 | `gK`         | `n`     | Show doc and pinned at top right     |
 | `g[`         | `n`     | Goto prev diagnostic                 |
 | `g]`         | `n`     | Goto next diagnostic                 |
-|
 | `<leader>rf` | `n`     | **R**ename in current **f**ile       |
 | `<leader>rp` | `n`     | **R**ename in entire **p**roject     |
 | `<leader>fr` | `n`     | **F**inder: **R**eferences           |
@@ -94,7 +93,19 @@ For rust, there has some extra bindings
 | Keybinding | Mode | Description |
 |------------|------|-------------|
 | `g<space>`   | `n` | [Hover range](https://github.com/mrcjkb/rustaceanvim#usage) |
-|
 | `<leader>ee` | `n` `v` | **E**xplain **e**rror |
 | `<leader>em` | `n`     | **E**xpand **m**acro  |
 | `<leader>oc` | `n`     | **O**pen `Cargo.toml` |
+
+## DAP
+
+| Keybinding | Mode | Description |
+|------------|------|-------------|
+| `<F5>` | `n` | Start debuging |
+| `<S-F5>` | `n` | Rerun debuging |
+| `<C-F5>` | `n` | Stop debuging |
+| `<F6>` | `n` | Toggle debug UI |
+| `<F9>` | `n` | Toggle breakpoint |
+| `<F10>` | `n` | Step over |
+| `<F11>` | `n` | Step into |
+| `<F12>` | `n` | Step out |

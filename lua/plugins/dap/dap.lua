@@ -50,7 +50,8 @@ return {
       numhl = "DapStopped",
     })
   end,
-
+  -- FIXME: DapRerun is not a command
+  -- FIXME: Selecting menu not show up
   keys = {
     {
       "<F5>",

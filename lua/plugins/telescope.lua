@@ -5,6 +5,8 @@ return {
     "nvim-telescope/telescope-live-grep-args.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
     "ecthelionvi/NeoComposer.nvim",
+    "debugloop/telescope-undo.nvim",
+    "nvim-lua/plenary.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
@@ -41,6 +43,7 @@ return {
           end)
         end,
       },
+
       preview = {
         mime_hook = function(filepath, bufnr, opts)
           local is_image = function(fp)
@@ -93,10 +96,12 @@ return {
         },
       },
     })
+
     --telescope.load_extension('dap')
     telescope.load_extension("fzf")
     telescope.load_extension("live_grep_args")
     telescope.load_extension("noice")
+    telescope.load_extension("undo")
   end,
 
   keys = {
@@ -126,19 +131,14 @@ return {
       desc = "Telescope: Recent files",
     },
     {
-      "<leader>ty",
-      "<cmd>Telescope neoclip<cr>",
-      desc = "Telescope: Yank history",
-    },
-    {
-      "<leader>tm",
-      "<cmd>Telescope macros<cr>",
-      desc = "Telescope: Macros history",
-    },
-    {
       "<leader>th",
       "<cmd> Telescope highlights<cr>",
       desc = "Telescope: highlights",
+    },
+    {
+      "<leader>tu",
+      "<cmd>Telescope undo<cr>",
+      desc = "Telescope: undo tree",
     },
   },
 }

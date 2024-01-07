@@ -46,6 +46,7 @@ return {
       end,
       hl = { fg = "red" },
     },
+
     {
       update = { "CursorMoved", "CursorMovedI" },
       condition = function(self)
@@ -80,6 +81,7 @@ return {
       end,
       hl = { fg = "red" },
     },
+
     {
       update = { "DiagnosticChanged", "BufLeave" },
       condition = function(self)

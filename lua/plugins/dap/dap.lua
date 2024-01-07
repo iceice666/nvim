@@ -13,110 +13,13 @@ return {
     "DapTerminate",
   },
   dependencies = {
-    -- core
-    "williamboman/mason.nvim",
-    -- ui
     "rcarriga/nvim-dap-ui",
     "jay-babu/mason-nvim-dap.nvim",
     "theHamsta/nvim-dap-virtual-text",
-
-    -- langauges
-    "mfussenegger/nvim-dap-python",
-
-    "rcarriga/cmp-dap",
+    "LiadOz/nvim-dap-repl-highlights",
   },
   config = function()
     local colors = vim.g.colors
-    local dap = require("dap")
-
-    require("mason-nvim-dap").setup({
-      ensure_installed = { "python" },
-      automatic_installation = true,
-      automatic_setup = true,
-    })
-    require("dap-python").setup(
-      "/home/iceice666/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-    )
-
-    dap.configurations.python = {
-      {
-        type = "python",
-        request = "launch",
-        name = "Run current file",
-        program = "${file}",
-        console = "integratedTerminal",
-      },
-      {
-        type = "python",
-        request = "launch",
-        name = "Run test.py",
-        program = "${workspaceFolder}/src/test.py",
-        console = "integratedTerminal",
-      },
-    }
-
-    require("dap-python").resolve_python = function()
-      local py = vim.fn.expand(vim.fn.getcwd() .. "/.venv/bin/python")
-      if vim.fn.filereadable(py) == 1 then
-        return py
-      else
-        return "/usr/bin/python"
-      end
-    end
-    local dapui = require("dapui")
-    dapui.setup({
-      layouts = {
-        {
-          elements = {
-            {
-              id = "scopes",
-              size = 0.5,
-            },
-            {
-              id = "stacks",
-              size = 0.1,
-            },
-            {
-              id = "watches",
-              size = 0.3,
-            },
-            {
-              id = "breakpoints",
-              size = 0.1,
-            },
-          },
-          size = 40,
-          position = "left",
-        },
-        {
-          elements = {
-            "repl",
-            "console",
-          },
-          size = 10,
-          position = "bottom",
-        },
-      },
-      controls = {
-        enabled = false,
-      },
-    })
-
-    require("nvim-dap-virtual-text").setup({
-      enabled = true,
-      enable_commands = true,
-      highlight_changed_variables = true,
-      highlight_new_as_changed = false,
-      show_stop_reason = true,
-      commented = false,
-      only_first_definition = true,
-      all_references = false,
-      filter_references_pattern = "<module",
-      virt_text_pos = "eol",
-      all_frames = false,
-      virt_lines = false,
-      virt_text_win_col = nil,
-    })
 
     vim.api.nvim_set_hl(0, "DapBreakpoint", {
       ctermbg = 0,

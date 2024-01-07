@@ -3,6 +3,7 @@ return {
   "nvim-treesitter/nvim-treesitter-textobjects",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
+    "nvim-dap-repl-highlights",
   },
   event = "BufReadPre",
   config = function()
@@ -17,6 +18,7 @@ return {
         "markdown_inline",
         "query",
         "rust",
+        "dap_repl",
       },
       sync_install = false,
       auto_install = true,

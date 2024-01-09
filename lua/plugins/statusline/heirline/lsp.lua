@@ -7,6 +7,13 @@ return {
       return #vim.lsp.get_active_clients({ bufnr = 0 }) > 0
     end,
 
+    on_click = {
+      callback = function()
+        vim.cmd("Trouble document_diagnostics")
+      end,
+      name = "heirline_diagnostics",
+    },
+
     static = {
       error_icon = " ",
       warn_icon = " ",

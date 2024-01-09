@@ -105,6 +105,7 @@ For rust, there has some extra bindings
 | `<S-F5>` | `n` | Rerun debuging |
 | `<C-F5>` | `n` | Stop debuging |
 | `<F6>` | `n` | Toggle debug UI |
+| `<F7>` | `n` | Run to cursor |
 | `<F9>` | `n` | Toggle breakpoint |
 | `<F10>` | `n` | Step over |
 | `<F11>` | `n` | Step into |

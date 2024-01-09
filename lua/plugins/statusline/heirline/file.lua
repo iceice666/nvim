@@ -37,6 +37,13 @@ local FileName = {
     return filename
   end,
   hl = { fg = utils.get_highlight("Directory").fg },
+
+  on_click = {
+    callback = function()
+      vim.cmd("Neotree reveal toggle")
+    end,
+    name = "heirline_filetree",
+  },
 }
 
 local cpp_name = ({

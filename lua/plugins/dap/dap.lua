@@ -3,15 +3,6 @@ return {
   -- core
   "mfussenegger/nvim-dap",
   event = "BufReadPost",
-  cmd = {
-    "DapToggleBreakpoint",
-    "DapStepOver",
-    "DapStepInto",
-    "DapStepOut",
-    "DapRerun",
-    "DapContinue",
-    "DapTerminate",
-  },
   dependencies = {
     "rcarriga/nvim-dap-ui",
     "jay-babu/mason-nvim-dap.nvim",
@@ -19,6 +10,8 @@ return {
     "LiadOz/nvim-dap-repl-highlights",
   },
   config = function()
+    require("dap").set_exception_breakpoints({ "uncaughted" })
+
     vim.fn.sign_define("DapBreakpoint", {
       text = "",
       texthl = "DapBreakpoint",
@@ -55,12 +48,25 @@ return {
   keys = {
     {
       "<F5>",
-      "<cmd>DapContinue<cr>",
+      function()
+        require("dap").continue()
+      end,
       desc = "Dap: Continue",
     },
-    { "<F17>", "<cmd>DapRerun<cr>", desc = "Dap: Rerun" },
-    { "<F29>", "<cmd>DapTerminate<cr>", desc = "Dap: Stop" },
-
+    { -- <S-F5>
+      "<F17>",
+      function()
+        require("dap").restart()
+      end,
+      desc = "Dap: Rerun",
+    },
+    { -- <C-F5>
+      "<F29>",
+      function()
+        require("dap").terminate()
+      end,
+      desc = "Dap: Stop",
+    },
     {
       "<F6>",
       function()
@@ -69,15 +75,17 @@ return {
       desc = "Dap: Toggle debug ui",
     },
     {
-      "<F30>",
+      "<F7>",
       function()
-        require("dap").repl.close()
+        require("dap").run_to_cursor()
       end,
-      desc = "Dap: Close repl",
+      desc = "Dap: Run to cursor",
     },
     {
       "<F9>",
-      "<cmd>DapToggleBreakpoint<cr>",
+      function()
+        require("dap").toggle_breakpoint()
+      end,
       desc = "Dap: Toggle breakpoint",
     },
     { "<F10>", "<cmd>DapStepOver<cr>", desc = "Dap: Step over" },

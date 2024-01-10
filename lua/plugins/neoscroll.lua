@@ -6,7 +6,11 @@ return {
     {
       "J",
       function()
-        require("neoscroll").scroll(10, true, 50)
+        if vim.g.neovide then
+          vim.fn.feedkeys("10j")
+        else
+          require("neoscroll").scroll(10, true, 50)
+        end
       end,
       mode = { "n", "x", "o" },
       desc = "Down 10 lines",
@@ -14,7 +18,11 @@ return {
     {
       "K",
       function()
-        require("neoscroll").scroll(-10, true, 50)
+        if vim.g.neovide then
+          vim.fn.feedkeys("10j")
+        else
+          require("neoscroll").scroll(-10, true, 50)
+        end
       end,
       mode = { "n", "x", "o" },
       desc = "Up 10 lines",

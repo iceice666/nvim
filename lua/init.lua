@@ -24,6 +24,9 @@
 --  │                                                                              │
 --  │                           佛祖保佑         永無BUG                           │
 --  ╰──────────────────────────────────────────────────────────────────────────────╯
+if vim.g.neovide then
+  require("core.neovide")
+end
 
 vim.g.util = require("core.utils")
 require("core.options")

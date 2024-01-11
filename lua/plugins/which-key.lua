@@ -26,8 +26,6 @@ return {
     wk.register({
       --custom group
       ["<leader>b"] = "Buffers",
-      ["<leader>t"] = "relescope",
-      ["<leader>tf"] = "Telescope: Find",
       ["g"] = "Goto",
       ["<leader>s"] = "Show info",
     })

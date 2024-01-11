@@ -5,7 +5,6 @@ return {
     "nvim-telescope/telescope-live-grep-args.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
     "ecthelionvi/NeoComposer.nvim",
-    "debugloop/telescope-undo.nvim",
     "nvim-lua/plenary.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -101,44 +100,5 @@ return {
     telescope.load_extension("fzf")
     telescope.load_extension("live_grep_args")
     telescope.load_extension("noice")
-    telescope.load_extension("undo")
   end,
-
-  keys = {
-    {
-      "<leader>tff",
-      "<cmd>Telescope find_files<cr>",
-      desc = "Telescope: Find files",
-    },
-    {
-      "<leader>tfg",
-      "<cmd>Telescope git_files<cr>",
-      desc = "Telescope: Find git tracked files",
-    },
-    {
-      "<leader>tfc",
-      "<cmd>Telescope grep_string<cr>",
-      desc = "Telescope: Find files that contain the current cursor word",
-    },
-    {
-      "<leader>tfs",
-      "<cmd>Telescope live_grep_args<cr>",
-      desc = "Telescope: Find words",
-    },
-    {
-      "<leader>tr",
-      "<cmd>Telescope oldfiles<cr>",
-      desc = "Telescope: Recent files",
-    },
-    {
-      "<leader>th",
-      "<cmd> Telescope highlights<cr>",
-      desc = "Telescope: highlights",
-    },
-    {
-      "<leader>tu",
-      "<cmd>Telescope undo<cr>",
-      desc = "Telescope: undo tree",
-    },
-  },
 }

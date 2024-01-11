@@ -28,13 +28,7 @@ return {
     local LspClients = req("lsp").LspClients
     local Snippets = req("lsp").Snippets
     local CmpIM = req("lsp").CmpIM
-    local MacroRecoder = (function()
-      if pcall(require, "NeoComposer") then
-        return req("macro").NeoComposer
-      else
-        return req("macro").MacroRec
-      end
-    end)()
+    local MacroRecoder = req("macro").MacroRecoder
 
     local ActiveStatusline = (function()
       local result = {}
@@ -83,7 +77,7 @@ return {
       condition = function()
         return cond.buffer_matches({
           buftype = { "nofile", "prompt", "help", "quickfix" },
-          filetype = { "^git.*", "fugitive", "^Neogit*" },
+          filetype = { "^git.*", "fugitive", "^neogit*" },
         })
       end,
       FileType,

@@ -76,14 +76,4 @@ return {
       conform.format({ async = true, lsp_fallback = true, range = range })
     end, { range = true })
   end,
-  keys = {
-    {
-      -- Customize or remove this keymap to your liking
-      "<leader>F",
-      function()
-        require("conform").format({ async = true, lsp_fallback = true })
-      end,
-      desc = "Format buffer",
-    },
-  },
 }

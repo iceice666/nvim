@@ -72,3 +72,7 @@ opt.sessionoptions =
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+vim.o.winwidth = 10
+vim.o.winminwidth = 10
+vim.o.equalalways = false

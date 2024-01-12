@@ -3,8 +3,8 @@ local cmd = require("hydra.keymap-util").cmd
 local hint = [[
  🔭 Telescope
 
- _f_  files      _g_  live grep 
- _o_  old files  _/_  search in buffer/file 
+ _f_  files       _r_  recent files
+ _g_  live grep   _/_  search in buffer/file 
  
  _:_  execute command  _h_  vim help 
  _;_  commands history _k_  keymaps 
@@ -31,7 +31,7 @@ Hydra({
   heads = {
     { "f", cmd("Telescope find_files") },
     { "g", cmd("Telescope live_grep_args") },
-    { "o", cmd("Telescope oldfiles"), { desc = "recently opened files" } },
+    { "r", cmd("Telescope oldfiles"), { desc = "recently opened files" } },
     { "h", cmd("Telescope help_tags"), { desc = "vim help" } },
     { "k", cmd("Telescope keymaps") },
     { "p", cmd("Telescope resume") },

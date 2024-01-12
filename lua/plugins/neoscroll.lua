@@ -19,7 +19,7 @@ return {
       "K",
       function()
         if vim.g.neovide then
-          vim.fn.feedkeys("10j")
+          vim.fn.feedkeys("10k")
         else
           require("neoscroll").scroll(-10, true, 50)
         end

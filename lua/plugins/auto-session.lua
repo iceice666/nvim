@@ -2,7 +2,6 @@ return {
   -- Sessions
   cond = true,
   "rmagatti/auto-session",
-  keys = { "<leader>R", "<cmd>SessionRestore<cr>", desc = "Restore Session" },
   cmd = {
     "SessionRestore",
     "SessionSave",

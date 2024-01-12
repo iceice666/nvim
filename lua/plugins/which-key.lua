@@ -22,13 +22,6 @@ return {
   config = function()
     local wk = require("which-key")
     wk.setup()
-
-    wk.register({
-      --custom group
-      ["<leader>b"] = "Buffers",
-      ["g"] = "Goto",
-      ["<leader>s"] = "Show info",
-    })
   end,
   keys = {
     {
@@ -120,7 +113,7 @@ return {
     -- Open url
     -- https://www.google.com
     {
-      "<leader>B",
+      "<leader>x",
       function()
         local word = vim.fn.expand("<cfile>")
         local search_url = "https://www.google.com/search?q="
@@ -153,7 +146,7 @@ return {
 
         vim.fn.jobstart(cmd, { detach = true })
       end,
-      desc = "Open with browser",
+      desc = "Search with browser",
     },
 
     -- An expression mapping for dd that doesn't yank an empty line into your default register

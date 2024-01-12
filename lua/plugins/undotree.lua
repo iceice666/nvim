@@ -9,7 +9,7 @@ return {
       function()
         vim.cmd("silent! %foldopen! | UndotreeToggle")
       end,
-      { desc = "undotree" },
+      desc = "undotree",
     },
   },
 }

@@ -206,7 +206,7 @@ return {
     {
       "<leader>e",
       "<cmd>Neotree reveal toggle<cr>",
-      "Toggle file tree",
+      desc = "Toggle file tree",
     },
   },
 }

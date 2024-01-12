@@ -204,7 +204,7 @@ return {
   },
   keys = {
     {
-      "<leader>E",
+      "<leader>e",
       "<cmd>Neotree reveal toggle<cr>",
       "Toggle file tree",
     },

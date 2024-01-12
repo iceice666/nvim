@@ -5,14 +5,14 @@ local cmd = require("hydra.keymap-util").cmd
 local hint = [[
  Buffer
 
-      close        ^^^  Move         Goto       ^^^     Sort by    
- ---------------   ^^^---------  ------------   ^^^----------------------- 
- _q_: current         _>_: next  ^ _]_: next        ^_e_: extension
- _p_: picked one      _<_: prev  ^ _[_: prev        ^_d_: directory
- _a_: all                       ^^^_s_: selected    ^_r_: relative directory 
- _o_: remain only                              ^^^^^^_t_: tabs
-                                             ^^^^^^^^_P_: toggle pin
- _<Esc>_: quit
+      close      ^^^  Move        Goto     ^^^^     Sort by    
+ --------------- ^^^--------- ------------ ^^^^----------------------- 
+ _q_: current       _>_: next ^ _]_: next       ^_e_: extension
+ _p_: picked one    _<_: prev ^ _[_: prev       ^_d_: directory
+ _a_: all                    ^^^_s_: selected   ^_r_: relative directory 
+ _o_: remain only                          ^^^^^^_t_: tabs
+
+ _<Esc>_: quit                             ^^^^^^_P_: toggle pin
 ]]
 
 Hydra({

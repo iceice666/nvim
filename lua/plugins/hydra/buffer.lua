@@ -3,65 +3,15 @@ local Hydra = require("hydra")
 local cmd = require("hydra.keymap-util").cmd
 
 local hint = [[
- Buffer Close
- 
- _q_: close current
- _p_: close picked one
- _a_: all _o_: remain only 
- 
- _<Esc>_: quit
-]]
-
-local close = Hydra({
-  name = "BufferClose",
-  hint = hint,
-  config = {
-    hint = {
-      border = "rounded",
-      offset = -1,
-    },
-  },
-  mode = "n",
-
-  heads = {
-    {
-      "q",
-      function()
-        vim.cmd("bd %")
-      end,
-      { desc = "current" },
-    },
-    {
-      "o",
-      function()
-        vim.cmd("BufferLineCloseOthers")
-      end,
-      { desc = "remain only", exit = true },
-    },
-    {
-      "a",
-      function()
-        vim.cmd("BufferLineCloseOthers")
-      end,
-      { desc = "all", exit = true },
-    },
-    {
-      "p",
-      function()
-        vim.cmd("BufferLinePickClose")
-      end,
-      { desc = "close a picked one" },
-    },
-    { "<Esc>", nil, { exit = true } },
-  },
-})
-
-hint = [[
  Buffer
 
- _P_: toggle pin  _c_: close opts 
- _p_: goto picked 
-
+      close        ^^^  Move         Goto       ^^^     Sort by    
+ ---------------   ^^^---------  ------------   ^^^----------------------- 
+ _q_: current         _>_: next  ^ _]_: next        ^_e_: extension
+ _p_: picked one      _<_: prev  ^ _[_: prev        ^_d_: directory
+ _a_: all                       ^^^_s_: selected    ^_r_: relative directory 
+ _o_: remain only                              ^^^^^^_t_: tabs
+                                             ^^^^^^^^_P_: toggle pin
  _<Esc>_: quit
 ]]
 
@@ -80,10 +30,21 @@ Hydra({
   body = "<leader>b",
 
   heads = {
-  -- stylua: ignore start
-    { "p", cmd "BufferLinePick"},
-    { "P", cmd "BufferLineTogglePin",},
-    { "c", function() close:activate() end, { exit = true , nowait = true} },
+    { "s", cmd("BufferLinePick") },
+    { "P", cmd("BufferLineTogglePin") },
+    { "q", cmd("bd %") },
+    { "o", cmd("BufferLineCloseOthers"), { exit = true } },
+    { "a", cmd("BufferLineCloseOthers"), { exit = true } },
+    { "p", cmd("BufferLinePickClose") },
+    { ">", cmd("BufferLineMoveNext") },
+    { "<", cmd("BufferLineMovePrev") },
+    { "[", cmd("BufferLineCyclePrev") },
+
+    { "e", cmd("BufferLineSortByExtension") },
+    { "d", cmd("BufferLineSortByDirectory") },
+    { "r", cmd("BufferLineSortByRelativeDirectory") },
+    { "t", cmd("BufferLineSortByTabs") },
+    { "]", cmd("BufferLineCycleNext") },
     { "<Esc>", nil, { exit = true } },
   },
 })

@@ -4,7 +4,7 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  event = "BufReadPost",
+  event = "VimEnter",
   opts = {
     options = {
       diagnostics = "nvim_lsp",

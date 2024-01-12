@@ -4,19 +4,18 @@ local cmd = require("hydra.keymap-util").cmd
 
 local hint = [[
             Goto                         Operation
- -------------------------^^  ----------------------------------
-  _pd_: peek definition         ^ _r_: rename (in current buffer)
-  _pt_: peek type definition    ^ _R_: rename (in project)
-  _gd_: goto definition         ^_fr_: find referance
-  _gt_: goto type definition    ^_fd_: find definition
-                              ^^^_fi_: find implementation
+ --------------------------^  ----------------------------------
+  _pd_: peek definition         ^ _k_: hover doc        
+  _pt_: peek type definition    ^ _K_: pinned hover doc
+  _gd_: goto definition         ^ _r_: rename (in current buffer)
+  _gt_: goto type definition    ^ _R_: rename (in project)
+                              ^^^_fr_: find referance
+  _[_: jump prev diagnostic     ^_fd_: find definition
+  _]_: jump next diagnostic     ^_fi_: find implementation
                               ^^^ _i_: incoming calls
-   _[_: jump prev diagnostic    ^ _o_: outgoing calls
-   _]_: jump next diagnostic    ^ _h_: hierarchy
-  ^ ^^                            _a_: code action
-                              ^^^ _k_: hover doc        
-                              ^^^ _K_: pinned hover doc 
-
+                              ^^^ _o_: outgoing calls
+                              ^^^ _h_: hierarchy
+                              ^^^ _a_: code action
   _<Esc>_: quit
  ]]
 
@@ -43,15 +42,15 @@ return Hydra({
     { "[", cmd("Lspsaga diagnostic_jump_prev") },
     { "]", cmd("Lspsaga diagnostic_jump_next") },
 
-    { "r", cmd("Lspsaga rename") },
-    { "R", cmd("Lspsaga rename ++project") },
-    { "fr", cmd("Lspsaga finder ref") },
-    { "fd", cmd("Lspsaga finder def") },
-    { "fi", cmd("Lspsaga finder imp") },
-    { "i", cmd("Lspsaga incoming_calls") },
-    { "o", cmd("Lspsaga outgoing_calls") },
-    { "h", cmd("Lspsaga outline") },
-    { "a", cmd("Lspsaga code_action") },
+    { "r", cmd("Lspsaga rename"), { exit = true } },
+    { "R", cmd("Lspsaga rename ++project"), { exit = true } },
+    { "fr", cmd("Lspsaga finder ref"), { exit = true } },
+    { "fd", cmd("Lspsaga finder def"), { exit = true } },
+    { "fi", cmd("Lspsaga finder imp"), { exit = true } },
+    { "i", cmd("Lspsaga incoming_calls"), { exit = true } },
+    { "o", cmd("Lspsaga outgoing_calls"), { exit = true } },
+    { "h", cmd("Lspsaga outline"), { exit = true } },
+    { "a", cmd("Lspsaga code_action"), { exit = true } },
     { "<Esc>", nil, { exit = true } },
   },
 })

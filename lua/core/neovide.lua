@@ -1,5 +1,4 @@
 vim.o.guifont = "CaskaydiaCove Nerd Font:h14"
-vim.g.sqlite_clib_path = vim.fn.stdpath("config") .. "/assets/sqlite3.dll"
 vim.g.neovide_padding_top = 0
 vim.g.neovide_padding_bottom = 0
 vim.g.neovide_padding_right = 0

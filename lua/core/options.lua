@@ -76,3 +76,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.o.winwidth = 10
 vim.o.winminwidth = 10
 vim.o.equalalways = false
+
+if vim.fn.has("win32") == 1 then
+  vim.g.sqlite_clib_path = vim.fn.stdpath("config") .. "/assets/sqlite3.dll"
+end

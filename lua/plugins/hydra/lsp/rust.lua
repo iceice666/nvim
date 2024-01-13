@@ -3,22 +3,17 @@ local Hydra = require("hydra")
 local cmd = require("hydra.keymap-util").cmd
 
 local hint = [[
-            Goto                         Operation
- ---------------------------  ^---------------------------------
-  _pd_: peek definition         ^ _k_: hover doc        
-  _pt_: peek type definition    ^ _K_: pinned hover doc
-  _gd_: goto definition         ^ _r_: rename (in current buffer)
-  _gt_: goto type definition    ^ _R_: rename (in project)
-  _<Space>_: hover range        ^_fr_: find referance
-                              ^^^_fd_: find definition
-  _[_: jump prev diagnostic     ^_fi_: find implementation
-  _]_: jump next diagnostic     ^ _i_: incoming calls
-                              ^^^ _o_: outgoing calls
-                              ^^^ _h_: hierarchy
-                              ^^^ _a_: code action
-                              ^^^ _e_: explain error
-                              ^^^ _m_: expand macro
-  _<Esc>_: quit
+          Goto                                      ^^^^^^Operation
+ -------------------------^^^^  ----------------------------------------------------------
+  _d_: peek definition         ^ _k_: hover doc                  _fr_: find referance
+  _t_: peek type definition    ^ _K_: pinned hover doc           _fd_: find definition
+  _D_: goto definition         ^ _r_: rename (in current buffer) _fi_: find implementation
+  _T_: goto type definition    ^ _R_: rename (in project)
+  _<Space>_: hover range                                     ^^^^^_i_: incoming calls
+                                 _e_: explain error            ^^^_o_: outgoing calls
+  _[_: jump prev diagnostic      _m_: expand macro             ^^^_h_: hierarchy
+  _]_: jump next diagnostic                                  ^^^^^_a_: code action
+                                    _<Esc>_: quit
  ]]
 
 return Hydra({
@@ -30,15 +25,15 @@ return Hydra({
       border = "rounded",
       offset = -1,
     },
-    color = "pink",
+    color = "amaranth",
   },
 
   heads = {
 
-    { "pd", cmd("Lspsaga peek_definition") },
-    { "pt", cmd("Lspsaga peek_type_definition") },
-    { "gd", cmd("Lspsaga goto_definition") },
-    { "gt", cmd("Lspsaga goto_type_definition") },
+    { "d", cmd("Lspsaga peek_definition") },
+    { "t", cmd("Lspsaga peek_type_definition") },
+    { "D", cmd("Lspsaga goto_definition") },
+    { "T", cmd("Lspsaga goto_type_definition") },
     { "<Space>", cmd("RustLsp hover range"), { exit = true } },
     { "k", cmd("RustLsp hover actions") },
     { "K", cmd("Lspsaga hover_doc ++keep") },

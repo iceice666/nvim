@@ -3,20 +3,17 @@ local Hydra = require("hydra")
 local cmd = require("hydra.keymap-util").cmd
 
 local hint = [[
-            Goto                         Operation
- --------------------------^  ----------------------------------
-  _pd_: peek definition         ^ _k_: hover doc        
-  _pt_: peek type definition    ^ _K_: pinned hover doc
-  _gd_: goto definition         ^ _r_: rename (in current buffer)
-  _gt_: goto type definition    ^ _R_: rename (in project)
-                              ^^^_fr_: find referance
-  _[_: jump prev diagnostic     ^_fd_: find definition
-  _]_: jump next diagnostic     ^_fi_: find implementation
-                              ^^^ _i_: incoming calls
-                              ^^^ _o_: outgoing calls
-                              ^^^ _h_: hierarchy
-                              ^^^ _a_: code action
-  _<Esc>_: quit
+          Goto                                      ^^^^^^Operation
+ -------------------------^^^^  ----------------------------------------------------------
+  _d_: peek definition         ^ _k_: hover doc                  _fr_: find referance
+  _t_: peek type definition    ^ _K_: pinned hover doc           _fd_: find definition
+  _D_: goto definition         ^ _r_: rename (in current buffer) _fi_: find implementation
+  _T_: goto type definition    ^ _R_: rename (in project)
+                                                             ^^^^^_i_: incoming calls
+  _[_: jump prev diagnostic                                    ^^^_o_: outgoing calls
+  _]_: jump next diagnostic                                    ^^^_h_: hierarchy
+                                                             ^^^^^_a_: code action
+                                    _<Esc>_: quit
  ]]
 
 return Hydra({
@@ -28,15 +25,15 @@ return Hydra({
       border = "rounded",
       offset = -1,
     },
-    color = "pink",
+    color = "amaranth",
   },
 
   heads = {
 
-    { "pd", cmd("Lspsaga peek_definition") },
-    { "pt", cmd("Lspsaga peek_type_definition") },
-    { "gd", cmd("Lspsaga goto_definition") },
-    { "gt", cmd("Lspsaga goto_type_definition") },
+    { "d", cmd("Lspsaga peek_definition") },
+    { "t", cmd("Lspsaga peek_type_definition") },
+    { "D", cmd("Lspsaga goto_definition") },
+    { "T", cmd("Lspsaga goto_type_definition") },
     { "k", cmd("Lspsaga hover_doc") },
     { "K", cmd("Lspsaga hover_doc ++keep") },
     { "[", cmd("Lspsaga diagnostic_jump_prev") },

@@ -39,7 +39,7 @@ return Hydra({
     { "pt", cmd("Lspsaga peek_type_definition") },
     { "gd", cmd("Lspsaga goto_definition") },
     { "gt", cmd("Lspsaga goto_type_definition") },
-    { "<Space>", cmd("RustLsp hover range") },
+    { "<Space>", cmd("RustLsp hover range"), { exit = true } },
     { "k", cmd("RustLsp hover actions") },
     { "K", cmd("Lspsaga hover_doc ++keep") },
     { "[", cmd("Lspsaga diagnostic_jump_prev") },

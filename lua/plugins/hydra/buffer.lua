@@ -34,7 +34,7 @@ Hydra({
     { "P", cmd("BufferLineTogglePin") },
     { "q", cmd("bd %") },
     { "o", cmd("BufferLineCloseOthers"), { exit = true } },
-    { "a", cmd("BufferLineCloseOthers"), { exit = true } },
+    { "a", cmd("BufferLineCloseOthers") .. cmd("bd%"), { exit = true } },
     { "p", cmd("BufferLinePickClose") },
     { ">", cmd("BufferLineMoveNext") },
     { "<", cmd("BufferLineMovePrev") },

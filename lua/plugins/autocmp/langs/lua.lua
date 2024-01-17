@@ -22,5 +22,5 @@ local config = {
 }
 
 require("lspconfig").lua_ls.setup(
-  vim.tbl_extend("force", require("plugins.lsp.langs.default"), config)
+  vim.tbl_extend("force", require("plugins.autocmp.langs.default"), config)
 )

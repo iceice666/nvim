@@ -31,3 +31,4 @@ end
 vim.g.util = require("core.utils")
 require("core.options")
 require("core.plugins")
+require("core.autocmd")

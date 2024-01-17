@@ -22,17 +22,20 @@ return {
     req("winctrl")
     req("buffer")
 
-    local lsp_default = req("lsp.default")
-    local lsp_rust = req("lsp.rust")
+    local ft_km = {
+      ["default"] = req("lsp.default"),
+      ["rust"] = req("lsp.rust"),
+    }
 
     require("which-key").register({
       ["<leader>l"] = {
         function()
-          if vim.bo.filetype == "rust" then
-            lsp_rust:activate()
-          else
-            lsp_default:activate()
+          local km = ft_km[vim.bo.filetype]
+          if km == nil then
+            km = ft_km["default"]
           end
+
+          km:activate()
         end,
         "[Hydra] Lsp binding",
       },

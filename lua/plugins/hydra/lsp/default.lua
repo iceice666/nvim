@@ -25,7 +25,7 @@ return Hydra({
       border = "rounded",
       offset = -1,
     },
-    color = "amaranth",
+    color = "pink",
   },
 
   heads = {
@@ -47,7 +47,7 @@ return Hydra({
     { "i", cmd("Lspsaga incoming_calls"), { exit = true } },
     { "o", cmd("Lspsaga outgoing_calls"), { exit = true } },
     { "h", cmd("Lspsaga outline"), { exit = true } },
-    { "a", cmd("Lspsaga code_action"), { exit = true } },
+    { "a", cmd("Lspsaga code_action") },
     { "<Esc>", nil, { exit = true } },
   },
 })

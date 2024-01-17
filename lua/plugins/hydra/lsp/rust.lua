@@ -9,10 +9,10 @@ local hint = [[
   _t_: peek type definition    ^ _K_: pinned hover doc           _fd_: find definition
   _D_: goto definition         ^ _r_: rename (in current buffer) _fi_: find implementation
   _T_: goto type definition    ^ _R_: rename (in project)
-  _<Space>_: hover range                                     ^^^^^_i_: incoming calls
-                                 _e_: explain error            ^^^_o_: outgoing calls
-  _[_: jump prev diagnostic      _m_: expand macro             ^^^_h_: hierarchy
-  _]_: jump next diagnostic                                  ^^^^^_a_: code action
+  _<Space>_: hover range                                     ^^^  _i_: incoming calls
+                             ^^^ _e_: explain error               _o_: outgoing calls
+  _[_: jump prev diagnostic    ^ _m_: expand macro                _h_: hierarchy
+  _]_: jump next diagnostic                                  ^^^  _a_: code action
                                     _<Esc>_: quit
  ]]
 
@@ -25,7 +25,7 @@ return Hydra({
       border = "rounded",
       offset = -1,
     },
-    color = "amaranth",
+    color = "pink",
   },
 
   heads = {
@@ -48,7 +48,7 @@ return Hydra({
     { "i", cmd("Lspsaga incoming_calls"), { exit = true } },
     { "o", cmd("Lspsaga outgoing_calls"), { exit = true } },
     { "h", cmd("Lspsaga outline"), { exit = true } },
-    { "a", cmd("Lspsaga code_action"), { exit = true } },
+    { "a", cmd("Lspsaga code_action") },
     { "e", cmd("RustLsp explainError"), { exit = true } },
     { "m", cmd("RustLsp expandMacro"), { exit = true } },
     { "<Esc>", nil, { exit = true } },

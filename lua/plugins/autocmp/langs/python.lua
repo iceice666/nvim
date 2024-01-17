@@ -11,5 +11,5 @@ local config = {
 }
 
 require("lspconfig").pyright.setup(
-  vim.tbl_extend("force", require("plugins.lsp.langs.default"), config)
+  vim.tbl_extend("force", require("plugins.autocmp.langs.default"), config)
 )

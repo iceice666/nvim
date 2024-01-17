@@ -1,5 +1,16 @@
 return {
   {
+    "akinsho/flutter-tools.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim", -- optional for vim.ui.select
+    },
+    ft = "dart",
+    config = function()
+      require("plugins.autocmp.langs.dart")
+    end,
+  },
+  {
     "p00f/clangd_extensions.nvim",
     ft = { "c", "cpp" },
     config = function()

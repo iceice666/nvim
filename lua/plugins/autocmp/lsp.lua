@@ -13,18 +13,20 @@ return {
       config = true,
     },
   },
-  config = function()
-    require("mason-lspconfig").setup({
-      ensure_installed = {
-        -- lua
-        "lua_ls",
-        -- python
-        "pyright",
-        -- rust
-        "rust_analyzer",
-      },
-      automatic_installation = true,
-    })
+  opts = {
+    ensure_installed = {
+      -- lua
+      "lua_ls",
+      -- python
+      "pyright",
+      -- rust
+      "rust_analyzer",
+    },
+    automatic_installation = true,
+  },
+  config = function(_, opts)
+    require("mason-lspconfig").setup(opts)
+
     vim.fn.sign_define("DiagnosticSignError", {
       text = " ",
       texthl = "DiagnosticSignError",
@@ -61,13 +63,11 @@ return {
         require("lspconfig")[server_name].setup(load("default"))
       end,
 
-      -- NOTE: when load a langauge (server), that means let lua require/load the lang's setup.
-      -- The setup will be defined under `lua/plugins/autpcmp/langs`.
-      --
-      -- INFO: Use `load` to laod a langauge server and config
-      ["lua_ls"] = load("lua"),
-      ["pyright"] = load("python"),
-      ["rust_analyzer"] = load("rust"),
+      -- INFO: Use `load` to set up a langauge server
+      -- Also see: `:help mason-lspconfig.setup_handlers()`
+      ["lua_ls"] = load("lua"), -- this one setup server inside
+      ["pyright"] = load("python"), -- this one setup server inside
+      ["rust_analyzer"] = load("rust"), -- this one pass config to plugin ( and plugin will setup the server)
     })
   end,
 }

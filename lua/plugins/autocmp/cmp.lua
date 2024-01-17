@@ -40,7 +40,7 @@ return {
     "kawre/neotab.nvim",
     {
       "rcarriga/cmp-dap",
-      dependenceies = {
+      dependencies = {
         "mfussenegger/nvim-dap",
       },
     },

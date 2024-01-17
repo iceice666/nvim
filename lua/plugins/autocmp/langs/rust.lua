@@ -2,7 +2,6 @@ local util = require("lspconfig/util")
 vim.g.rustaceanvim = {
   tools = {
     hover_actions = {
-      -- whether the hover action window gets automatically focused
       auto_focus = true,
     },
     executors = require("rustaceanvim.executors").quickfix,

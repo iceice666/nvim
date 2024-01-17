@@ -12,4 +12,8 @@ return {
       backgruund = "#252525",
     },
   },
+  {
+    "stevearc/dressing.nvim",
+    opts = {},
+  },
 }

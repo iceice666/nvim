@@ -13,7 +13,8 @@ local hint = [[
                              ^^^ _e_: explain error               _o_: outgoing calls
   _[_: jump prev diagnostic    ^ _m_: expand macro                _h_: hierarchy
   _]_: jump next diagnostic                                  ^^^  _a_: code action
-                                    _<Esc>_: quit
+  
+  _<Esc>_: quit
  ]]
 
 return Hydra({

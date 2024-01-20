@@ -50,52 +50,18 @@ leader key is `<space>`
 
 | Keybinding | Mode | Description |
 |------------|------|-------------|
-| `<leader>E` | `n` | Open file tree |
+| `<leader>e` | `n` | Open file tree |
+
+Press `<leader>b` to get more information
+
 
 ## [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 
-| Keybinding | Mode | Description |
-|------------|------|-------------|
-| `<leader>tff` | `n` | Find files |
-| `<leader>tfg` | `n` | Find git tracked files | 
-| `<leader>tfc` | `n` | Find files that contain the current cursor word | 
-| `<leader>tfs` | `n` | Find words |
-| `<leader>tr`  | `n` | Recent files |
-| `<leader>th`  | `n` | Check highlights |
-| `<leader>tu`  | `n` | Undo history |
+Press `<leader>t` to get more information
 
 ## LSP
 
-| Keybinding | Mode | Description |
-|------------|------|-------------|
-| `gpd`        | `n`     | **G**oto **P**eek **D**efintion      |
-| `gpt`        | `n`     | **G**oto **P**eek **T**ype defintion |
-| `gd`         | `n`     | **G**oto **D**efiniton               |
-| `gtd`        | `n`     | **G**oto **T**ype **D**efiniton      |
-| `gk`         | `n`     | hover doc                            |
-| `gK`         | `n`     | Show doc and pinned at top right     |
-| `g[`         | `n`     | Goto prev diagnostic                 |
-| `g]`         | `n`     | Goto next diagnostic                 |
-| `<leader>rf` | `n`     | **R**ename in current **f**ile       |
-| `<leader>rp` | `n`     | **R**ename in entire **p**roject     |
-| `<leader>fr` | `n`     | **F**inder: **R**eferences           |
-| `<leader>fd` | `n`     | **F**inder: **D**efinition           |
-| `<leader>fi` | `n`     | **F**inder: **I**mplementation       |
-| `<leader>inc`| `n`     | Show **inc**oming calls              |
-| `<leader>out`| `n`     | Show **out**going calls              |
-| `<leader>so` | `n`     | Show **s**ymbol **o**utline          |
-| `<leader>ca` | `n` `v` | **C**ode **A**ction                  |
-
-#### Rust
-
-For rust, there has some extra bindings
-
-| Keybinding | Mode | Description |
-|------------|------|-------------|
-| `g<space>`   | `n` | [Hover range](https://github.com/mrcjkb/rustaceanvim#usage) |
-| `<leader>ee` | `n` `v` | **E**xplain **e**rror |
-| `<leader>em` | `n`     | **E**xpand **m**acro  |
-| `<leader>oc` | `n`     | **O**pen `Cargo.toml` |
+Press `<leader>l` to get more information
 
 ## DAP
 

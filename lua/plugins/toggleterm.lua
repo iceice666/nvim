@@ -9,15 +9,21 @@ return {
   },
   keys = {
     {
-      "<m-t>",
-      "<cmd>ToggleTerm<cr>",
+      "<c-`>",
+      "<cmd>ToggleTerm dir=\"" .. vim.fn.getcwd() .. "\"<CR>",
       desc = "Term: Open terminal",
       mode = { "n" },
     },
     {
-      "<m-t>",
+      "<c-`>",
       "<c-\\><c-n><cmd>ToggleTerm<cr>",
       desc = "Term: Close terminal",
+      mode = { "t" },
+    },
+    {
+      "<m-c>",
+      "; cd " .. vim.fn.getcwd() .. "<CR>",
+      desc = "Go to current working dir",
       mode = { "t" },
     },
   },

@@ -2,17 +2,24 @@ local Hydra = require("hydra")
 
 local cmd = require("hydra.keymap-util").cmd
 
+local fun = function(f, ...)
+  local args = { ... }
+  return function()
+    f(table.unpack(args))
+  end
+end
+
 local hint = [[
-          Goto                                      ^^^^^^Operation
- -------------------------^^^^  ----------------------------------------------------------
-  _d_: peek definition         ^ _k_: hover doc                  _fr_: find referance
-  _t_: peek type definition    ^ _K_: pinned hover doc           _fd_: find definition
-  _D_: goto definition         ^ _r_: rename (in current buffer) _fi_: find implementation
-  _T_: goto type definition    ^ _R_: rename (in project)
-                                                             ^^^^^_i_: incoming calls
-  _[_: jump prev diagnostic                                    ^^^_o_: outgoing calls
-  _]_: jump next diagnostic                                    ^^^_h_: hierarchy
-                                                             ^^^^^_a_: code action
+          Goto                              ^^^^^^Operation
+ -------------------------^^^^  ^^^--------------------------------------------------
+  _d_: peek definition         ^ _k_: hover doc          _fr_: find referance
+  _t_: peek type definition    ^ _K_: pinned hover doc   _fd_: find definition
+  _D_: goto definition         ^ _r_: rename             _fi_: find implementation
+  _T_: goto type definition
+                                                     ^^^^^_i_: incoming calls
+  _[_: jump prev diagnostic                            ^^^_o_: outgoing calls
+  _]_: jump next diagnostic                            ^^^_h_: hierarchy
+                                                     ^^^^^_a_: code action
   _<Esc>_: quit
  ]]
 
@@ -39,8 +46,8 @@ return Hydra({
     { "[", cmd("Lspsaga diagnostic_jump_prev") },
     { "]", cmd("Lspsaga diagnostic_jump_next") },
 
-    { "r", cmd("Lspsaga rename"), { exit = true } },
-    { "R", cmd("Lspsaga rename ++project"), { exit = true } },
+    -- leader is <space>
+    { "r", fun(vim.fn.feedkeys, " rn"), { exit = true } },
     { "fr", cmd("Lspsaga finder ref"), { exit = true } },
     { "fd", cmd("Lspsaga finder def"), { exit = true } },
     { "fi", cmd("Lspsaga finder imp"), { exit = true } },

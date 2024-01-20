@@ -24,6 +24,7 @@ return {
 
     local ft_km = {
       ["default"] = req("lsp.default"),
+      ["dart"] = req("lsp.flutter"),
       ["rust"] = req("lsp.rust"),
     }
 

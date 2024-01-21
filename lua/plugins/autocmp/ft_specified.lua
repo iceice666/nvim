@@ -7,7 +7,7 @@ return {
     },
     ft = "dart",
     config = function()
-      require("plugins.autocmp.langs.dart")
+      require("plugins.autocmp.langs.flutter")
     end,
   },
   {

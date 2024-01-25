@@ -13,9 +13,17 @@ vim.g.rustaceanvim = {
       ["rust-analyzer"] = {
         cargo = {
           allFeatures = true,
+          buildScripts = {
+            enable = true,
+          },
         },
         check = {
           ignore = { "unused_variables", "dead_code" },
+          allTargets = false,
+          command = "clippy",
+        },
+        procMacro = {
+          enable = true,
         },
       },
     },

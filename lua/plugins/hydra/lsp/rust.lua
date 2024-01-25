@@ -44,8 +44,8 @@ return Hydra({
     { "<Space>", cmd("RustLsp hover range"), { exit = true } },
     { "k", cmd("RustLsp hover actions") },
     { "K", cmd("Lspsaga hover_doc ++keep") },
-    { "[", cmd("Lspsaga diagnostic_jump_prev") },
-    { "]", cmd("Lspsaga diagnostic_jump_next") },
+    { "[", cmd("Lspsaga diagnostic_jump_prev"), { nowait = true } },
+    { "]", cmd("Lspsaga diagnostic_jump_next"), { nowait = true } },
 
     -- leader is <space>
     { "r", fun(vim.fn.feedkeys, " rn"), { exit = true } },

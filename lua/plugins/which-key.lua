@@ -59,12 +59,14 @@ return {
       "<c-k>",
       ":m '<-2<cr>gv=gv",
       desc = "Move up",
+      silent = true,
       mode = { "v" },
     },
     {
       "<c-j>",
       ":m '>+1<cr>gv=gv",
       desc = "Move down",
+      silent = true,
       mode = { "v" },
     },
 

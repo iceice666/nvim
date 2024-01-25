@@ -76,13 +76,11 @@ return {
         visible = false,
         hide_gitignored = true,
         hide_hidden = false,
-        hide_dotfiles = false,
+        hide_dotfiles = true,
         follow_current_file = {
           enabled = true,
         },
-        always_show = {
-          ".gitignore",
-        },
+        always_show = {},
         never_show = {
           ".vscode",
           ".git",
@@ -90,6 +88,7 @@ return {
         },
         hide_by_pattern = { -- uses glob style patterns
           "*.lock",
+          "build",
         },
       },
       window = {

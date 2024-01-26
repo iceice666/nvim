@@ -1,4 +1,7 @@
 local util = require("lspconfig/util")
+
+local lsp_default = require("plugins.autocmp.langs.default")
+
 vim.g.rustaceanvim = {
   tools = {
     hover_actions = {
@@ -27,10 +30,7 @@ vim.g.rustaceanvim = {
         },
       },
     },
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
-    on_attach = function(client, bufnr)
-      require("lsp-inlayhints").on_attach(client, bufnr)
-      require("lsp-inlayhints").show()
-    end,
+    capabilities = lsp_default.capabilities(),
+    on_attach = lsp_default.on_attach,
   },
 }

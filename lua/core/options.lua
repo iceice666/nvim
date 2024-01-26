@@ -77,6 +77,13 @@ vim.o.winwidth = 10
 vim.o.winminwidth = 10
 vim.o.equalalways = false
 
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
 if vim.fn.has("win32") == 1 then
   vim.g.sqlite_clib_path = vim.fn.stdpath("config") .. "/assets/sqlite3.dll"
 end

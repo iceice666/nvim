@@ -1,3 +1,4 @@
+local lsp_default = require("plugins.autocmp.langs.default")
 require("flutter-tools").setup({
   lsp = {
     color = {
@@ -8,6 +9,9 @@ require("flutter-tools").setup({
     settings = {
       renameFilesWithClasses = "always",
     },
+
+    capabilities = lsp_default.capabilities(),
+    on_attach = lsp_default.on_attach,
   },
   widget_guides = {
     enabled = true,

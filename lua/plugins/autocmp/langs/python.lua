@@ -1,4 +1,6 @@
-local config = {
+local lsp_default = require("plugins.autocmp.langs.default")
+
+require("lspconfig").pyright.setup({
   settings = {
     python = {
       analysis = {
@@ -8,8 +10,6 @@ local config = {
       },
     },
   },
-}
-
-require("lspconfig").pyright.setup(
-  vim.tbl_extend("force", require("plugins.autocmp.langs.default"), config)
-)
+  capabilities = lsp_default.capabilities(),
+  on_attach = lsp_default.on_attach,
+})

@@ -1,4 +1,8 @@
-local config = {
+local lsp_default = require("plugins.autocmp.langs.default")
+
+require("lspconfig").lua_ls.setup({
+  capabilities = lsp_default.capabilities(),
+  on_attach = lsp_default.on_attach,
   before_init = require("neodev.lsp").before_init,
   settings = {
     Lua = {
@@ -19,8 +23,4 @@ local config = {
       },
     },
   },
-}
-
-require("lspconfig").lua_ls.setup(
-  vim.tbl_extend("force", require("plugins.autocmp.langs.default"), config)
-)
+})

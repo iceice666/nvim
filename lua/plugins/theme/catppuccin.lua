@@ -20,11 +20,13 @@ return {
           DapBreakpoint = { fg = c.red1 },
           DapLogPoint = { fg = c.cyan },
           DapStop = { fg = c.green },
-          LspInlayHint = { fg = "#a6adc8", bg = "#11111b" },
+          LspInlayHint = { fg = c.overlay2, bg = c.crust },
+          Folded = { bg = c.base },
         }
       end,
       integrations = {
         cmp = true,
+        flash = true,
         lsp_trouble = true,
         lsp_saga = true,
         which_key = true,
@@ -32,10 +34,12 @@ return {
         noice = true,
         neotree = true,
         telescope = true,
+        dashboard = true,
         indent_blankline = {
           enabled = true,
           colored_indent_levels = true,
         },
+        markdown = true,
       },
     })
     vim.cmd("colorscheme catppuccin")

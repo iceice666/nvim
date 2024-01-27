@@ -5,11 +5,4 @@ return {
     event = "CmdlineEnter",
     config = true,
   },
-
-  {
-    -- git sign
-    "lewis6991/gitsigns.nvim",
-    config = true,
-    event = "BufReadPre",
-  },
 }

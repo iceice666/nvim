@@ -35,7 +35,7 @@ return {
       NOTE = {
         icon = " ",
         color = "hint",
-        alt = { "INFO", "NOTE" },
+        alt = { "INFO", "NOTE", "HINT" },
       },
       TEST = {
         icon = "⏲ ",

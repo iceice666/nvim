@@ -43,8 +43,8 @@ return Hydra({
     { "T", cmd("Lspsaga goto_type_definition") },
     { "k", cmd("Lspsaga hover_doc") },
     { "K", cmd("Lspsaga hover_doc ++keep") },
-    { "[", cmd("Lspsaga diagnostic_jump_prev") },
-    { "]", cmd("Lspsaga diagnostic_jump_next") },
+    { "[", cmd("Lspsaga diagnostic_jump_prev"), { nowait = true } },
+    { "]", cmd("Lspsaga diagnostic_jump_next"), { nowait = true } },
 
     -- leader is <space>
     { "r", fun(vim.fn.feedkeys, " rn"), { exit = true } },

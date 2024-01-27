@@ -57,23 +57,28 @@ end
 -- end
 --
 
-local pairing_table = {
-  ["{"] = "}",
-  ["("] = ")",
-}
+local import_check = function(text, ft)
+  return (ft == "rust" and text == "use")
+    or ((ft == "cpp" or ft == "c") and text == "#include")
+    or (ft == "python" and (text == "import" or text == "from"))
+end
 
 local handler = function(virtText, lnum, endLnum, _, _)
-  local newVirtText = {}
-  local lastPart = ""
-  for _, chunk in ipairs(virtText) do
-    table.insert(newVirtText, chunk)
-    lastPart = chunk
-  end
-  local suffix = (" 󰁂 %d lines"):format(endLnum - lnum) .. " "
-  table.insert(newVirtText, { suffix, "MoreMsg" })
-  table.insert(newVirtText, { pairing_table[lastPart[1]] or "", lastPart[2] })
+  local filetype = vim.bo.filetype
+  local first_chunk = virtText[1]
 
-  return newVirtText
+  if import_check(first_chunk[1], filetype) then
+    return {
+      first_chunk,
+      { " ", "Normal" },
+      { "⋯ ", "Cursor" },
+    }
+  end
+
+  local suffix = (" 󰁂 %d lines"):format(endLnum - lnum) .. " "
+  table.insert(virtText, { suffix, "MoreMsg" })
+
+  return virtText
 end
 
 return {

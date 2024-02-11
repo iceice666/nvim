@@ -65,13 +65,14 @@ return {
     })
 
     -- local has_words_before = function()
-    --   unpack = unpack or table.unpack
+    --   if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+    --     return false
+    --   end
     --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     --   return col ~= 0
     --     and vim.api
-    --         .nvim_buf_get_lines(0, line - 1, line, true)[1]
-    --         :sub(col, col)
-    --         :match("%s")
+    --         .nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]
+    --         :match("^%s*$")
     --       == nil
     -- end
 
@@ -103,6 +104,7 @@ return {
           option = { show_autosnippets = false },
         },
         { name = "crates" },
+        { name = "emoji" },
       },
       snippet = {
         expand = function(args)
@@ -125,9 +127,11 @@ return {
 
         ["<esc>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
 
-        ["<Tab>"] = cmp.mapping(function(fallback)
+        ["<Tab>"] = cmp.mapping(function()
           if cmp.visible() then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          elseif require("copilot.suggestion").is_visible() then
+            require("copilot.suggestion").accept()
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           else
@@ -193,8 +197,8 @@ return {
           cmp.config.compare.exact,
           cmp.config.compare.recently_used,
           cmp.config.compare.score,
+          cmp.config.compare.locality,
           require("cmp-under-comparator").under,
-          require("clangd_extensions.cmp_scores"),
           cmp.config.compare.kind,
           cmp.config.compare.sort_text,
           cmp.config.compare.length,

@@ -22,18 +22,18 @@ return {
     req("winctrl")
     req("buffer")
 
-    local ft_km = {
-      ["default"] = req("lsp.default"),
-      ["dart"] = req("lsp.flutter"),
-      ["rust"] = req("lsp.rust"),
-    }
+    local expand = function(path)
+      return vim.fn.getcwd() .. "/" .. vim.fn.expand(path)
+    end
 
     require("which-key").register({
       ["<leader>l"] = {
         function()
-          local km = ft_km[vim.bo.filetype]
-          if km == nil then
-            km = ft_km["default"]
+          local km = req("lsp.default")
+          if vim.fn.filereadable(expand("Cargo.toml")) then
+            km = req("lsp.rust")
+          elseif vim.fn.filereadable(expand("pubspec.yaml")) then
+            km = req("lsp.flutter")
           end
 
           km:activate()

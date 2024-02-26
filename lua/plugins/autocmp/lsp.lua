@@ -58,15 +58,19 @@ return {
       end
     end
 
+    local default_config = require("plugins.autocmp.langs.default") -- return a table
     require("mason-lspconfig").setup_handlers({
       function(server_name)
-        require("lspconfig")[server_name].setup(load("default")())
+        require("lspconfig")[server_name].setup({
+          on_attach = default_config.on_attach,
+          capabilities = default_config.capabilities(),
+        })
       end,
 
       -- INFO: Use `load` to set up a langauge server
       -- Also see: `:help mason-lspconfig.setup_handlers()`
-      ["lua_ls"] = load("lua"), -- this one setup server inside
-      ["pyright"] = load("python"), -- this one setup server inside
+      ["lua_ls"] = load("lua"),         -- this one setup server inside
+      ["pyright"] = load("python"),     -- this one setup server inside
       ["rust_analyzer"] = load("rust"), -- this one pass config to plugin ( and plugin will setup the server)
     })
   end,

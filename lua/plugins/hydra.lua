@@ -18,21 +18,33 @@ return {
       return require("plugins.hydra." .. text)
     end
 
+    local is_lsp_active = function(lsp_name)
+      for _, client in ipairs(vim.lsp.get_active_clients()) do
+        if client.name == lsp_name then
+          return true
+        end
+      end
+      print("false!")
+
+      return false
+    end
+
     req("telescope")
     req("winctrl")
     req("buffer")
 
-    local expand = function(path)
-      return vim.fn.getcwd() .. "/" .. vim.fn.expand(path)
+    local is_file_exist = function(path)
+      return vim.fn.filereadable(vim.fn.getcwd() .. "/" .. path) == 1
     end
 
     require("which-key").register({
       ["<leader>l"] = {
         function()
           local km = req("lsp.default")
-          if vim.fn.filereadable(expand("Cargo.toml")) then
+
+          if is_file_exist("Cargo.toml") or is_lsp_active("rust_analyzer") then
             km = req("lsp.rust")
-          elseif vim.fn.filereadable(expand("pubspec.yaml")) then
+          elseif is_file_exist("pubspec.yaml") or is_lsp_active("dartls") then
             km = req("lsp.flutter")
           end
 

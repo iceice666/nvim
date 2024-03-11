@@ -144,18 +144,18 @@ return {
     },
 
     -- An expression mapping for dd that doesn't yank an empty line into your default register
-    {
-      "dd",
-      function()
-        if vim.api.nvim_get_current_line():match("^%s*$") then
-          feed_keys("\"_dd")
-        else
-          feed_keys("dd")
-        end
-      end,
-    },
+    -- {
+    --   "dd",
+    --   function()
+    --     if vim.api.nvim_get_current_line():match("^%s*$") then
+    --       feed_keys("\"_dd")
+    --     else
+    --       feed_keys("dd")
+    --     end
+    --   end,
+    -- },
 
-    --An expression mapping for i that will indent properly on empty lines
+    --An expression mapping for `i` & `a` that will indent properly on empty lines
     {
       "i",
       function()
@@ -163,6 +163,16 @@ return {
           feed_keys("\"_cc")
         else
           feed_keys("i")
+        end
+      end,
+    },
+    {
+      "a",
+      function()
+        if #vim.fn.getline(".") == 0 then
+          feed_keys("\"_cc")
+        else
+          feed_keys("a")
         end
       end,
     },

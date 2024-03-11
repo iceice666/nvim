@@ -8,17 +8,17 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-  callback = function()
-    vim.highlight.on_yank({
-      higroup = "IncSearch",
-      timeout = 300,
-    })
-
-    if vim.fn.has("wsl") == 1 then
-      vim.fn.system("clip.exe", vim.fn.getreg("\""))
-    end
-  end,
-
-  group = vim.api.nvim_create_augroup("Yank", { clear = true }),
-})
+-- vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+--   callback = function()
+--     vim.highlight.on_yank({
+--       higroup = "IncSearch",
+--       timeout = 300,
+--     })
+--
+--     if vim.fn.has("wsl") == 1 then
+--       vim.fn.system("clip.exe", vim.fn.getreg("\""))
+--     end
+--   end,
+--
+--   group = vim.api.nvim_create_augroup("Yank", { clear = true }),
+-- })

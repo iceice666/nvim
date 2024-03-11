@@ -21,15 +21,15 @@ return {
 
       escape = {
         enabled = true,
-        triggers = {
-          [","] = {
-            pairs = {
-              { open = "'", close = "'" },
-              { open = "\"", close = "\"" },
-            },
-            format = "%s ", -- ", "
-          },
-        },
+        -- triggers = {
+        --   [","] = {
+        --     pairs = {
+        --       { open = "'", close = "'" },
+        --       { open = "\"", close = "\"" },
+        --     },
+        --     format = "%s ", -- ", "
+        --   },
+        -- },
       },
     },
   },

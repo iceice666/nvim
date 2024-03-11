@@ -24,14 +24,6 @@ return {
     wk.setup()
   end,
   keys = {
-    {
-      -- esc in insert mode
-      "jk",
-      "<ESC>",
-      mode = { "i" },
-      desc = "Escape",
-    },
-
     -- Quit
     {
       "<leader>Q",
@@ -100,7 +92,7 @@ return {
     -- https://github.com/mhinz/vim-galore#saner-ctrl-l
     {
       "<leader>/",
-      "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><c-l>",
+      "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><cmd>NoiceDismiss<CR><c-l>",
       desc = "Buf: Redraw",
     },
 

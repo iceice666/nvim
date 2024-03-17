@@ -1,14 +1,14 @@
 return {
   init = function(self)
-    self.mode = vim.fn.mode(1)
+    self.mode = vim.api.nvim_get_mode().mode
   end,
   static = {
     mode_names = {
       n = "N ",
-      no = "N?",
-      nov = "N?",
-      noV = "N?",
-      ["no\22"] = "N?",
+      no = "No",
+      nov = "No",
+      noV = "No",
+      ["no\22"] = "No",
       niI = "Ni",
       niR = "Nr",
       niV = "Nv",

@@ -1,7 +1,6 @@
 if vim.g.neovide then
   vim.keymap.set({ "n", "x", "o" }, "J", "10j")
   vim.keymap.set({ "n", "x", "o" }, "K", "10k")
-  return nil
 else
   return {
     -- smooth scrolling

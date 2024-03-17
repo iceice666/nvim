@@ -26,6 +26,9 @@ return Hydra({
       offset = -1,
     },
     color = "pink",
+    on_enter = function()
+      vim.bo.modifiable = false
+    end,
   },
 
   heads = {

@@ -5,4 +5,7 @@ return {
     event = "CmdlineEnter",
     config = true,
   },
+  {
+    "tiagovla/scope.nvim",
+  },
 }

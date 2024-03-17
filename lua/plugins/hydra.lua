@@ -1,5 +1,5 @@
 return {
-  "anuvyklack/hydra.nvim",
+  "nvimtools /hydra.nvim",
   lazy = false,
   dependencies = {
     "mrjones2014/smart-splits.nvim",
@@ -29,6 +29,7 @@ return {
       return false
     end
 
+    req("tabpage")
     req("telescope")
     req("winctrl")
     req("buffer")

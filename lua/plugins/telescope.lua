@@ -10,6 +10,7 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
     },
+    "tiagovla/scope.nvim",
   },
   cmd = "Telescope",
   config = function()
@@ -97,6 +98,7 @@ return {
     })
 
     --telescope.load_extension('dap')
+    telescope.load_extension("scope")
     telescope.load_extension("fzf")
     telescope.load_extension("live_grep_args")
     telescope.load_extension("noice")

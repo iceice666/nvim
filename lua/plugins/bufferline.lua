@@ -46,6 +46,6 @@ return {
     { "<leader>7",  "<cmd>BufferLineGoToBuffer 7<CR>",              desc = "Buf: Switch to buffer7",        },
     { "<leader>8",  "<cmd>BufferLineGoToBuffer 8<CR>",              desc = "Buf: Switch to buffer8",        },
     { "<leader>9",  "<cmd>BufferLineGoToBuffer 9<CR>",              desc = "Buf: Switch to buffer9",        },
-    { "<leader>q",  "<cmd>Neotree close<cr><cmd>bd %<cr>",          desc = "Buf: Close current buffer",     },
+    { "<leader>q",  "<cmd>Bdelete<cr>",          desc = "Buf: Close current buffer",     },
   },
 }

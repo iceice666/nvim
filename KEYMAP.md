@@ -37,7 +37,7 @@ each plugin file has a `keys` section which contains the keybindins of this plug
 | `<ldeader>rr` | `n` | Quit with code 1 ([Useful for restart](https://github.com/iceice666/dotfiles/blob/main/.zshrc#L13:L21)) |
 | `<leader>w`   | `n` | Write |
 | `<leader>/`   | `n` | redraw screen, de-highlighting search, diff update, syntax sync and clear notification (ref: [saner ctrl+l](https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n)) |
-| `<leader>!`   | `n` | Reverse `True` `False`, `yes` `no`, `1` `0`, ... etc.
+| `<leader>~`   | `n` | Reverse `True` `False`, `yes` `no`, `1` `0`, ... etc.
 | `U`           | `n` | Redo ( equals `<c-r>`) |
 | `i` & `a`     | `n` | Now `i`/`a` can add indents properly on empty lines |
 | `o`           | `n` | In json-like structure, append a comma at the EOL when adding a new line |

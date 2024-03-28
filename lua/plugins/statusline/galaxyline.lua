@@ -124,7 +124,7 @@ return {
         DiffAdd = {
           condition = condition.hide_in_width,
           highlight = { colors.green, colors.bg },
-          icon = "  ",
+          icon = "  ",
           provider = "DiffAdd",
         },
       },
@@ -133,7 +133,7 @@ return {
         DiffModified = {
           condition = condition.hide_in_width,
           highlight = { colors.orange, colors.bg },
-          icon = " 柳",
+          icon = "  ",
           provider = "DiffModified",
         },
       },
@@ -142,7 +142,7 @@ return {
         DiffRemove = {
           condition = condition.hide_in_width,
           highlight = { colors.red, colors.bg },
-          icon = "  ",
+          icon = "  ",
           provider = "DiffRemove",
         },
       },

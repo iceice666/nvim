@@ -13,6 +13,7 @@ local hint = [[
                           ^^^^^ _$_: last       ^_t_: tabs
                            ^^^^^_s_: selected
  _<Esc>_: quit                             ^^^^^^_P_: toggle pin
+
 ]]
 
 Hydra({
@@ -22,7 +23,7 @@ Hydra({
     invoke_on_body = true,
     hint = {
       border = "rounded",
-      offset = -1,
+      offset = 1,
     },
     color = "pink",
   },

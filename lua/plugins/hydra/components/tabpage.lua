@@ -12,6 +12,7 @@ local hint = [[
  ^ ^  into a new tab           ^   _\^_: first
                             ^^^^    _$_: last
  _<Esc>_: quit
+
 ]]
 
 Hydra({
@@ -21,7 +22,7 @@ Hydra({
     invoke_on_body = true,
     hint = {
       border = "rounded",
-      offset = -1,
+      offset = 1,
     },
     color = "pink",
   },

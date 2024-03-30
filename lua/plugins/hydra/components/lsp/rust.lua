@@ -21,6 +21,7 @@ local hint = [[
   _]_: jump next diagnostic                        ^^^   _a_: code action
 
   _<Esc>_: quit
+
  ]]
 
 return Hydra({
@@ -30,13 +31,13 @@ return Hydra({
     invoke_on_body = true,
     hint = {
       border = "rounded",
-      offset = -1,
+      offset = 1,
     },
     color = "pink",
   },
 
   heads = {
-
+    -- stylua: ignore start
     { "d",       cmd("Lspsaga peek_definition") },
     { "t",       cmd("Lspsaga peek_type_definition") },
     { "D",       cmd("Lspsaga goto_definition") },

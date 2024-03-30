@@ -14,6 +14,7 @@ local hint = [[
   _]_: jump next diagnostic    ^ _xe_: show emulators        _h_: hierarchy
                                                         ^^^^^_a_: code action
   _<Esc>_: quit            ^_<Enter>_: Telescope integration
+
   ]]
 
 return Hydra({
@@ -23,13 +24,13 @@ return Hydra({
     invoke_on_body = true,
     hint = {
       border = "rounded",
-      offset = -1,
+      offset = 1,
     },
     color = "pink",
   },
 
   heads = {
-
+    -- stylua: ignore start
     { "xr",      cmd("FlutterRun"),                  { exit = true } },
     { "xd",      cmd("FlutterDevices"),              { exit = true } },
     { "xe",      cmd("FlutterEmulators"),            { exit = true } },

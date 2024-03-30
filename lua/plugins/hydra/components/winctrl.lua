@@ -12,6 +12,7 @@ local window_hint = [[
  ^ ^ _j_ ^ ^  ^ ^ _J_ ^ ^   ^   _<C-j>_   ^   _c_: close
  focus^^^^^^  window^^^^^^  ^_=_: equalize^   _o_: remain only
  ^ ^ ^ ^ ^ ^  ^ ^ ^ ^ ^ ^   ^_m_: maximize^   _<Esc>_: cancel
+
  ]]
 
 Hydra({
@@ -21,7 +22,7 @@ Hydra({
     invoke_on_body = true,
     hint = {
       border = "rounded",
-      offset = -1,
+      offset = 1,
     },
   },
   mode = "n",

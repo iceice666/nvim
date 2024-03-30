@@ -54,40 +54,40 @@ return {
       hl = { fg = "red" },
     },
 
-    {
-      update = { "CursorMoved", "CursorMovedI" },
-      condition = function(self)
-        return self.errors > 0
-      end,
-      provider = function(self)
-        -- Iterate the error table and find the closest one
-        if self.errors == 1 then
-          return self.error_table[1].message .. " "
-        else
-          local cursor = vim.api.nvim_win_get_cursor(0)[1]
-          local offset_limit = 1145141919810 -- tbh, can a file has so many lines?
-          local closest = 0
-          for i, n in ipairs(self.error_table) do
-            local current_offset = math.abs(cursor - (n.lnum + 1))
-            if current_offset > offset_limit then
-              break
-            else
-              offset_limit = current_offset
-              closest = i
-            end
-          end
-
-          local msg = vim.split(
-            self.error_table[closest].message,
-            [[^@]],
-            { plain = true, trimempty = true }
-          )
-
-          return msg[1] .. " "
-        end
-      end,
-      hl = { fg = "red" },
-    },
+    -- {
+    --   update = { "CursorMoved", "CursorMovedI" },
+    --   condition = function(self)
+    --     return self.errors > 0
+    --   end,
+    --   provider = function(self)
+    --     -- Iterate the error table and find the closest one
+    --     if self.errors == 1 then
+    --       return self.error_table[1].message .. " "
+    --     else
+    --       local cursor = vim.api.nvim_win_get_cursor(0)[1]
+    --       local offset_limit = 1145141919810 -- tbh, can a file has so many lines?
+    --       local closest = 0
+    --       for i, n in ipairs(self.error_table) do
+    --         local current_offset = math.abs(cursor - (n.lnum + 1))
+    --         if current_offset > offset_limit then
+    --           break
+    --         else
+    --           offset_limit = current_offset
+    --           closest = i
+    --         end
+    --       end
+    --
+    --       local msg = vim.split(
+    --         self.error_table[closest].message,
+    --         [[^@]],
+    --         { plain = true, trimempty = true }
+    --       )
+    --
+    --       return msg[1] .. " "
+    --     end
+    --   end,
+    --   hl = { fg = "red" },
+    -- },
 
     {
       update = { "DiagnosticChanged", "BufLeave" },

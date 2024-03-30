@@ -15,11 +15,14 @@ local center = function()
     }
   end
 
-  button("r", "󰉋 ", "Restore Session", "SessionRestore")
+  button("r", "󱋡 ", "Restore Session", "NeovimProjectLoadRecent")
+  button("p", " ", "Open projects", "Telescope neovim-project discover")
   button("c", "󱎘 ", "Close dashboard", "enew ")
   button("m", "󰍦 ", "Messages", "Noice")
-  button("p", " ", "Lazy profile", "Lazy profile")
-  button("R", "󰑓 ", "Restart nvim", "cq")
+  button("l", " ", "Lazy profile", "Lazy profile")
+  if vim.g.neovide ~= true then
+    button("R", "󰑓 ", "Restart nvim", "cq")
+  end
   button("q", "󰗼 ", "Quit", "qa")
 
   return buttons

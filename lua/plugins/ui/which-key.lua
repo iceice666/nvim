@@ -19,10 +19,7 @@ return {
   "folke/which-key.nvim",
   lazy = false,
   priority = 10000,
-  config = function()
-    local wk = require("which-key")
-    wk.setup()
-  end,
+  config = true,
   keys = {
     -- Quit
     {

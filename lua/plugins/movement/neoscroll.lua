@@ -7,7 +7,7 @@ return {
       vim.keymap.set({ "n", "x", "o" }, "J", "10j")
       vim.keymap.set({ "n", "x", "o" }, "K", "10k")
     end
-    return vim.g.neovide
+    return vim.g.neovide ~= 1
   end,
   keys = {
     {

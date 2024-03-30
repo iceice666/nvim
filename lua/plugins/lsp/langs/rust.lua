@@ -1,6 +1,6 @@
 local util = require("lspconfig/util")
 
-local lsp_default = require("plugins.autocmp.langs.default")
+local lsp_default = require("plugins.lsp.langs.default")
 
 vim.g.rustaceanvim = {
   tools = {

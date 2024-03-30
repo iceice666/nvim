@@ -1,5 +1,5 @@
 return {
-  "nvimtools /hydra.nvim",
+  "nvimtools/hydra.nvim",
   lazy = false,
   dependencies = {
     "mrjones2014/smart-splits.nvim",
@@ -15,7 +15,7 @@ return {
   },
   config = function()
     local req = function(text)
-      return require("plugins.hydra." .. text)
+      return require("plugins.hydra.components." .. text)
     end
 
     local is_lsp_active = function(lsp_name)

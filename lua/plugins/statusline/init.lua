@@ -4,7 +4,7 @@ return {
   event = { "VimEnter", "BufReadPost" },
   config = function()
     local function req(modules)
-      return require("plugins.statusline.heirline." .. modules)
+      return require("plugins.statusline.components." .. modules)
     end
 
     table.unpack = table.unpack or unpack -- 5.1 compatibility

@@ -1,6 +1,5 @@
 return {
   -- auto saver
-  enabled = false,
   "tmillr/sos.nvim",
   event = "BufReadPost",
   opts = {

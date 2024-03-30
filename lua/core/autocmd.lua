@@ -1,10 +1,11 @@
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
   callback = function()
-    pcall(vim.cmd, "UndotreeHide")
-    pcall(vim.cmd, "NeoTreeClose")
-    pcall(vim.cmd, "TroubleClose")
     pcall(require("dapui").close, "")
-    pcall(vim.cmd, "SessionSave")
+    pcall(vim.api.nvim_exec, "UndotreeHide")
+    pcall(vim.api.nvim_exec, "NeoTreeClose")
+    pcall(vim.api.nvim_exec, "TroubleClose")
+
+    pcall(vim.api.nvim_exec, "SessionSave")
   end,
 })
 
@@ -18,6 +19,14 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  pattern = "*",
+  callback = function(event)
+    if vim.bo[event.buf].filetype == "term" then
+      vim.bo[event.buf].modifiable = true
+    end
+  end,
+})
 -- vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 --   callback = function()
 --     vim.highlight.on_yank({

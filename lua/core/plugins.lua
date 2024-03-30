@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-  require("plugins.lib"), -- Libs
   require("plugins.theme.init"), -- theme
   require("plugins.dashboard.init"), -- Welcome screen
   { import = "plugins.ui" }, -- Modify Neovim built-in UI

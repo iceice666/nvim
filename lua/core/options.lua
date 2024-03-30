@@ -8,7 +8,7 @@ opt.fileencoding = "utf-8"
 
 opt.number = true
 --opt.relativenumber = true
-
+opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.scrolloff = 5
 opt.sidescrolloff = 5
 
@@ -18,12 +18,11 @@ opt.incsearch = true
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.shiftwidth = 2
-opt.expandtab = true
-
+opt.shiftround = true -- Round indent
+opt.expandtab = true -- Use spaces instead of tabs
 opt.smartindent = true
 opt.autoindent = true
-
-opt.ignorecase = true
+opt.ignorecase = true -- Ignore case
 opt.smartcase = true
 
 opt.showmode = false
@@ -35,38 +34,25 @@ opt.writebackup = false
 opt.autoread = true
 vim.bo.autoread = true
 
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+
 opt.signcolumn = "yes"
 opt.list = true
--- opt.listchars:append "space:⋅"
--- opt.listchars:append "eol:↴"
-
 vim.cmd("set formatoptions-=cro")
-
 opt.cursorline = true
 opt.colorcolumn = "80"
-
 opt.termguicolors = true
-
 opt.cmdheight = 2
-
 opt.whichwrap = "b,s,<,>,[,],h,l"
-
 opt.wildmenu = true
-
 opt.showtabline = 2
-
 vim.o.shortmess = vim.o.shortmess .. "c"
-
 opt.pumheight = 10
-
 opt.background = "dark"
-
 opt.hidden = true
-
 opt.mouse:append("a")
-
 opt.clipboard = "unnamedplus,unnamed"
-
 opt.sessionoptions = {
   "buffers",
   "curdir",
@@ -78,6 +64,7 @@ opt.sessionoptions = {
   "terminal",
   "localoptions",
 }
+opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -92,6 +79,9 @@ vim.o.foldenable = true
 
 vim.o.foldcolumn = "1" -- '0' is not bad
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
+opt.undofile = true
+opt.undolevels = 10000
 
 if vim.fn.has("win32") == 1 then
   vim.g.sqlite_clib_path = vim.fn.stdpath("config") .. "/assets/sqlite3.dll"

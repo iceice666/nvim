@@ -2,8 +2,11 @@
 
 # My Neovim Configs
 
-<img align="left" src="./static/dashboard.png" />
-<img align="right" src="./static/lsp.png" />
+![Dashboard](./static/dashboard.png)
+![lsp](./static/lsp.png)
+
+
+</div>
 
 ## ✨ Features
 
@@ -12,6 +15,7 @@
 
 ## ⚡️Requirements
 Require Neovim >= v0.9.0
+A c complier for `treesitter`
 
 ## [Keymap](./KEYMAP.md "Plugins")
 

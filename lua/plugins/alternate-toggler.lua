@@ -2,7 +2,7 @@ return {
   -- Switch true/false
   "rmagatti/alternate-toggler",
   keys = {
-    { "<leader>~", "<cmd>ToggleAlternate<cr>", desc = "Switch true/false" },
+    { "<leader>!", "<cmd>ToggleAlternate<cr>", desc = "Switch true/false" },
   },
   cmd = "ToggleAlternate",
   opts = {

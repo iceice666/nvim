@@ -1,92 +1,90 @@
-if vim.g.neovide then
-  vim.keymap.set({ "n", "x", "o" }, "J", "10j")
-  vim.keymap.set({ "n", "x", "o" }, "K", "10k")
-else
-  return {
-    -- smooth scrolling
-    "karb94/neoscroll.nvim",
-    event = "VimEnter",
-    keys = {
-      {
-        "J",
-        function()
-          require("neoscroll").scroll(10, true, 50)
-        end,
-        mode = { "n", "x", "o" },
-        desc = "Down 10 lines",
-      },
-      {
-        "K",
-        function()
-          require("neoscroll").scroll(-10, true, 50)
-        end,
-        mode = { "n", "x", "o" },
-        desc = "Up 10 lines",
-      },
-      {
-        "<C-u>",
-        function()
-          require("neoscroll").scroll(-vim.wo.scroll, true, 250)
-        end,
-      },
-      {
-        "<C-d>",
-        function()
-          require("neoscroll").scroll(vim.wo.scroll, true, 250)
-        end,
-      },
-      {
-        "<C-b>",
-        function()
-          require("neoscroll").scroll(
-            -vim.api.nvim_win_get_height(0),
-            true,
-            450
-          )
-        end,
-      },
-      {
-        "<C-f>",
-        function()
-          require("neoscroll").scroll(vim.api.nvim_win_get_height(0), true, 450)
-        end,
-      },
-      {
-        "<C-y>",
-        function()
-          require("neoscroll").scroll(-0.10, false, 100)
-        end,
-      },
-      {
-        "<C-e>",
-        function()
-          require("neoscroll").scroll(0.10, false, 100)
-        end,
-      },
-      {
-        "zt",
-        function()
-          require("neoscroll").zt("250")
-        end,
-      },
-      {
-        "zz",
-        function()
-          require("neoscroll").zz("250")
-        end,
-      },
-      {
-        "zb",
-        function()
-          require("neoscroll").zb("250")
-        end,
-      },
+return {
+  -- smooth scrolling
+  "karb94/neoscroll.nvim",
+  event = "VimEnter",
+  enabled = function()
+    if vim.g.neovide then
+      vim.keymap.set({ "n", "x", "o" }, "J", "10j")
+      vim.keymap.set({ "n", "x", "o" }, "K", "10k")
+    end
+    return vim.g.neovide
+  end,
+  keys = {
+    {
+      "J",
+      function()
+        require("neoscroll").scroll(10, true, 50)
+      end,
+      mode = { "n", "x", "o" },
+      desc = "Down 10 lines",
     },
-    opts = {
-      mappings = {},
-      hide_cursor = true,
-      stop_eof = true,
-      cursor_scrolls_alone = true,
+    {
+      "K",
+      function()
+        require("neoscroll").scroll(-10, true, 50)
+      end,
+      mode = { "n", "x", "o" },
+      desc = "Up 10 lines",
     },
-  }
-end
+    {
+      "<C-u>",
+      function()
+        require("neoscroll").scroll(-vim.wo.scroll, true, 250)
+      end,
+    },
+    {
+      "<C-d>",
+      function()
+        require("neoscroll").scroll(vim.wo.scroll, true, 250)
+      end,
+    },
+    {
+      "<C-b>",
+      function()
+        require("neoscroll").scroll(-vim.api.nvim_win_get_height(0), true, 450)
+      end,
+    },
+    {
+      "<C-f>",
+      function()
+        require("neoscroll").scroll(vim.api.nvim_win_get_height(0), true, 450)
+      end,
+    },
+    {
+      "<C-y>",
+      function()
+        require("neoscroll").scroll(-0.10, false, 100)
+      end,
+    },
+    {
+      "<C-e>",
+      function()
+        require("neoscroll").scroll(0.10, false, 100)
+      end,
+    },
+    {
+      "zt",
+      function()
+        require("neoscroll").zt("250")
+      end,
+    },
+    {
+      "zz",
+      function()
+        require("neoscroll").zz("250")
+      end,
+    },
+    {
+      "zb",
+      function()
+        require("neoscroll").zb("250")
+      end,
+    },
+  },
+  opts = {
+    mappings = {},
+    hide_cursor = true,
+    stop_eof = true,
+    cursor_scrolls_alone = true,
+  },
+}

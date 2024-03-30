@@ -1,6 +1,6 @@
 return {
   -- Sessions
-  cond = true,
+  enabled = false,
   "rmagatti/auto-session",
   cmd = {
     "SessionRestore",

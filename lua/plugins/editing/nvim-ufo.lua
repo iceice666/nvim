@@ -88,7 +88,7 @@ return {
   },
   event = "VeryLazy",
   opts = {
-    close_fold_kinds = { "imports", "comment" },
+    -- close_fold_kinds = { "imports", "comment" },
     preview = {
       win_config = {
         winblend = 0,

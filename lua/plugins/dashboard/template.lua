@@ -15,8 +15,10 @@ local center = function()
     }
   end
 
-  button("r", "󱋡 ", "Restore Session", "NeovimProjectLoadRecent")
-  button("p", " ", "Open projects", "Telescope neovim-project discover")
+  -- stylua: ignore start
+  button("r", "󱋡 ", "Load previous session", "NeovimProjectLoadRecent")
+  button("p", "󰪺 ", "Open recent projects", "Telescope neovim-project history")
+  button("P", " ", "Open projects", "Telescope neovim-project discover")
   button("c", "󱎘 ", "Close dashboard", "enew ")
   button("m", "󰍦 ", "Messages", "Noice")
   button("l", " ", "Lazy profile", "Lazy profile")
@@ -24,6 +26,7 @@ local center = function()
     button("R", "󰑓 ", "Restart nvim", "cq")
   end
   button("q", "󰗼 ", "Quit", "qa")
+  -- stylua: ignore end
 
   return buttons
 end

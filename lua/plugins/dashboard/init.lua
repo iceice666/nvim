@@ -6,6 +6,7 @@ return {
     "rcarriga/nvim-notify",
   },
   "glepnir/dashboard-nvim",
+  event = "VimEnter",
   config = function()
     vim.api.nvim_create_autocmd("User", {
       pattern = "LazyVimStarted",

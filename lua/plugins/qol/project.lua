@@ -9,8 +9,7 @@ return {
     { "nvim-telescope/telescope.nvim" },
     { "Shatur/neovim-session-manager" },
   },
-  lazy = false,
-  priority = 100,
+  event = "VeryLazy",
   opts = {
     projects = { -- define project roots
       "~/project/*",

@@ -4,6 +4,7 @@ return {
   dependencies = {
     "mfussenegger/nvim-dap",
   },
+  event = "BufReadPost",
   config = function()
     local dap_python = require("dap-python")
 

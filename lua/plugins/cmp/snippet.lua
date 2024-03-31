@@ -1,8 +1,7 @@
-return -- Snippets
-
-{
+return { -- Snippets
   "L3MON4D3/LuaSnip",
   dependencies = { "rafamadriz/friendly-snippets" },
+  event = "InsertEnter",
   config = function()
     require("luasnip").config.set_config({
       enable_autosnippets = true,

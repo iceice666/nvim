@@ -2,6 +2,7 @@ return {
   -- TODO: usage
   "ecthelionvi/NeoComposer.nvim",
   dependencies = "kkharji/sqlite.lua",
+  event = "VeryLazy",
   opts = {
     keymaps = {
       play_macro = "Q",

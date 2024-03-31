@@ -1,9 +1,10 @@
 return {
   "nvimtools/hydra.nvim",
-  lazy = false,
+  event = "VeryLazy",
   dependencies = {
     "mrjones2014/smart-splits.nvim",
     "sindrets/winshift.nvim",
+    "nvim-telescope/telescope-fzf-native.nvim",
     {
       "anuvyklack/windows.nvim",
       dependencies = {

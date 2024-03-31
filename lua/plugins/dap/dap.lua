@@ -2,7 +2,7 @@
 return {
   -- core
   "mfussenegger/nvim-dap",
-  event = "BufReadPost",
+  event = "VeryLazy",
   dependencies = {
     "rcarriga/nvim-dap-ui",
     "jay-babu/mason-nvim-dap.nvim",

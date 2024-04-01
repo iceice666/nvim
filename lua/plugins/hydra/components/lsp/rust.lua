@@ -30,7 +30,9 @@ return Hydra({
   config = {
     invoke_on_body = true,
     hint = {
-      border = "rounded",
+      float_opts = {
+        border = "rounded",
+      },
       offset = 1,
     },
     color = "pink",

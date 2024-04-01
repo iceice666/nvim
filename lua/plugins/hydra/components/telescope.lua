@@ -23,7 +23,9 @@ Hydra({
     invoke_on_body = true,
     hint = {
       position = "middle",
-      border = "rounded",
+      float_opts = {
+        border = "rounded",
+      },
     },
     type = "window",
   },

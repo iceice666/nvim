@@ -25,14 +25,7 @@ return {
     end,
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
-  {
-    "tiagovla/scope.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("telescope").load_extension("scope")
-    end,
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  },
+
   {
     "nvim-telescope/telescope.nvim",
     event = "VeryLazy",

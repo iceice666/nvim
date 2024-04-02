@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 
 local opt = vim.opt
 
+-- TODO: Add option comments
+
 vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"

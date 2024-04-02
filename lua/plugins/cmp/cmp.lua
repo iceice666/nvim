@@ -168,6 +168,9 @@ return {
         docs = {
           auto_open = true,
         },
+        entries = {
+          follow_cursor = true,
+        },
       },
       formatting = {
         expandable_indicator = true,

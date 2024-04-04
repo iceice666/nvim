@@ -179,13 +179,7 @@ return {
 
         ["<S-CR>"] = cmp.mapping(cmp.mapping.close(), { "i", "c" }),
 
-        ["<esc>"] = cmp.mapping(function()
-          cmp.mapping.abort()
-
-          if not luasnip.in_snippet() then
-            luasnip.unlink_current()
-          end
-        end, { "i", "c" }),
+        ["<esc>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
 
         ["<Tab>"] = cmp.mapping(function()
           if cmp.visible() then

@@ -149,11 +149,17 @@ return {
     -- check that we are in insert or select mode
     condition = function()
       return vim.tbl_contains({ "s", "i" }, vim.fn.mode())
-        and (luasnip.expand_or_jumpable() or luasnip.jumpable(-1))
+        and (luasnip.in_snippet() or luasnip.expandable())
     end,
     provider = function()
-      local forward = luasnip.expand_or_jumpable() and "󰜲 " or ""
-      local backward = luasnip.jumpable(-1) and "󰜵 " or ""
+      local forward = luasnip.expand_or_locally_jumpable() and "󰜵 " or ""
+      local backward = (
+        luasnip.expandable()
+        or (luasnip.in_snippet() and luasnip.jumpable(-1))
+      )
+          and "󰜲 "
+        or ""
+
       return "󰈚 " .. backward .. forward
     end,
     hl = { fg = "red", bold = true },

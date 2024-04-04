@@ -21,6 +21,7 @@ return {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-emoji",
+    "hrsh7th/cmp-nvim-lua",
     "chrisgrieser/cmp-nerdfont",
     "f3fora/cmp-spell",
 
@@ -34,6 +35,14 @@ return {
     "saadparwaiz1/cmp_luasnip",
     "ray-x/cmp-treesitter",
     "onsails/lspkind-nvim",
+
+    {
+      -- "zbirenbaum/copilot-cmp",
+      "KurisuNya/copilot-cmp",
+      dependencies = {
+        "zbirenbaum/copilot.lua",
+      },
+    },
 
     -- Other
     "lukas-reineke/cmp-under-comparator",
@@ -49,6 +58,47 @@ return {
     local cmp = require("cmp")
 
     local luasnip = require("luasnip")
+
+    local lspkind = require("lspkind")
+    lspkind.init({
+      symbol_map = {
+        Copilot = "",
+        VariableMember = "󰜢",
+        PunctuationSpecial = "󱔁",
+        Number = "󰎠",
+        Text = "󰉿",
+        String = "󰀬",
+        Method = "󰆧",
+        Function = "󰊕",
+        Constructor = "",
+        Field = "󰜢",
+        Variable = "󰀫",
+        Class = "󰠱",
+        Interface = "",
+        Module = "",
+        Property = "󰜢",
+        Unit = "󰑭",
+        Value = "󰎠",
+        Enum = "",
+        Keyword = "",
+        KeywordFunction = "",
+        Snippet = "󰅇",
+        Color = "󰏘",
+        File = "󰈙",
+        Reference = "󰈇",
+        Folder = "󰉋",
+        EnumMember = "",
+        Constant = "󰏿",
+        Struct = "󰙅",
+        Event = "",
+        Operator = "",
+        TypeParameter = "",
+        Type = "",
+        Comment = "󰅺",
+      },
+    })
+
+    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
     local cmp_im = require("cmp_im")
     cmp_im.setup({
@@ -83,28 +133,32 @@ return {
         -- disable completion in comments
         local context = require("cmp.config.context")
         -- keep command mode completion enabled when cursor is in a comment
-        if vim.api.nvim_get_mode().mode == "c" then
-          return true
-        else
-          return not context.in_treesitter_capture("comment") -- comment
-              and not context.in_syntax_group("Comment") -- comment
-            or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" -- prompt
-            or require("cmp_dap").is_dap_buffer() -- dap buffer
-        end
+        return vim.api.nvim_get_mode().mode == "c"
+          or not ( -- comment
+            context.in_treesitter_capture("comment")
+            or context.in_syntax_group("Comment")
+          )
+          or not vim.api.nvim_buf_get_option(0, "buftype") == "prompt" -- prompt
+          or not require("cmp_dap").is_dap_buffer() -- dap buffer
       end,
       sources = {
-        { name = "IM" },
-        { name = "nvim_lsp" },
-        { name = "buffer" },
-        { name = "path" },
-        { name = "nerdfont" },
-        { name = "treesitter" },
+        { name = "emoji", group_index = 1 },
+        { name = "IM", group_index = 1 },
+        { name = "nerdfont", group_index = 1 },
+        { name = "crates", group_index = 1 },
+
+        { name = "copilot", group_index = 2 },
+
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "path", group_index = 2 },
+        { name = "treesitter", group_index = 2 },
+        { name = "nvim_lua", group_index = 2 },
         {
           name = "luasnip",
           option = { show_autosnippets = false },
+          group_index = 2,
         },
-        { name = "crates" },
-        { name = "emoji" },
+        { name = "buffer", group_index = 3 },
       },
       snippet = {
         expand = function(args)
@@ -125,13 +179,17 @@ return {
 
         ["<S-CR>"] = cmp.mapping(cmp.mapping.close(), { "i", "c" }),
 
-        ["<esc>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
+        ["<esc>"] = cmp.mapping(function()
+          cmp.mapping.abort()
+
+          if not luasnip.in_snippet() then
+            luasnip.unlink_current()
+          end
+        end, { "i", "c" }),
 
         ["<Tab>"] = cmp.mapping(function()
           if cmp.visible() then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-          elseif require("copilot.suggestion").is_visible() then
-            require("copilot.suggestion").accept()
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           else
@@ -152,7 +210,6 @@ return {
         ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
         ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
 
-        ["<Space>"] = cmp.mapping(cmp_im.select(), { "i" }),
         ["<c-space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       },
       window = {
@@ -176,7 +233,6 @@ return {
         expandable_indicator = true,
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
-          vim_item.menu = vim_item.kind
           if vim.tbl_contains({ "path" }, entry.source.name) then
             local icon, hl_group = require("nvim-web-devicons").get_icon(
               entry:get_completion_item().label
@@ -188,18 +244,36 @@ return {
               return vim_item
             end
           end
-          return require("lspkind").cmp_format({ with_text = false })(
-            entry,
-            vim_item
-          )
+
+          local kind = lspkind.cmp_format({
+            mode = "symbol_text",
+            maxwidth = 50,
+            ellipsis_char = "",
+            menu = {
+              buffer = "[Buffer]",
+              nvim_lsp = "[LSP]",
+              luasnip = "[LuaSnip]",
+              nvim_lua = "[Lua]",
+              latex_symbols = "[Latex]",
+              copilot = "[Copilot]",
+            },
+          })(entry, vim_item)
+
+          local strings = vim.split(kind.kind, "%s", { trimempty = true })
+          kind.kind = " " .. (strings[1] or "") .. " "
+          local t = strings[2] or ""
+          kind.menu = t .. string.rep(" ", 10 - #t) .. kind.menu
+
+          return kind
         end,
       },
       sorting = {
         comparators = {
+          require("copilot_cmp.comparators").prioritize,
           cmp.config.compare.offset,
           cmp.config.compare.exact,
-          cmp.config.compare.recently_used,
           cmp.config.compare.score,
+          cmp.config.compare.recently_used,
           cmp.config.compare.locality,
           require("cmp-under-comparator").under,
           cmp.config.compare.kind,
@@ -207,7 +281,7 @@ return {
           cmp.config.compare.length,
           cmp.config.compare.order,
         },
-        priority_weight = 1,
+        priority_weight = 2,
       },
     })
 
@@ -225,6 +299,17 @@ return {
       }, {
         { name = "cmdline" },
       }),
+      enabled = function()
+        -- Set of commands where cmp will be disabled
+        local disabled = {
+          IncRename = true,
+        }
+        -- Get first word of cmdline
+        local cmd = vim.fn.getcmdline():match("%S+")
+        -- Return true if cmd isn't disabled
+        -- else call/return cmp.close(), which returns false
+        return not disabled[cmd] or cmp.close()
+      end,
     })
 
     cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {

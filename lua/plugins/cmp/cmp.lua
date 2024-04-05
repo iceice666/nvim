@@ -4,16 +4,7 @@ return {
     "InsertEnter",
     "CmdlineEnter",
   },
-  keys = {
-    {
-      "<m-;>",
-      function()
-        vim.g.isIMEnable = require("cmp_im").toggle()
-      end,
-      desc = "Change IME",
-      mode = { "i", "n" },
-    },
-  },
+
   dependencies = {
     -- sources
     "hrsh7th/cmp-nvim-lsp",
@@ -36,14 +27,6 @@ return {
     "ray-x/cmp-treesitter",
     "onsails/lspkind-nvim",
 
-    {
-      -- "zbirenbaum/copilot-cmp",
-      "KurisuNya/copilot-cmp",
-      dependencies = {
-        "zbirenbaum/copilot.lua",
-      },
-    },
-
     -- Other
     "lukas-reineke/cmp-under-comparator",
     "kawre/neotab.nvim",
@@ -62,7 +45,6 @@ return {
     local lspkind = require("lspkind")
     lspkind.init({
       symbol_map = {
-        Copilot = "",
         VariableMember = "󰜢",
         PunctuationSpecial = "󱔁",
         Number = "󰎠",
@@ -85,6 +67,7 @@ return {
         KeywordFunction = "",
         KeywordCoroutine = "",
         KeywordOperator = "",
+        KeywordConditional = "",
         Snippet = "󰅇",
         Color = "󰏘",
         File = "󰈙",
@@ -101,33 +84,7 @@ return {
       },
     })
 
-    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-
     local cmp_im = require("cmp_im")
-    cmp_im.setup({
-      -- Enable/Disable IM
-      enable = false,
-      -- IM tables path array
-      tables = require("cmp_im_zh").tables({ "pinyin" }),
-      -- Function to format IM-key and IM-tex for completion display
-      format = function(key, text)
-        return vim.fn.printf("%-15S %s", text, key)
-      end,
-      -- Max number entries to show for completion of each table
-      maxn = 8,
-    })
-
-    -- local has_words_before = function()
-    --   if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-    --     return false
-    --   end
-    --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    --   return col ~= 0
-    --     and vim.api
-    --         .nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]
-    --         :match("^%s*$")
-    --       == nil
-    -- end
 
     local neotab = require("neotab")
 
@@ -135,22 +92,22 @@ return {
       enabled = function()
         -- disable completion in comments
         local context = require("cmp.config.context")
-        -- keep command mode completion enabled when cursor is in a comment
+        -- keep command mode completion enabled
         return vim.api.nvim_get_mode().mode == "c"
-          or not ( -- comment
-            context.in_treesitter_capture("comment")
-            or context.in_syntax_group("Comment")
-          )
-          or not vim.api.nvim_buf_get_option(0, "buftype") == "prompt" -- prompt
-          or not require("cmp_dap").is_dap_buffer() -- dap buffer
+          -- prompt
+          or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+          -- comment
+          or not context.in_treesitter_capture("comment")
+          or not context.in_syntax_group("Comment")
+          -- dap buffer
+          or not require("cmp_dap").is_dap_buffer()
       end,
+
       sources = {
         { name = "emoji", group_index = 1 },
         { name = "IM", group_index = 1 },
         { name = "nerdfont", group_index = 1 },
         { name = "crates", group_index = 1 },
-
-        { name = "copilot", group_index = 2 },
 
         { name = "nvim_lsp", group_index = 2 },
         { name = "path", group_index = 2 },
@@ -161,13 +118,16 @@ return {
           option = { show_autosnippets = false },
           group_index = 2,
         },
+
         { name = "buffer", group_index = 3 },
       },
+
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
+
       mapping = {
         ["<CR>"] = cmp.mapping(function(fallback)
           if cmp.visible() and cmp.get_selected_entry() then
@@ -175,6 +135,8 @@ return {
               behavior = cmp.ConfirmBehavior.Replace,
               select = true,
             })
+          elseif cmp.visible() and vim.g.isImEnable then
+            cmp_im.select()
           else
             fallback()
           end
@@ -187,6 +149,8 @@ return {
         ["<Tab>"] = cmp.mapping(function()
           if cmp.visible() then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          elseif require("copilot.suggestion").is_visible() then
+            require("copilot.suggestion").accept()
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           else
@@ -206,9 +170,8 @@ return {
 
         ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
         ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
-
-        ["<c-space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       },
+
       window = {
         completion = {
           winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:Visual,Search:None",
@@ -218,6 +181,7 @@ return {
           scrollbar = true,
         },
       },
+
       view = {
         docs = {
           auto_open = true,
@@ -226,6 +190,7 @@ return {
           follow_cursor = true,
         },
       },
+
       formatting = {
         expandable_indicator = true,
         fields = { "kind", "abbr", "menu" },
@@ -264,9 +229,9 @@ return {
           return kind
         end,
       },
+
       sorting = {
         comparators = {
-          require("copilot_cmp.comparators").prioritize,
           cmp.config.compare.offset,
           cmp.config.compare.exact,
           cmp.config.compare.score,
@@ -279,6 +244,10 @@ return {
           cmp.config.compare.order,
         },
         priority_weight = 2,
+      },
+
+      experimental = {
+        ghost_text = true,
       },
     })
 

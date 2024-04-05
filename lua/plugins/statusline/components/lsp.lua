@@ -167,7 +167,7 @@ return {
 
   CmpIM = {
     provider = function()
-      if vim.g.isIMEnable then
+      if vim.g.isImEnable then
         return "  Pinyin: actived"
       else
         return ""

@@ -25,4 +25,5 @@ require("lazy").setup({
   { import = "plugins.cmp" }, -- Auto-completion
   { import = "plugins.hydra" }, -- Custom submodes and menus (like Emacs hydra)
   { import = "plugins.dap" }, -- Debug Adapter Protocol
+  { import = "plugins.fun" }, -- Just for fun
 })

@@ -2,9 +2,9 @@ return {
   "nvimtools/hydra.nvim",
   event = "VeryLazy",
   dependencies = {
+    -- window management
     "mrjones2014/smart-splits.nvim",
     "sindrets/winshift.nvim",
-    "nvim-telescope/telescope-fzf-native.nvim",
     {
       "anuvyklack/windows.nvim",
       dependencies = {
@@ -13,6 +13,13 @@ return {
       },
       config = true,
     },
+
+    -- telescope
+    "nvim-telescope/telescope.nvim",
+
+    -- for fun
+    "giusgad/pets.nvim",
+    "tamton-aquib/duck.nvim",
   },
   config = function()
     local req = function(text)
@@ -33,6 +40,7 @@ return {
     req("tabpage")
     req("telescope")
     req("winctrl")
+    req("for_fun")
     req("buffer")
 
     local is_file_exist = function(path)

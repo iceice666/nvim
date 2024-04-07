@@ -96,11 +96,11 @@ return {
         return vim.api.nvim_get_mode().mode == "c"
           -- prompt
           or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
-          -- comment
-          or not context.in_treesitter_capture("comment")
-          or not context.in_syntax_group("Comment")
-          -- dap buffer
-          or not require("cmp_dap").is_dap_buffer()
+            -- comment
+            and not context.in_treesitter_capture("comment")
+            and not context.in_syntax_group("Comment")
+            -- dap buffer
+            and not require("cmp_dap").is_dap_buffer()
       end,
 
       sources = {
@@ -142,7 +142,15 @@ return {
           end
         end, { "i", "c" }),
 
-        ["<S-CR>"] = cmp.mapping(cmp.mapping.close(), { "i", "c" }),
+        ["<S-CR>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.mapping.close()
+          elseif require("copilot.suggestion").is_visible() then
+            require("copilot.suggestion").dismiss()
+          else
+            fallback()
+          end
+        end, { "i", "c" }),
 
         ["<esc>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
 
@@ -170,6 +178,8 @@ return {
 
         ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
         ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
+
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       },
 
       window = {
@@ -244,10 +254,6 @@ return {
           cmp.config.compare.order,
         },
         priority_weight = 2,
-      },
-
-      experimental = {
-        ghost_text = true,
       },
     })
 

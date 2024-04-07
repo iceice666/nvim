@@ -15,7 +15,14 @@ return {
         enabled = true,
         auto_trigger = true,
         debounce = 100,
-        accept = false, -- disable built-in keymapping
+        keymap = {
+          accept = false,
+          accept_word = "<M-w>",
+          accept_line = "<M-l>",
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<M-c>",
+        },
       },
       filetypes = {
         markdown = true,

@@ -34,7 +34,9 @@ return {
     {
       "<leader>rr",
       function()
-        vim.cmd("cq!")
+        if not vim.g.neovide then
+          vim.cmd("cq!")
+        end
       end,
       desc = "Reload Neovim",
     },

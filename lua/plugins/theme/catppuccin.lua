@@ -22,7 +22,6 @@ return {
           DapStop = { fg = c.green },
           LspInlayHint = { fg = c.overlay2, bg = c.crust },
           Folded = { bg = c.base },
-          CopilotSuggestion = { fg = c.lavender },
 
           -- https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance
           PmenuSel = { bg = "#282C34", fg = "NONE" },

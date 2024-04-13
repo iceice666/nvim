@@ -1,6 +1,5 @@
 return {
   "rebelot/heirline.nvim",
-  cmd = { "SessionRestore" },
   event = "VeryLazy",
   config = function()
     local function req(modules)
@@ -28,6 +27,7 @@ return {
     local LspClients = req("lsp").LspClients
     local Snippets = req("lsp").Snippets
     local CmpIM = req("lsp").CmpIM
+    local Copilot = req("lsp").Copilot
     local MacroRecoder = req("macro").MacroRecoder
 
     local ActiveStatusline = (function()
@@ -46,6 +46,7 @@ return {
         CmpIM,
         Snippets,
         Git,
+        Copilot,
         LspClients,
         Ruler,
         FileType,

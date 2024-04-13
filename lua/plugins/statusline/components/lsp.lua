@@ -137,7 +137,7 @@ return {
     provider = function()
       local s = {}
       for _, v in pairs(vim.lsp.get_active_clients()) do
-        if v.name ~= "null-ls" then
+        if v.name ~= "copilot" then
           s[#s + 1] = v.name
         end
       end
@@ -175,5 +175,16 @@ return {
     end,
     hl = { fg = "red", bold = true },
     update = true,
+  },
+
+  Copilot = {
+    condition = function()
+      return require("copilot_status").enabled()
+    end,
+    provider = function()
+      return require("copilot_status").status_string()
+    end,
+    update = true,
+    hl = { fg = "#6CC644" },
   },
 }

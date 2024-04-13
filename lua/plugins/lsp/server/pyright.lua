@@ -1,4 +1,4 @@
-local lsp_default = require("plugins.lsp.langs.default")
+local lsp_default = require("plugins.lsp.server._default")
 
 require("lspconfig").pyright.setup({
   settings = {

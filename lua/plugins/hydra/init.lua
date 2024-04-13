@@ -1,6 +1,6 @@
 return {
   "nvimtools/hydra.nvim",
-  event = "VeryLazy",
+  -- event = "VeryLazy",
   dependencies = {
     -- window management
     "mrjones2014/smart-splits.nvim",

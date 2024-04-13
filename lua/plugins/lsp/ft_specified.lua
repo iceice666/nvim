@@ -1,5 +1,10 @@
 return {
   {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    ft = "typescript",
+  },
+  {
     "akinsho/flutter-tools.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -7,7 +12,7 @@ return {
     },
     ft = "dart",
     config = function()
-      require("plugins.lsp.langs.flutter")
+      require("plugins.lsp.server.flutter")
     end,
   },
   {

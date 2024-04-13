@@ -1,11 +1,37 @@
+local load = function(lang)
+  return function()
+    require("plugins.lsp.server." .. lang)
+  end
+end
+
+local default_config = require("plugins.lsp.server._default") -- return a table
+
+local server = { "lua_ls", "pyright", "rust_analyzer", "tsserver", "volar" }
+
+local handler = {
+  function(server_name)
+    require("lspconfig")[server_name].setup({
+      on_attach = default_config.on_attach,
+      capabilities = default_config.capabilities(),
+    })
+  end,
+}
+
+for _, name in pairs(server) do
+  local ok, cfg = pcall(load, name)
+  if ok then
+    handler[name] = cfg
+  end
+end
+
 return {
-  "neovim/nvim-lspconfig",
+  "williamboman/mason-lspconfig.nvim",
   event = "BufReadPre",
   dependencies = {
+    "neovim/nvim-lspconfig",
     {
       "williamboman/mason.nvim",
       config = true,
-      dependencies = { "williamboman/mason-lspconfig.nvim" },
     },
     {
       "lvimuser/lsp-inlayhints.nvim",
@@ -23,10 +49,9 @@ return {
       "rust_analyzer",
     },
     automatic_installation = true,
+    handlers = handler,
   },
-  config = function(_, opts)
-    require("mason-lspconfig").setup(opts)
-
+  init = function()
     vim.fn.sign_define("DiagnosticSignError", {
       text = " ",
       texthl = "DiagnosticSignError",
@@ -50,28 +75,6 @@ return {
       texthl = "DiagnosticSignInfo",
       linehl = "DiagnosticSignInfo",
       numhl = "DiagnosticSignInfo",
-    })
-
-    local load = function(lang)
-      return function()
-        require("plugins.lsp.langs." .. lang)
-      end
-    end
-
-    local default_config = require("plugins.lsp.langs.default") -- return a table
-    require("mason-lspconfig").setup_handlers({
-      function(server_name)
-        require("lspconfig")[server_name].setup({
-          on_attach = default_config.on_attach,
-          capabilities = default_config.capabilities(),
-        })
-      end,
-
-      -- INFO: Use `load` to set up a langauge server
-      -- Also see: `:help mason-lspconfig.setup_handlers()`
-      ["lua_ls"] = load("lua"), -- this one setup server inside
-      ["pyright"] = load("python"), -- this one setup server inside
-      ["rust_analyzer"] = load("rust"), -- this one pass config to plugin ( and plugin will setup the server)
     })
   end,
 }

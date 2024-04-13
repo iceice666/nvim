@@ -68,4 +68,37 @@ local function firstToUpper(str)
 end
 util.firstToUpper = firstToUpper
 
+local function read_json_file(filename)
+  local Path = require("plenary.path")
+
+  local path = Path:new(filename)
+  if not path:exists() then
+    return nil
+  end
+
+  local json_contents = path:read()
+  local json = vim.fn.json_decode(json_contents)
+
+  return json
+end
+util.read_json_file = read_json_file
+
+local function is_npm_package_installed(package)
+  local package_json = read_json_file("package.json")
+  if not package_json then
+    return false
+  end
+
+  if package_json.dependencies and package_json.dependencies[package] then
+    return true
+  end
+
+  if package_json.devDependencies and package_json.devDependencies[package] then
+    return true
+  end
+
+  return false
+end
+util.is_npm_package_installed = is_npm_package_installed
+
 return util

@@ -10,7 +10,7 @@ return {
       lua = { "stylua" },
       python = { "isort", "black" },
       ["markdown"] = {},
-      ["_"] = { "trim_whitespace" },
+      ["_"] = { "prettierd" },
     },
     formatters = {
       stylua = {

@@ -80,7 +80,9 @@ return {
         follow_current_file = {
           enabled = true,
         },
-        always_show = {},
+        always_show = {
+          ".vitepress",
+        },
         never_show = {
           ".vscode",
           ".git",
@@ -120,7 +122,7 @@ return {
 
     update_focused_file = {
       enable = true,
-      update_cwd = true,
+      update_cwd = false,
     },
 
     git = {

@@ -76,21 +76,27 @@ return {
         visible = false,
         hide_gitignored = true,
         hide_hidden = false,
-        hide_dotfiles = true,
+        hide_dotfiles = false,
         follow_current_file = {
           enabled = true,
         },
-        always_show = {
-          ".vitepress",
-        },
+        always_show = {},
         never_show = {
           ".vscode",
           ".git",
           ".idea",
+          "node_modules",
+          -- lock files
+          -- We should and dont edit these files directly
+          "*.lock",
+          "pnpm-lock.yaml",
         },
         hide_by_pattern = { -- uses glob style patterns
-          "*.lock",
           "build",
+          ".gitignore",
+          -- lint / format configs
+          ".eslintrc.cjs",
+          ".prettierrc.json",
         },
       },
       window = {

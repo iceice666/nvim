@@ -1,4 +1,7 @@
 return {
+  enabled = function()
+    return vim.g.neovide ~= true
+  end,
   -- pets
   "giusgad/pets.nvim",
   dependencies = {

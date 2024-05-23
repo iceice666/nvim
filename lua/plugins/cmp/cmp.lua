@@ -23,7 +23,7 @@ return {
       },
     },
 
-    "saadparwaiz1/cmp_luasnip",
+
     "ray-x/cmp-treesitter",
     "onsails/lspkind-nvim",
 
@@ -40,7 +40,6 @@ return {
   config = function()
     local cmp = require("cmp")
 
-    local luasnip = require("luasnip")
 
     local lspkind = require("lspkind")
     lspkind.init({
@@ -94,8 +93,8 @@ return {
         local context = require("cmp.config.context")
         -- keep command mode completion enabled
         return vim.api.nvim_get_mode().mode == "c"
-          -- prompt
-          or vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+            -- prompt
+            or vim.api.nvim_get_option_value("buftype", {}) ~= "prompt"
             -- comment
             and not context.in_treesitter_capture("comment")
             and not context.in_syntax_group("Comment")
@@ -104,29 +103,24 @@ return {
       end,
 
       sources = {
-        { name = "emoji", group_index = 1 },
-        { name = "IM", group_index = 1 },
-        { name = "nerdfont", group_index = 1 },
-        { name = "crates", group_index = 1 },
+        { name = "emoji",      group_index = 1 },
+        { name = "IM",         group_index = 1 },
+        { name = "nerdfont",   group_index = 1 },
+        { name = "crates",     group_index = 1 },
 
-        { name = "nvim_lsp", group_index = 2 },
-        { name = "path", group_index = 2 },
+        { name = "nvim_lsp",   group_index = 2 },
+        { name = "path",       group_index = 2 },
         { name = "treesitter", group_index = 2 },
-        { name = "nvim_lua", group_index = 2 },
+        { name = "nvim_lua",   group_index = 2 },
         {
-          name = "luasnip",
-          option = { show_autosnippets = false },
+          name = "snippets",
+          max_item_count = 10,
           group_index = 2,
         },
 
         { name = "buffer", group_index = 3 },
       },
 
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
 
       mapping = {
         ["<CR>"] = cmp.mapping(function(fallback)
@@ -157,10 +151,10 @@ return {
         ["<Tab>"] = cmp.mapping(function()
           if cmp.visible() then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          elseif vim.g.ENABLE_NATIVE_SNIPPETS and vim.snippet.active({ direction = 1 }) then
+            vim.schedule(vim.snippet.jump(1))
           elseif require("copilot.suggestion").is_visible() then
             require("copilot.suggestion").accept()
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
           else
             neotab.tabout()
           end
@@ -169,8 +163,8 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
+          elseif vim.g.ENABLE_NATIVE_SNIPPETS and vim.snippet.active({ direction = -1 }) then
+            vim.schedule(vim.snippet.jump(-1))
           else
             fallback()
           end
@@ -293,6 +287,8 @@ return {
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-    require("luasnip.loaders.from_vscode").lazy_load()
+    if vim.g.ENABLE_NATIVE_SNIPPETS == false then
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end
   end,
 }

@@ -33,11 +33,6 @@ return {
       "williamboman/mason.nvim",
       config = true,
     },
-    {
-      "lvimuser/lsp-inlayhints.nvim",
-      event = "FileReadPost",
-      config = true,
-    },
   },
   opts = {
     ensure_installed = {

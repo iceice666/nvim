@@ -1,6 +1,6 @@
-local util = {}
+M = {}
 
-local function flatten(input_table, sep, prefix, result)
+function M.flatten(input_table, sep, prefix, result)
   prefix = prefix or ""
   result = result or {}
   sep = sep or "."
@@ -9,7 +9,7 @@ local function flatten(input_table, sep, prefix, result)
     local new_key = prefix ~= "" and (prefix .. sep .. key) or key
 
     if type(value) == "table" then
-      flatten(value, sep, new_key, result)
+      M.flatten(value, sep, new_key, result)
     else
       result[new_key] = value
     end
@@ -17,9 +17,8 @@ local function flatten(input_table, sep, prefix, result)
 
   return result
 end
-util.flatten = flatten
 
-local function table_to_string(tbl)
+function M.table_to_string(tbl)
   local result = "{\n"
   for k, v in pairs(tbl) do
     -- Check the key type (ignore any numerical keys - assume its an array)
@@ -29,7 +28,7 @@ local function table_to_string(tbl)
 
     -- Check the value type
     if type(v) == "table" then
-      result = result .. "\n" .. table_to_string(v) .. "\n"
+      result = result .. "\n" .. M.table_to_string(v) .. "\n"
     elseif type(v) == "boolean" or type(v) == "function" then
       result = result .. tostring(v)
     else
@@ -43,9 +42,8 @@ local function table_to_string(tbl)
   end
   return result .. "\n}"
 end
-util.table_to_string = table_to_string
 
-local function insert_between_items(src, sep, res)
+function M.insert_between_items(src, sep, res)
   local result = res or {}
   local i = 1
   while true do
@@ -61,14 +59,12 @@ local function insert_between_items(src, sep, res)
 
   return result
 end
-util.insert_between_items = insert_between_items
 
-local function firstToUpper(str)
+function M.firstToUpper(str)
   return (str:gsub("^%l", string.upper))
 end
-util.firstToUpper = firstToUpper
 
-local function read_json_file(filename)
+function M.read_json_file(filename)
   local Path = require("plenary.path")
 
   local path = Path:new(filename)
@@ -81,10 +77,9 @@ local function read_json_file(filename)
 
   return json
 end
-util.read_json_file = read_json_file
 
-local function is_npm_package_installed(package)
-  local package_json = read_json_file("package.json")
+function M.is_npm_package_installed(package)
+  local package_json = M.read_json_file("package.json")
   if not package_json then
     return false
   end
@@ -99,6 +94,5 @@ local function is_npm_package_installed(package)
 
   return false
 end
-util.is_npm_package_installed = is_npm_package_installed
 
-return util
+vim.g.util = M

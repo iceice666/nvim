@@ -9,7 +9,6 @@ opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
 opt.number = true
---opt.relativenumber = true
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.scrolloff = 5
 opt.sidescrolloff = 5
@@ -21,7 +20,7 @@ opt.tabstop = 2
 opt.softtabstop = 2
 opt.shiftwidth = 2
 opt.shiftround = true -- Round indent
-opt.expandtab = true -- Use spaces instead of tabs
+opt.expandtab = true  -- Use spaces instead of tabs
 opt.smartindent = true
 opt.autoindent = true
 opt.ignorecase = true -- Ignore case

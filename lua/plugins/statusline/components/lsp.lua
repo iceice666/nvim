@@ -1,5 +1,3 @@
-local luasnip = require("luasnip")
-
 return {
 
   Diagnostics = {
@@ -23,14 +21,14 @@ return {
 
     init = function(self)
       self.error_table =
-        vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+          vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
       self.errors = #self.error_table
       self.warnings =
-        #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+          #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
       self.hints =
-        #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+          #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
       self.info =
-        #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+          #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
     end,
 
     {
@@ -145,25 +143,29 @@ return {
     end,
   },
 
-  Snippets = {
-    -- check that we are in insert or select mode
-    condition = function()
-      return vim.tbl_contains({ "s", "i" }, vim.fn.mode())
-        and (luasnip.in_snippet() or luasnip.expandable())
-    end,
-    provider = function()
-      local forward = luasnip.expand_or_locally_jumpable() and "󰜵 " or ""
-      local backward = (
-        luasnip.expandable()
-        or (luasnip.in_snippet() and luasnip.jumpable(-1))
-      )
-          and "󰜲 "
-        or ""
-
-      return "󰈚 " .. backward .. forward
-    end,
-    hl = { fg = "red", bold = true },
-  },
+  -- Snippets = {
+  --   -- check that we are in insert or select mode
+  --   condition = function()
+  --     return luasnip_ok or vim.tbl_contains({ "s", "i" }, vim.fn.mode())
+  --         and (luasnip.in_snippet() or luasnip.expandable())
+  --   end,
+  --   provider = function()
+  --     if luasnip_ok ~= true then
+  --       return ""
+  --     end
+  --
+  --     local forward = luasnip.expand_or_locally_jumpable() and "󰜵 " or ""
+  --     local backward = (
+  --           luasnip.expandable()
+  --           or (luasnip.in_snippet() and luasnip.jumpable(-1))
+  --         )
+  --         and "󰜲 "
+  --         or ""
+  --
+  --     return "󰈚 " .. backward .. forward
+  --   end,
+  --   hl = { fg = "red", bold = true },
+  -- },
 
   CmpIM = {
     provider = function()

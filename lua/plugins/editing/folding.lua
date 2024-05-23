@@ -14,13 +14,13 @@ local function customizeSelector(bufnr)
   end
 
   return require("ufo")
-    .getFolds(bufnr, "lsp")
-    :catch(function(err)
-      return handleFallbackException(err, "treesitter")
-    end)
-    :catch(function(err)
-      return handleFallbackException(err, "indent")
-    end)
+      .getFolds(bufnr, "lsp")
+      :catch(function(err)
+        return handleFallbackException(err, "treesitter")
+      end)
+      :catch(function(err)
+        return handleFallbackException(err, "indent")
+      end)
 end
 
 local provider_selector = function(bufnr, filetype, buftype)
@@ -59,8 +59,8 @@ end
 
 local import_check = function(text, ft)
   return (ft == "rust" and text == "use")
-    or ((ft == "cpp" or ft == "c") and text == "#include")
-    or (ft == "python" and (text == "import" or text == "from"))
+      or ((ft == "cpp" or ft == "c") and text == "#include")
+      or (ft == "python" and (text == "import" or text == "from"))
 end
 
 local handler = function(virtText, lnum, endLnum, _, _)
@@ -81,7 +81,7 @@ local handler = function(virtText, lnum, endLnum, _, _)
   return virtText
 end
 
-return {
+NVIM_UFO_CFG = {
   "kevinhwang91/nvim-ufo",
   dependencies = {
     "kevinhwang91/promise-async",
@@ -114,3 +114,66 @@ return {
     },
   },
 }
+
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+
+-- Native implementation
+
+vim.opt.foldexpr = "v:lua.require'plugins.editing.folding'.foldexpr()"
+
+local skip_foldexpr = {} ---@type table <number,boolean>
+local skip_check = assert(vim.uv.new_check())
+
+local function foldexpr()
+  local buf = vim.api.nvim_get_current_buf()
+
+  -- still in the same tick and no parser
+  if skip_foldexpr[buf] then
+    return "0"
+  end
+
+  -- don't use treesitter folds for non-file buffers
+  if vim.bo[buf].buftype ~= "" then
+    return "0"
+  end
+
+  -- as long as we don't have a filetype, don't bother
+  -- checking if treesitter is available (it won't)
+  if vim.bo[buf].filetype == "" then
+    return "0"
+  end
+
+  local ok = pcall(vim.treesitter.get_parser, buf)
+
+  if ok then
+    return vim.treesitter.foldexpr()
+  end
+
+  -- no parser available, so mark it as skip
+  -- in the next tick, all skip marks will be reset
+  skip_foldexpr[buf] = true
+  skip_check:start(function()
+    skip_foldexpr = {}
+    skip_check:stop()
+  end)
+  return "0"
+end
+
+NATIVE_CFG = {
+  enable = false,
+  foldexpr = foldexpr,
+}
+
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-- Switch
+
+
+ENABLE_UFO = true
+
+if ENABLE_UFO then
+  return NVIM_UFO_CFG
+else
+  return NATIVE_CFG
+end

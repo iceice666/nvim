@@ -35,10 +35,7 @@ return {
   },
   {
     "mrcjkb/rustaceanvim",
-    dependencies = {
-      "lvimuser/lsp-inlayhints.nvim",
-    },
-    version = "^3", -- Recommended
+    version = "^4", -- Recommended
     ft = { "rust" },
   },
   {

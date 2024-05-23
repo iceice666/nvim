@@ -25,7 +25,7 @@ return {
     local DAPMessages = req("dap").DAPMessages
     local Diagnostics = req("lsp").Diagnostics
     local LspClients = req("lsp").LspClients
-    local Snippets = req("lsp").Snippets
+    -- local Snippets = req("lsp").Snippets
     local CmpIM = req("lsp").CmpIM
     local Copilot = req("lsp").Copilot
     local MacroRecoder = req("macro").MacroRecoder
@@ -44,7 +44,7 @@ return {
 
       local right = {
         CmpIM,
-        Snippets,
+        -- Snippets,
         Git,
         Copilot,
         LspClients,

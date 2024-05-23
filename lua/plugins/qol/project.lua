@@ -1,4 +1,5 @@
 return {
+  cond = false,
   "coffebar/neovim-project",
   init = function()
     -- enable saving the state of plugins in the session

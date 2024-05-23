@@ -22,5 +22,8 @@ require("lspconfig").lua_ls.setup({
         callSnippet = "Both",
       },
     },
+    hint = {
+      enable = true,
+    },
   },
 })

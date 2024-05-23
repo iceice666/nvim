@@ -14,7 +14,7 @@ return {
         },
         suggestion = {
           enabled = true,
-          auto_trigger = true,
+          auto_trigger = false,
           debounce = 100,
           keymap = {
             accept = false,
@@ -22,7 +22,7 @@ return {
             accept_line = "<M-l>",
             next = "<M-]>",
             prev = "<M-[>",
-            dismiss = "<M-c>",
+            dismiss = "<M-d>",
           },
         },
         filetypes = {

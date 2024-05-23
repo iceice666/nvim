@@ -24,11 +24,12 @@
 --  │                                                                              │
 --  │                           佛祖保佑         永無BUG                           │
 --  ╰──────────────────────────────────────────────────────────────────────────────╯
-if vim.g.neovide then
-  require("core.neovide")
-end
 
-vim.g.util = require("core.utils")
-require("core.options")
-require("core.plugins")
-require("core.autocmd")
+
+--=================================================================================--
+
+require("config.neovide")
+require("config.utils")
+require("config.options")
+require("config.plugins")
+require("config.autocmd")

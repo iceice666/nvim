@@ -10,6 +10,7 @@ vim.g.rustaceanvim = {
     executors = require("rustaceanvim.executors").quickfix,
   },
   server = {
+    hint = { enable = true, },
     filetypes = { "rust" },
     root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
     settings = {

@@ -9,6 +9,9 @@ require("lspconfig").pyright.setup({
         useLibraryCodeForTypes = true,
       },
     },
+    hint = {
+      enable = true,
+    },
   },
   capabilities = lsp_default.capabilities(),
   on_attach = lsp_default.on_attach,

@@ -10,7 +10,8 @@ end
 return {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
-    require("lsp-inlayhints").on_attach(client, bufnr)
-    require("lsp-inlayhints").show()
+    if client.supports_method("textDocument/inlayHint", { bufnr = bufnr }) then
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
   end,
 }

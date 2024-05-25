@@ -40,7 +40,7 @@ opt.grepprg = "rg --vimgrep"
 
 opt.signcolumn = "yes"
 opt.list = true
-vim.cmd("set formatoptions-=cro")
+opt.formatoptions = "jqlnt"
 opt.cursorline = true
 opt.colorcolumn = "80"
 opt.termguicolors = true
@@ -53,7 +53,11 @@ opt.pumheight = 10
 opt.background = "dark"
 opt.hidden = true
 opt.mouse:append("a")
-opt.clipboard = "unnamedplus,unnamed"
+
+if not vim.env.SSH_TTY then
+  opt.clipboard = "unnamedplus"
+end
+
 opt.sessionoptions = {
   "buffers",
   "curdir",

@@ -7,7 +7,14 @@ vim.g.neovide_padding_bottom = 0
 vim.g.neovide_padding_right = 0
 vim.g.neovide_padding_left = 0
 vim.g.neovide_fullscreen = true
-vim.g.neovide_refresh_rate = 165
+-- I think we are programming not playing video games
+-- Does it really worth it to set such high refresh rate???
+vim.g.neovide_refresh_rate = 165 -- require `--no-vsync` flag
+vim.g.neovide_refresh_rate_idle = 5
+vim.g.neovide_cursor_vfx_mode = "railgun"
+
+
+
 
 local function set_ime(args)
   if args.event:match("Enter$") then

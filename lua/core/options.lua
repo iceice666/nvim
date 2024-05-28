@@ -52,7 +52,6 @@ vim.o.shortmess = vim.o.shortmess .. "c"
 opt.pumheight = 10
 opt.background = "dark"
 opt.hidden = true
-opt.mouse:append("a")
 
 if not vim.env.SSH_TTY then
   opt.clipboard = "unnamedplus"

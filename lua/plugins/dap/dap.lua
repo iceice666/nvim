@@ -2,7 +2,6 @@
 return {
   -- core
   "mfussenegger/nvim-dap",
-  event = "VeryLazy",
   dependencies = {
     "rcarriga/nvim-dap-ui",
     "jay-babu/mason-nvim-dap.nvim",
@@ -90,6 +89,6 @@ return {
     },
     { "<F10>", "<cmd>DapStepOver<cr>", desc = "Dap: Step over" },
     { "<F11>", "<cmd>DapStepInto<cr>", desc = "Dap: Step into" },
-    { "<F12>", "<cmd>DapStepOut<cr>", desc = "Dap: Step out" },
+    { "<F12>", "<cmd>DapStepOut<cr>",  desc = "Dap: Step out" },
   },
 }

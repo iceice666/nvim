@@ -1,21 +1,25 @@
 M = {}
 
-function M.flatten(input_table, sep, prefix, result)
-  prefix = prefix or ""
-  result = result or {}
-  sep = sep or "."
+function M.flatten(i, s, p, r)
+  local function flatten(input_table, sep, prefix, result)
+    prefix = prefix or ""
+    result = result or {}
+    sep = sep or "."
 
-  for key, value in pairs(input_table) do
-    local new_key = prefix ~= "" and (prefix .. sep .. key) or key
+    for key, value in pairs(input_table) do
+      local new_key = prefix ~= "" and (prefix .. sep .. key) or key
 
-    if type(value) == "table" then
-      M.flatten(value, sep, new_key, result)
-    else
-      result[new_key] = value
+      if type(value) == "table" then
+        flatten(value, sep, new_key, result)
+      else
+        result[new_key] = value
+      end
     end
+
+    return result
   end
 
-  return result
+  return flatten(i, s, p, r)
 end
 
 function M.table_to_string(tbl)

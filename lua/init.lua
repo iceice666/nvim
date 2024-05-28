@@ -28,8 +28,8 @@
 
 --=================================================================================--
 
-require("config.neovide")
-require("config.utils")
-require("config.options")
-require("config.plugins")
-require("config.autocmd")
+require("core.neovide")
+require("core.utils")
+require("core.options")
+require("core.plugins")
+require("core.autocmd")

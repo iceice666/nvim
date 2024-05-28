@@ -7,7 +7,7 @@ local pcmd = require("hydra.keymap-util").pcmd
 local window_hint = [[
  ^^^^^^^^^^^^     Move      ^^    Size   ^^   ^^     Split
  ^^^^^^^^^^^^-------------  ^^-----------^^   ^^---------------
- ^ ^ _k_ ^ ^  ^ ^ _K_ ^ ^   ^   _<C-k>_   ^   _s_: horizontally 
+ ^ ^ _k_ ^ ^  ^ ^ _K_ ^ ^   ^   _<C-k>_   ^   _s_: horizontally
  _h_ ^ ^ _l_  _H_ ^ ^ _L_   _<C-h>_ _<C-l>_   _v_: vertically
  ^ ^ _j_ ^ ^  ^ ^ _J_ ^ ^   ^   _<C-j>_   ^   _c_: close
  focus^^^^^^  window^^^^^^  ^_=_: equalize^   _o_: remain only
@@ -28,7 +28,7 @@ Hydra({
     },
   },
   mode = "n",
-  body = "<a-w>",
+  body = "<c-w>",
   heads = {
     { "h", "<C-w>h" },
     { "j", "<C-w>j" },
@@ -64,17 +64,17 @@ Hydra({
         splits.resize_right(2)
       end,
     },
-    { "=", cmd("WindowsEqualize"), { desc = "equalize", exit = true } },
+    { "=",     cmd("WindowsEqualize"), { desc = "equalize", exit = true } },
 
-    { "s", pcmd("split", "E36") },
-    { "v", pcmd("vsplit", "E36") },
+    { "s",     pcmd("split", "E36") },
+    { "v",     pcmd("vsplit", "E36") },
 
-    { "m", cmd("WindowsMaximize"), { exit = true, desc = "maximize" } },
+    { "m",     cmd("WindowsMaximize"), { exit = true, desc = "maximize" } },
 
-    { "o", "<C-w>o", { exit = true, desc = "remain only" } },
+    { "o",     "<C-w>o",               { exit = true, desc = "remain only" } },
 
-    { "c", pcmd("close", "E444") },
+    { "c",     pcmd("close", "E444") },
 
-    { "<Esc>", nil, { exit = true } },
+    { "<Esc>", nil,                    { exit = true } },
   },
 })

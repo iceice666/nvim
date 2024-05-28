@@ -17,10 +17,10 @@ local hint = [[
   _D_: goto definition         ^ _r_: rename             _fi_: find implementation
   _T_: goto type definition
                                                      ^^^^^_i_: incoming calls
-  _[_: jump prev diagnostic                            ^^^_o_: outgoing calls
-  _]_: jump next diagnostic                            ^^^_h_: hierarchy
-                                                     ^^^^^_a_: code action
-  _<Esc>_: quit
+                                                     ^^^^^_o_: outgoing calls
+                                                     ^^^^^_h_: hierarchy
+  _<Esc>_: quit                                        ^^^_a_: code action
+
 
  ]]
 
@@ -46,18 +46,16 @@ return Hydra({
     { "T",     cmd("Lspsaga goto_type_definition") },
     { "k",     cmd("Lspsaga hover_doc") },
     { "K",     cmd("Lspsaga hover_doc ++keep") },
-    { "[",     cmd("Lspsaga diagnostic_jump_prev"), { nowait = true } },
-    { "]",     cmd("Lspsaga diagnostic_jump_next"), { nowait = true } },
 
     -- leader is <space>
-    { "r",     fun(vim.fn.feedkeys, " rn"),         { exit = true } },
-    { "fr",    cmd("Lspsaga finder ref"),           { exit = true } },
-    { "fd",    cmd("Lspsaga finder def"),           { exit = true } },
-    { "fi",    cmd("Lspsaga finder imp"),           { exit = true } },
-    { "i",     cmd("Lspsaga incoming_calls"),       { exit = true } },
-    { "o",     cmd("Lspsaga outgoing_calls"),       { exit = true } },
-    { "h",     cmd("Lspsaga outline"),              { exit = true } },
+    { "r",     fun(vim.fn.feedkeys, " rn"),        { exit = true } },
+    { "fr",    cmd("Lspsaga finder ref"),          { exit = true } },
+    { "fd",    cmd("Lspsaga finder def"),          { exit = true } },
+    { "fi",    cmd("Lspsaga finder imp"),          { exit = true } },
+    { "i",     cmd("Lspsaga incoming_calls"),      { exit = true } },
+    { "o",     cmd("Lspsaga outgoing_calls"),      { exit = true } },
+    { "h",     cmd("Lspsaga outline"),             { exit = true } },
     { "a",     cmd("Lspsaga code_action") },
-    { "<Esc>", nil,                                 { exit = true } },
+    { "<Esc>", nil,                                { exit = true } },
   },
 })

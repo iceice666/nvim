@@ -10,8 +10,8 @@ local hint = [[
   _D_: goto definition         ^ _r_: rename                 _fi_: find implementation
   _T_: goto type definition
                              ^^^ _xr_: run current project   _i_: incoming calls
-  _[_: jump prev diagnostic    ^ _xd_: show devices          _o_: outgoing calls
-  _]_: jump next diagnostic    ^ _xe_: show emulators        _h_: hierarchy
+                             ^^^ _xd_: show devices          _o_: outgoing calls
+                             ^^^ _xe_: show emulators        _h_: hierarchy
                                                         ^^^^^_a_: code action
   _<Esc>_: quit            ^_<Enter>_: Telescope integration
 
@@ -44,8 +44,6 @@ return Hydra({
     { "T",       cmd("Lspsaga goto_type_definition") },
     { "k",       cmd("Lspsaga hover_doc") },
     { "K",       cmd("Lspsaga hover_doc ++keep") },
-    { "[",       cmd("Lspsaga diagnostic_jump_prev") },
-    { "]",       cmd("Lspsaga diagnostic_jump_next") },
 
     { "r",       cmd("FlutterRename"),               { exit = true } },
     { "fr",      cmd("Lspsaga finder ref"),          { exit = true } },

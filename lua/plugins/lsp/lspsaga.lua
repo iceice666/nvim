@@ -5,14 +5,16 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
   },
-  config = function()
-    require("lspsaga").setup({
-      symbols_in_winbar = { enable = true },
-      implement = { enable = true },
-      lightbulb = { virtual_text = false },
-      ui = {
-        kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-      },
-    })
-  end,
+  opts = {
+    symbols_in_winbar = { enable = true },
+    implement = { enable = true },
+    lightbulb = { virtual_text = false },
+    ui = {
+      kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+    },
+  },
+  keys = {
+    { "[d", "<CMD>Lspsaga diagnostic_jump_prev<CR>" },
+    { "]d", "<CMD>Lspsaga diagnostic_jump_next<CR>" }
+  }
 }

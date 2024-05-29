@@ -1,3 +1,8 @@
+-- remove annoying `<C-w>d` keybinding
+vim.keymap.del("n", "<c-w>d")
+vim.keymap.del("n", "<c-w><c-d>")
+
+
 local Hydra = require("hydra")
 local splits = require("smart-splits")
 
@@ -5,15 +10,14 @@ local cmd = require("hydra.keymap-util").cmd
 local pcmd = require("hydra.keymap-util").pcmd
 
 local window_hint = [[
- ^^^^^^^^^^^^     Move      ^^    Size   ^^   ^^     Split
- ^^^^^^^^^^^^-------------  ^^-----------^^   ^^---------------
+ Focus^^^^^   Move^^^^^^^^  ^^    Size   ^^   ^^     Split
+ -----^^^^^  ------^^^^^^^  ^^-----------^^   ^^---------------
  ^ ^ _k_ ^ ^  ^ ^ _K_ ^ ^   ^   _<C-k>_   ^   _s_: horizontally
  _h_ ^ ^ _l_  _H_ ^ ^ _L_   _<C-h>_ _<C-l>_   _v_: vertically
  ^ ^ _j_ ^ ^  ^ ^ _J_ ^ ^   ^   _<C-j>_   ^   _c_: close
- focus^^^^^^  window^^^^^^  ^_=_: equalize^   _o_: remain only
- ^ ^ ^ ^ ^ ^  ^ ^ ^ ^ ^ ^   ^_m_: maximize^   _<Esc>_: cancel
-
- ]]
+ _t_: Move to a ^^^^^^^^^^  ^_=_: equalize^   _o_: remain only
+      new tab ^^^^^^^^^^^^  ^_m_: maximize^
+ _<Esc>_: cancel]]
 
 Hydra({
   name = "Windows",
@@ -30,10 +34,11 @@ Hydra({
   mode = "n",
   body = "<c-w>",
   heads = {
-    { "h", "<C-w>h" },
-    { "j", "<C-w>j" },
-    { "k", pcmd("wincmd k", "E11", "close") },
-    { "l", "<C-w>l" },
+    { "h", cmd("wincmd h") },
+    { "j", cmd("wincmd j") },
+    { "k", cmd("wincmd k") },
+    { "l", cmd("wincmd l") },
+    { "t", cmd("wincmd T") },
 
     { "H", cmd("WinShift left") },
     { "J", cmd("WinShift down") },

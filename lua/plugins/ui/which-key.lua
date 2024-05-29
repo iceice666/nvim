@@ -29,18 +29,6 @@ return {
       end,
       desc = "Quit Neovim",
     },
-
-    -- restart / exit with code 1
-    {
-      "<leader>rr",
-      function()
-        if not vim.g.neovide then
-          vim.cmd("cq!")
-        end
-      end,
-      desc = "Reload Neovim",
-    },
-
     -- write
     { "<leader>w", "<cmd>w<cr>", desc = "Buf: Write" },
 
@@ -62,15 +50,15 @@ return {
     },
 
     -- redo
-    { "U", "<C-R>", desc = "Redo" },
+    { "U",         "<C-R>",      desc = "Redo" },
 
     -- Select all
-    { "<c-a>", "ggVG", desc = "Select all", mode = { "n", "v" } },
+    { "<c-a>",     "ggVG",       desc = "Select all", mode = { "n", "v" } },
 
     -- Cursor jumping
 
-    { "L", "$" },
-    { "H", "^" },
+    { "L",         "$" },
+    { "H",         "^" },
 
     -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
     {
@@ -95,12 +83,12 @@ return {
       desc = "Buf: Redraw",
     },
 
-    { "<m-h>", "<Left>", mode = "i" },
-    { "<m-j>", "<Down>", mode = "i" },
-    { "<m-k>", "<Up>", mode = "i" },
-    { "<m-l>", "<Right>", mode = "i" },
+    { "<m-h>",     "<Left>",  mode = "i" },
+    { "<m-j>",     "<Down>",  mode = "i" },
+    { "<m-k>",     "<Up>",    mode = "i" },
+    { "<m-l>",     "<Right>", mode = "i" },
 
-    { "<m-tab>", "<c-w>w" },
+    { "<m-tab>",   "<c-w>w" },
     { "<m-s-tab>", "<c-w>W" },
 
     -- Open url
@@ -114,7 +102,7 @@ return {
 
         local url = (function()
           if
-            vim.startswith(word, "http://") or vim.startswith(word, "https://")
+              vim.startswith(word, "http://") or vim.startswith(word, "https://")
           then
             return word
           else
@@ -127,10 +115,10 @@ return {
             return {
               "powershell.exe",
               "[system.Diagnostics.Process]::Start(\""
-                .. browser
-                .. "\",\""
-                .. url
-                .. "\")",
+              .. browser
+              .. "\",\""
+              .. url
+              .. "\")",
             }
           else
             return { "xdg-open", url }

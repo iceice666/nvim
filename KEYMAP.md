@@ -34,7 +34,6 @@ each plugin file has a `keys` section which contains the keybindins of this plug
 |------------|------|-------------|
 | `<leader>q`   | `n` | Quit current buffer |
 | `<leader>Q`   | `n` | Force quit all (`:qa!`) |
-| `<ldeader>rr` | `n` | Quit with code 1 ([Useful for restart](https://github.com/iceice666/dotfiles/blob/main/.zshrc#L13:L21)) |
 | `<leader>w`   | `n` | Write |
 | `<leader>/`   | `n` | redraw screen, de-highlighting search, diff update, syntax sync and clear notification (ref: [saner ctrl+l](https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n)) |
 | `<leader>~`   | `n` | Reverse `True` `False`, `yes` `no`, `1` `0`, ... etc.

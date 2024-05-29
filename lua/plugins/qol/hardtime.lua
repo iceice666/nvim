@@ -4,7 +4,7 @@ return
   "m4xshen/hardtime.nvim",
   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
   opts = {
-    disabled_filetypes = { "neo-tree", "netrw", "lazy", "mason", "oil" },
+    disabled_filetypes = { "spectre_panel", "noice", "neo-tree", "netrw", "lazy", "mason", "oil" },
     disabled_keys = {
     },
     disable_mouse = true,

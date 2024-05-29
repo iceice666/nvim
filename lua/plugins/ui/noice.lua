@@ -2,16 +2,13 @@ return {
   enabled = true,
   -- Notification
   "folke/noice.nvim",
-  event = "VimEnter",
+  lazy = false,
   dependencies = {
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
   },
   opts = {
     lsp = {
-      signature = {
-        enabled = false,
-      },
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
@@ -27,7 +24,7 @@ return {
       bottom_search = false,
       command_palette = true,
       long_message_to_split = true,
-      inc_rename = true,
+      inc_rename = false,
       lsp_doc_border = false,
     },
     messages = {
@@ -49,14 +46,8 @@ return {
         },
         opts = { skip = true },
       },
-      {
-        filter = {
-          event = "msg_show",
-          kind = "",
-        },
-        opts = { skip = true },
-      },
     },
   },
   keys = { { "<leader>sn", "<cmd>Noice<cr>", "Noice: Show noice" } },
 }
+

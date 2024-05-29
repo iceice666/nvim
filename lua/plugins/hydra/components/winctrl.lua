@@ -1,10 +1,4 @@
--- remove annoying `<C-w>d` keybinding
-vim.keymap.del("n", "<c-w>d")
-vim.keymap.del("n", "<c-w><c-d>")
-
-
 local Hydra = require("hydra")
-local splits = require("smart-splits")
 
 local cmd = require("hydra.keymap-util").cmd
 local pcmd = require("hydra.keymap-util").pcmd
@@ -47,27 +41,19 @@ Hydra({
 
     {
       "<C-h>",
-      function()
-        splits.resize_left(2)
-      end,
+      cmd("SmartResizeLeft 2")
     },
     {
       "<C-j>",
-      function()
-        splits.resize_down(2)
-      end,
+      cmd("SmartResizeDown 2")
     },
     {
       "<C-k>",
-      function()
-        splits.resize_up(2)
-      end,
+      cmd("SmartResizeUp 2")
     },
     {
       "<C-l>",
-      function()
-        splits.resize_right(2)
-      end,
+      cmd("SmartResizeRight 2")
     },
     { "=",     cmd("WindowsEqualize"), { desc = "equalize", exit = true } },
 

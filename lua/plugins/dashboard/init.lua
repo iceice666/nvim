@@ -13,11 +13,11 @@ return {
       pattern = "LazyVimStarted",
       callback = function()
         local db = require("plugins.dashboard.getTheme")
-        local notify = require("notify")
+
 
         require("dashboard").setup(db)
 
-        notify("Plz check message if something went wrong!", "warn", {
+        vim.notify("Plz check message if something went wrong!", "warn", {
           title = "Startup",
           timeout = 5000,
         })
@@ -29,14 +29,14 @@ return {
         end
 
         local msg = "You haven't touched your config for\n"
-          .. time.days
-          .. " days, "
-          .. time.hours
-          .. " hours, "
-          .. time.minutes
-          .. " minutes.🤓👆"
+            .. time.days
+            .. " days, "
+            .. time.hours
+            .. " hours, "
+            .. time.minutes
+            .. " minutes.🤓👆"
 
-        notify(msg, "info", {
+        vim.notify(msg, "info", {
           title = "Your config file is missing you!",
           timeout = 10000,
         })

@@ -1,1 +1,4 @@
-return { "wakatime/vim-wakatime", lazy = false, build = ":WakaTimeApiKey" }
+return {
+  "wakatime/vim-wakatime",
+  build = ":WakaTimeApiKey",
+}

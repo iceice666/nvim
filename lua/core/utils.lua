@@ -1,5 +1,23 @@
 M = {}
 
+
+function M.require_hydra(text)
+  return require("plugins.hydra.components." .. text)
+end
+
+function M.is_lsp_active(lsp_name)
+  for _, client in ipairs(vim.lsp.get_active_clients()) do
+    if client.name == lsp_name then
+      return true
+    end
+  end
+  return false
+end
+
+function M.is_file_exist(path)
+  return vim.fn.filereadable(vim.fn.getcwd() .. "/" .. path) == 1
+end
+
 function M.flatten(i, s, p, r)
   local function flatten(input_table, sep, prefix, result)
     prefix = prefix or ""
@@ -99,4 +117,4 @@ function M.is_npm_package_installed(package)
   return false
 end
 
-vim.g.util = M
+vim.g.utils = M

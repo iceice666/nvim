@@ -54,7 +54,7 @@ local cpp_name = ({
   "CPP",
 })[math.random(5)]
 
-local firstToUpper = vim.g.util.firstToUpper
+local firstToUpper = vim.g.utils.firstToUpper
 local FileType = {
   provider = function()
     local ft = vim.bo.filetype

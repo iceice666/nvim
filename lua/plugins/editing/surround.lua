@@ -1,5 +1,6 @@
 return {
   "roobert/surround-ui.nvim",
+  event        = "BufReadPost",
   dependencies = {
     {
       "kylechui/nvim-surround",

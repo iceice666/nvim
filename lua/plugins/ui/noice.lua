@@ -1,8 +1,7 @@
 return {
-  enabled = true,
   -- Notification
   "folke/noice.nvim",
-  lazy = false,
+  event = "VimEnter",
   dependencies = {
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
@@ -50,4 +49,3 @@ return {
   },
   keys = { { "<leader>sn", "<cmd>Noice<cr>", "Noice: Show noice" } },
 }
-

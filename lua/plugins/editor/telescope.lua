@@ -18,15 +18,6 @@ return {
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("telescope").load_extension("file_browser")
-    end,
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  },
-
-  {
     "nvim-telescope/telescope.nvim",
     event = "VeryLazy",
     dependencies = {

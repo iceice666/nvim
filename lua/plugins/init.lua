@@ -6,7 +6,7 @@ return {
   { import = "plugins.movement" },   -- Cusor move/jump
   { import = "plugins.editing" },    -- Editing utilities
   { import = "plugins.editor" },     -- Add new features which usually interact with a custom window
-  { import = "plugins.statusline" }, -- statusline
+  { import = "plugins.heirline" },   -- statusline
   { import = "plugins.lsp" },        -- Language Server Protocol
   { import = "plugins.cmp" },        -- Auto-completion
   { import = "plugins.hydra" },      -- Custom submodes and menus (like Emacs hydra)

@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   config = function()
     local function req(modules)
-      return require("plugins.statusline.components." .. modules)
+      return require("plugins.heirline.components." .. modules)
     end
 
     table.unpack = table.unpack or unpack -- 5.1 compatibility

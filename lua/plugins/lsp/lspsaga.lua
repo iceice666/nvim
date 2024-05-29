@@ -14,7 +14,7 @@ return {
     },
   },
   keys = {
-    { "[d", "<CMD>Lspsaga diagnostic_jump_prev<CR>" },
-    { "]d", "<CMD>Lspsaga diagnostic_jump_next<CR>" }
+    { "[d", "<CMD>Lspsaga diagnostic_jump_prev<CR>", desc = "Next diagnostic" },
+    { "]d", "<CMD>Lspsaga diagnostic_jump_next<CR>", desc = "Prev diagnostic" }
   }
 }

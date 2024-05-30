@@ -16,13 +16,8 @@ return {
     "chrisgrieser/cmp-nerdfont",
     "f3fora/cmp-spell",
 
-    {
-      "yehuohan/cmp-im",
-      dependencies = {
-        "yehuohan/cmp-im-zh",
-      },
-    },
-
+    "yehuohan/cmp-im",
+    "yehuohan/cmp-im-zh",
 
     "ray-x/cmp-treesitter",
     "onsails/lspkind-nvim",
@@ -30,12 +25,6 @@ return {
     -- Other
     "lukas-reineke/cmp-under-comparator",
     "kawre/neotab.nvim",
-    {
-      "rcarriga/cmp-dap",
-      dependencies = {
-        "mfussenegger/nvim-dap",
-      },
-    },
   },
   config = function()
     local cmp = require("cmp")
@@ -278,11 +267,7 @@ return {
       end,
     })
 
-    cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-      sources = {
-        { name = "dap" },
-      },
-    })
+
 
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

@@ -1,6 +1,6 @@
 return {
   "theHamsta/nvim-dap-virtual-text",
-  event = "BufReadPost",
+  lazy = true,
   opts = {
     enabled = true,
     enable_commands = true,

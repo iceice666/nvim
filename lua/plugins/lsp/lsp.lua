@@ -29,10 +29,7 @@ return {
   event = "BufReadPre",
   dependencies = {
     "neovim/nvim-lspconfig",
-    {
-      "williamboman/mason.nvim",
-      config = true,
-    },
+    "williamboman/mason.nvim",
   },
   opts = {
     ensure_installed = {

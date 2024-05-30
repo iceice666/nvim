@@ -22,7 +22,6 @@ return {
     local TerminalName = req("file").TerminalName
     local Ruler = req("ruler").Ruler
     local ScrollBar = req("ruler").ScrollBar
-    local DAPMessages = req("dap").DAPMessages
     local Diagnostics = req("lsp").Diagnostics
     local LspClients = req("lsp").LspClients
     -- local Snippets = req("lsp").Snippets
@@ -37,7 +36,6 @@ return {
         FileName,
         Diagnostics,
         MacroRecoder,
-        DAPMessages,
       }
 
       local middle = {}
@@ -70,7 +68,6 @@ return {
       FileName,
       Space,
       Diagnostics,
-      DAPMessages,
       Align,
     }
 
@@ -116,3 +113,4 @@ return {
     require("heirline").setup({ statusline = StatusLines })
   end,
 }
+

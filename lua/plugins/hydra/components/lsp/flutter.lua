@@ -11,10 +11,9 @@ local hint = [[
   _T_: goto type definition
                              ^^^ _xr_: run current project   _i_: incoming calls
                              ^^^ _xd_: show devices          _o_: outgoing calls
-                             ^^^ _xe_: show emulators        _h_: hierarchy
+                             ^^^ _xe_: show emulators        _s_: symbol
                                                         ^^^^^_a_: code action
   _<Esc>_: quit            ^_<Enter>_: Telescope integration
-
   ]]
 
 return Hydra({
@@ -51,7 +50,7 @@ return Hydra({
     { "fi",      cmd("Lspsaga finder imp"),          { exit = true } },
     { "i",       cmd("Lspsaga incoming_calls"),      { exit = true } },
     { "o",       cmd("Lspsaga outgoing_calls"),      { exit = true } },
-    { "h",       cmd("FlutterOutlineToggle"),        { exit = true } },
+    { "s",       cmd("FlutterOutlineToggle"),        { exit = true } },
     { "a",       cmd("Lspsaga code_action") },
     { "<Esc>",   nil,                                { exit = true } },
   },

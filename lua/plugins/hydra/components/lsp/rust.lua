@@ -17,11 +17,10 @@ local hint = [[
   _T_: goto type definition    ^
   _<Space>_: hover range       ^ _e_: explain error      _i_: incoming calls
                              ^^^ _m_: expand macro       _o_: outgoing calls
-                                                   ^^^^^ _h_: hierarchy
-                                                   ^^^^^ _a_: code action
+                             ^^^_rh_: render diagnostic  _s_: symbol
+                             ^^^_rd_: render docs        _a_: code action
   _<Esc>_: quit
-
- ]]
+  ]]
 
 return Hydra({
   name = "LspRust",
@@ -44,8 +43,10 @@ return Hydra({
     { "D",       cmd("Lspsaga goto_definition") },
     { "T",       cmd("Lspsaga goto_type_definition") },
     { "<Space>", cmd("RustLsp hover range"),         { exit = true } },
-    { "k",       cmd("RustLsp hover actions") },
+    { "k",       cmd("Lspsaga hover_doc") },
     { "K",       cmd("Lspsaga hover_doc ++keep") },
+    { "rh",      cmd("RustLsp renderDiagnostic") },
+    { "rd",      cmd("Rust openDocs") },
 
     -- leader is <space>
     { "r",       fun(vim.fn.feedkeys, " rn"),        { exit = true } },
@@ -54,7 +55,7 @@ return Hydra({
     { "fi",      cmd("Lspsaga finder imp"),          { exit = true } },
     { "i",       cmd("Lspsaga incoming_calls"),      { exit = true } },
     { "o",       cmd("Lspsaga outgoing_calls"),      { exit = true } },
-    { "h",       cmd("Lspsaga outline"),             { exit = true } },
+    { "s",       cmd("Lspsaga outline"),             { exit = true } },
     { "a",       cmd("Lspsaga code_action") },
     { "e",       cmd("RustLsp explainError"),        { exit = true } },
     { "m",       cmd("RustLsp expandMacro"),         { exit = true } },

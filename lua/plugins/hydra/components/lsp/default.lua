@@ -18,11 +18,9 @@ local hint = [[
   _T_: goto type definition
                                                      ^^^^^_i_: incoming calls
                                                      ^^^^^_o_: outgoing calls
-                                                     ^^^^^_h_: hierarchy
+                                                     ^^^^^_s_: symbol
   _<Esc>_: quit                                        ^^^_a_: code action
-
-
- ]]
+  ]]
 
 return Hydra({
   name = "LspDefault",
@@ -54,7 +52,7 @@ return Hydra({
     { "fi",    cmd("Lspsaga finder imp"),          { exit = true } },
     { "i",     cmd("Lspsaga incoming_calls"),      { exit = true } },
     { "o",     cmd("Lspsaga outgoing_calls"),      { exit = true } },
-    { "h",     cmd("Lspsaga outline"),             { exit = true } },
+    { "s",     cmd("Lspsaga outline"),             { exit = true } },
     { "a",     cmd("Lspsaga code_action") },
     { "<Esc>", nil,                                { exit = true } },
   },

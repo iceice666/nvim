@@ -94,7 +94,7 @@ return {
   -- Open url
   -- https://www.google.com
   {
-    "<leader>x",
+    "<leader>X",
     function()
       local word = vim.fn.expand("<cfile>")
       local search_url = "https://www.google.com/search?q="

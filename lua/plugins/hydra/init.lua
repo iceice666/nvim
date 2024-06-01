@@ -14,15 +14,13 @@ return {
       {
         "<leader>l",
         function()
-          local km = vim.g.utils.require_hydra("lsp.default")
-
-          if vim.g.utils.is_file_exist("Cargo.toml") or vim.g.utils.is_lsp_active("rust_analyzer") then
-            km = vim.g.utils.require_hydra("lsp.rust")
+          if vim.g.utils.is_file_exist("Cargo.toml") or vim.g.utils.is_lsp_active("rust-analyzer") then
+            vim.g.utils.require_hydra("lsp.rust"):activate()
           elseif vim.g.utils.is_file_exist("pubspec.yaml") or vim.g.utils.is_lsp_active("dartls") then
-            km = vim.g.utils.require_hydra("lsp.flutter")
+            vim.g.utils.require_hydra("lsp.flutter"):activate()
+          else
+            vim.g.utils.require_hydra("lsp.default"):activate()
           end
-
-          km:activate()
         end,
         desc = "[Hydra] Lsp binding",
       },

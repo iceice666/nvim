@@ -29,14 +29,5 @@ return {
     dap_python.setup(
       "/home/iceice666/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
     )
-
-    dap_python.resolve_python = function()
-      local py = vim.fn.expand(vim.fn.getcwd() .. "/.venv/bin/python")
-      if vim.fn.filereadable(py) == 1 then
-        return py
-      else
-        return "/usr/bin/env python3"
-      end
-    end
   end,
 }

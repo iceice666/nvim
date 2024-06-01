@@ -10,8 +10,6 @@ return {
         "rcarriga/nvim-dap-ui"
       },
       config = function()
-        require("dap").set_exception_breakpoints({ "uncaughted" })
-
         vim.fn.sign_define("DapBreakpoint", {
           text = "",
           texthl = "DapBreakpoint",
@@ -53,22 +51,14 @@ return {
         },
         { -- <S-F5>
           "<F17>",
-          function()
-            require("dap").restart()
-          end,
-          desc = "Dap: Rerun",
-        },
-        { -- <C-F5>
-          "<F29>",
-          function()
-            require("dap").terminate()
-          end,
+          "<CMD>DapTerminate<CR>",
           desc = "Dap: Stop",
         },
         {
           "<F6>",
           function()
             require("dapui").toggle()
+            require("dap").set_exception_breakpoints({ "uncaughted" })
           end,
           desc = "Dap: Toggle debug ui",
         },

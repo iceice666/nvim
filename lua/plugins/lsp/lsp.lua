@@ -4,15 +4,15 @@ local load = function(lang)
   end
 end
 
-local default_config = require("plugins.lsp.server._default") -- return a table
+local lsp_default = require("plugins.lsp.server._default") -- return a table
 
 local server = { "lua_ls", "pyright", "rust_analyzer", "tsserver", "volar" }
 
 local handler = {
   function(server_name)
     require("lspconfig")[server_name].setup({
-      on_attach = default_config.on_attach,
-      capabilities = default_config.capabilities(),
+      on_attach = lsp_default.on_attach,
+      capabilities = lsp_default.get_capabilities(),
     })
   end,
 }
@@ -70,3 +70,4 @@ return {
     })
   end,
 }
+

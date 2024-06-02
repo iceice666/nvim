@@ -1,4 +1,6 @@
-local capabilities = function()
+M = {}
+
+function M.get_capabilities()
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
@@ -7,11 +9,10 @@ local capabilities = function()
   return capabilities
 end
 
-return {
-  capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/inlayHint", { bufnr = bufnr }) then
-      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-    end
-  end,
-}
+function M.on_attach(client, bufnr)
+  if client.supports_method("textDocument/inlayHint", { bufnr = bufnr }) then
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  end
+end
+
+return M

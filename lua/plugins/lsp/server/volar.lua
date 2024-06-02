@@ -9,7 +9,7 @@ local lspconfig = require("lspconfig")
 local lsp_default = require("plugins.lsp.server._default")
 
 lspconfig.tsserver.setup({
-  capabilities = lsp_default.capabilities(),
+  capabilities = lsp_default.get_capabilities(),
   on_attach = lsp_default.on_attach,
   init_options = {
     plugins = {
@@ -38,7 +38,7 @@ lspconfig.tsserver.setup({
 
 -- No need to set `hybridMode` to `true` as it's the default value
 lspconfig.volar.setup({
-  capabilities = lsp_default.capabilities(),
+  capabilities = lsp_default.get_capabilities(),
   on_attach = lsp_default.on_attach,
   server = {
     hint = {
@@ -46,3 +46,4 @@ lspconfig.volar.setup({
     }
   }
 })
+

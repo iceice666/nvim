@@ -1,6 +1,6 @@
 local lsp_default = require("plugins.lsp.server._default")
 require("lspconfig").eslint.setup({
-  capabilities = lsp_default.capabilities(),
+  capabilities = lsp_default.get_capabilities(),
   server = {
     hint = {
       enable = true,

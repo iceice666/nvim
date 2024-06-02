@@ -1,7 +1,7 @@
 local lsp_default = require("plugins.lsp.server._default")
 
 require("lspconfig").lua_ls.setup({
-  capabilities = lsp_default.capabilities(),
+  capabilities = lsp_default.get_capabilities(),
   on_attach = lsp_default.on_attach,
   before_init = require("neodev.lsp").before_init,
   settings = {

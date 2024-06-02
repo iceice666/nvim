@@ -13,6 +13,7 @@ require("lspconfig").pyright.setup({
       enable = true,
     },
   },
-  capabilities = lsp_default.capabilities(),
+  capabilities = lsp_default.get_capabilities(),
   on_attach = lsp_default.on_attach,
 })
+

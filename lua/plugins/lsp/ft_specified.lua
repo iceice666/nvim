@@ -58,5 +58,11 @@ return {
     },
     event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
     ft = { "py" }
+  },
+  {
+    'chomosuke/typst-preview.nvim',
+    ft = 'typst',
+    version = '0.3.*',
+    build = function() require 'typst-preview'.update() end,
   }
 }

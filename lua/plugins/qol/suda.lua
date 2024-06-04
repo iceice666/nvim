@@ -1,5 +1,6 @@
 return {
   "lambdalisue/vim-suda",
+  cond = 1 ~= vim.g.vscode,
   event = "VeryLazy",
   config = function()
     vim.cmd [[
@@ -8,4 +9,3 @@ return {
     ]]
   end
 }
-

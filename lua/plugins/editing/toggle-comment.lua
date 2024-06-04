@@ -1,8 +1,8 @@
 local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
 return {
-
   -- Toggle comment
   "numToStr/Comment.nvim",
+  cond = 1 ~= vim.g.vscode,
   event = "BufReadPost",
   opts = {
     padding = true,

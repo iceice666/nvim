@@ -1,7 +1,5 @@
 return {
-  enabled = function()
-    return vim.g.neovide ~= true
-  end,
+  lazy = true,
   -- pets
   "giusgad/pets.nvim",
   dependencies = {
@@ -19,3 +17,4 @@ return {
     "PetsSleepToggle",
   },
 }
+

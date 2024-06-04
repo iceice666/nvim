@@ -1,3 +1,5 @@
+if 1 == vim.g.vscode then return {} end
+
 local ftMap = {
   vim = "indent",
   python = { "indent" },
@@ -168,8 +170,6 @@ NATIVE_CFG = {
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 -- Switch
-
-
 ENABLE_UFO = true
 
 if ENABLE_UFO then

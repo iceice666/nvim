@@ -1,4 +1,5 @@
 return {
+  cond = 1 ~= vim.g.vscode,
   "Wansmer/treesj",
   event = "BufReadPost",
   dependencies = { "nvim-treesitter/nvim-treesitter" },

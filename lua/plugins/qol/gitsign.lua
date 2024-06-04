@@ -1,4 +1,5 @@
 return {
+  cond = 1 ~= vim.g.vscode,
   -- git sign
   "lewis6991/gitsigns.nvim",
   event = "BufReadPre",

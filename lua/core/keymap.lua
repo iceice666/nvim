@@ -29,8 +29,9 @@ return {
     end,
     desc = "Quit Neovim",
   },
+
   -- write
-  { "<leader>w", "<cmd>w<cr>", desc = "Buf: Write" },
+  { "<leader>w", "<cmd>w<cr>",     desc = "Buf: Write" },
 
   -- Move selected sections
   -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32
@@ -49,11 +50,19 @@ return {
     mode = { "v" },
   },
 
+  -- buffer navigation
+  { "[b",        "<cmd>bprev<cr>", desc = "Buf: Previous" },
+  { "]b",        "<cmd>bnext<cr>", desc = "Buf: Next" },
+
+  -- quick scroll
+  { "J",         "10j",            mode = { "n", "x", "o" }, desc = "Down 10 lines" },
+  { "K",         "10k",            mode = { "n", "x", "o" }, desc = "Up 10 lines" },
+
   -- redo
-  { "U",         "<C-R>",      desc = "Redo" },
+  { "U",         "<C-R>",          desc = "Redo" },
 
   -- Select all
-  { "<c-a>",     "ggVG",       desc = "Select all", mode = { "n", "v" } },
+  { "<c-a>",     "ggVG",           desc = "Select all",      mode = { "n", "v" } },
 
   -- Cursor jumping
 

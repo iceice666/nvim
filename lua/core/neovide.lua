@@ -1,5 +1,6 @@
 if vim.g.neovide ~= true then return end
 
+vim.notify("Load neovide config!")
 
 vim.o.guifont = "CaskaydiaCove Nerd Font:h14"
 vim.g.neovide_padding_top = 0

@@ -1,4 +1,5 @@
 return {
+  cond = 1 ~= vim.g.vscode,
   "coffebar/neovim-project",
   init = function()
     -- enable saving the state of plugins in the session

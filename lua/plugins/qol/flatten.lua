@@ -1,4 +1,5 @@
 return {
+  cond = 1 ~= vim.g.vscode,
   "willothy/flatten.nvim",
   event = "VeryLazy",
   opts = {

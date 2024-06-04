@@ -1,6 +1,7 @@
 return {
   -- Todo comment
   "folke/todo-comments.nvim",
+  cond = 1 ~= vim.g.vscode,
   event = "BufReadPost",
   opts = {
     keywords = {

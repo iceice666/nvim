@@ -1,12 +1,13 @@
 return {
   -- dashboard
+  "glepnir/dashboard-nvim",
+  cond = 1 ~= vim.g.vscode,
   pin = true,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     "rcarriga/nvim-notify",
     "mrquantumcodes/configpulse",
   },
-  "glepnir/dashboard-nvim",
   event = "VimEnter",
   config = function()
     vim.api.nvim_create_autocmd("User", {

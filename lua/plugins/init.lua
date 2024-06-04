@@ -1,15 +1,16 @@
 return {
-  require("plugins.theme.init"),     -- theme
-  require("plugins.dashboard.init"), -- Welcome screen
-  { import = "plugins.ui" },         -- Modify Neovim built-in UI
-  { import = "plugins.qol" },        -- Some improvement
-  { import = "plugins.movement" },   -- Cusor move/jump
-  { import = "plugins.editing" },    -- Editing utilities
-  { import = "plugins.editor" },     -- Add new features which usually interact with a custom window
-  { import = "plugins.heirline" },   -- statusline
-  { import = "plugins.lsp" },        -- Language Server Protocol
-  { import = "plugins.cmp" },        -- Auto-completion
-  { import = "plugins.hydra" },      -- Custom submodes and menus (like Emacs hydra)
-  { import = "plugins.dap" },        -- Debug Adapter Protocol
-  { import = "plugins.fun" },        -- Just for fun
+  require("plugins.theme.init"),                                -- theme
+  require("plugins.dashboard.init"),                            -- Welcome screen
+  { import = "plugins.ui",       enabled = 1 ~= vim.g.vscode }, -- Modify Neovim built-in UI
+  { import = "plugins.qol" },                                   -- Some improvement
+  { import = "plugins.movement" },                              -- Cusor move/jump
+  { import = "plugins.editing" },                               -- Editing utilities
+  { import = "plugins.editor",   enabled = 1 ~= vim.g.vscode }, -- Add new features which usually interact with a custom window
+  { import = "plugins.lsp",      enabled = 1 ~= vim.g.vscode }, -- Language Server Protocol
+  { import = "plugins.cmp",      enabled = 1 ~= vim.g.vscode }, -- Auto-completion
+  { import = "plugins.heirline", enabled = 1 ~= vim.g.vscode }, -- statusline
+  { import = "plugins.hydra",    enabled = 1 ~= vim.g.vscode }, -- Custom submodes and menus (like Emacs hydra)
+  { import = "plugins.dap",      enabled = 1 ~= vim.g.vscode }, -- Debug Adapter Protocol
+  { import = "plugins.fun",      enabled = 1 ~= vim.g.vscode }, -- Just for fun
 }
+

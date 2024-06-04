@@ -28,6 +28,8 @@
 
 --=================================================================================--
 
+
+require("core.vscode")
 require("core.neovide")
 require("core.utils")
 require("core.options")

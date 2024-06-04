@@ -1,6 +1,7 @@
 return {
   "rebelot/heirline.nvim",
   event = "VeryLazy",
+  cond = 1 ~= vim.g.vscode,
   config = function()
     local function req(modules)
       return require("plugins.heirline.components." .. modules)
@@ -113,4 +114,3 @@ return {
     require("heirline").setup({ statusline = StatusLines })
   end,
 }
-

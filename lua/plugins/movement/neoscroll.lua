@@ -2,13 +2,7 @@ return {
   -- smooth scrolling
   "karb94/neoscroll.nvim",
   event = "VimEnter",
-  enabled = function()
-    if vim.g.neovide then
-      vim.keymap.set({ "n", "x", "o" }, "J", "10j")
-      vim.keymap.set({ "n", "x", "o" }, "K", "10k")
-    end
-    return vim.g.neovide ~= true
-  end,
+  cond = true ~= vim.g.neovide and 1 ~= vim.g.vscode,
   keys = {
     {
       "J",

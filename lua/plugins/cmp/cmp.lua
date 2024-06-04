@@ -141,7 +141,7 @@ return {
           if cmp.visible() then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           elseif vim.g.ENABLE_NATIVE_SNIPPETS and vim.snippet.active({ direction = 1 }) then
-            vim.schedule(vim.snippet.jump(1))
+            vim.snippet.jump(1)
           elseif require("copilot.suggestion").is_visible() then
             require("copilot.suggestion").accept()
           else
@@ -153,7 +153,7 @@ return {
           if cmp.visible() then
             cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
           elseif vim.g.ENABLE_NATIVE_SNIPPETS and vim.snippet.active({ direction = -1 }) then
-            vim.schedule(vim.snippet.jump(-1))
+            vim.snippet.jump(-1)
           else
             fallback()
           end

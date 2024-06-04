@@ -3,5 +3,4 @@ return {
   lazy = false,
   priority = 100,
   config = true,
-  keys = require("core.keymap")
 }

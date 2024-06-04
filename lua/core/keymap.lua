@@ -12,6 +12,7 @@ local feed_keys = function(keys, mode)
 end
 
 
+
 -- remove annoying `<C-w>d` keybinding
 vim.keymap.del("n", "<c-w>d")
 vim.keymap.del("n", "<c-w><c-d>")
@@ -20,7 +21,7 @@ vim.keymap.del("n", "<c-w><c-d>")
 -- ==============================================
 --         Keymap defined here
 -- ==============================================
-return {
+local km = {
   -- Quit
   {
     "<leader>Q",
@@ -39,16 +40,20 @@ return {
     "<c-k>",
     ":m '<-2<cr>gv=gv",
     desc = "Move up",
-    silent = true,
     mode = { "v" },
   },
   {
     "<c-j>",
     ":m '>+1<cr>gv=gv",
     desc = "Move down",
-    silent = true,
     mode = { "v" },
   },
+
+  -- Don't lose selection when shifting sidewards
+  -- https://github.com/mhinz/vim-galore?tab=readme-ov-file#dont-lose-selection-when-shifting-sidewards
+  { ">",         ">gv",            mode = "x" },
+  { "<",         "<gv",            mode = "x" },
+
 
   -- buffer navigation
   { "[b",        "<cmd>bprev<cr>", desc = "Buf: Previous" },
@@ -236,3 +241,7 @@ return {
     end,
   },
 }
+
+
+
+vim.g.utils.set_keymap(km)

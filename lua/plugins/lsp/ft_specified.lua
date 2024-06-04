@@ -56,7 +56,6 @@ return {
     opts = {
       poetry_path = "/home/iceice666/.cache/pypoetry/virtualenvs"
     },
-    event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
     ft = { "py" }
   },
   {

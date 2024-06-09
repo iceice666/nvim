@@ -1,6 +1,6 @@
 return {
   'stevearc/dressing.nvim',
-  lazy = false,
+  lazy = true,
   opts = {
     input = {
       override = function(conf)

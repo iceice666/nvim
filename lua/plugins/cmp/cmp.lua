@@ -92,6 +92,8 @@ return {
       end,
 
       sources = {
+        { name = "lazydev",    group_index = 0 },
+
         { name = "emoji",      group_index = 1 },
         { name = "IM",         group_index = 1 },
         { name = "nerdfont",   group_index = 1 },

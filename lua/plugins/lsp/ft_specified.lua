@@ -45,16 +45,21 @@ return {
     config = true,
   },
   {
-    -- neodev/ nvim lua setting help
-    "folke/neodev.nvim",
-    ft = "lua",
-    config = true,
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+      },
+    },
   },
   {
     'linux-cultist/venv-selector.nvim',
     dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
     opts = {
-      poetry_path = "/home/iceice666/.cache/pypoetry/virtualenvs"
+      poetry_path = vim.fn.expand("$HOME/.cache/pypoetry/virtualenvs")
     },
     ft = { "py" }
   },

@@ -12,6 +12,16 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 })
 
 
+-- Add toggle keybinding for toggleterm
+vim.api.nvim_create_autocmd("TermEnter", {
+  pattern = "term://*toggleterm#*",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, 't', '<c-`>', '<Cmd>exe v:count1 .. "ToggleTerm"<CR>',
+      { noremap = true, silent = true })
+  end,
+})
+
+
 -- yank highlight
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = user_autocmd,

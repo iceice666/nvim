@@ -87,8 +87,8 @@ return {
             -- comment
             and not context.in_treesitter_capture("comment")
             and not context.in_syntax_group("Comment")
-            -- dap buffer
-            and not require("cmp_dap").is_dap_buffer()
+        -- dap buffer
+        -- and not require("cmp_dap").is_dap_buffer()
       end,
 
       sources = {

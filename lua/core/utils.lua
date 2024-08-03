@@ -106,7 +106,7 @@ function M.firstToUpper(str)
   return (str:gsub("^%l", string.upper))
 end
 
-function M.read_json_file(filename)
+function read_json_file(filename)
   local Path = require("plenary.path")
 
   local path = Path:new(filename)
@@ -120,8 +120,10 @@ function M.read_json_file(filename)
   return json
 end
 
+M.read_json_file = read_json_file
+
 function M.is_npm_package_installed(package)
-  local package_json = M.read_json_file("package.json")
+  local package_json = read_json_file("package.json")
   if not package_json then
     return false
   end

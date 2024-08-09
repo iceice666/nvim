@@ -26,7 +26,7 @@ function M.require_hydra(text)
 end
 
 function M.is_lsp_active(lsp_name)
-  for _, client in ipairs(vim.lsp.get_active_clients()) do
+  for _, client in ipairs(vim.lsp.get_clients()) do
     if client.name == lsp_name then
       return true
     end
@@ -106,7 +106,7 @@ function M.firstToUpper(str)
   return (str:gsub("^%l", string.upper))
 end
 
-function read_json_file(filename)
+local function read_json_file(filename)
   local Path = require("plenary.path")
 
   local path = Path:new(filename)

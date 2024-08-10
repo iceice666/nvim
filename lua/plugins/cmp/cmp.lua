@@ -16,9 +16,6 @@ return {
     "chrisgrieser/cmp-nerdfont",
     "f3fora/cmp-spell",
 
-    "yehuohan/cmp-im",
-    "yehuohan/cmp-im-zh",
-
     "ray-x/cmp-treesitter",
     "onsails/lspkind-nvim",
 
@@ -73,8 +70,6 @@ return {
       },
     })
 
-    local cmp_im = require("cmp_im")
-
     local neotab = require("neotab")
 
     cmp.setup({
@@ -118,8 +113,6 @@ return {
               behavior = cmp.ConfirmBehavior.Replace,
               select = true,
             })
-          elseif cmp.visible() and vim.g.isImEnable then
-            cmp_im.select()
           else
             fallback()
           end

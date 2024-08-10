@@ -167,18 +167,6 @@ return {
   --   hl = { fg = "red", bold = true },
   -- },
 
-  CmpIM = {
-    provider = function()
-      if vim.g.isImEnable then
-        return "  Pinyin: actived"
-      else
-        return ""
-      end
-    end,
-    hl = { fg = "red", bold = true },
-    update = true,
-  },
-
   Copilot = {
     condition = function()
       return require("copilot_status").enabled()

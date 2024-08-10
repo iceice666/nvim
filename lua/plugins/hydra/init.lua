@@ -2,7 +2,7 @@ return {
   {
     cond = 1 ~= vim.g.vscode,
     "nvimtools/hydra.nvim",
-    lazy = false,
+    event = "VeryLazy",
     config = function()
       -- register components after vim loaded
       vim.g.utils.require_hydra("tabpage")

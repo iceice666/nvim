@@ -31,7 +31,11 @@ return {
   },
   {
     "zbirenbaum/copilot-cmp",
-    dependencies = "copilot.lua",
+    event = {
+      "InsertEnter",
+      "CmdlineEnter",
+    },
+    dependencies = { "zbirenbaum/copilot.lua" },
     opts = {},
   },
 }

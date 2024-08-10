@@ -8,6 +8,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       vim.bo[event.buf].buflisted = true
       vim.cmd.only()
     end
+    vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<Cmd>bdelete<CR>',
+      { noremap = true, silent = true })
   end,
 })
 
@@ -37,8 +39,8 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "CursorHold" }, {
   pattern = "*",
   group = user_autocmd,
   desc = 'Auto save when leaving insert mode or doesnt press a key for a long time',
-  callback = function()
-    if vim.fn.filewritable(vim.fn.expand("%")) == 1 or
+  callback = function(event)
+    if vim.fn.filewritable(vim.fn.expand("%")) == 1 or vim.bo[event.buf].filetype ~= "help" or
         vim.fn.findfile(vim.fn.expand("%:t"), vim.fn.expand("%:h")) == 0 then
       vim.cmd("w")
     end

@@ -1,5 +1,4 @@
 return {
-
   Diagnostics = {
     condition = function()
       return #vim.lsp.get_clients({ bufnr = 0 }) > 0

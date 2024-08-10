@@ -1,7 +1,7 @@
 return {
   -- TODO: usage
   "ecthelionvi/NeoComposer.nvim",
-  dependencies = "kkharji/sqlite.lua",
+  dependencies = { "kkharji/sqlite.lua" },
   event = "VeryLazy",
   opts = {
     keymaps = {

@@ -253,6 +253,15 @@ local km = {
   },
 }
 
+-- ==============================================
+--         Group defined here
+-- ==============================================
 
+local group = {
+  {
+    "<leader>s", group = "shows", icon = { icon = "" }
+  }
+}
 
-vim.g.utils.set_keymap(km)
+require("which-key").add(km)
+require("which-key").add(group)

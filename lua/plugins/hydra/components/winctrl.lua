@@ -13,7 +13,7 @@ local window_hint = [[
       new tab ^^^^^^^^^^^^  ^_m_: maximize^
  _<Esc>_: cancel]]
 
-Hydra({
+return Hydra({
   name = "Windows",
   hint = window_hint,
   config = {

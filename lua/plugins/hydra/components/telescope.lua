@@ -15,7 +15,7 @@ local hint = [[
 
 ]]
 
-Hydra({
+return Hydra({
   name = "Telescope",
   hint = hint,
   config = {

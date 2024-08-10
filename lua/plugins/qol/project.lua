@@ -14,7 +14,8 @@ return {
   opts = {
     projects = { -- define project roots
       "~/project/*",
-      "~/.config/nvim",
+      "~/.config/nvim-customized",
+      "~/.config/nvim-lazyvim"
     },
     dashboard_mode = true,
   },

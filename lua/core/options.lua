@@ -90,3 +90,5 @@ opt.undolevels = 10000
 if vim.fn.has("win32") == 1 then
   vim.g.sqlite_clib_path = vim.fn.stdpath("config") .. "/assets/sqlite3.dll"
 end
+
+vim.cmd("set ff=unix")

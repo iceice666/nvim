@@ -11,7 +11,38 @@ local feed_keys = function(keys, mode)
   )
 end
 
+local open_under_cursor = function()
+  local word = vim.fn.expand("<cfile>")
+  local search_url = "https://www.google.com/search?q="
+  local browser = "firefox"
 
+  local url = (function()
+    if
+        vim.startswith(word, "http://") or vim.startswith(word, "https://")
+    then
+      return word
+    else
+      return search_url .. word
+    end
+  end)()
+
+  local cmd = (function()
+    if vim.fn.has("wsl") == 1 then
+      return {
+        "powershell.exe",
+        "[system.Diagnostics.Process]::Start(\""
+        .. browser
+        .. "\",\""
+        .. url
+        .. "\")",
+      }
+    else
+      return { "xdg-open", url }
+    end
+  end)()
+
+  vim.fn.jobstart(cmd, { detach = true })
+end
 
 -- remove annoying `<C-w>d` keybinding
 vim.keymap.del("n", "<c-w>d")
@@ -110,39 +141,14 @@ local km = {
   -- https://www.google.com
   {
     "<leader>X",
-    function()
-      local word = vim.fn.expand("<cfile>")
-      local search_url = "https://www.google.com/search?q="
-      local browser = "firefox"
-
-      local url = (function()
-        if
-            vim.startswith(word, "http://") or vim.startswith(word, "https://")
-        then
-          return word
-        else
-          return search_url .. word
-        end
-      end)()
-
-      local cmd = (function()
-        if vim.fn.has("wsl") == 1 then
-          return {
-            "powershell.exe",
-            "[system.Diagnostics.Process]::Start(\""
-            .. browser
-            .. "\",\""
-            .. url
-            .. "\")",
-          }
-        else
-          return { "xdg-open", url }
-        end
-      end)()
-
-      vim.fn.jobstart(cmd, { detach = true })
-    end,
+    open_under_cursor,
     desc = "Search with browser",
+  },
+  {
+    "<C-X>",
+    open_under_cursor,
+    desc = "Search with browser",
+    mode = "i"
   },
 
   -- An expression mapping for `dd` that doesn't yank an empty line into your default register

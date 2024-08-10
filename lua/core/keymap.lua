@@ -12,11 +12,7 @@ local feed_keys = function(keys, mode)
 end
 
 local open_under_cursor = function()
-  local word = vim.fn.expand("<cfile>")
-  local search_url = "https://www.google.com/search?q="
-  local browser = "firefox"
-
-  local url = (function()
+  local function gen_url(search_url, word)
     if
         vim.startswith(word, "http://") or vim.startswith(word, "https://")
     then
@@ -24,9 +20,9 @@ local open_under_cursor = function()
     else
       return search_url .. word
     end
-  end)()
+  end
 
-  local cmd = (function()
+  local function gen_cmd(browser, url)
     if vim.fn.has("wsl") == 1 then
       return {
         "powershell.exe",
@@ -39,15 +35,23 @@ local open_under_cursor = function()
     else
       return { "xdg-open", url }
     end
-  end)()
+  end
 
-  vim.fn.jobstart(cmd, { detach = true })
+  local word = vim.fn.expand("<cfile>")
+  local search_url = "https://www.google.com/search?q="
+  local browser = "firefox"
+
+
+  vim.fn.jobstart(gen_cmd(browser, gen_url(search_url, word)), { detach = true })
 end
 
 -- remove annoying `<C-w>d` keybinding
 vim.keymap.del("n", "<c-w>d")
 vim.keymap.del("n", "<c-w><c-d>")
 
+-- remove comment keybinding
+vim.keymap.del("n", "gc")
+vim.keymap.del("n", "gcc")
 
 -- ==============================================
 --         Keymap defined here
@@ -63,7 +67,7 @@ local km = {
   },
 
   -- write
-  { "<leader>w", "<cmd>w<cr>",     desc = "Buf: Write" },
+  { "<leader>w", "<cmd>w<cr>",     desc = "Buffer: Write" },
 
   -- Move selected sections
   -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32
@@ -87,8 +91,8 @@ local km = {
 
 
   -- buffer navigation
-  { "[b",        "<cmd>bprev<cr>", desc = "Buf: Previous" },
-  { "]b",        "<cmd>bnext<cr>", desc = "Buf: Next" },
+  { "[b",        "<cmd>bprev<cr>", desc = "Buffer: Previous" },
+  { "]b",        "<cmd>bnext<cr>", desc = "Buffer: Next" },
 
   -- quick scroll
   { "J",         "10j",            mode = { "n", "x", "o" }, desc = "Down 10 lines" },
@@ -120,7 +124,7 @@ local km = {
   {
     "<leader>/",
     "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><cmd>NoiceDismiss<CR><c-l>",
-    desc = "Buf: Redraw",
+    desc = "Buffer: Redraw",
   },
 
   {

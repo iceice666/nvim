@@ -8,7 +8,7 @@ return {
   },
   keys = {
     {
-      "<leader>sj",
+      "<leader>usj",
       function()
         require("treesj").toggle()
       end,

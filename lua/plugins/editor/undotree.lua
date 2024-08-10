@@ -5,7 +5,7 @@ return {
   end,
   keys = {
     {
-      "<leader>u",
+      "<leader>U",
       function()
         vim.cmd("silent! %foldopen! | UndotreeToggle")
       end,

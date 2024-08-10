@@ -16,21 +16,21 @@ return {
   keys = {
 
     {
-      "<C-\\>",
+      "<C-/>",
       function()
         require("Comment.api").toggle.linewise.current()
       end,
       desc = "Comment: line comment",
     },
     {
-      "<M-\\>",
+      "<M-/>",
       function()
         require("Comment.api").toggle.blockwise.current()
       end,
       desc = "Comment: block comment",
     },
     {
-      "<C-\\>",
+      "<C-/>",
       function()
         vim.api.nvim_feedkeys(esc, "nx", false)
         require("Comment.api").toggle.linewise(vim.fn.visualmode())
@@ -40,7 +40,7 @@ return {
     },
 
     {
-      "<M-\\>",
+      "<M-/>",
       function()
         vim.api.nvim_feedkeys(esc, "nx", false)
         require("Comment.api").toggle.blockwise(vim.fn.visualmode())

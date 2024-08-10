@@ -69,11 +69,6 @@ local km = {
   -- Select all
   { "<c-a>",     "ggVG",           desc = "Select all",      mode = { "n", "v" } },
 
-  -- Cursor jumping
-
-  { "L",         "$" },
-  { "H",         "^" },
-
   -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
   {
     "n",

@@ -32,16 +32,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- remove ^M before save
-vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
-  pattern = "*",
-  group = user_autocmd,
-  desc = "Remove tailing ^M",
-  callback = function()
-    vim.api.nvim_feedkeys(":%s/\r//g<CR>", "n", false)
-  end
-})
-
 -- auto save
 vim.api.nvim_create_autocmd({ "InsertLeave", "CursorHold" }, {
   pattern = "*",
@@ -50,7 +40,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "CursorHold" }, {
   callback = function()
     if vim.fn.filewritable(vim.fn.expand("%")) == 1 or
         vim.fn.findfile(vim.fn.expand("%:t"), vim.fn.expand("%:h")) == 0 then
-      vim.cmd.save()
+      vim.cmd("w")
     end
   end
 })

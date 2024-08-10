@@ -97,6 +97,12 @@ local km = {
     desc = "Buf: Redraw",
   },
 
+  {
+    "<leader>udr",
+    ":%s/\r//g<CR>",
+    desc = "Remove tailing \\r"
+  },
+
   { "<m-h>",     "<Left>",  mode = "i" },
   { "<m-j>",     "<Down>",  mode = "i" },
   { "<m-k>",     "<Up>",    mode = "i" },

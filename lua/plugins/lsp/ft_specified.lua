@@ -57,7 +57,7 @@ return {
   },
   {
     'linux-cultist/venv-selector.nvim',
-    dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+    dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', },
     opts = {
       poetry_path = vim.fn.expand("$HOME/.cache/pypoetry/virtualenvs")
     },
@@ -68,5 +68,5 @@ return {
     ft = 'typst',
     version = '0.3.*',
     build = function() require 'typst-preview'.update() end,
-  }
+  },
 }

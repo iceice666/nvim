@@ -23,6 +23,7 @@ return {
     "onsails/lspkind-nvim",
 
     -- Other
+    "zbirenbaum/copilot-cmp",
     "lukas-reineke/cmp-under-comparator",
     "kawre/neotab.nvim",
   },
@@ -94,6 +95,7 @@ return {
       sources = {
         { name = "lazydev",    group_index = 0 },
 
+        { name = "copilot",    group_index = 1 },
         { name = "emoji",      group_index = 1 },
         { name = "IM",         group_index = 1 },
         { name = "nerdfont",   group_index = 1 },
@@ -103,13 +105,9 @@ return {
         { name = "path",       group_index = 2 },
         { name = "treesitter", group_index = 2 },
         { name = "nvim_lua",   group_index = 2 },
-        {
-          name = "snippets",
-          max_item_count = 10,
-          group_index = 2,
-        },
+        { name = "snippets",   group_index = 2, max_item_count = 10, },
 
-        { name = "buffer", group_index = 3 },
+        { name = "buffer",     group_index = 3 },
       },
 
 

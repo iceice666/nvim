@@ -4,7 +4,7 @@ local cmd = require("hydra.keymap-util").cmd
 
 local hint = [[
  Tabpage
-   
+
        Create    ^^^    Close   ^^    Goto      Move
  ----------------^^^ -----------^^ ----------- -------
  _n_: new             _c_: close    _]_: next  _>_: next
@@ -15,7 +15,7 @@ local hint = [[
 
 ]]
 
-Hydra({
+return Hydra({
   name = "Tabpage",
   hint = hint,
   config = {
@@ -28,23 +28,21 @@ Hydra({
     },
     color = "pink",
   },
-  mode = "n",
   on_enter = function()
     vim.bo.modifiable = false
   end,
-  body = "<c-t>",
 
   heads = {
-    { "n", cmd("tabnew"), { nowait = true } },
-    { "s", cmd("tab split"), { nowait = true } },
-    { "c", cmd("tabclose"), { nowait = true } },
-    { "o", cmd("tabonly"), { exit = true } },
-    { "]", cmd("tabnext"), { nowait = true } },
-    { "[", cmd("tabprevious"), { nowait = true } },
-    { ">", cmd("tabmove +1"), { nowait = true } },
-    { "<", cmd("tabmove -1"), { nowait = true } },
-    { "$", cmd("tablast"), { nowait = true } },
-    { "^", cmd("tabfirst"), { nowait = true } },
-    { "<Esc>", nil, { exit = true } },
+    { "n",     cmd("tabnew"),      { nowait = true } },
+    { "s",     cmd("tab split"),   { nowait = true } },
+    { "c",     cmd("tabclose"),    { nowait = true } },
+    { "o",     cmd("tabonly"),     { exit = true } },
+    { "]",     cmd("tabnext"),     { nowait = true } },
+    { "[",     cmd("tabprevious"), { nowait = true } },
+    { ">",     cmd("tabmove +1"),  { nowait = true } },
+    { "<",     cmd("tabmove -1"),  { nowait = true } },
+    { "$",     cmd("tablast"),     { nowait = true } },
+    { "^",     cmd("tabfirst"),    { nowait = true } },
+    { "<Esc>", nil,                { exit = true } },
   },
 })

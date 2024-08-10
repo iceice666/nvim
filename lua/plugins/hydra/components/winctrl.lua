@@ -25,8 +25,6 @@ Hydra({
       offset = 1,
     },
   },
-  mode = "n",
-  body = "<c-w>",
   heads = {
     { "h", cmd("wincmd h") },
     { "j", cmd("wincmd j") },

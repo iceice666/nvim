@@ -8,11 +8,11 @@ return {
   },
   keys = {
     {
-      "<leader>usj",
+      "<leader>us",
       function()
         require("treesj").toggle()
       end,
-      desc = "Utils: Toggle split/join",
+      desc = "Toggle split/join",
     },
   },
 }

@@ -128,18 +128,18 @@ local km = {
   },
 
   {
-    "<leader>udr",
+    "<leader>ur",
     ":%s/\r//g<CR>",
     desc = "Remove tailing \\r"
   },
 
-  { "<m-h>",     "<Left>",  mode = "i" },
-  { "<m-j>",     "<Down>",  mode = "i" },
-  { "<m-k>",     "<Up>",    mode = "i" },
-  { "<m-l>",     "<Right>", mode = "i" },
+  { "<m-h>", "<Left>",           mode = "i" },
+  { "<m-j>", "<Down>",           mode = "i" },
+  { "<m-k>", "<Up>",             mode = "i" },
+  { "<m-l>", "<Right>",          mode = "i" },
 
-  { "<m-tab>",   "<c-w>w" },
-  { "<m-s-tab>", "<c-w>W" },
+  { "[t",    "<cmd>tabprev<cr>", desc = "Tab: Previous" },
+  { "]t",    "<cmd>tabnext<cr>", desc = "Tab: Next" },
 
   -- Open url
   -- https://www.google.com
@@ -258,9 +258,8 @@ local km = {
 -- ==============================================
 
 local group = {
-  {
-    "<leader>s", group = "shows", icon = { icon = "" }
-  }
+  { "<leader>s", group = "shows", icon = { icon = "" } },
+  { "<leader>u", group = "Utils", }
 }
 
 require("which-key").add(km)

@@ -7,10 +7,10 @@ local hint = [[
 
        Create    ^^^    Close   ^^    Goto      Move
  ----------------^^^ -----------^^ ----------- -------
- _n_: new             _c_: close    _]_: next  _>_: next
- _s_: split current   _o_: others   _[_: prev  _<_: prev
- ^ ^  into a new tab           ^   _\^_: first
-                            ^^^^    _$_: last
+ _n_: new             _c_: close   _\f_: first _>_: next
+ _s_: split current   _o_: others   _l_: last  _<_: prev
+ ^ ^  into a new tab           ^
+                            ^^^^
  _<Esc>_: quit
 
 ]]
@@ -33,16 +33,14 @@ return Hydra({
   end,
 
   heads = {
-    { "n",     cmd("tabnew"),      { nowait = true } },
-    { "s",     cmd("tab split"),   { nowait = true } },
-    { "c",     cmd("tabclose"),    { nowait = true } },
-    { "o",     cmd("tabonly"),     { exit = true } },
-    { "]",     cmd("tabnext"),     { nowait = true } },
-    { "[",     cmd("tabprevious"), { nowait = true } },
-    { ">",     cmd("tabmove +1"),  { nowait = true } },
-    { "<",     cmd("tabmove -1"),  { nowait = true } },
-    { "$",     cmd("tablast"),     { nowait = true } },
-    { "^",     cmd("tabfirst"),    { nowait = true } },
-    { "<Esc>", nil,                { exit = true } },
+    { "n",     cmd("tabnew"),     { nowait = true } },
+    { "s",     cmd("tab split"),  { nowait = true } },
+    { "c",     cmd("tabclose"),   { nowait = true } },
+    { "o",     cmd("tabonly"),    { exit = true } },
+    { ">",     cmd("tabmove +1"), { nowait = true } },
+    { "<",     cmd("tabmove -1"), { nowait = true } },
+    { "l",     cmd("tablast"),    { nowait = true } },
+    { "f",     cmd("tabfirst"),   { nowait = true } },
+    { "<Esc>", nil,               { exit = true } },
   },
 })

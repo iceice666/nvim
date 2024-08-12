@@ -1,5 +1,7 @@
 M = {}
 
+
+
 function M.set_keymap(km)
   for _, binding in ipairs(km) do
     local lhs = binding[1]
@@ -38,27 +40,24 @@ function M.is_file_exist(path)
   return vim.fn.filereadable(vim.fn.getcwd() .. "/" .. path) == 1
 end
 
-function M.flatten(i, s, p, r)
-  local function flatten(input_table, sep, prefix, result)
-    prefix = prefix or ""
-    result = result or {}
-    sep = sep or "."
+local function flatten(input_table, sep, prefix, result)
+  prefix = prefix or ""
+  result = result or {}
+  sep = sep or "."
 
-    for key, value in pairs(input_table) do
-      local new_key = prefix ~= "" and (prefix .. sep .. key) or key
+  for key, value in pairs(input_table) do
+    local new_key = prefix ~= "" and (prefix .. sep .. key) or key
 
-      if type(value) == "table" then
-        flatten(value, sep, new_key, result)
-      else
-        result[new_key] = value
-      end
+    if type(value) == "table" then
+      flatten(value, sep, new_key, result)
+    else
+      result[new_key] = value
     end
-
-    return result
   end
 
-  return flatten(i, s, p, r)
+  return result
 end
+M.flatten = flatten
 
 function M.table_to_string(tbl)
   local result = "{\n"

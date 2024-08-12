@@ -19,6 +19,8 @@ return {
     local Git = req("git")
     local FileType = req("file").FileType
     local FileName = req("file").FileName
+    local FileFormat = req("file").FileFormat
+    local FileEncoding = req("file").FileEncoding
     local HelpFileName = req("file").HelpFileName
     local TerminalName = req("file").TerminalName
     local Diagnostics = req("lsp").Diagnostics
@@ -45,6 +47,8 @@ return {
         Git,
         Copilot,
         LspClients,
+        FileEncoding,
+        FileFormat,
         FileType,
         Space,
 
@@ -65,6 +69,10 @@ return {
       FileType,
       Space,
       FileName,
+      Space,
+      FileEncoding,
+      Space,
+      FileFormat,
       Space,
       Diagnostics,
       Align,

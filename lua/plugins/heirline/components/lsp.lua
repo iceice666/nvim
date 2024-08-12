@@ -133,7 +133,7 @@ return {
 
     provider = function()
       local s = {}
-      for _, v in pairs(vim.lsp.get_active_clients()) do
+      for _, v in pairs(vim.lsp.get_clients()) do
         if v.name ~= "copilot" then
           s[#s + 1] = v.name
         end
@@ -171,8 +171,17 @@ return {
       return require("copilot_status").enabled()
     end,
     provider = function()
-      return require("copilot_status").status_string()
+      return " " .. require("copilot_status").status().status
     end,
+    on_click = {
+      callback = function()
+        local status = require("copilot_status").status()
+        vim.notify(status.messge, "info", {
+          title = "Copilot: " .. status.status,
+        })
+      end,
+      name = "heirline_copilot",
+    },
     update = true,
     hl = { fg = "#6CC644" },
   },

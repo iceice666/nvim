@@ -90,12 +90,12 @@ return {
       sources = {
         { name = "lazydev",    group_index = 0 },
 
-        { name = "copilot",    group_index = 1 },
         { name = "emoji",      group_index = 1 },
         { name = "IM",         group_index = 1 },
         { name = "nerdfont",   group_index = 1 },
         { name = "crates",     group_index = 1 },
 
+        { name = "copilot",    group_index = 2, priority = 100 },
         { name = "nvim_lsp",   group_index = 2 },
         { name = "path",       group_index = 2 },
         { name = "treesitter", group_index = 2 },
@@ -135,8 +135,6 @@ return {
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           elseif vim.g.ENABLE_NATIVE_SNIPPETS and vim.snippet.active({ direction = 1 }) then
             vim.snippet.jump(1)
-          elseif require("copilot.suggestion").is_visible() then
-            require("copilot.suggestion").accept()
           else
             neotab.tabout()
           end

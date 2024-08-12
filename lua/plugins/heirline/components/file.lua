@@ -77,6 +77,15 @@ local FileType = {
   end,
 }
 
+local ReadOnly = {
+  condition = function()
+    return not vim.bo.modifiable or vim.bo.readonly
+  end,
+  provider = "  ",
+  hl = { fg = "orange" },
+}
+
+
 local HelpFileName = {
   condition = function()
     return vim.bo.filetype == "help"
@@ -105,7 +114,7 @@ return {
     FileType,
     { provider = "%<" }
   ),
-  FileName = utils.insert(FileNameBlock, FileName, { provider = "%<" }),
+  FileName = utils.insert(FileNameBlock, FileName, ReadOnly, { provider = "%<" }),
   HelpFileName = HelpFileName,
   TerminalName = TerminalName,
 }

@@ -13,7 +13,7 @@ return {
   hl = { fg = "orange" },
   {
     -- git branch name
-    conditions = function(self)
+    condition = function(self)
       return #self.status_dict.head ~= 0
     end,
     provider = function(self)

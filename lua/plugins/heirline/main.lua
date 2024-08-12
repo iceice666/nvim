@@ -21,8 +21,6 @@ return {
     local FileName = req("file").FileName
     local HelpFileName = req("file").HelpFileName
     local TerminalName = req("file").TerminalName
-    local Ruler = req("ruler").Ruler
-    local ScrollBar = req("ruler").ScrollBar
     local Diagnostics = req("lsp").Diagnostics
     local LspClients = req("lsp").LspClients
     -- local Snippets = req("lsp").Snippets
@@ -47,9 +45,9 @@ return {
         Git,
         Copilot,
         LspClients,
-        Ruler,
         FileType,
-        ScrollBar,
+        Space,
+
       }
 
       local insert_between_items = vim.g.utils.insert_between_items

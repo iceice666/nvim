@@ -262,5 +262,10 @@ local group = {
   { "<leader>u", group = "Utils", }
 }
 
-require("which-key").add(km)
-require("which-key").add(group)
+local ok, wk = pcall(require, "which-key")
+if ok then
+  wk.add(km)
+  wk.add(group)
+else
+  vim.g.utils.set_keymap(km)
+end

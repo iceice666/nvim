@@ -29,9 +29,9 @@
 --=================================================================================--
 
 
+require("core.utils")
 require("core.vscode")
 require("core.neovide")
-require("core.utils")
 require("core.options")
 require("core.lazy")
 require("core.autocmd")

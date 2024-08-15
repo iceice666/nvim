@@ -54,6 +54,7 @@ return {
         KeywordCoroutine = "",
         KeywordOperator = "",
         KeywordConditional = "",
+        KeywordReturn = "",
         Snippet = "󰅇",
         Color = "󰏘",
         File = "󰈙",

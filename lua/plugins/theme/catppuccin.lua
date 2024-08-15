@@ -23,6 +23,7 @@ return {
           DapStop = { fg = c.green },
           LspInlayHint = { fg = c.overlay2, bg = c.crust },
           Folded = { bg = c.base },
+          IblCurIndent = { fg = "#bff3fe", bg = "NONE" },
 
           -- https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance
           PmenuSel = { bg = "#282C34", fg = "NONE" },
@@ -41,36 +42,36 @@ return {
           CmpItemKindProperty = { fg = "#EED8DA", bg = "#B5585F" },
           CmpItemKindEvent = { fg = "#EED8DA", bg = "#B5585F" },
 
-          CmpItemKindText = { fg = "#e5eedd", bg = "#9FBD73" },
-          CmpItemKindEnum = { fg = "#e5eedd", bg = "#9FBD73" },
-          CmpItemKindKeyword = { fg = "#e5eedd", bg = "#9FBD73" },
+          CmpItemKindText = { fg = "#e5eedd", bg = "#3A570F" },
+          CmpItemKindEnum = { fg = "#e5eedd", bg = "#3A570F" },
+          CmpItemKindKeyword = { fg = "#e5eedd", bg = "#3A570F" },
 
-          CmpItemKindConstant = { fg = "#FFE082", bg = "#D4BB6C" },
-          CmpItemKindConstructor = { fg = "#FFE082", bg = "#D4BB6C" },
-          CmpItemKindReference = { fg = "#FFE082", bg = "#D4BB6C" },
+          CmpItemKindConstant = { fg = "#FFE082", bg = "#725A08" },
+          CmpItemKindConstructor = { fg = "#FFE082", bg = "#725A08" },
+          CmpItemKindReference = { fg = "#FFE082", bg = "#725A08" },
 
-          CmpItemKindFunction = { fg = "#EADFF0", bg = "#A377BF" },
-          CmpItemKindStruct = { fg = "#EADFF0", bg = "#A377BF" },
-          CmpItemKindClass = { fg = "#EADFF0", bg = "#A377BF" },
-          CmpItemKindModule = { fg = "#EADFF0", bg = "#A377BF" },
-          CmpItemKindOperator = { fg = "#EADFF0", bg = "#A377BF" },
+          CmpItemKindFunction = { fg = "#EADFF0", bg = "#41145d" },
+          CmpItemKindStruct = { fg = "#EADFF0", bg = "#41145d" },
+          CmpItemKindClass = { fg = "#EADFF0", bg = "#41145d" },
+          CmpItemKindModule = { fg = "#EADFF0", bg = "#41145d" },
+          CmpItemKindOperator = { fg = "#EADFF0", bg = "#41145d" },
 
-          CmpItemKindVariable = { fg = "#C5CDD9", bg = "#7E8294" },
-          CmpItemKindFile = { fg = "#C5CDD9", bg = "#7E8294" },
+          CmpItemKindVariable = { fg = "#C5CDD9", bg = "#4c5094" },
+          CmpItemKindFile = { fg = "#C5CDD9", bg = "#4c5094" },
+          
+          CmpItemKindUnit = { fg = "#F5EBD9", bg = "#a07627" },
+          CmpItemKindSnippet = { fg = "#F5EBD9", bg = "#a07627" },
+          CmpItemKindFolder = { fg = "#F5EBD9", bg = "#a07627" },
 
-          CmpItemKindUnit = { fg = "#F5EBD9", bg = "#D4A959" },
-          CmpItemKindSnippet = { fg = "#F5EBD9", bg = "#D4A959" },
-          CmpItemKindFolder = { fg = "#F5EBD9", bg = "#D4A959" },
+          CmpItemKindMethod = { fg = "#DDE5F5", bg = "#045265" },
+          CmpItemKindValue = { fg = "#DDE5F5", bg = "#045265" },
+          CmpItemKindEnumMember = { fg = "#DDE5F5", bg = "#045265" },
 
-          CmpItemKindMethod = { fg = "#DDE5F5", bg = "#6C8ED4" },
-          CmpItemKindValue = { fg = "#DDE5F5", bg = "#6C8ED4" },
-          CmpItemKindEnumMember = { fg = "#DDE5F5", bg = "#6C8ED4" },
+          CmpItemKindInterface = { fg = "#D8EEEB", bg = "#308d80" },
+          CmpItemKindColor = { fg = "#D8EEEB", bg = "#308d80" },
+          CmpItemKindTypeParameter = { fg = "#D8EEEB", bg = "#308d80" },
 
-          CmpItemKindInterface = { fg = "#D8EEEB", bg = "#58B5A8" },
-          CmpItemKindColor = { fg = "#D8EEEB", bg = "#58B5A8" },
-          CmpItemKindTypeParameter = { fg = "#D8EEEB", bg = "#58B5A8" },
-
-          CmpItemKindCopilot = { fg = "#ccddbb", bg = "#6CC644" },
+          CmpItemKindCopilot = { fg = "#ccbbdd", bg = "#378e00" },
         }
       end,
       integrations = {

@@ -38,21 +38,19 @@ local FileName = {
   end,
   hl = { fg = utils.get_highlight("Directory").fg },
 
-  on_click = {
-    callback = function()
-      vim.cmd("Neotree reveal toggle")
-    end,
-    name = "heirline_filetree",
-  },
 }
 
-local cpp_name = ({
-  "D--",
-  "C++",
-  "C艹",
-  "吸加加",
-  "CPP",
-})[math.random(5)]
+local cpp_name = function()
+  local mapping = {
+    "D--",
+    "C++",
+    "C艹",
+    "吸加加",
+    "CPP",
+  }
+
+  return mapping[math.random(#mapping)]
+end
 
 local firstToUpper = vim.g.utils.firstToUpper
 local FileType = {
@@ -63,14 +61,9 @@ local FileType = {
       ["scss"] = "SCSS",
       ["html"] = "HTML",
       ["cs"] = "C#",
-      ["cpp"] = cpp_name,
+      ["cpp"] = cpp_name(),
     }
-    local r = custom[ft]
-    if r == nil then
-      return firstToUpper(ft)
-    else
-      return r
-    end
+    return custom[ft] or firstToUpper(ft)
   end,
   hl = function(self)
     return { fg = self.icon_color, bold = true }
@@ -84,16 +77,28 @@ local ReadOnly = {
   provider = "  ",
   hl = { fg = "orange" },
 }
+
 local FileFormat = {
-  provider = function()
-    local fmt = vim.bo.fileformat
-    return fmt ~= 'unix' and fmt:upper()
+  init = function(self)
+    self.fmt = vim.bo.fileformat
+  end,
+  condition = function(self)
+    return self.fmt ~= 'unix'
+  end,
+  provider = function(self)
+    return self.fmt:upper()
   end
 }
+
 local FileEncoding = {
-  provider = function()
-    local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc -- :h 'enc'
-    return enc ~= 'utf-8' and enc:upper()
+  init = function(self)
+    self.enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc -- :h 'enc'
+  end,
+  condition = function(self)
+    return self.enc ~= 'utf-8'
+  end,
+  provider = function(self)
+    return self.enc:upper()
   end
 }
 

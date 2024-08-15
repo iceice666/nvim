@@ -26,7 +26,6 @@ return {
     local Diagnostics = req("lsp").Diagnostics
     local LspClients = req("lsp").LspClients
     -- local Snippets = req("lsp").Snippets
-    local CmpIM = req("lsp").CmpIM
     local Copilot = req("lsp").Copilot
     local MacroRecoder = req("macro").MacroRecoder
 
@@ -42,7 +41,6 @@ return {
       local middle = {}
 
       local right = {
-        CmpIM,
         -- Snippets,
         Git,
         Copilot,

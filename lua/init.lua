@@ -28,7 +28,7 @@
 
 --=================================================================================--
 
-
+require("core.clean")
 require("core.utils")
 require("core.vscode")
 require("core.neovide")

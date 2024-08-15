@@ -20,16 +20,4 @@ require("lazy").setup("plugins", {
     enabled = true,
     notify = false, -- get a notification when new updates are found
   },
-  performence = {
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "netrwPlugin",
-        "tarPlugin",
-        "zipPlugin",
-        "tohtml",
-        "tutor"
-      }
-    }
-  },
 })

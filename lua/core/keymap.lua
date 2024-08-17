@@ -45,6 +45,49 @@ local open_under_cursor = function()
   vim.fn.jobstart(gen_cmd(browser, gen_url(search_url, word)), { detach = true })
 end
 
+
+local function bufs()
+  local current = vim.api.nvim_get_current_buf()
+  return vim.tbl_filter(function(buf)
+    return buf ~= current and vim.bo[buf].buflisted
+  end, vim.api.nvim_list_bufs())
+end
+
+local function bufname(buf)
+  local name = vim.api.nvim_buf_get_name(buf)
+  return name == "" and "[No Name]" or vim.fn.fnamemodify(name, ":~:.")
+end
+
+local function add_keys(spec)
+  table.sort(spec, function(a, b)
+    return a.desc < b.desc
+  end)
+  spec = vim.list_slice(spec, 1, 9)
+  for i, v in ipairs(spec) do
+    v[1] = tostring(i)
+  end
+  return spec
+end
+
+local function expand_buf()
+  -- ref: https://github.com/folke/which-key.nvim/blob/main/lua/which-key/extras.lua
+  local ret = {} ---@type wk.Spec[]
+
+  for _, buf in ipairs(bufs()) do
+    local name = bufname(buf)
+    ret[#ret + 1] = {
+      "",
+      function()
+        vim.api.nvim_set_current_buf(buf)
+      end,
+      desc = name,
+      icon = { cat = "file", name = name },
+    }
+  end
+  return add_keys(ret)
+end
+
+
 -- remove annoying `<C-w>d` keybinding
 vim.keymap.del("n", "<c-w>d")
 vim.keymap.del("n", "<c-w><c-d>")
@@ -67,7 +110,7 @@ local km = {
   },
 
   -- write
-  { "<leader>w", "<cmd>w<cr>",     desc = "Buffer: Write" },
+  { "<leader>w", "<cmd>w<cr>", desc = "Buffer: Write" },
 
   -- Move selected sections
   -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32
@@ -86,23 +129,32 @@ local km = {
 
   -- Don't lose selection when shifting sidewards
   -- https://github.com/mhinz/vim-galore?tab=readme-ov-file#dont-lose-selection-when-shifting-sidewards
-  { ">",         ">gv",            mode = "x" },
-  { "<",         "<gv",            mode = "x" },
+  { ">",         ">gv",        mode = "x" },
+  { "<",         "<gv",        mode = "x" },
 
 
   -- buffer navigation
-  { "[b",        "<cmd>bprev<cr>", desc = "Buffer: Previous" },
-  { "]b",        "<cmd>bnext<cr>", desc = "Buffer: Next" },
+  {
+    group = "Buffer",
+    { "[b", "<cmd>bprev<cr>", desc = "Buffer: Previous" },
+    { "]b", "<cmd>bnext<cr>", desc = "Buffer: Next" },
+    {
+      "<leader>",
+      expand = function()
+        return expand_buf()
+      end,
+    },
+  },
 
   -- quick scroll
-  { "J",         "10j",            mode = { "n", "x", "o" }, desc = "Down 10 lines" },
-  { "K",         "10k",            mode = { "n", "x", "o" }, desc = "Up 10 lines" },
+  { "J",     "10j",   mode = { "n", "x", "o" }, desc = "Down 10 lines" },
+  { "K",     "10k",   mode = { "n", "x", "o" }, desc = "Up 10 lines" },
 
   -- redo
-  { "U",         "<C-R>",          desc = "Redo" },
+  { "U",     "<C-R>", desc = "Redo" },
 
   -- Select all
-  { "<c-a>",     "ggVG",           desc = "Select all",      mode = { "n", "v" } },
+  { "<c-a>", "ggVG",  desc = "Select all",      mode = { "n", "v" } },
 
   -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
   {

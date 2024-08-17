@@ -13,6 +13,8 @@ return {
 
       require("which-key").add(
         {
+          icon = "󰈚",
+          group = "hydra",
           {
             "<leader>l",
             function()
@@ -25,14 +27,12 @@ return {
               end
             end,
             desc = "[Hydra] Lsp binding",
-            icon = "󰈚"
           },
           {
             "<c-t>",
             function()
               vim.g.utils.require_hydra("tabpage"):activate()
             end,
-            icon = "󰈚",
             desc = "[Hydra] Tabpage"
           },
           {
@@ -40,7 +40,6 @@ return {
             function()
               vim.g.utils.require_hydra("buffer"):activate()
             end,
-            icon = "󰈚",
             desc = "[Hydra] Buffer"
           },
           {
@@ -48,7 +47,6 @@ return {
             function()
               vim.g.utils.require_hydra("telescope"):activate()
             end,
-            icon = "󰈚",
             desc = "[Hydra] Telescope"
           },
           {
@@ -56,7 +54,6 @@ return {
             function()
               vim.g.utils.require_hydra("winctrl"):activate()
             end,
-            icon = "󰈚",
             desc = "[Hydra] Window control"
           }
         }

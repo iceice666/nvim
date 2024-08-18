@@ -5,10 +5,10 @@ local cmd = require("hydra.keymap-util").cmd
 local hint = [[
  Tabpage
 
-       Create    ^^^    Close   ^^    Goto      Move
- ----------------^^^ -----------^^ ----------- -------
- _n_: new             _c_: close   _\f_: first _>_: next
- _s_: split current   _o_: others   _l_: last  _<_: prev
+       Create    ^^^    Close   ^^    Goto    ^^  Move
+ ----------------^^^ -----------^^ -----------^^ -------
+ _n_: new             _c_: close    _\f_: first  _>_: next
+ _s_: split current   _o_: others   ^_l_: last   _<_: prev
  ^ ^  into a new tab           ^
                             ^^^^
  _<Esc>_: quit

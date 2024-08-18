@@ -4,26 +4,32 @@ return {
     "nvimtools/hydra.nvim",
     event = "VeryLazy",
     config = function()
+      local utils = vim.g.utils
+
+      local function require_hydra(text)
+        return require("plugins.hydra.components." .. text)
+      end
       -- register components after vim loaded
-      vim.g.utils.require_hydra("tabpage")
-      vim.g.utils.require_hydra("telescope")
-      vim.g.utils.require_hydra("winctrl")
-      -- vim.g.utils.require_hydra("for_fun")
-      vim.g.utils.require_hydra("buffer")
+      local hydra_tabpage = require_hydra("tabpage")
+      local hydra_telescope = require_hydra("telescope")
+      local hydra_winctrl = require_hydra("winctrl")
+      local hydra_buffer = require_hydra("buffer")
+      -- require_hydra("for_fun")
 
       require("which-key").add(
         {
           icon = "󰈚",
           group = "hydra",
+          nowait = true,
           {
             "<leader>l",
             function()
-              if vim.g.utils.is_file_exist("Cargo.toml") or vim.g.utils.is_lsp_active("rust-analyzer") then
-                vim.g.utils.require_hydra("lsp.rust"):activate()
-              elseif vim.g.utils.is_file_exist("pubspec.yaml") or vim.g.utils.is_lsp_active("dartls") then
-                vim.g.utils.require_hydra("lsp.flutter"):activate()
+              if utils.is_file_exist("Cargo.toml") or utils.is_lsp_active("rust-analyzer") then
+                require_hydra("lsp.rust"):activate()
+              elseif utils.is_file_exist("pubspec.yaml") or utils.is_lsp_active("dartls") then
+                require_hydra("lsp.flutter"):activate()
               else
-                vim.g.utils.require_hydra("lsp.default"):activate()
+                require_hydra("lsp.default"):activate()
               end
             end,
             desc = "[Hydra] Lsp binding",
@@ -31,28 +37,28 @@ return {
           {
             "<c-t>",
             function()
-              vim.g.utils.require_hydra("tabpage"):activate()
+              hydra_tabpage:activate()
             end,
             desc = "[Hydra] Tabpage"
           },
           {
             "<leader>b",
             function()
-              vim.g.utils.require_hydra("buffer"):activate()
+              hydra_buffer:activate()
             end,
             desc = "[Hydra] Buffer"
           },
           {
             "<leader>t",
             function()
-              vim.g.utils.require_hydra("telescope"):activate()
+              hydra_telescope:activate()
             end,
             desc = "[Hydra] Telescope"
           },
           {
             "<c-w>",
             function()
-              vim.g.utils.require_hydra("winctrl"):activate()
+              hydra_winctrl:activate()
             end,
             desc = "[Hydra] Window control"
           }

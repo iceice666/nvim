@@ -23,10 +23,6 @@ function M.set_keymap(km)
   end
 end
 
-function M.require_hydra(text)
-  return require("plugins.hydra.components." .. text)
-end
-
 function M.is_lsp_active(lsp_name)
   for _, client in ipairs(vim.lsp.get_clients()) do
     if client.name == lsp_name then

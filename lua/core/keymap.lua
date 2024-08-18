@@ -46,11 +46,14 @@ local open_under_cursor = function()
 end
 
 
+
+-- ==============================================
+-- ref: https://github.com/folke/which-key.nvim/blob/main/lua/which-key/extras.lua
+
 local function bufs()
-  local current = vim.api.nvim_get_current_buf()
-  return vim.tbl_filter(function(buf)
-    return buf ~= current and vim.bo[buf].buflisted
-  end, vim.api.nvim_list_bufs())
+  return vim.list_slice(vim.tbl_filter(function(buf)
+    return vim.bo[buf].buflisted
+  end, vim.api.nvim_list_bufs()), 1, 9)
 end
 
 local function bufname(buf)
@@ -58,25 +61,13 @@ local function bufname(buf)
   return name == "" and "[No Name]" or vim.fn.fnamemodify(name, ":~:.")
 end
 
-local function add_keys(spec)
-  table.sort(spec, function(a, b)
-    return a.desc < b.desc
-  end)
-  spec = vim.list_slice(spec, 1, 9)
-  for i, v in ipairs(spec) do
-    v[1] = tostring(i)
-  end
-  return spec
-end
-
 local function expand_buf()
-  -- ref: https://github.com/folke/which-key.nvim/blob/main/lua/which-key/extras.lua
-  local ret = {} ---@type wk.Spec[]
+  local ret = {}
 
   for _, buf in ipairs(bufs()) do
     local name = bufname(buf)
     ret[#ret + 1] = {
-      "",
+      tostring(#ret + 1),
       function()
         vim.api.nvim_set_current_buf(buf)
       end,
@@ -84,17 +75,10 @@ local function expand_buf()
       icon = { cat = "file", name = name },
     }
   end
-  return add_keys(ret)
+  return ret
 end
+-- ==============================================
 
-
--- remove annoying `<C-w>d` keybinding
-vim.keymap.del("n", "<c-w>d")
-vim.keymap.del("n", "<c-w><c-d>")
-
--- remove comment keybinding
-vim.keymap.del("n", "gc")
-vim.keymap.del("n", "gcc")
 
 -- ==============================================
 --         Keymap defined here
@@ -107,6 +91,15 @@ local km = {
       vim.cmd("qa!")
     end,
     desc = "Quit Neovim",
+  },
+
+  -- buf delete
+  {
+    "<leader>q",
+    function()
+      vim.cmd("bd")
+    end,
+    desc = "Buffer: Delete",
   },
 
   -- write

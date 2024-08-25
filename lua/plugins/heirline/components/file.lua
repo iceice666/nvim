@@ -93,9 +93,6 @@ local FileFormat = {
   init = function(self)
     self.fmt = vim.bo.fileformat
   end,
-  condition = function(self)
-    return self.fmt ~= 'unix'
-  end,
   provider = function(self)
     return self.fmt:upper()
   end
@@ -104,9 +101,6 @@ local FileFormat = {
 local FileEncoding = {
   init = function(self)
     self.enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc -- :h 'enc'
-  end,
-  condition = function(self)
-    return self.enc ~= 'utf-8'
   end,
   provider = function(self)
     return self.enc:upper()

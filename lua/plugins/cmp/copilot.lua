@@ -1,5 +1,6 @@
 return {
   {
+    enabled = false,
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     build = ":Copilot auth",
@@ -14,6 +15,7 @@ return {
     },
   },
   {
+    enabled = false,
     "jonahgoldwastaken/copilot-status.nvim",
     dependencies = { "zbirenbaum/copilot.lua" },
     lazy = true,
@@ -30,6 +32,7 @@ return {
     },
   },
   {
+    enabled = false,
     "zbirenbaum/copilot-cmp",
     event = {
       "InsertEnter",

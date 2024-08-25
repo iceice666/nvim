@@ -58,7 +58,7 @@ return {
 
           CmpItemKindVariable = { fg = "#C5CDD9", bg = "#4c5094" },
           CmpItemKindFile = { fg = "#C5CDD9", bg = "#4c5094" },
-          
+
           CmpItemKindUnit = { fg = "#F5EBD9", bg = "#a07627" },
           CmpItemKindSnippet = { fg = "#F5EBD9", bg = "#a07627" },
           CmpItemKindFolder = { fg = "#F5EBD9", bg = "#a07627" },
@@ -72,6 +72,7 @@ return {
           CmpItemKindTypeParameter = { fg = "#D8EEEB", bg = "#308d80" },
 
           CmpItemKindCopilot = { fg = "#ccbbdd", bg = "#378e00" },
+          CmpItemKindFittenCode = { fg = "#009be1" }
         }
       end,
       integrations = {

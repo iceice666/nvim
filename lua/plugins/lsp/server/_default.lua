@@ -13,7 +13,10 @@ function M.on_attach(client, bufnr)
   if client.supports_method("textDocument/inlayHint", { bufnr = bufnr }) then
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   end
-  require("copilot_cmp")._on_insert_enter({})
+  local ok, res = pcall(require, "copilot_cmp")
+  if ok then
+    res._on_insert_enter({})
+  end
 end
 
 return M

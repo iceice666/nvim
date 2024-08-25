@@ -85,4 +85,5 @@ return {
       "anuvyklack/animation.nvim",
     },
     config = true,
-  } }
+  }
+}

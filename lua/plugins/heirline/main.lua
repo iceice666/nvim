@@ -26,8 +26,10 @@ return {
     local Diagnostics = req("lsp").Diagnostics
     local LspClients = req("lsp").LspClients
     -- local Snippets = req("lsp").Snippets
-    local Copilot = req("lsp").Copilot
+    local AiAssist = req("lsp").FittenCode
     local MacroRecoder = req("macro").MacroRecoder
+
+
 
     local ActiveStatusline = (function()
       local result = {}
@@ -43,7 +45,7 @@ return {
       local right = {
         -- Snippets,
         Git,
-        Copilot,
+        AiAssist,
         LspClients,
         FileEncoding,
         FileFormat,

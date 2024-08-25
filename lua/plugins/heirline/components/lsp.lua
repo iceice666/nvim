@@ -117,7 +117,7 @@ M.Copilot = {
   on_click = {
     callback = function()
       local status = require("copilot_status").status()
-      vim.notify(status.messge, "info", {
+      vim.notify(status.messge, vim.log.levels.INFO, {
         title = "Copilot: " .. status.status,
       })
     end,
@@ -125,6 +125,24 @@ M.Copilot = {
   },
   update = true,
   hl = { fg = "#6CC644" },
+}
+
+local status_text = {
+  "Disabled ",
+  "Idle 󰒲",
+  "Generating ",
+  "Error ",
+  "No more suggestions 󰤁",
+  "Suggestion ready "
+}
+
+M.FittenCode = {
+  provider = function()
+    local status = require("fittencode").get_current_status()
+    return "FittenCode: " .. status_text[status] .. " "
+  end,
+  update = true,
+  hl = { fg = "#009be1" },
 }
 
 

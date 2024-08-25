@@ -20,58 +20,15 @@ return {
     "onsails/lspkind-nvim",
 
     -- Other
-    "zbirenbaum/copilot-cmp",
+    -- "zbirenbaum/copilot-cmp",
     "lukas-reineke/cmp-under-comparator",
     "kawre/neotab.nvim",
   },
   config = function()
     local cmp = require("cmp")
-
-
     local lspkind = require("lspkind")
-    lspkind.init({
-      symbol_map = {
-        VariableMember = "󰜢",
-        PunctuationSpecial = "󱔁",
-        Number = "󰎠",
-        Text = "󰉿",
-        String = "󰀬",
-        Method = "󰆧",
-        Function = "󰊕",
-        Constructor = "",
-        Field = "󰜢",
-        Variable = "󰀫",
-        Boolean = "",
-        Class = "󰠱",
-        Interface = "",
-        Module = "",
-        Property = "󰜢",
-        Unit = "󰑭",
-        Value = "󰎠",
-        Enum = "",
-        Keyword = "",
-        KeywordFunction = "",
-        KeywordCoroutine = "",
-        KeywordOperator = "",
-        KeywordConditional = "",
-        KeywordReturn = "",
-        Snippet = "󰅇",
-        Color = "󰏘",
-        File = "󰈙",
-        Reference = "󰈇",
-        Folder = "󰉋",
-        EnumMember = "",
-        Constant = "󰏿",
-        Struct = "󰙅",
-        Event = "",
-        Operator = "",
-        TypeParameter = "",
-        Type = "",
-        Comment = "󰅺",
-      },
-    })
-
     local neotab = require("neotab")
+    local fittencode = require("fittencode")
 
     cmp.setup({
       enabled = function()
@@ -96,7 +53,9 @@ return {
         { name = "nerdfont",   group_index = 1 },
         { name = "crates",     group_index = 1 },
 
-        { name = "copilot",    group_index = 2, priority = 100 },
+        -- { name = "copilot",    group_index = 2, priority = 100 },
+        -- { name = 'fittencode', group_index = 2, priority = 100 },
+
         { name = "nvim_lsp",   group_index = 2 },
         { name = "path",       group_index = 2 },
         { name = "treesitter", group_index = 2 },
@@ -122,8 +81,6 @@ return {
         ["<S-CR>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.mapping.close()
-          elseif require("copilot.suggestion").is_visible() then
-            require("copilot.suggestion").dismiss()
           else
             fallback()
           end
@@ -132,7 +89,9 @@ return {
         ["<esc>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
 
         ["<Tab>"] = cmp.mapping(function()
-          if cmp.visible() then
+          if fittencode.has_suggestions() then
+            fittencode.accept_all_suggestions()
+          elseif cmp.visible() then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           elseif vim.g.ENABLE_NATIVE_SNIPPETS and vim.snippet.active({ direction = 1 }) then
             vim.snippet.jump(1)
@@ -155,6 +114,9 @@ return {
         ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
 
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+        ["<S-Space>"] = cmp.mapping(cmp.mapping(function()
+          fittencode.triggering_completion()
+        end))
       },
 
       window = {
@@ -203,6 +165,7 @@ return {
               nvim_lua = "[Lua]",
               latex_symbols = "[Latex]",
               copilot = "[Copilot]",
+              FittenCode = "[FittenCode]",
             },
           })(entry, vim_item)
 

@@ -8,6 +8,7 @@ vim.g.neovide_padding_bottom = 0
 vim.g.neovide_padding_right = 0
 vim.g.neovide_padding_left = 0
 vim.g.neovide_fullscreen = true
+vim.g.neovide_input_macos_option_key_is_meta = 'both'
 -- I think we are programming not playing video games
 -- Does it really worth it to set such high refresh rate???
 vim.g.neovide_refresh_rate = 165 -- require `--no-vsync` flag

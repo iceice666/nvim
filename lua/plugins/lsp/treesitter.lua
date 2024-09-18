@@ -17,7 +17,6 @@ return {
         "markdown_inline",
         "query",
         "rust",
-        "dap_repl",
       },
       sync_install = false,
       auto_install = false,

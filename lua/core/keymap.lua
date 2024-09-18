@@ -32,6 +32,8 @@ local open_under_cursor = function()
         .. url
         .. "\")",
       }
+    elseif vim.fn.system("uname") == "Darwin\n" then
+      return { "open", "-u", url }
     else
       return { "xdg-open", url }
     end

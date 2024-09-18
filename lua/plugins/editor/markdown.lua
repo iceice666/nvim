@@ -19,7 +19,7 @@ return {
         let s:uname = system("uname")
         if s:uname == "Darwin\n"
         "Mac options here
-
+        execute "silent ! open -u " . a:url
         elseif s:uname == "Linux\n"
         execute "silent ! firefox --new-window " . a:url
         endif

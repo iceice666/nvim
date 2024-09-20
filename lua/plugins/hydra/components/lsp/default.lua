@@ -38,22 +38,22 @@ return Hydra({
 
   heads = {
     -- stylua: ignore start
-    { "d",     cmd("Lspsaga peek_definition") },
-    { "t",     cmd("Lspsaga peek_type_definition") },
-    { "D",     cmd("Lspsaga goto_definition") },
-    { "T",     cmd("Lspsaga goto_type_definition") },
-    { "k",     cmd("Lspsaga hover_doc") },
-    { "K",     cmd("Lspsaga hover_doc ++keep") },
+    { "d",     cmd("Lspsaga peek_definition"),       { exit = true } },
+    { "t",     cmd("Lspsaga peek_type_definition"),  { exit = true } },
+    { "D",     cmd("Lspsaga goto_definition"),       { exit = true } },
+    { "T",     cmd("Lspsaga goto_type_definition"),  { exit = true } },
+    { "k",     cmd("Lspsaga hover_doc"),             { exit = true } },
+    { "K",     cmd("Lspsaga hover_doc ++keep"),      { exit = true } },
 
     -- leader is <space>
-    { "r",     fun(vim.fn.feedkeys, " rn"),        { exit = true } },
-    { "fr",    cmd("Lspsaga finder ref"),          { exit = true } },
-    { "fd",    cmd("Lspsaga finder def"),          { exit = true } },
-    { "fi",    cmd("Lspsaga finder imp"),          { exit = true } },
-    { "i",     cmd("Lspsaga incoming_calls"),      { exit = true } },
-    { "o",     cmd("Lspsaga outgoing_calls"),      { exit = true } },
-    { "s",     cmd("Lspsaga outline"),             { exit = true } },
+    { "r",     fun(vim.fn.feedkeys, " rn"),          { exit = true } },
+    { "fr",    cmd("Lspsaga finder ref"),            { exit = true } },
+    { "fd",    cmd("Lspsaga finder def"),            { exit = true } },
+    { "fi",    cmd("Lspsaga finder imp"),            { exit = true } },
+    { "i",     cmd("Lspsaga incoming_calls"),        { exit = true } },
+    { "o",     cmd("Lspsaga outgoing_calls"),        { exit = true } },
+    { "s",     cmd("Lspsaga outline"),               { exit = true } },
     { "a",     cmd("Lspsaga code_action") },
-    { "<Esc>", nil,                                { exit = true } },
+    { "<Esc>", nil,                                  { exit = true } },
   },
 })

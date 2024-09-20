@@ -319,6 +319,7 @@ local group = {
 local ok, wk = pcall(require, "which-key")
 if ok then
   wk.add(km)
+  wk.add(wk_spec)
   wk.add(group)
 else
   vim.g.utils.set_keymap(km)

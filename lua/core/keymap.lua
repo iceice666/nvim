@@ -105,7 +105,7 @@ local km = {
   },
 
   -- write
-  { "<leader>w", "<cmd>w<cr>", desc = "Buffer: Write" },
+  { "<leader>w", "<cmd>w<cr>",     desc = "Buffer: Write" },
 
   -- Move selected sections
   -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua#L32
@@ -124,32 +124,22 @@ local km = {
 
   -- Don't lose selection when shifting sidewards
   -- https://github.com/mhinz/vim-galore?tab=readme-ov-file#dont-lose-selection-when-shifting-sidewards
-  { ">",         ">gv",        mode = "x" },
-  { "<",         "<gv",        mode = "x" },
+  { ">",         ">gv",            mode = "x" },
+  { "<",         "<gv",            mode = "x" },
 
 
-  -- buffer navigation
-  {
-    group = "Buffer",
-    { "[b", "<cmd>bprev<cr>", desc = "Buffer: Previous" },
-    { "]b", "<cmd>bnext<cr>", desc = "Buffer: Next" },
-    {
-      "<leader>",
-      expand = function()
-        return expand_buf()
-      end,
-    },
-  },
+  { "[b",        "<cmd>bprev<cr>", desc = "Buffer: Previous" },
+  { "]b",        "<cmd>bnext<cr>", desc = "Buffer: Next" },
 
   -- quick scroll
-  { "J",     "10j",   mode = { "n", "x", "o" }, desc = "Down 10 lines" },
-  { "K",     "10k",   mode = { "n", "x", "o" }, desc = "Up 10 lines" },
+  { "J",         "10j",            mode = { "n", "x", "o" }, desc = "Down 10 lines" },
+  { "K",         "10k",            mode = { "n", "x", "o" }, desc = "Up 10 lines" },
 
   -- redo
-  { "U",     "<C-R>", desc = "Redo" },
+  { "U",         "<C-R>",          desc = "Redo" },
 
   -- Select all
-  { "<c-a>", "ggVG",  desc = "Select all",      mode = { "n", "v" } },
+  { "<c-a>",     "ggVG",           desc = "Select all",      mode = { "n", "v" } },
 
   -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
   {
@@ -299,6 +289,23 @@ local km = {
     end,
   },
 }
+
+-- Which-key specific
+local wk_spec = {
+  -- buffer navigation
+  {
+    group = "Buffer",
+    { "[b", "<cmd>bprev<cr>", desc = "Buffer: Previous" },
+    { "]b", "<cmd>bnext<cr>", desc = "Buffer: Next" },
+    {
+      "<leader>",
+      expand = function()
+        return expand_buf()
+      end,
+    },
+  },
+}
+
 
 -- ==============================================
 --         Group defined here
